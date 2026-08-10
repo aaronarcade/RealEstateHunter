@@ -22,12 +22,12 @@
       "subjectId": "pipeline",
       "action": "triage-pipeline",
       "branch": "agent/manager-triage",
-      "agentId": "bc-9302d382-be15-48c1-93cf-69f14692e712",
-      "runId": "run-1e88eb05-f511-43d9-9b64-2a88e0250e0c",
-      "agentUrl": "https://cursor.com/agents/bc-9302d382-be15-48c1-93cf-69f14692e712",
+      "agentId": "bc-2ebf9f5b-30fd-410f-b253-417834f23fd8",
+      "runId": "run-eb1815b7-01b6-4463-afcf-b7d5ff5c29ea",
+      "agentUrl": "https://cursor.com/agents/bc-2ebf9f5b-30fd-410f-b253-417834f23fd8",
       "status": "ACTIVE",
-      "createdAt": "2026-08-10T04:18:01.078Z",
-      "updatedAt": "2026-08-10T04:18:01.078Z"
+      "createdAt": "2026-08-10T04:23:58.014Z",
+      "updatedAt": "2026-08-10T04:23:58.014Z"
     },
     "builder:task:TASK-002:implement-task": {
       "workKey": "builder:task:TASK-002:implement-task",
@@ -50,12 +50,12 @@
       "subjectId": "TASK-007",
       "action": "implement-task",
       "branch": "agent/task-007-supabase-data-layer",
-      "agentId": "bc-0575a884-3014-46b3-98f5-c6593ea38d5d",
-      "runId": "run-a67d0805-c760-48d8-91d7-a3298bd5afab",
-      "agentUrl": "https://cursor.com/agents/bc-0575a884-3014-46b3-98f5-c6593ea38d5d",
+      "agentId": "bc-7ff02893-85d4-4dec-984f-8a62abdb3c12",
+      "runId": "run-badf6836-1fee-4bea-b6e8-0854e99823e1",
+      "agentUrl": "https://cursor.com/agents/bc-7ff02893-85d4-4dec-984f-8a62abdb3c12",
       "status": "ACTIVE",
-      "createdAt": "2026-08-10T04:17:56.569Z",
-      "updatedAt": "2026-08-10T04:17:56.569Z"
+      "createdAt": "2026-08-10T04:23:55.427Z",
+      "updatedAt": "2026-08-10T04:23:55.427Z"
     },
     "builder:task:TASK-005:implement-task": {
       "workKey": "builder:task:TASK-005:implement-task",
@@ -67,9 +67,23 @@
       "agentId": "bc-7eddd2d9-92b2-4aeb-871b-00075542a5e8",
       "runId": "run-75210d24-0cdc-4f36-9178-3ade2161bb4f",
       "agentUrl": "https://cursor.com/agents/bc-7eddd2d9-92b2-4aeb-871b-00075542a5e8",
-      "status": "ACTIVE",
+      "status": "ERROR",
       "createdAt": "2026-08-10T04:18:03.792Z",
-      "updatedAt": "2026-08-10T04:18:03.792Z"
+      "updatedAt": "2026-08-10T04:23:52.951Z"
+    },
+    "builder:task:TASK-008:implement-task": {
+      "workKey": "builder:task:TASK-008:implement-task",
+      "role": "builder",
+      "subjectType": "task",
+      "subjectId": "TASK-008",
+      "action": "implement-task",
+      "branch": "agent/task-008-wire-react-ui-supabase",
+      "agentId": "bc-f07f06b1-8246-4ce9-9ebe-33075643a0e8",
+      "runId": "run-1e10c4b0-4d77-4ab4-891c-01467557a0a9",
+      "agentUrl": "https://cursor.com/agents/bc-f07f06b1-8246-4ce9-9ebe-33075643a0e8",
+      "status": "ACTIVE",
+      "createdAt": "2026-08-10T04:24:00.453Z",
+      "updatedAt": "2026-08-10T04:24:00.453Z"
     }
   }
 }
