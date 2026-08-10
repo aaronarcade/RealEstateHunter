@@ -1,0 +1,4 @@
+{
+  "name": "RealEstateHunter",
+  "install": "npm ci"
+}

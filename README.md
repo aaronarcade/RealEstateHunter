@@ -67,6 +67,21 @@ Six specialized agents operate against shared artifacts in this repo:
 3. For implementation work, take a task from `tasks/backlog/` into `tasks/active/` on its own branch/worktree.
 4. Property candidates flow through the state machine documented in `docs/ARCHITECTURE.md`.
 
+## Development
+
+Tooling for validating property artifacts against the JSON schemas in `schemas/`.
+Requires Node.js ≥ 20 (provided by the Cloud Agent environment).
+
+```bash
+npm ci            # install dependencies (Ajv)
+npm run validate  # validate every data/properties/<id>/ record against its schema
+npm test          # run the schema-validation test suite
+```
+
+`npm run validate` discovers each `meta.json`, `evidence.json`, `underwriting.json`,
+and `audit.json` under `data/properties/` and checks it against the matching schema,
+exiting non-zero on any failure.
+
 ## Investment Standard (Summary)
 
 - **VIABLE**: cap rate ≥ 10% with sufficiently verified inputs
