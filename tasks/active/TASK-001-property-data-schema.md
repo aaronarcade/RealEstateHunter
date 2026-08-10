@@ -1,6 +1,6 @@
 # TASK-001: Property data schema and storage
 
-**Status:** BACKLOG  
+**Status:** ACTIVE  
 **Assignee:** Builder  
 **Priority:** P0
 
