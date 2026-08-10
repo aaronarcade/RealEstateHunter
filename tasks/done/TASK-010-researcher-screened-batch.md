@@ -1,6 +1,6 @@
 # TASK-010: Researcher batch — screened properties
 
-**Status:** BACKLOG  
+**Status:** DONE  
 **Assignee:** Researcher  
 **Priority:** P0
 
@@ -8,15 +8,28 @@
 
 Build evidence files for properties currently in `SCREENED` state with `scout_decision: RESEARCH`. These candidates have passed Scout's gross yield screen and need verified financial data before underwriting.
 
-## Candidates
+## Status Update (Manager triage 2026-08-10)
 
-As of 2026-08-10, the following properties are ready for research:
+**All evidence files are now complete.** This task is done for its original scope.
 
-| Property ID | Location | Gross Yield | HOA | Notes |
-|-------------|----------|-------------|-----|-------|
-| `225-celebration-pl-unit-526-celebration-fl` | Celebration, FL | 20.7% | $1,242/mo | Melia condo-hotel; verify STR income model |
-| `9860-s-thomas-dr-unit-917-panama-city-beach-fl` | Panama City Beach, FL | 19% | $660/mo | Laketown Wharf; listing claims $53K STR gross 2025 |
-| `17462-front-beach-rd-unit-31c-panama-city-beach-fl` | Panama City Beach, FL | 15.5% | $630/mo | Horizon South IV; verify rental history |
+| Property ID | Evidence | Underwriting | Next Step |
+|-------------|----------|--------------|-----------|
+| `9860-s-thomas-dr-unit-917-panama-city-beach-fl` | ✅ Complete | ❌ Pending | → **TASK-012** (Underwriter) |
+| `225-celebration-pl-unit-526-celebration-fl` | ✅ Complete | ❌ Pending | → **TASK-012** (Underwriter) |
+| `17462-front-beach-rd-unit-31c-panama-city-beach-fl` | ✅ Complete | ✅ REJECTED (6.0% cap rate) | → **TASK-011** (Auditor) |
+
+**Pipeline handoff:**
+- 2 properties with evidence → **TASK-012** for Underwriter
+- 1 property UNDERWRITTEN/REJECTED → **TASK-011** for Auditor confirmation
+- New Scout candidates from **TASK-009** → Future Researcher batch
+
+## Original Candidates (completed)
+
+| Property ID | Location | Gross Yield | HOA | Final Status |
+|-------------|----------|-------------|-----|--------------|
+| `9860-s-thomas-dr-unit-917-panama-city-beach-fl` | Panama City Beach, FL | 19% | $660/mo | Evidence complete; documented $53K STR gross |
+| `225-celebration-pl-unit-526-celebration-fl` | Celebration, FL | 20.7% | $1,242/mo | Evidence complete; condo-hotel complexity flagged |
+| `17462-front-beach-rd-unit-31c-panama-city-beach-fl` | Panama City Beach, FL | 15.5% | $630/mo | **UNDERWRITTEN → REJECTED** (6.0% cap rate) |
 
 ## Instructions
 

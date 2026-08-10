@@ -1,6 +1,6 @@
 # TASK-009: Scout condo building volume sweep
 
-**Status:** BACKLOG  
+**Status:** ACTIVE  
 **Assignee:** Scout  
 **Priority:** P0
 
