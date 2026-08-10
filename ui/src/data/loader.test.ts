@@ -1,8 +1,8 @@
 import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest'
 import { transformPropertyData, sampleOpportunities, fetchOpportunities, fetchOpportunitiesFromStaticJson } from './loader'
-import * as supabaseModule from './supabase'
+import * as supabaseClientModule from './supabaseClient'
 
-vi.mock('./supabase', () => ({
+vi.mock('./supabaseClient', () => ({
   isSupabaseConfigured: vi.fn(),
   fetchOpportunitiesFromSupabase: vi.fn(),
 }))
@@ -194,19 +194,19 @@ describe('fetchOpportunities', () => {
   })
 
   it('fetches from Supabase when configured', async () => {
-    vi.mocked(supabaseModule.isSupabaseConfigured).mockReturnValue(true)
-    vi.mocked(supabaseModule.fetchOpportunitiesFromSupabase).mockResolvedValue([mockOpportunity])
+    vi.mocked(supabaseClientModule.isSupabaseConfigured).mockReturnValue(true)
+    vi.mocked(supabaseClientModule.fetchOpportunitiesFromSupabase).mockResolvedValue([mockOpportunity])
 
     const result = await fetchOpportunities()
 
-    expect(supabaseModule.isSupabaseConfigured).toHaveBeenCalled()
-    expect(supabaseModule.fetchOpportunitiesFromSupabase).toHaveBeenCalled()
+    expect(supabaseClientModule.isSupabaseConfigured).toHaveBeenCalled()
+    expect(supabaseClientModule.fetchOpportunitiesFromSupabase).toHaveBeenCalled()
     expect(result).toHaveLength(1)
     expect(result[0].id).toBe('supabase-property')
   })
 
   it('falls back to static JSON when Supabase is not configured', async () => {
-    vi.mocked(supabaseModule.isSupabaseConfigured).mockReturnValue(false)
+    vi.mocked(supabaseClientModule.isSupabaseConfigured).mockReturnValue(false)
 
     const mockFetch = vi.fn().mockResolvedValue({
       ok: true,
@@ -216,8 +216,8 @@ describe('fetchOpportunities', () => {
 
     await fetchOpportunities()
 
-    expect(supabaseModule.isSupabaseConfigured).toHaveBeenCalled()
-    expect(supabaseModule.fetchOpportunitiesFromSupabase).not.toHaveBeenCalled()
+    expect(supabaseClientModule.isSupabaseConfigured).toHaveBeenCalled()
+    expect(supabaseClientModule.fetchOpportunitiesFromSupabase).not.toHaveBeenCalled()
     expect(mockFetch).toHaveBeenCalledWith('/data/opportunities.json')
 
     vi.unstubAllGlobals()

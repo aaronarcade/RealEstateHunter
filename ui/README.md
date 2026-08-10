@@ -5,7 +5,10 @@ React-based opportunity comparison UI for RealEstateHunter investment analysis.
 ## Quick Start
 
 ```bash
-# Install dependencies
+# Build the shared Supabase client (required dependency)
+cd ../lib/supabase && npm install && npm run build && cd ../../ui
+
+# Install UI dependencies
 npm install
 
 # Start development server
@@ -20,11 +23,10 @@ npm run build
 
 ## Environment Setup
 
-The UI reads opportunities from **Supabase**. Create a `.env` file in this directory with your credentials:
+The UI reads opportunities from **Supabase** via the shared read client in `lib/supabase/` (TASK-007). Create a `.env` file in this directory:
 
 ```bash
-# Copy from the root .env.example or create manually
-cp ../.env.example .env
+cp .env.example .env
 ```
 
 ### Required Environment Variables
@@ -53,10 +55,10 @@ VITE_USE_SAMPLE_DATA=false
 ## Data Flow
 
 ```
-Supabase (opportunities table)
-    ↓ read via @supabase/supabase-js
-React UI (fetchOpportunities)
-    ↓ transform to PropertyOpportunity
+Supabase (properties table)
+    ↓ @realestatehunter/supabase read client
+ui/src/data/supabaseClient.ts
+    ↓ fetchOpportunities()
 useOpportunities hook
     ↓
 OpportunityTable / OpportunityCard
@@ -84,40 +86,14 @@ This displays built-in sample opportunities for UI development.
 ### Testing
 
 ```bash
-# Run all tests
 npm test
-
-# Watch mode
 npm run test:watch
 ```
 
 Tests mock the Supabase client to avoid network calls.
 
-### Linting
-
-```bash
-npm run lint
-```
-
-## Project Structure
-
-```
-ui/
-├── src/
-│   ├── components/     # UI components (Table, Card, Badges)
-│   ├── data/
-│   │   ├── loader.ts   # Data fetching logic
-│   │   ├── supabase.ts # Supabase client and transforms
-│   │   └── sorting.ts  # Opportunity sorting
-│   ├── hooks/          # React hooks (useOpportunities)
-│   ├── types/          # TypeScript interfaces
-│   └── App.tsx         # Main application
-├── public/             # Static assets
-└── .env                # Local environment (git-ignored)
-```
-
 ## Related Documentation
 
 - [Architecture](../docs/ARCHITECTURE.md) - System design and data schemas
-- [Product Rules](../docs/PRODUCT.md) - Investment criteria and thresholds
 - [Supabase Setup](../docs/SUPABASE.md) - Database schema and sync (TASK-007)
+- [Product Rules](../docs/PRODUCT.md) - Investment criteria and thresholds

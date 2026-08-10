@@ -22,12 +22,12 @@
       "subjectId": "pipeline",
       "action": "triage-pipeline",
       "branch": "agent/manager-triage",
-      "agentId": "bc-9302d382-be15-48c1-93cf-69f14692e712",
-      "runId": "run-1e88eb05-f511-43d9-9b64-2a88e0250e0c",
-      "agentUrl": "https://cursor.com/agents/bc-9302d382-be15-48c1-93cf-69f14692e712",
+      "agentId": "bc-98bfc7ea-2cd4-4ada-9868-493c66370041",
+      "runId": "run-003a2190-0ce6-4b35-af02-699d1543920d",
+      "agentUrl": "https://cursor.com/agents/bc-98bfc7ea-2cd4-4ada-9868-493c66370041",
       "status": "ACTIVE",
-      "createdAt": "2026-08-10T04:18:01.078Z",
-      "updatedAt": "2026-08-10T04:18:01.078Z"
+      "createdAt": "2026-08-10T04:33:57.512Z",
+      "updatedAt": "2026-08-10T04:33:57.512Z"
     },
     "builder:task:TASK-002:implement-task": {
       "workKey": "builder:task:TASK-002:implement-task",
@@ -50,12 +50,12 @@
       "subjectId": "TASK-007",
       "action": "implement-task",
       "branch": "agent/task-007-supabase-data-layer",
-      "agentId": "bc-0575a884-3014-46b3-98f5-c6593ea38d5d",
-      "runId": "run-a67d0805-c760-48d8-91d7-a3298bd5afab",
-      "agentUrl": "https://cursor.com/agents/bc-0575a884-3014-46b3-98f5-c6593ea38d5d",
-      "status": "ACTIVE",
-      "createdAt": "2026-08-10T04:17:56.569Z",
-      "updatedAt": "2026-08-10T04:17:56.569Z"
+      "agentId": "bc-7ff02893-85d4-4dec-984f-8a62abdb3c12",
+      "runId": "run-badf6836-1fee-4bea-b6e8-0854e99823e1",
+      "agentUrl": "https://cursor.com/agents/bc-7ff02893-85d4-4dec-984f-8a62abdb3c12",
+      "status": "ERROR",
+      "createdAt": "2026-08-10T04:23:55.427Z",
+      "updatedAt": "2026-08-10T04:33:54.526Z"
     },
     "builder:task:TASK-005:implement-task": {
       "workKey": "builder:task:TASK-005:implement-task",
@@ -67,9 +67,37 @@
       "agentId": "bc-7eddd2d9-92b2-4aeb-871b-00075542a5e8",
       "runId": "run-75210d24-0cdc-4f36-9178-3ade2161bb4f",
       "agentUrl": "https://cursor.com/agents/bc-7eddd2d9-92b2-4aeb-871b-00075542a5e8",
-      "status": "ACTIVE",
+      "status": "ERROR",
       "createdAt": "2026-08-10T04:18:03.792Z",
-      "updatedAt": "2026-08-10T04:18:03.792Z"
+      "updatedAt": "2026-08-10T04:23:52.951Z"
+    },
+    "builder:task:TASK-008:implement-task": {
+      "workKey": "builder:task:TASK-008:implement-task",
+      "role": "builder",
+      "subjectType": "task",
+      "subjectId": "TASK-008",
+      "action": "implement-task",
+      "branch": "agent/task-008-wire-react-ui-supabase",
+      "agentId": "bc-bd46d0a5-b9d6-484d-a90b-5b26f78dfcf5",
+      "runId": "run-07db1e1f-7286-49cf-89f9-e588fbaf2f2b",
+      "agentUrl": "https://cursor.com/agents/bc-bd46d0a5-b9d6-484d-a90b-5b26f78dfcf5",
+      "status": "ACTIVE",
+      "createdAt": "2026-08-10T04:33:59.757Z",
+      "updatedAt": "2026-08-10T04:33:59.757Z"
+    },
+    "researcher:property:17462-front-beach-rd-unit-31c-panama-city-beach-fl:build-evidence": {
+      "workKey": "researcher:property:17462-front-beach-rd-unit-31c-panama-city-beach-fl:build-evidence",
+      "role": "researcher",
+      "subjectType": "property",
+      "subjectId": "17462-front-beach-rd-unit-31c-panama-city-beach-fl",
+      "action": "build-evidence",
+      "branch": "agent/17462-front-beach-rd-unit-31c-panama-city-beach-fl-research",
+      "agentId": "bc-5571cf78-712e-4b6a-871e-e19ff6fea025",
+      "runId": "run-9834375a-463c-4d53-9c49-2dc91722aa50",
+      "agentUrl": "https://cursor.com/agents/bc-5571cf78-712e-4b6a-871e-e19ff6fea025",
+      "status": "ACTIVE",
+      "createdAt": "2026-08-10T04:34:02.328Z",
+      "updatedAt": "2026-08-10T04:34:02.328Z"
     }
   }
 }

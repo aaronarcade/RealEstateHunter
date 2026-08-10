@@ -4,8 +4,7 @@ import { fetchOpportunities, sampleOpportunities } from '../data/loader'
 import { sortOpportunities, getNextSortDirection } from '../data/sorting'
 
 /**
- * Check if sample data fallback is enabled via environment variable.
- * When true, sample data is used if Supabase returns empty results.
+ * Sample data fallback is enabled only when VITE_USE_SAMPLE_DATA=true.
  */
 const USE_SAMPLE_DATA_FALLBACK = import.meta.env.VITE_USE_SAMPLE_DATA === 'true'
 
@@ -13,7 +12,6 @@ interface UseOpportunitiesOptions {
   /**
    * Force sample data usage regardless of Supabase.
    * Primarily for testing or offline development.
-   * @deprecated Prefer using VITE_USE_SAMPLE_DATA=true environment variable
    */
   forceSampleData?: boolean
 }
