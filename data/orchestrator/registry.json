@@ -1,4 +1,47 @@
 {
   "version": 1,
-  "entries": {}
+  "entries": {
+    "builder:task:TASK-001:implement-task": {
+      "workKey": "builder:task:TASK-001:implement-task",
+      "role": "builder",
+      "subjectType": "task",
+      "subjectId": "TASK-001",
+      "action": "implement-task",
+      "branch": "agent/task-001-property-data-schema",
+      "agentId": "bc-0d38e568-de22-4677-a513-193bb4b57705",
+      "runId": "run-2240f48f-80b0-4447-8f36-1bd73b393ab4",
+      "agentUrl": "https://cursor.com/agents/bc-0d38e568-de22-4677-a513-193bb4b57705",
+      "status": "ACTIVE",
+      "createdAt": "2026-08-10T03:07:27.792Z",
+      "updatedAt": "2026-08-10T03:07:27.792Z"
+    },
+    "manager:system:pipeline:triage-pipeline": {
+      "workKey": "manager:system:pipeline:triage-pipeline",
+      "role": "manager",
+      "subjectType": "system",
+      "subjectId": "pipeline",
+      "action": "triage-pipeline",
+      "branch": "agent/manager-triage",
+      "agentId": "bc-d72beb3e-5fef-4784-8301-94f46efaed7f",
+      "runId": "run-313dd85a-07c3-4675-b4cf-dc3a18aed359",
+      "agentUrl": "https://cursor.com/agents/bc-d72beb3e-5fef-4784-8301-94f46efaed7f",
+      "status": "ACTIVE",
+      "createdAt": "2026-08-10T03:07:31.238Z",
+      "updatedAt": "2026-08-10T03:07:31.238Z"
+    },
+    "builder:task:TASK-002:implement-task": {
+      "workKey": "builder:task:TASK-002:implement-task",
+      "role": "builder",
+      "subjectType": "task",
+      "subjectId": "TASK-002",
+      "action": "implement-task",
+      "branch": "agent/task-002-opportunity-comparison-ui",
+      "agentId": "bc-f76a1840-05e0-4a71-917c-5b17d2446020",
+      "runId": "run-6482c7ee-2c98-45ce-9daa-cd29f60863f7",
+      "agentUrl": "https://cursor.com/agents/bc-f76a1840-05e0-4a71-917c-5b17d2446020",
+      "status": "ACTIVE",
+      "createdAt": "2026-08-10T03:07:33.614Z",
+      "updatedAt": "2026-08-10T03:07:33.614Z"
+    }
+  }
 }
