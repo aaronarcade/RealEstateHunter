@@ -1,4 +1,4 @@
-"""Streamlit UI components — parity with React OpportunityTable/Card and RealEstateTracker styling."""
+"""Streamlit UI components — RealEstateTracker card patterns + React data parity."""
 
 from __future__ import annotations
 
@@ -18,22 +18,22 @@ _STATUS_ROW_BG = {
     'REJECTED': '#fef2f2',
 }
 
-_STATUS_BORDER = {
-    'VIABLE': '#22c55e',
-    'WATCHLIST': '#eab308',
-    'REJECTED': '#ef4444',
+_STATUS_MARKER = {
+    'VIABLE': 'opp-card-viable',
+    'WATCHLIST': 'opp-card-watchlist',
+    'REJECTED': 'opp-card-rejected',
 }
 
-_STATUS_BADGE = {
-    'VIABLE': ('#dcfce7', '#166534', '#86efac'),
-    'WATCHLIST': ('#fef3c7', '#92400e', '#fcd34d'),
-    'REJECTED': ('#fee2e2', '#991b1b', '#fca5a5'),
+_STATUS_PILL = {
+    'VIABLE': 'success',
+    'WATCHLIST': 'warning',
+    'REJECTED': 'danger',
 }
 
-_CONFIDENCE_BADGE = {
-    'HIGH': ('#dbeafe', '#1e40af', '#93c5fd'),
-    'MEDIUM': ('#e5e7eb', '#374151', '#9ca3af'),
-    'LOW': ('#fef3c7', '#92400e', '#fcd34d'),
+_CONFIDENCE_PILL = {
+    'HIGH': 'success',
+    'MEDIUM': 'muted',
+    'LOW': 'warning',
 }
 
 
@@ -41,17 +41,160 @@ def inject_global_styles() -> None:
     st.markdown(
         """
 <style>
-  .block-container { padding-top: 1.25rem; padding-bottom: 2rem; max-width: 1400px; }
+  .block-container { padding-top: 1.5rem; padding-bottom: 2rem; max-width: 1400px; }
   .app-header { margin-bottom: 1.25rem; }
-  .app-title { margin: 0; font-size: 1.5rem; font-weight: 700; color: #111827; }
-  .app-subtitle { margin: 0.25rem 0 0; color: #6b7280; font-size: 0.875rem; }
+  .app-title { margin: 0; font-size: 1.5rem; font-weight: 700; color: #0f172a; }
+  .app-subtitle { margin: 0.25rem 0 0; color: #64748b; font-size: 0.875rem; }
   .ranking-footer {
     margin-top: 2rem;
     padding: 1rem 0;
     text-align: center;
-    color: #9ca3af;
+    color: #94a3b8;
     font-size: 0.75rem;
   }
+  div[data-testid="stVerticalBlockBorderWrapper"] {
+    border-radius: 14px !important;
+    border-color: #e2e8f0 !important;
+    box-shadow: 0 2px 8px rgba(15, 23, 42, 0.05);
+    transition: box-shadow 0.2s ease;
+    padding: 0.85rem !important;
+  }
+  div[data-testid="stVerticalBlockBorderWrapper"]:hover {
+    box-shadow: 0 6px 18px rgba(15, 23, 42, 0.08);
+  }
+  div[data-testid="stVerticalBlockBorderWrapper"]:has(.opp-card-viable) {
+    border-left: 4px solid #22c55e !important;
+  }
+  div[data-testid="stVerticalBlockBorderWrapper"]:has(.opp-card-watchlist) {
+    border-left: 4px solid #eab308 !important;
+  }
+  div[data-testid="stVerticalBlockBorderWrapper"]:has(.opp-card-rejected) {
+    border-left: 4px solid #ef4444 !important;
+  }
+  div[data-testid="stHorizontalBlock"]:has(div[data-testid="stVerticalBlockBorderWrapper"]) {
+    align-items: stretch !important;
+  }
+  div[data-testid="stHorizontalBlock"]:has(div[data-testid="stVerticalBlockBorderWrapper"]) > div[data-testid="column"] {
+    display: flex !important;
+    flex-direction: column !important;
+  }
+  div[data-testid="stHorizontalBlock"]:has(div[data-testid="stVerticalBlockBorderWrapper"]) div[data-testid="stVerticalBlockBorderWrapper"] {
+    flex: 1 1 auto !important;
+    width: 100% !important;
+    min-height: 0 !important;
+    display: flex !important;
+    flex-direction: column !important;
+  }
+  div[data-testid="stVerticalBlockBorderWrapper"] div[data-testid="stMarkdown"]:has(.card-footer-block) {
+    margin-top: auto !important;
+  }
+  .card-title {
+    font-size: 1rem;
+    font-weight: 650;
+    line-height: 1.35;
+    margin: 0;
+    color: #0f172a;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    min-height: 2.7em;
+  }
+  .card-subtitle { font-size: 0.78rem; color: #64748b; margin-top: 0.1rem; line-height: 1.35; }
+  .card-media {
+    height: 148px;
+    width: 100%;
+    border-radius: 10px;
+    overflow: hidden;
+    margin-bottom: 0.7rem;
+    background: linear-gradient(135deg, #e2e8f0 0%, #f8fafc 55%, #dbeafe 100%);
+    flex-shrink: 0;
+  }
+  .card-media-placeholder {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2.2rem;
+  }
+  .financial-tags {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.35rem;
+    margin: 0.3rem 0 0.35rem;
+  }
+  .card-price {
+    font-size: 1rem;
+    font-weight: 700;
+    color: #0f172a;
+    line-height: 1.2;
+  }
+  .badge-row { display: flex; flex-wrap: wrap; gap: 0.35rem; margin-top: 0.35rem; }
+  .pill {
+    display: inline-block;
+    padding: 0.15rem 0.55rem;
+    border-radius: 999px;
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+  }
+  .pill-muted { background: #f1f5f9; color: #475569; }
+  .pill-success { background: #dcfce7; color: #166534; }
+  .pill-warning { background: #fef3c7; color: #92400e; }
+  .pill-danger { background: #fee2e2; color: #991b1b; }
+  .pill-rent { background: #dbeafe; color: #1d4ed8; text-transform: none; }
+  .pill-cap { background: #dcfce7; color: #166534; text-transform: none; }
+  .pill-cap-missing { background: #fef3c7; color: #92400e; text-transform: none; }
+  .metric-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.45rem;
+    margin: 0.45rem 0 0.65rem;
+  }
+  .metric-chip {
+    background: linear-gradient(180deg, #f8fafc 0%, #ffffff 100%);
+    border: 1px solid #e2e8f0;
+    border-radius: 10px;
+    padding: 0.45rem 0.55rem;
+    min-height: 3.1rem;
+  }
+  .metric-chip-label {
+    display: block;
+    font-size: 0.68rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: #64748b;
+    margin-bottom: 0.15rem;
+  }
+  .metric-chip-value {
+    display: block;
+    font-size: 0.92rem;
+    font-weight: 700;
+    color: #0f172a;
+    line-height: 1.25;
+  }
+  .metric-chip.noi .metric-chip-value { color: #166534; }
+  .metric-chip.cap .metric-chip-value { color: #166534; }
+  .metric-chip.cap-bad .metric-chip-value { color: #991b1b; }
+  .metric-chip.missing {
+    background: linear-gradient(180deg, #fffbeb 0%, #ffffff 100%);
+    border-color: #fde68a;
+  }
+  .metric-chip.missing .metric-chip-value { color: #92400e; }
+  .card-footer-block { margin-top: 0.3rem; margin-bottom: 0.05rem; }
+  .card-footer-link {
+    display: block;
+    margin-top: 0.5rem;
+    color: #2563eb;
+    font-size: 0.875rem;
+    text-decoration: none;
+    font-weight: 500;
+  }
+  .field-status { margin-left: 0.2rem; font-size: 0.75em; font-weight: 600; }
   .opp-table-wrap { overflow-x: auto; background: #fff; border: 1px solid #e5e7eb; border-radius: 8px; }
   table.opp-table {
     width: 100%;
@@ -76,17 +219,6 @@ def inject_global_styles() -> None:
     border-bottom: 1px solid #e5e7eb;
     vertical-align: middle;
   }
-  .pill {
-    display: inline-flex;
-    align-items: center;
-    padding: 0.25rem 0.75rem;
-    border-radius: 999px;
-    font-size: 0.75rem;
-    font-weight: 600;
-    letter-spacing: 0.05em;
-    text-transform: uppercase;
-    border: 1px solid transparent;
-  }
   .confidence-pill {
     display: inline-flex;
     align-items: center;
@@ -96,42 +228,9 @@ def inject_global_styles() -> None:
     font-weight: 500;
     border: 1px solid transparent;
   }
-  .field-status {
-    margin-left: 0.25rem;
-    font-size: 0.75em;
-  }
   .noi-value { font-weight: 500; color: #059669; }
   .cap-good { font-weight: 600; color: #059669; }
   .cap-bad { font-weight: 600; color: #dc2626; }
-  div[data-testid="stHorizontalBlock"]:has(div[data-testid="stVerticalBlockBorderWrapper"]) {
-    align-items: stretch !important;
-  }
-  div[data-testid="stHorizontalBlock"]:has(div[data-testid="stVerticalBlockBorderWrapper"]) > div[data-testid="column"] {
-    display: flex !important;
-    flex-direction: column !important;
-  }
-  div[data-testid="stHorizontalBlock"]:has(div[data-testid="stVerticalBlockBorderWrapper"]) div[data-testid="stVerticalBlockBorderWrapper"] {
-    flex: 1 1 auto !important;
-    width: 100% !important;
-    border-left-width: 4px !important;
-  }
-  .card-title { margin: 0; font-size: 1.125rem; font-weight: 600; color: #111827; }
-  .card-subtitle { margin: 0; color: #6b7280; font-size: 0.875rem; }
-  .metric-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 0.75rem;
-    margin: 0.75rem 0 1rem;
-  }
-  .metric-label { font-size: 0.75rem; color: #6b7280; margin-bottom: 0.125rem; }
-  .metric-value { font-weight: 500; color: #111827; }
-  .card-footer {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding-top: 0.75rem;
-    border-top: 1px solid #f3f4f6;
-  }
 </style>
         """,
         unsafe_allow_html=True,
@@ -146,37 +245,91 @@ def format_percent(value: float) -> str:
     return f'{value * 100:.1f}%'
 
 
-def _status_badge(status: PropertyStatus) -> str:
-    bg, text, border = _STATUS_BADGE[status]
-    return (
-        f'<span class="pill" style="background:{bg};color:{text};border-color:{border}">'
-        f'{html.escape(status)}</span>'
-    )
-
-
-def _confidence_badge(confidence: ConfidenceLevel) -> str:
-    bg, text, border = _CONFIDENCE_BADGE[confidence]
-    return (
-        f'<span class="confidence-pill" style="background:{bg};color:{text};border-color:{border}">'
-        f'{html.escape(confidence)}</span>'
-    )
+def _pill(text: str, tone: str = 'muted') -> str:
+    return f'<span class="pill pill-{tone}">{html.escape(text)}</span>'
 
 
 def _field_value_html(field: FieldValue, *, show_status: bool = True) -> str:
     if field.value is None:
-        return '<span style="color:#9ca3af">Unknown</span>'
+        return '<span style="color:#94a3b8">—</span>'
 
     formatted = format_currency(field.value)
     if not show_status:
         return html.escape(formatted)
 
     indicator = {'VERIFIED': '✓', 'ESTIMATED': '~', 'UNKNOWN': '?'}[field.status]
-    color = {'VERIFIED': '#16a34a', 'ESTIMATED': '#d97706', 'UNKNOWN': '#9ca3af'}[field.status]
+    color = {'VERIFIED': '#16a34a', 'ESTIMATED': '#d97706', 'UNKNOWN': '#94a3b8'}[field.status]
     title = html.escape(field.evidence or f'Status: {field.status}, Confidence: {field.confidence}')
     return (
         f'<span title="{title}">{html.escape(formatted)}'
         f'<span class="field-status" style="color:{color}">{indicator}</span></span>'
     )
+
+
+def _status_badge(status: PropertyStatus) -> str:
+    return _pill(status, _STATUS_PILL[status])
+
+
+def _confidence_badge(confidence: ConfidenceLevel) -> str:
+    return _pill(confidence, _CONFIDENCE_PILL[confidence])
+
+
+def render_card_header(title: str, subtitle: str | None = None) -> None:
+    sub = f'<div class="card-subtitle">{html.escape(subtitle)}</div>' if subtitle else ''
+    st.markdown(
+        f'<p class="card-title">{html.escape(title)}</p>{sub}',
+        unsafe_allow_html=True,
+    )
+
+
+def render_card_media(image_url: str | None, *, fallback_emoji: str = '🏠') -> None:
+    if image_url:
+        safe_url = html.escape(image_url, quote=True)
+        st.markdown(
+            f'<div class="card-media"><img src="{safe_url}" alt="" loading="lazy" /></div>',
+            unsafe_allow_html=True,
+        )
+    else:
+        st.markdown(
+            f'<div class="card-media"><div class="card-media-placeholder">{html.escape(fallback_emoji)}</div></div>',
+            unsafe_allow_html=True,
+        )
+
+
+def _metric_chip(label: str, value_html: str, *, kind: str = '', missing: bool = False) -> str:
+    chip_class = f'metric-chip {kind}'.strip()
+    if missing:
+        chip_class += ' missing'
+    return (
+        f'<div class="{chip_class}"><span class="metric-chip-label">{html.escape(label)}</span>'
+        f'<span class="metric-chip-value">{value_html}</span></div>'
+    )
+
+
+def render_opportunity_financial_tags(opp: PropertyOpportunity) -> None:
+    parts: list[str] = []
+    parts.append(f'<span class="card-price">{_field_value_html(opp.purchase_price)}</span>')
+    if opp.monthly_rent.value is not None:
+        rent_html = _field_value_html(opp.monthly_rent)
+        parts.append(f'<span class="pill pill-rent">Rent {rent_html}/mo</span>')
+    cap_tone = 'pill-cap' if opp.cap_rate >= 0.1 else 'pill-cap-missing'
+    parts.append(f'<span class="pill {cap_tone}">Cap {html.escape(format_percent(opp.cap_rate))}</span>')
+    st.markdown(f'<div class="financial-tags">{"".join(parts)}</div>', unsafe_allow_html=True)
+
+
+def render_opportunity_metric_grid(opp: PropertyOpportunity) -> None:
+    cap_kind = 'cap' if opp.cap_rate >= 0.1 else 'cap-bad'
+    hoa_html = _field_value_html(opp.hoa)
+    if opp.hoa.value is not None:
+        hoa_html = f'{hoa_html}<span style="color:#94a3b8;font-size:0.75rem;font-weight:500">/mo</span>'
+
+    chips = [
+        _metric_chip('NOI', html.escape(format_currency(opp.noi)), kind='noi'),
+        _metric_chip('Cap Rate', html.escape(format_percent(opp.cap_rate)), kind=cap_kind),
+        _metric_chip('HOA', hoa_html, missing=opp.hoa.value is None),
+        _metric_chip('Assessments', _field_value_html(opp.assessment), missing=opp.assessment.value is None),
+    ]
+    st.markdown(f'<div class="metric-grid">{"".join(chips)}</div>', unsafe_allow_html=True)
 
 
 def render_app_header() -> None:
@@ -257,69 +410,39 @@ def render_opportunity_table(
 
 
 def _opportunity_card(opp: PropertyOpportunity) -> None:
-    border = _STATUS_BORDER[opp.status]
-    cap_class = 'cap-good' if opp.cap_rate >= 0.1 else 'cap-bad'
     listing = html.escape(opp.listing_url, quote=True)
+    marker = _STATUS_MARKER[opp.status]
 
-    st.markdown(
-        f'<div style="border-left:4px solid {border}; padding-left:0.25rem;">',
-        unsafe_allow_html=True,
-    )
     with st.container(border=True):
-        header_cols = st.columns([4, 1])
-        with header_cols[0]:
-            st.markdown(f'<p class="card-title">{html.escape(opp.address)}</p>', unsafe_allow_html=True)
-            st.markdown(f'<p class="card-subtitle">{html.escape(opp.location)}</p>', unsafe_allow_html=True)
-        with header_cols[1]:
-            st.markdown(_status_badge(opp.status), unsafe_allow_html=True)
-
+        st.markdown(f'<div class="opp-card-marker {marker}"></div>', unsafe_allow_html=True)
+        render_card_header(opp.address, opp.location)
+        render_card_media(None, fallback_emoji='🏠')
+        render_opportunity_financial_tags(opp)
+        render_opportunity_metric_grid(opp)
         st.markdown(
             f"""
-<div class="metric-grid">
-  <div>
-    <div class="metric-label">Price</div>
-    <div class="metric-value">{_field_value_html(opp.purchase_price)}</div>
-  </div>
-  <div>
-    <div class="metric-label">Monthly Rent</div>
-    <div class="metric-value">{_field_value_html(opp.monthly_rent)}</div>
-  </div>
-  <div>
-    <div class="metric-label">NOI</div>
-    <div class="metric-value noi-value">{html.escape(format_currency(opp.noi))}</div>
-  </div>
-  <div>
-    <div class="metric-label">Cap Rate</div>
-    <div class="metric-value {cap_class}" style="font-size:1.125rem">{html.escape(format_percent(opp.cap_rate))}</div>
-  </div>
-  <div>
-    <div class="metric-label">HOA</div>
-    <div class="metric-value">{_field_value_html(opp.hoa)}<span style="color:#9ca3af;font-size:0.75rem">/mo</span></div>
-  </div>
-  <div>
-    <div class="metric-label">Assessments</div>
-    <div class="metric-value">{_field_value_html(opp.assessment)}</div>
-  </div>
-</div>
-<div class="card-footer">
-  <span>{_confidence_badge(opp.confidence)}</span>
-  <a href="{listing}" target="_blank" rel="noopener noreferrer" style="color:#2563eb;font-size:0.875rem;text-decoration:none">View Listing →</a>
+<div class="card-footer-block">
+  <div class="badge-row">{_status_badge(opp.status)}{_confidence_badge(opp.confidence)}</div>
+  <a class="card-footer-link" href="{listing}" target="_blank" rel="noopener noreferrer">View Listing →</a>
 </div>
             """,
             unsafe_allow_html=True,
         )
 
 
-def render_opportunity_cards(opportunities: list[PropertyOpportunity]) -> None:
-    if not opportunities:
+def card_grid(items: list, render_item, columns: int = CARD_COLUMNS) -> None:
+    if not items:
         st.info('No opportunities to display')
         return
-
-    for row_start in range(0, len(opportunities), CARD_COLUMNS):
-        cols = st.columns(CARD_COLUMNS, gap='medium')
+    for row_start in range(0, len(items), columns):
+        cols = st.columns(columns, gap='medium')
         for offset, col in enumerate(cols):
             index = row_start + offset
-            if index >= len(opportunities):
+            if index >= len(items):
                 break
             with col:
-                _opportunity_card(opportunities[index])
+                render_item(items[index])
+
+
+def render_opportunity_cards(opportunities: list[PropertyOpportunity]) -> None:
+    card_grid(opportunities, _opportunity_card)
