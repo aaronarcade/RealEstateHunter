@@ -1,0 +1,21 @@
+{
+  "property_id": "cuenca-banos-ultramodern-mansion-ec",
+  "annual_gross_rent": 21600,
+  "annual_operating_expenses": 3810,
+  "noi": 17790,
+  "cap_rate": 0.0323,
+  "proposed_status": "REJECTED",
+  "proposed_status_reason": "Cap rate 3.23% is well below the 10% threshold. At $550,000 purchase price and $1,800/mo estimated rent, the property fundamentally cannot achieve target returns. Even with optimistic rent assumptions ($2,500/mo high estimate), cap rate would only reach ~4.6%. HOA and assessments are UNKNOWN which adds further downside risk. The luxury SFH price-to-rent ratio is incompatible with the 10% cap rate investment criteria.",
+  "input_summary": {
+    "purchase_price": { "status": "VERIFIED", "confidence": "HIGH" },
+    "monthly_rent": { "status": "ESTIMATED", "confidence": "MEDIUM" },
+    "hoa_monthly": { "status": "UNKNOWN", "confidence": "LOW" },
+    "special_assessments": { "status": "UNKNOWN", "confidence": "LOW" },
+    "property_taxes_annual": { "status": "ESTIMATED", "confidence": "LOW" },
+    "insurance_annual": { "status": "ESTIMATED", "confidence": "MEDIUM" },
+    "management_annual": { "status": "ESTIMATED", "confidence": "MEDIUM" },
+    "utilities_annual": { "status": "ESTIMATED", "confidence": "MEDIUM" },
+    "other_expenses_annual": { "status": "ESTIMATED", "confidence": "LOW" }
+  },
+  "computed_at": "2026-08-10T13:31:00Z"
+}
