@@ -56,8 +56,26 @@ Six specialized agents operate against shared artifacts in this repo:
 │   ├── active/            # In-progress work
 │   └── done/              # Completed work
 ├── data/
-│   └── properties/        # Property evidence and analysis records
+│   ├── properties/        # Property evidence and analysis records
+│   └── orchestrator/      # Agent spawn registry
+├── orchestrator/          # Pipeline orchestrator (spawns Cloud Agents)
 └── schemas/               # JSON schemas for structured data
+```
+
+## Pipeline orchestrator
+
+The **orchestrator** scans repo state and spawns Cursor Cloud Agents for the next required roles (Scout, Researcher, Builder, etc.).
+
+- Docs: `docs/ORCHESTRATOR.md`
+- Config: `orchestrator.config.json`
+- Schedule: `.github/workflows/orchestrator.yml` (daily + manual dispatch)
+- Requires GitHub secret: `CURSOR_API_KEY`
+
+```bash
+cd orchestrator && npm ci && npm run build
+npm run plan -- --repo-root ..          # preview
+npm run run -- --repo-root .. --dry-run # preview spawns
+npm run run -- --repo-root ..           # spawn agents
 ```
 
 ## Getting Started
@@ -66,6 +84,21 @@ Six specialized agents operate against shared artifacts in this repo:
 2. Pick a role from `.agents/`.
 3. For implementation work, take a task from `tasks/backlog/` into `tasks/active/` on its own branch/worktree.
 4. Property candidates flow through the state machine documented in `docs/ARCHITECTURE.md`.
+
+## Development
+
+Tooling for validating property artifacts against the JSON schemas in `schemas/`.
+Requires Node.js ≥ 20 (provided by the Cloud Agent environment).
+
+```bash
+npm ci            # install dependencies (Ajv)
+npm run validate  # validate every data/properties/<id>/ record against its schema
+npm test          # run the schema-validation test suite
+```
+
+`npm run validate` discovers each `meta.json`, `evidence.json`, `underwriting.json`,
+and `audit.json` under `data/properties/` and checks it against the matching schema,
+exiting non-zero on any failure.
 
 ## Investment Standard (Summary)
 
