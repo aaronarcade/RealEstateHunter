@@ -36,14 +36,7 @@ def _load_dotenv() -> None:
         os.environ.setdefault(key.strip(), value.strip().strip('"').strip("'"))
 
 
-def _secrets_get(key: str) -> Optional[str]:
-    try:
-        return st.secrets.get(key)
-    except (KeyError, FileNotFoundError, AttributeError):
-        return None
-
-
-def _resolve_supabase_config() -> tuple[Optional[str], Optional[str], Optional[str]]:
+from compat import secrets_get as _secrets_get
     _load_dotenv()
     url = _secrets_get('SUPABASE_URL') or os.environ.get('SUPABASE_URL')
     service_key = _secrets_get('SUPABASE_SERVICE_ROLE_KEY') or os.environ.get('SUPABASE_SERVICE_ROLE_KEY')

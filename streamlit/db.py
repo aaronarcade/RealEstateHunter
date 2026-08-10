@@ -24,11 +24,7 @@ def _load_dotenv() -> None:
         os.environ.setdefault(key.strip(), value.strip().strip('"').strip("'"))
 
 
-def _secrets_get(key: str) -> str | None:
-    try:
-        return st.secrets.get(key)
-    except (KeyError, FileNotFoundError, AttributeError):
-        return None
+from compat import secrets_get as _secrets_get
 
 
 def get_client():
@@ -47,8 +43,13 @@ def table(name: str):
 
 
 def select_by_id(table_name: str, record_id: str) -> dict | None:
-    response = table(table_name).select('*').eq('id', record_id).maybe_single().execute()
-    return response.data
+    try:
+        response = table(table_name).select('*').eq('id', record_id).maybe_single().execute()
+        if response is None:
+            return None
+        return response.data
+    except Exception:
+        return None
 
 
 def has_image_url_2() -> bool:

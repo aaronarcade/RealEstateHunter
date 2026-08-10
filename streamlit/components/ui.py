@@ -8,6 +8,7 @@ from typing import Optional
 
 import streamlit as st
 
+from compat import link_button
 from db_client.types import ConfidenceLevel, FieldValue, PropertyOpportunity, PropertyStatus
 from sorting import SortConfig, SortField
 
@@ -323,7 +324,7 @@ def render_detail_images(
     *,
     fallback_emoji: str = '🏠',
 ) -> None:
-    """Full-width images for detail pages."""
+    """Full-width images for detail pages (HTML — avoids st.image API differences)."""
     urls = [url for url in image_urls if url]
     if not urls:
         st.markdown(
@@ -332,14 +333,24 @@ def render_detail_images(
             unsafe_allow_html=True,
         )
         return
+
+    img_style = (
+        'width:100%;max-height:420px;object-fit:cover;border-radius:10px;'
+        'margin-bottom:1rem;display:block'
+    )
+
     if len(urls) == 1:
-        st.image(urls[0], use_column_width=True)
+        safe_url = html.escape(urls[0], quote=True)
+        st.markdown(f'<img src="{safe_url}" alt="" loading="lazy" style="{img_style}" />', unsafe_allow_html=True)
         return
+
     col1, col2 = st.columns(2, gap='small')
     with col1:
-        st.image(urls[0], use_column_width=True)
+        safe_url = html.escape(urls[0], quote=True)
+        st.markdown(f'<img src="{safe_url}" alt="" loading="lazy" style="{img_style}" />', unsafe_allow_html=True)
     with col2:
-        st.image(urls[1], use_column_width=True)
+        safe_url = html.escape(urls[1], quote=True)
+        st.markdown(f'<img src="{safe_url}" alt="" loading="lazy" style="{img_style}" />', unsafe_allow_html=True)
 
 
 def render_card_media(image_url: str | None, *, fallback_emoji: str = '🏠') -> None:
@@ -531,7 +542,7 @@ def _opportunity_card(opp: PropertyOpportunity) -> None:
                 go_building()
         with action_cols[2]:
             if listing:
-                st.link_button('Listing', listing, use_container_width=True)
+                link_button('Listing', listing, use_container_width=True)
 
 
 def _section_id(prefix: str, name: str) -> str:

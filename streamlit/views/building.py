@@ -13,6 +13,7 @@ from auth import require_auth
 from components.building_display import building_nav_label
 from components.financial_metrics import feasibility_badge, format_currency, format_pct
 from components.ui import card_grid, inject_global_styles, render_card_media, render_card_header, render_card_media_pair, render_opportunity_financial_tags, render_opportunity_metric_grid, _status_badge, _confidence_badge, _property_emoji
+from compat import link_button
 from db import table, unit_image_select
 from db_client.tracker_mapper import tracker_financials_to_opportunity
 from navigation import PAGE_BROWSE, go_unit, location_caption, render_breadcrumb, require_building, set_unit
@@ -27,15 +28,23 @@ caption = location_caption()
 if caption:
     st.caption(caption)
 
-building = table('buildings').select('*').eq('id', building_id).single().execute().data
-summary = (
-    table('building_summary')
-    .select('*')
-    .eq('building_id', building_id)
-    .maybe_single()
-    .execute()
-    .data
-)
+try:
+    building_response = table('buildings').select('*').eq('id', building_id).maybe_single().execute()
+    building = building_response.data if building_response is not None else None
+except Exception:
+    building = None
+
+try:
+    summary_response = (
+        table('building_summary')
+        .select('*')
+        .eq('building_id', building_id)
+        .maybe_single()
+        .execute()
+    )
+    summary = summary_response.data if summary_response is not None else None
+except Exception:
+    summary = None
 
 st.title(building_nav_label(building) if building else building_label)
 if building and building.get('address'):
@@ -108,7 +117,7 @@ def _render_building_unit_card(fin: dict) -> None:
                 go_unit()
         with action_cols[1]:
             if listing and listing != '#':
-                st.link_button('Listing', listing, use_container_width=True)
+                link_button('Listing', listing, use_container_width=True)
 
 
 card_grid(units_fin, _render_building_unit_card)

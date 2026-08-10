@@ -9,6 +9,10 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 
 import streamlit as st
 
+if not hasattr(st, 'Page') or not hasattr(st, 'navigation'):
+    st.error('This app requires Streamlit >= 1.37. Reboot the app after dependencies install.')
+    st.stop()
+
 from auth import logout_button, require_auth
 from components.ui import inject_global_styles
 

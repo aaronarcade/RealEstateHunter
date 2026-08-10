@@ -6,6 +6,8 @@ import os
 
 import streamlit as st
 
+from compat import secrets_get
+
 
 def init_session_state() -> None:
     if 'authenticated' not in st.session_state:
@@ -13,10 +15,7 @@ def init_session_state() -> None:
 
 
 def _app_password() -> str | None:
-    try:
-        return st.secrets.get('APP_PASSWORD')
-    except (KeyError, FileNotFoundError, AttributeError):
-        return os.environ.get('APP_PASSWORD')
+    return secrets_get('APP_PASSWORD') or os.environ.get('APP_PASSWORD')
 
 
 def logout_button() -> None:

@@ -17,6 +17,7 @@ from components.ui import (
     render_opportunity_table,
     render_ranking_footer,
 )
+from compat import sidebar_toggle
 from data_loader import LoadResult, load_opportunities
 from filters import apply_filters, countries, neighborhoods, regions
 from sorting import SortConfig, SortField, get_next_sort_direction, sort_opportunities
@@ -24,7 +25,7 @@ from sorting import SortConfig, SortField, get_next_sort_direction, sort_opportu
 require_auth()
 inject_global_styles()
 
-use_sample = st.sidebar.toggle('Use sample data', value=False, help='Offline dev without Supabase credentials')
+use_sample = sidebar_toggle('Use sample data', value=False, help='Offline dev without Supabase credentials')
 
 sort_field_labels: dict[str, SortField | None] = {
     'Default ranking': None,

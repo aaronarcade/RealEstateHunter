@@ -1,0 +1,2 @@
+# Streamlit Cloud entrypoint: streamlit/app.py
+-r streamlit/requirements.txt
