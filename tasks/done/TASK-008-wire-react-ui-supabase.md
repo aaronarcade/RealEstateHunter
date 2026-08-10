@@ -1,6 +1,6 @@
 # TASK-008: Wire React UI to Supabase
 
-**Status:** ACTIVE  
+**Status:** DONE  
 **Assignee:** Builder  
 **Priority:** P1
 
