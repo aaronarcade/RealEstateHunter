@@ -1,0 +1,81 @@
+{
+  "property_id": "nahla-unit-d-105-barbasquillo-manta-ec",
+  "computed_at": "2026-08-10T05:03:00Z",
+  "annual_gross_rent": 5700,
+  "annual_operating_expenses": 3145,
+  "noi": 2555,
+  "cap_rate": 0.043,
+  "expense_breakdown": {
+    "hoa_annual": {
+      "value": 1440,
+      "note": "Using $120/mo mid-range estimate from researcher's $80-150/mo range. UNKNOWN - material uncertainty."
+    },
+    "special_assessments_annual": {
+      "value": 0,
+      "note": "Assumed $0 for new construction, but UNKNOWN status creates material uncertainty."
+    },
+    "property_taxes_annual": 75,
+    "insurance_annual": 250,
+    "management_annual": 1080,
+    "utilities_annual": 0,
+    "other_expenses_annual": 300
+  },
+  "input_summary": {
+    "purchase_price": {
+      "value": 59444,
+      "status": "VERIFIED",
+      "confidence": "HIGH"
+    },
+    "monthly_rent": {
+      "value": 475,
+      "status": "ESTIMATED",
+      "confidence": "MEDIUM",
+      "range_low": 400,
+      "range_high": 550
+    },
+    "hoa_monthly": {
+      "value": null,
+      "status": "UNKNOWN",
+      "confidence": "LOW",
+      "assumed_value": 120
+    },
+    "special_assessments": {
+      "value": null,
+      "status": "UNKNOWN",
+      "confidence": "LOW",
+      "assumed_value": 0
+    },
+    "property_taxes_annual": {
+      "status": "ESTIMATED",
+      "confidence": "MEDIUM"
+    },
+    "insurance_annual": {
+      "status": "ESTIMATED",
+      "confidence": "MEDIUM"
+    },
+    "management_annual": {
+      "status": "ESTIMATED",
+      "confidence": "MEDIUM"
+    }
+  },
+  "sensitivity_analysis": {
+    "base_case": {
+      "description": "Mid-range assumptions: $475/mo rent, $120/mo HOA, full management",
+      "cap_rate": 0.043,
+      "noi": 2555
+    },
+    "optimistic_case": {
+      "description": "High rent ($550/mo), low HOA ($80/mo), self-managed",
+      "cap_rate": 0.089,
+      "noi": 5315
+    },
+    "pessimistic_case": {
+      "description": "Low rent ($400/mo), high HOA ($150/mo), full management",
+      "cap_rate": 0.018,
+      "noi": 1095
+    }
+  },
+  "proposed_status": "REJECTED",
+  "proposed_status_reason": "Cap rate 4.3% (base case) is well below 10% threshold. Even under highly optimistic assumptions (highest rent estimate $550/mo, lowest HOA estimate $80/mo, self-management, zero other expenses), cap rate reaches only 8.9%. The fundamental issue is that gross yield (10.09% at Scout's $500/mo estimate) was barely at threshold; once operating expenses are factored in, the property cannot achieve 10%+ cap rate under any reasonable scenario. Additionally, HOA and special assessments remain UNKNOWN, adding material uncertainty to an already unfavorable analysis.",
+  "underwriting_notes": "The property's gross yield appeared promising at Scout stage (~10.1%), but detailed analysis reveals operating expenses consume roughly 55% of rental income. Key issues: (1) HOA fee is UNKNOWN - building has 13 premium amenities including pool, spa, gym, cinema, coworking space, and 24/7 security/concierge, suggesting fees likely toward upper range ($120-150/mo). (2) The low purchase price ($59,444) cannot compensate for the expense load relative to achievable rents. (3) Even assuming $0 HOA (impossible given amenities), cap rate would only be 6.7%. Recommend archiving for future rescreen if HOA fees become known or if significant price reduction occurs."
+}

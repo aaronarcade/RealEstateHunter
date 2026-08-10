@@ -25,6 +25,9 @@
   "rough_gross_yield": 0.1009,
   "rent_source": "FazWaz 1BR median + STR premium",
   "rent_confidence": "MEDIUM",
-  "workflow_state": "READY_FOR_UNDERWRITING",
-  "scout_decision": "RESEARCH"
+  "workflow_state": "UNDERWRITTEN",
+  "scout_decision": "RESEARCH",
+  "underwritten_at": "2026-08-10T05:03:00Z",
+  "proposed_status": "REJECTED",
+  "proposed_cap_rate": 0.043
 }
