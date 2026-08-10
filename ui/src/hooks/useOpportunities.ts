@@ -2,13 +2,15 @@ import { useState, useEffect, useCallback, useMemo } from 'react'
 import type { PropertyOpportunity, SortConfig, SortField } from '../types/property'
 import { fetchOpportunities, sampleOpportunities } from '../data/loader'
 import { sortOpportunities, getNextSortDirection } from '../data/sorting'
+import { isSampleDataEnabled } from '../data/supabase'
 
 interface UseOpportunitiesOptions {
-  useSampleData?: boolean
+  /** Force use of sample data (for testing) - overrides VITE_USE_SAMPLE_DATA */
+  forceSampleData?: boolean
 }
 
 export function useOpportunities(options: UseOpportunitiesOptions = {}) {
-  const { useSampleData = false } = options
+  const { forceSampleData = false } = options
 
   const [opportunities, setOpportunities] = useState<PropertyOpportunity[]>([])
   const [loading, setLoading] = useState(true)
@@ -23,11 +25,11 @@ export function useOpportunities(options: UseOpportunitiesOptions = {}) {
       setError(null)
 
       try {
-        if (useSampleData) {
+        if (forceSampleData) {
           setOpportunities(sampleOpportunities)
         } else {
           const data = await fetchOpportunities()
-          if (data.length === 0) {
+          if (data.length === 0 && isSampleDataEnabled()) {
             setOpportunities(sampleOpportunities)
           } else {
             setOpportunities(data)
@@ -36,7 +38,9 @@ export function useOpportunities(options: UseOpportunitiesOptions = {}) {
       } catch (e) {
         if (mounted) {
           setError(e instanceof Error ? e : new Error('Failed to load opportunities'))
-          setOpportunities(sampleOpportunities)
+          if (isSampleDataEnabled()) {
+            setOpportunities(sampleOpportunities)
+          }
         }
       } finally {
         if (mounted) {
@@ -50,7 +54,7 @@ export function useOpportunities(options: UseOpportunitiesOptions = {}) {
     return () => {
       mounted = false
     }
-  }, [useSampleData])
+  }, [forceSampleData])
 
   const handleSort = useCallback((field: SortField) => {
     setSortConfig((current) => getNextSortDirection(current, field))
