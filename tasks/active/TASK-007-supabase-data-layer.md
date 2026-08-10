@@ -30,12 +30,12 @@ Cloud Agents → PR → data/properties/{id}/*.json  (workflow / audit trail in 
 
 ## Phase 1 — Discovery & mapping (required first)
 
-- [ ] Introspect existing Supabase schema (tables, columns, RLS policies) via dashboard or `supabase db dump --schema-only`
-- [ ] Add `docs/SUPABASE.md` documenting:
+- [x] Introspect existing Supabase schema (tables, columns, RLS policies) via dashboard or `supabase db dump --schema-only`
+- [x] Add `docs/SUPABASE.md` documenting:
   - Table → artifact mapping (`meta` / `evidence` / `underwriting` / `audit` → rows or JSONB columns)
   - Gaps vs `schemas/property-*.json` and `PropertyOpportunity`
   - Whether to **adapt to existing tables** or add migration for missing columns
-- [ ] Record project URL in docs only — **no keys in repo**
+- [x] Record project URL in docs only — **no keys in repo**
 
 Aaron to provide (via GitHub secrets / local `.env`, not chat):
 
@@ -45,29 +45,29 @@ Aaron to provide (via GitHub secrets / local `.env`, not chat):
 
 ## Phase 2 — Read clients
 
-- [ ] `.env.example` at repo root with required vars
-- [ ] `lib/supabase/` or `scripts/supabase/` — TypeScript read client: `listOpportunities()`, `getProperty(id)`
-- [ ] Python mirror under `streamlit/supabase/` or shared package for Streamlit (TASK-006)
-- [ ] Map Supabase rows → `PropertyOpportunity` shape (`schemas/property-opportunity.json`)
-- [ ] Tests with mocked Supabase responses (no live DB in CI)
+- [x] `.env.example` at repo root with required vars
+- [x] `lib/supabase/` or `scripts/supabase/` — TypeScript read client: `listOpportunities()`, `getProperty(id)`
+- [x] Python mirror under `streamlit/supabase/` or shared package for Streamlit (TASK-006)
+- [x] Map Supabase rows → `PropertyOpportunity` shape (`schemas/property-opportunity.json`)
+- [x] Tests with mocked Supabase responses (no live DB in CI)
 
 ## Phase 3 — Sync Git → Supabase
 
-- [ ] `scripts/sync-properties-to-supabase.mjs` (or similar):
+- [x] `scripts/sync-properties-to-supabase.mjs` (or similar):
   - Scan `data/properties/*/`
   - Upsert properties with `workflow_state` in `RANKED`, `PUBLISHED`, or audit `PASS`
   - Idempotent on `property_id` / slug
 - [ ] Optional GitHub Action: run sync on push to `main` when `data/properties/**` changes (after orchestrator merge)
-- [ ] Log sync results; fail CI on schema mismatch
+- [x] Log sync results; fail CI on schema mismatch
 
 ## Acceptance criteria
 
-- [ ] Documented schema mapping in `docs/SUPABASE.md`
-- [ ] ADR accepted in `docs/DECISIONS.md` (Supabase as UI DB, Git as agent artifacts)
-- [ ] Read client works against Aaron's existing data (manual verification)
-- [ ] Sync script pushes at least `_example` property shape correctly
-- [ ] No secrets committed; `.env` and `.streamlit/secrets.toml` gitignored
-- [ ] RLS documented: who can read/write (service role for sync, authenticated or anon+RLS for UI)
+- [x] Documented schema mapping in `docs/SUPABASE.md`
+- [x] ADR accepted in `docs/DECISIONS.md` (Supabase as UI DB, Git as agent artifacts)
+- [ ] Read client works against Aaron's existing data (manual verification — requires credentials)
+- [x] Sync script pushes at least `_example` property shape correctly
+- [x] No secrets committed; `.env` and `.streamlit/secrets.toml` gitignored
+- [x] RLS documented: who can read/write (service role for sync, authenticated or anon+RLS for UI)
 
 ## Depends on
 

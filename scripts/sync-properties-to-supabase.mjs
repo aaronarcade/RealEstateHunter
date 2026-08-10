@@ -1,380 +1,275 @@
 #!/usr/bin/env node
 
 /**
- * Sync property data from Git JSON files to Supabase
+ * Sync Git property artifacts to Supabase
+ *
+ * This script scans data/properties/ for properties with workflow_state
+ * RANKED, PUBLISHED, or audit PASS, then upserts them to Supabase.
  *
  * Usage:
- *   node scripts/sync-properties-to-supabase.mjs              # Sync all eligible properties
- *   node scripts/sync-properties-to-supabase.mjs --property 123-main-st  # Sync specific property
- *   node scripts/sync-properties-to-supabase.mjs --dry-run    # Preview without writing
+ *   node scripts/sync-properties-to-supabase.mjs [--dry-run]
  *
  * Environment:
- *   SUPABASE_URL              - Supabase project URL
- *   SUPABASE_SERVICE_ROLE_KEY - Service role key for writes
+ *   SUPABASE_URL - Supabase project URL (required)
+ *   SUPABASE_SERVICE_ROLE_KEY - Service role key for writes (required)
  */
 
+import { readdir, readFile } from 'node:fs/promises';
+import { join, dirname } from 'node:path';
+import { fileURLToPath } from 'node:url';
 import { createClient } from '@supabase/supabase-js';
-import { readdir, readFile } from 'fs/promises';
-import { join, dirname } from 'path';
-import { fileURLToPath } from 'url';
-import { existsSync } from 'fs';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const REPO_ROOT = join(__dirname, '..');
-const PROPERTIES_DIR = join(REPO_ROOT, 'data', 'properties');
+const PROPERTIES_DIR = join(REPO_ROOT, 'data/properties');
+const PROPERTIES_TABLE = 'properties';
 
-// Workflow states eligible for sync
-const SYNC_ELIGIBLE_STATES = ['RANKED', 'PUBLISHED'];
-const SYNC_ELIGIBLE_AUDIT_RESULTS = ['PASS'];
+const SYNCABLE_STATES = new Set(['RANKED', 'PUBLISHED']);
 
-/**
- * Parse command line arguments
- */
-function parseArgs() {
-  const args = process.argv.slice(2);
-  const options = {
-    dryRun: false,
-    property: null,
-    help: false,
-  };
+function log(message, level = 'info') {
+  const timestamp = new Date().toISOString();
+  const prefix = level === 'error' ? '❌' : level === 'warn' ? '⚠️' : '✓';
+  console.log(`[${timestamp}] ${prefix} ${message}`);
+}
 
-  for (let i = 0; i < args.length; i++) {
-    switch (args[i]) {
-      case '--dry-run':
-        options.dryRun = true;
-        break;
-      case '--property':
-        options.property = args[++i];
-        break;
-      case '--help':
-      case '-h':
-        options.help = true;
-        break;
+async function loadPropertyFiles(propertyDir) {
+  const files = {};
+  const fileNames = ['meta.json', 'evidence.json', 'underwriting.json', 'audit.json'];
+
+  for (const fileName of fileNames) {
+    const filePath = join(propertyDir, fileName);
+    try {
+      const content = await readFile(filePath, 'utf-8');
+      files[fileName.replace('.json', '')] = JSON.parse(content);
+    } catch {
+      // File doesn't exist or isn't valid JSON
     }
   }
 
-  return options;
+  return files;
 }
 
-/**
- * Print help message
- */
-function printHelp() {
-  console.log(`
-Sync property data from Git JSON to Supabase
+function shouldSync(files) {
+  const { meta, audit } = files;
 
-Usage:
-  node scripts/sync-properties-to-supabase.mjs [options]
+  if (!meta) return false;
 
-Options:
-  --dry-run              Preview changes without writing to Supabase
-  --property <id>        Sync only the specified property
-  --help, -h             Show this help message
-
-Environment Variables:
-  SUPABASE_URL           Supabase project URL (required)
-  SUPABASE_SERVICE_ROLE_KEY  Service role key for writes (required)
-
-Examples:
-  node scripts/sync-properties-to-supabase.mjs
-  node scripts/sync-properties-to-supabase.mjs --dry-run
-  node scripts/sync-properties-to-supabase.mjs --property 123-main-st-tampa-fl
-`);
-}
-
-/**
- * Create Supabase client
- */
-function createSupabaseClient() {
-  const url = process.env.SUPABASE_URL;
-  const key = process.env.SUPABASE_SERVICE_ROLE_KEY;
-
-  if (!url || !key) {
-    throw new Error(
-      'Missing SUPABASE_URL or SUPABASE_SERVICE_ROLE_KEY environment variables'
-    );
-  }
-
-  return createClient(url, key, {
-    auth: {
-      persistSession: false,
-      autoRefreshToken: false,
-    },
-  });
-}
-
-/**
- * Read JSON file safely
- */
-async function readJsonFile(path) {
-  try {
-    const content = await readFile(path, 'utf-8');
-    return JSON.parse(content);
-  } catch {
-    return null;
-  }
-}
-
-/**
- * Get all property directories
- */
-async function getPropertyDirs() {
-  const entries = await readdir(PROPERTIES_DIR, { withFileTypes: true });
-  return entries
-    .filter((entry) => entry.isDirectory() && !entry.name.startsWith('.'))
-    .map((entry) => entry.name);
-}
-
-/**
- * Load property data from Git files
- */
-async function loadProperty(propertyId) {
-  const dir = join(PROPERTIES_DIR, propertyId);
-
-  const meta = await readJsonFile(join(dir, 'meta.json'));
-  if (!meta) {
-    console.warn(`  Warning: No meta.json found for ${propertyId}`);
-    return null;
-  }
-
-  const evidence = await readJsonFile(join(dir, 'evidence.json'));
-  const underwriting = await readJsonFile(join(dir, 'underwriting.json'));
-  const audit = await readJsonFile(join(dir, 'audit.json'));
-
-  return { meta, evidence, underwriting, audit };
-}
-
-/**
- * Check if property is eligible for sync
- */
-function isEligibleForSync(property) {
-  const { meta, audit } = property;
-
-  // Check workflow state
-  if (SYNC_ELIGIBLE_STATES.includes(meta.workflow_state)) {
+  // Sync if workflow_state is RANKED or PUBLISHED
+  if (meta.workflow_state && SYNCABLE_STATES.has(meta.workflow_state)) {
     return true;
   }
 
-  // Check audit result
-  if (audit && SYNC_ELIGIBLE_AUDIT_RESULTS.includes(audit.result)) {
+  // Also sync if audit result is PASS
+  if (audit?.result === 'PASS') {
     return true;
   }
 
   return false;
 }
 
-/**
- * Transform property data to Supabase row format
- */
-function transformToRow(property) {
-  const { meta, evidence, underwriting, audit } = property;
+function deriveConfidence(evidence) {
+  if (!evidence) return 'LOW';
 
-  // Determine final status
-  const status = audit?.final_status || underwriting?.proposed_status || 'REJECTED';
+  const fields = ['purchase_price', 'monthly_rent', 'hoa_monthly'];
+  const confidenceLevels = ['HIGH', 'MEDIUM', 'LOW'];
+  let minIndex = 0;
 
-  // Determine confidence (from underwriting input_summary or default)
-  const confidence = determineConfidence(evidence);
-
-  // Collect sources
-  const sources = [];
-  if (meta.listing_url) {
-    sources.push({ label: 'Listing', url: meta.listing_url });
+  for (const field of fields) {
+    const confidence = evidence[field]?.confidence;
+    if (confidence) {
+      const index = confidenceLevels.indexOf(confidence);
+      if (index > minIndex) minIndex = index;
+    }
   }
+
+  return confidenceLevels[minIndex];
+}
+
+function deriveSources(evidence) {
+  if (!evidence) return [];
+
+  const sources = [];
+  const seen = new Set();
+  const fields = [
+    { key: 'purchase_price', label: 'Purchase Price' },
+    { key: 'monthly_rent', label: 'Monthly Rent' },
+    { key: 'hoa_monthly', label: 'HOA' },
+  ];
+
+  for (const { key, label } of fields) {
+    const source = evidence[key]?.source;
+    if (source && !seen.has(source)) {
+      seen.add(source);
+      const isUrl = source.startsWith('http://') || source.startsWith('https://');
+      sources.push({
+        label: isUrl ? label : source,
+        url: isUrl ? source : undefined,
+      });
+    }
+  }
+
+  return sources;
+}
+
+function buildPropertyRow(files) {
+  const { meta, evidence, underwriting, audit } = files;
+
+  if (!meta || !evidence || !underwriting) {
+    return null;
+  }
+
+  const status = audit?.final_status || underwriting.proposed_status;
+  if (!status) return null;
 
   return {
     id: meta.id,
     address: meta.address,
-    location: meta.location || '',
+    location: meta.location || meta.address.split(',').slice(-2).join(',').trim(),
     listing_url: meta.listing_url,
-    purchase_price: evidence?.purchase_price || createUnknownField(),
-    monthly_rent: evidence?.monthly_rent || createUnknownField(),
-    hoa: evidence?.hoa_monthly || createUnknownField(),
-    assessment: evidence?.special_assessments || createUnknownField(),
-    annual_gross_rent: underwriting?.annual_gross_rent || 0,
-    annual_operating_expenses: underwriting?.annual_operating_expenses || 0,
-    noi: underwriting?.noi || 0,
-    cap_rate: underwriting?.cap_rate || 0,
-    confidence,
+    purchase_price: evidence.purchase_price,
+    monthly_rent: evidence.monthly_rent,
+    annual_gross_rent: underwriting.annual_gross_rent,
+    annual_operating_expenses: underwriting.annual_operating_expenses,
+    noi: underwriting.noi,
+    cap_rate: underwriting.cap_rate,
+    hoa: evidence.hoa_monthly,
+    assessment: evidence.special_assessments,
+    confidence: deriveConfidence(evidence),
     status,
     workflow_state: meta.workflow_state,
-    sources,
-    ranked_at: meta.workflow_state === 'RANKED' || meta.workflow_state === 'PUBLISHED'
-      ? new Date().toISOString()
-      : null,
+    sources: deriveSources(evidence),
+    ranked_at: new Date().toISOString(),
   };
 }
 
-/**
- * Create an UNKNOWN field value
- */
-function createUnknownField() {
-  return {
-    value: null,
-    status: 'UNKNOWN',
-    confidence: 'LOW',
-  };
+async function getPropertyDirs() {
+  const entries = await readdir(PROPERTIES_DIR, { withFileTypes: true });
+  return entries
+    .filter(entry => entry.isDirectory() && !entry.name.startsWith('.'))
+    .map(entry => ({
+      name: entry.name,
+      path: join(PROPERTIES_DIR, entry.name),
+    }));
 }
 
-/**
- * Determine overall confidence from evidence fields
- */
-function determineConfidence(evidence) {
-  if (!evidence) return 'LOW';
-
-  const fields = [
-    evidence.purchase_price,
-    evidence.monthly_rent,
-    evidence.hoa_monthly,
-    evidence.special_assessments,
-  ];
-
-  const validFields = fields.filter((f) => f && f.confidence);
-  if (validFields.length === 0) return 'LOW';
-
-  const confidenceLevels = { HIGH: 3, MEDIUM: 2, LOW: 1 };
-  const total = validFields.reduce((sum, f) => sum + (confidenceLevels[f.confidence] || 1), 0);
-  const avg = total / validFields.length;
-
-  if (avg >= 2.5) return 'HIGH';
-  if (avg >= 1.5) return 'MEDIUM';
-  return 'LOW';
-}
-
-/**
- * Transform property details for property_details table
- */
-function transformToDetails(property) {
-  const { meta, evidence, underwriting, audit } = property;
-
-  return {
-    property_id: meta.id,
-    evidence,
-    underwriting,
-    audit,
-  };
-}
-
-/**
- * Sync a single property to Supabase
- */
-async function syncProperty(supabase, propertyId, dryRun) {
-  console.log(`Processing ${propertyId}...`);
-
-  const property = await loadProperty(propertyId);
-  if (!property) {
-    console.log(`  Skipped: Could not load property data`);
-    return { synced: false, reason: 'load_error' };
-  }
-
-  if (!isEligibleForSync(property)) {
-    console.log(`  Skipped: Not eligible (state: ${property.meta.workflow_state})`);
-    return { synced: false, reason: 'not_eligible' };
-  }
-
-  const row = transformToRow(property);
-  const details = transformToDetails(property);
-
-  if (dryRun) {
-    console.log(`  [DRY RUN] Would upsert:`);
-    console.log(`    - Status: ${row.status}`);
-    console.log(`    - Cap Rate: ${(row.cap_rate * 100).toFixed(2)}%`);
-    console.log(`    - Confidence: ${row.confidence}`);
-    return { synced: true, dryRun: true };
-  }
-
-  // Upsert to properties table
-  const { error: propError } = await supabase
-    .from('properties')
-    .upsert(row, { onConflict: 'id' });
-
-  if (propError) {
-    console.error(`  Error syncing property: ${propError.message}`);
-    return { synced: false, reason: 'db_error', error: propError.message };
-  }
-
-  // Upsert to property_details table
-  const { error: detailsError } = await supabase
-    .from('property_details')
-    .upsert(details, { onConflict: 'property_id' });
-
-  if (detailsError) {
-    // Non-fatal - details table may not exist
-    console.warn(`  Warning: Could not sync details: ${detailsError.message}`);
-  }
-
-  console.log(`  Synced: ${row.status} (${(row.cap_rate * 100).toFixed(2)}% cap rate)`);
-  return { synced: true };
-}
-
-/**
- * Main sync function
- */
 async function main() {
-  const options = parseArgs();
+  const dryRun = process.argv.includes('--dry-run');
 
-  if (options.help) {
-    printHelp();
+  // Validate environment
+  const supabaseUrl = process.env.SUPABASE_URL;
+  const supabaseKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
+
+  if (!supabaseUrl) {
+    log('SUPABASE_URL environment variable is required', 'error');
+    process.exit(1);
+  }
+
+  if (!supabaseKey) {
+    log('SUPABASE_SERVICE_ROLE_KEY environment variable is required', 'error');
+    process.exit(1);
+  }
+
+  log(`Starting sync ${dryRun ? '(DRY RUN)' : ''}`);
+  log(`Supabase URL: ${supabaseUrl}`);
+
+  const supabase = createClient(supabaseUrl, supabaseKey, {
+    auth: {
+      autoRefreshToken: false,
+      persistSession: false,
+    },
+  });
+
+  // Get all property directories
+  const propertyDirs = await getPropertyDirs();
+  log(`Found ${propertyDirs.length} property directories`);
+
+  const toSync = [];
+  const skipped = [];
+
+  // Load and filter properties
+  for (const { name, path } of propertyDirs) {
+    const files = await loadPropertyFiles(path);
+
+    if (!shouldSync(files)) {
+      skipped.push({ id: name, reason: 'Not in syncable state' });
+      continue;
+    }
+
+    const row = buildPropertyRow(files);
+    if (!row) {
+      skipped.push({ id: name, reason: 'Missing required files or fields' });
+      continue;
+    }
+
+    toSync.push(row);
+  }
+
+  log(`Properties to sync: ${toSync.length}`);
+  log(`Properties skipped: ${skipped.length}`);
+
+  if (skipped.length > 0) {
+    for (const { id, reason } of skipped) {
+      log(`  Skipped ${id}: ${reason}`, 'warn');
+    }
+  }
+
+  if (toSync.length === 0) {
+    log('No properties to sync');
     process.exit(0);
   }
 
-  console.log('RealEstateHunter Property Sync');
-  console.log('==============================');
-
-  if (options.dryRun) {
-    console.log('Mode: DRY RUN (no changes will be made)\n');
-  }
-
-  let supabase;
-  if (!options.dryRun) {
-    try {
-      supabase = createSupabaseClient();
-    } catch (err) {
-      console.error(`Error: ${err.message}`);
-      process.exit(1);
+  // Sync to Supabase
+  if (dryRun) {
+    log('Dry run - would sync:');
+    for (const row of toSync) {
+      log(`  ${row.id}: ${row.status} (cap_rate: ${(row.cap_rate * 100).toFixed(1)}%)`);
     }
+    process.exit(0);
   }
 
-  // Get properties to sync
-  let propertyIds;
-  if (options.property) {
-    propertyIds = [options.property];
-  } else {
-    propertyIds = await getPropertyDirs();
-  }
+  // Check existing records
+  const ids = toSync.map(r => r.id);
+  const { data: existing, error: selectError } = await supabase
+    .from(PROPERTIES_TABLE)
+    .select('id')
+    .in('id', ids);
 
-  console.log(`Found ${propertyIds.length} property directories\n`);
-
-  // Sync each property
-  const results = {
-    synced: 0,
-    skipped: 0,
-    errors: 0,
-  };
-
-  for (const propertyId of propertyIds) {
-    const result = await syncProperty(supabase, propertyId, options.dryRun);
-    if (result.synced) {
-      results.synced++;
-    } else if (result.reason === 'db_error') {
-      results.errors++;
-    } else {
-      results.skipped++;
-    }
-  }
-
-  // Print summary
-  console.log('\nSync Summary');
-  console.log('------------');
-  console.log(`Synced:  ${results.synced}`);
-  console.log(`Skipped: ${results.skipped}`);
-  console.log(`Errors:  ${results.errors}`);
-
-  if (results.errors > 0) {
+  if (selectError) {
+    log(`Failed to check existing records: ${selectError.message}`, 'error');
     process.exit(1);
   }
+
+  const existingIds = new Set((existing || []).map(r => r.id));
+
+  // Upsert all properties
+  const { error: upsertError } = await supabase
+    .from(PROPERTIES_TABLE)
+    .upsert(toSync, { onConflict: 'id' });
+
+  if (upsertError) {
+    log(`Upsert failed: ${upsertError.message}`, 'error');
+    process.exit(1);
+  }
+
+  let inserted = 0;
+  let updated = 0;
+
+  for (const row of toSync) {
+    if (existingIds.has(row.id)) {
+      updated++;
+      log(`Updated ${row.id}`);
+    } else {
+      inserted++;
+      log(`Inserted ${row.id}`);
+    }
+  }
+
+  log(`Sync complete: ${inserted} inserted, ${updated} updated`);
+  process.exit(0);
 }
 
-main().catch((err) => {
-  console.error('Fatal error:', err);
+main().catch(err => {
+  log(`Unexpected error: ${err.message}`, 'error');
+  console.error(err);
   process.exit(1);
 });

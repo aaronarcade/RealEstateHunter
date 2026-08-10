@@ -1,31 +1,13 @@
 # Dependencies
 node_modules/
+dist/
+build/
+*.egg-info/
 __pycache__/
 *.pyc
 .venv/
 venv/
-
-# Build outputs
-dist/
-build/
-*.egg-info/
-
-# Environment and secrets (NEVER commit)
-.env
-.env.local
-.env.*.local
-.streamlit/secrets.toml
-
-# IDE and editor
-.vscode/
-.idea/
-*.swp
-*.swo
-*~
-
-# OS
-.DS_Store
-Thumbs.db
+.pytest_cache/
 
 # Logs
 *.log
@@ -33,14 +15,30 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
+# Environment and secrets (NEVER commit)
+.env
+.env.local
+.env.*.local
+.streamlit/secrets.toml
+
 # Test coverage
 coverage/
 .coverage
 htmlcov/
-.pytest_cache/
 
-# TypeScript
+# Build artifacts
 *.tsbuildinfo
 
 # Supabase local
 .supabase/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+*~

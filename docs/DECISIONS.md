@@ -56,26 +56,47 @@ Log of significant technical and process decisions. Add a new entry when introdu
 
 ---
 
-## ADR-005: Supabase as UI data store, Git as agent artifacts
+## ADR-005: Node + Ajv for schema validation tooling
 
 **Date:** 2026-08-10  
 **Status:** Accepted
 
-**Context:** UIs need queryable, low-latency access to property data. Git JSON files are the source of truth for agent workflow but are unsuitable for direct UI queries. Aaron has an existing Supabase project at `https://quvfkegqgbrvtmufndpn.supabase.co`.
+**Context:** The repository stores property artifacts as JSON that must conform to the draft-07 JSON Schemas in `schemas/`. `TASK-001` requires those schemas to actually validate the evidence, underwriting, audit, and meta files, plus tests for schema validation. Validating draft-07 with cross-schema `$ref`s (`field-value.json`) and `format` keywords by hand is error-prone, and the repo already targets a Node/TypeScript UI contract (`PropertyOpportunity`).
 
-**Decision:** Use a two-layer architecture:
-- **Git JSON** (`data/properties/`) remains the agent workflow artifact layer for handoffs, PR review, and audit trail
-- **Supabase** stores the queryable copy for UIs and dashboards
-- **One-way sync** (Git → Supabase) runs when properties reach `RANKED`/`PUBLISHED` or audit `PASS`
+**Decision:** Use Node.js (already provided by the Cloud Agent base image) with [`ajv`](https://ajv.js.org) and `ajv-formats` as the validation toolchain. A small harness under `scripts/` discovers every artifact under `data/properties/<id>/`, validates it against the matching schema, and is exercised by `node --test`. The Cloud Agent environment installs dependencies via `npm ci` (`.cursor/environment.json`).
 
-Read clients in TypeScript (`lib/supabase/`) and Python (`lib/supabase_py/`) provide `listOpportunities()` and `getProperty(id)` functions mapping to the `PropertyOpportunity` schema.
+**Consequences:** `ajv` and `ajv-formats` are the first runtime dependencies; `node_modules/` is git-ignored and reproduced from `package-lock.json`. Future Builder work (comparison UI, orchestrator) can reuse this Node toolchain and the `PropertyOpportunity` schema.
 
-**Consequences:**
-- UIs get fast, filterable queries without parsing Git files
-- Agents continue using Git artifacts; no change to workflow
-- Sync script must run on publish (GitHub Action or manual)
-- Service role key must remain server-side only
-- Schema changes require both JSON schema and Supabase migration updates
+---
+
+## ADR-006: Supabase as UI runtime store; Git as agent artifacts
+
+**Date:** 2026-08-10  
+**Status:** Accepted
+
+**Context:** Property records currently live as JSON in Git (`data/properties/`). Agents and PR review work well with files, but UIs (React, Streamlit) need a queryable runtime store. Aaron already operates a Supabase project with similar property data.
+
+**Decision:** Use a **dual-layer** model:
+
+1. **Git JSON** — agent workflow, validation, audit trail, orchestrator input (unchanged).
+2. **Supabase (Postgres)** — runtime source for UIs; populated by sync when properties are ranked/published.
+
+Credentials via `SUPABASE_URL` + keys in environment/secrets only. Service role for server-side sync; anon key + RLS for browser reads where applicable.
+
+**Consequences:** Builder implements TASK-007 (mapping, read client, sync). Streamlit and React read Supabase, not repo files. Agents continue Git-based handoffs until a future task optionally writes directly to Supabase.
+
+---
+
+## ADR-007: @supabase/supabase-js for Supabase integration
+
+**Date:** 2026-08-10  
+**Status:** Accepted
+
+**Context:** TASK-007 requires TypeScript and Python clients to read from and sync to Supabase. Multiple approaches exist: raw fetch/SQL, Supabase client libraries, or custom REST wrappers.
+
+**Decision:** Use `@supabase/supabase-js` for TypeScript and `supabase-py` for Python. These official SDKs handle authentication, RLS, and provide typed queries out of the box.
+
+**Consequences:** Added dependencies: `@supabase/supabase-js` in `lib/supabase/`, `supabase` package for Python in `streamlit/`. Both libraries are well-maintained by Supabase.
 
 ---
 

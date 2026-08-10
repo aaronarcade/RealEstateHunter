@@ -8,10 +8,6 @@ on:
       - 'data/properties/**'
   workflow_dispatch:
     inputs:
-      property_id:
-        description: 'Specific property ID to sync (optional)'
-        required: false
-        type: string
       dry_run:
         description: 'Dry run (no changes)'
         required: false
@@ -42,14 +38,11 @@ jobs:
           SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
           SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
         run: |
-          ARGS=""
-          if [ -n "${{ inputs.property_id }}" ]; then
-            ARGS="$ARGS --property ${{ inputs.property_id }}"
-          fi
           if [ "${{ inputs.dry_run }}" = "true" ]; then
-            ARGS="$ARGS --dry-run"
+            node sync-properties-to-supabase.mjs --dry-run
+          else
+            node sync-properties-to-supabase.mjs
           fi
-          node sync-properties-to-supabase.mjs $ARGS
 
       - name: Report sync status
         if: always()

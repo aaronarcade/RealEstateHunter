@@ -1,0 +1,22 @@
+{
+  "id": "17462-front-beach-rd-unit-31c-panama-city-beach-fl",
+  "address": "17462 Front Beach Rd Unit 31C, Panama City Beach, FL 32413",
+  "location": "Panama City Beach, FL",
+  "listing_url": "https://www.coldwellbanker.com/fl/panama-city-beach/17462-front-beach-rd-unit-31c/lid-P00800000HCIkd7SYskjUjQwp25E3lWdaIFyCn5l",
+  "workflow_state": "SCREENED",
+  "scout_decision": "RESEARCH",
+  "created_at": "2026-08-10T04:00:00Z",
+  "updated_at": "2026-08-10T04:00:00Z",
+  "property_type": "condo",
+  "beds": 2,
+  "baths": 2,
+  "asking_price": 249900,
+  "rough_monthly_rent": 3234,
+  "rough_gross_yield": 0.155,
+  "advertised_hoa": 630,
+  "scout_notes": "MLS 1005938 / 791076. Horizon South IV; 2BR/2BA furnished STR. Listing cites proven rental history (available on request); Mashvisor STR projection $3,234/mo used for first-pass gross yield. HOA ~$630/mo per Mashvisor/MLS data. HOA exceeds $500/mo scrutiny threshold.",
+  "market_id": "panama-city-beach-fl",
+  "mls_id": "1005938",
+  "rent_source": "Mashvisor STR projection; listing confirms rental history on request",
+  "rent_confidence": "MEDIUM"
+}

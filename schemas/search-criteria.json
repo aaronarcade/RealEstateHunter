@@ -1,0 +1,154 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "search-criteria.json",
+  "title": "SearchCriteria",
+  "description": "Manager-owned search criteria for Scout agents",
+  "type": "object",
+  "required": ["version", "updated_at", "target_cap_rate", "markets", "property_filters"],
+  "properties": {
+    "version": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "updated_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "updated_by": {
+      "type": "string"
+    },
+    "target_cap_rate": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 1,
+      "description": "Target unlevered cap rate (e.g., 0.10 for 10%)"
+    },
+    "target_yield_minimum": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 1,
+      "description": "Minimum gross yield at scout stage to pass screening"
+    },
+    "notes": {
+      "type": "string"
+    },
+    "asset_focus": {
+      "type": "object",
+      "properties": {
+        "primary": { "type": "string" },
+        "prioritize_condo_buildings": { "type": "boolean" },
+        "rationale": { "type": "string" }
+      }
+    },
+    "markets": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "name", "priority", "status"],
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^[a-z0-9-]+$"
+          },
+          "name": {
+            "type": "string"
+          },
+          "priority": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "status": {
+            "type": "string",
+            "enum": ["ACTIVE", "PAUSED", "COMPLETED"]
+          },
+          "rationale": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "property_filters": {
+      "type": "object",
+      "properties": {
+        "types": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "type_priority": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Search order; first type is highest priority"
+        },
+        "condo_only_first_pass": {
+          "type": "boolean",
+          "description": "When true, Scout filters to condos before other types"
+        },
+        "price_range": {
+          "type": "object",
+          "properties": {
+            "min": { "type": "number" },
+            "max": { "type": "number" }
+          }
+        },
+        "beds_min": { "type": "integer" },
+        "baths_min": { "type": "integer" },
+        "exclude": {
+          "type": "array",
+          "items": { "type": "string" }
+        }
+      }
+    },
+    "scout_instructions": {
+      "type": "object",
+      "properties": {
+        "sources": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "screening_threshold": { "type": "string" },
+        "volume_targets": {
+          "type": "object",
+          "properties": {
+            "listings_reviewed_per_market_min": { "type": "integer" },
+            "research_candidates_total_min": { "type": "integer" },
+            "research_candidates_per_market_min": { "type": "integer" },
+            "do_not_stop_early": { "type": "boolean" }
+          }
+        },
+        "condo_building_search": {
+          "type": "object",
+          "properties": {
+            "enabled": { "type": "boolean" },
+            "strategy": {
+              "type": "array",
+              "items": { "type": "string" }
+            },
+            "building_signals": {
+              "type": "array",
+              "items": { "type": "string" }
+            },
+            "hoa_screening": { "type": "object" }
+          }
+        },
+        "flags": {
+          "type": "array",
+          "items": { "type": "string" }
+        }
+      }
+    },
+    "rescreen_policy": {
+      "type": "object",
+      "properties": {
+        "enabled": { "type": "boolean" },
+        "intervals_days": { "type": "object" },
+        "max_rescreens": { "type": "integer" },
+        "rescreen_triggers": {
+          "type": "array",
+          "items": { "type": "string" }
+        }
+      }
+    }
+  }
+}

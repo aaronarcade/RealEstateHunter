@@ -1,272 +1,246 @@
 # Supabase Integration
 
-This document describes how RealEstateHunter uses Supabase as the runtime data store for UIs and dashboards.
+RealEstateHunter uses Supabase as the runtime data store for UIs and dashboards. Git JSON under `data/properties/` remains the agent workflow artifact layer; Supabase holds the queryable copy that UIs read at runtime.
 
 ## Project
 
 - **URL:** `https://quvfkegqgbrvtmufndpn.supabase.co`
-- **Dashboard:** `https://supabase.com/dashboard/project/quvfkegqgbrvtmufndpn`
+- **Dashboard:** Access via Aaron's Supabase account
 
-Keys are stored as environment variables / secrets (never committed):
-
-| Variable | Purpose | Where |
-|----------|---------|-------|
-| `SUPABASE_URL` | Project URL | `.env`, GitHub secrets, Streamlit secrets |
-| `SUPABASE_SERVICE_ROLE_KEY` | Full access (sync scripts, server only) | GitHub secrets, Streamlit backend |
-| `SUPABASE_ANON_KEY` | RLS-restricted reads (browser, public UIs) | `.env`, Vite env vars |
+**Credentials are NOT stored in the repository.** Use environment variables or Streamlit secrets.
 
 ## Architecture
 
 ```
-Cloud Agents → PR → data/properties/{id}/*.json  (workflow / audit trail in Git)
-                         ↓ sync (on publish or merge)
-                   Supabase (properties table)
-                         ↓ read
-              React UI / Streamlit / future tools
+┌─────────────────────────────────────────────────────────────────────────┐
+│  Cloud Agents → PR → data/properties/{id}/*.json (workflow/audit trail)│
+│                               ↓                                         │
+│                     sync (on RANKED/PUBLISHED)                          │
+│                               ↓                                         │
+│                     ┌─────────────────┐                                 │
+│                     │    Supabase     │                                 │
+│                     │   (Postgres)    │                                 │
+│                     └────────┬────────┘                                 │
+│                              ↓                                          │
+│               ┌──────────────┴──────────────┐                           │
+│               │                             │                           │
+│        React UI (anon key)         Streamlit (service role)             │
+└─────────────────────────────────────────────────────────────────────────┘
 ```
 
 | Layer | Role |
 |-------|------|
 | **Git JSON** | Agent handoffs, schema validation, PR review, orchestrator state |
 | **Supabase** | Live reads for UI, filters, history, optional non-agent edits |
-| **Sync** | One-way Git → Supabase when property reaches `RANKED`, `PUBLISHED`, or audit `PASS` |
-
-## Database Schema
-
-### `properties` table
-
-Primary table for property opportunities. Maps to the `PropertyOpportunity` interface.
-
-```sql
-CREATE TABLE properties (
-  id TEXT PRIMARY KEY,                    -- Slug identifier (e.g., "123-main-st-tampa-fl")
-  address TEXT NOT NULL,
-  location TEXT NOT NULL,
-  listing_url TEXT NOT NULL,
-  
-  -- Financial fields (JSONB for FieldValue structure)
-  purchase_price JSONB NOT NULL,          -- FieldValue: { value, status, confidence, source, evidence }
-  monthly_rent JSONB NOT NULL,            -- FieldValue
-  hoa JSONB NOT NULL,                     -- FieldValue
-  assessment JSONB NOT NULL,              -- FieldValue (special_assessments)
-  
-  -- Computed values (from underwriting)
-  annual_gross_rent NUMERIC NOT NULL,
-  annual_operating_expenses NUMERIC NOT NULL,
-  noi NUMERIC NOT NULL,
-  cap_rate NUMERIC NOT NULL,
-  
-  -- Classification
-  confidence TEXT NOT NULL CHECK (confidence IN ('HIGH', 'MEDIUM', 'LOW')),
-  status TEXT NOT NULL CHECK (status IN ('VIABLE', 'WATCHLIST', 'REJECTED')),
-  
-  -- Workflow state
-  workflow_state TEXT NOT NULL CHECK (workflow_state IN (
-    'CANDIDATE', 'SCREENED', 'RESEARCHING', 'READY_FOR_UNDERWRITING',
-    'UNDERWRITTEN', 'AUDIT', 'RANKED', 'PUBLISHED', 'ARCHIVED'
-  )),
-  
-  -- Sources (array of { label, url })
-  sources JSONB DEFAULT '[]'::JSONB,
-  
-  -- Timestamps
-  ranked_at TIMESTAMPTZ,
-  synced_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
-  created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
-  updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
-);
-
--- Index for common queries
-CREATE INDEX idx_properties_status ON properties(status);
-CREATE INDEX idx_properties_workflow_state ON properties(workflow_state);
-CREATE INDEX idx_properties_cap_rate ON properties(cap_rate DESC);
-```
-
-### `property_details` table (optional)
-
-Stores full evidence, underwriting, and audit JSON for detailed views.
-
-```sql
-CREATE TABLE property_details (
-  property_id TEXT PRIMARY KEY REFERENCES properties(id) ON DELETE CASCADE,
-  evidence JSONB,                         -- Full evidence.json
-  underwriting JSONB,                     -- Full underwriting.json
-  audit JSONB,                            -- Full audit.json
-  synced_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
-);
-```
+| **Sync** | One-way Git → Supabase when property reaches `RANKED` or `PUBLISHED` |
 
 ## Schema Mapping
 
-### Git Artifacts → Supabase Columns
+### Primary Table: `properties`
 
-| Git File | Supabase | Notes |
-|----------|----------|-------|
-| `meta.json` | `properties.id`, `address`, `location`, `listing_url`, `workflow_state` | Core identifiers |
-| `evidence.json` | `properties.purchase_price`, `monthly_rent`, `hoa`, `assessment` | FieldValue JSONB |
-| `underwriting.json` | `properties.annual_gross_rent`, `noi`, `cap_rate`, `status` | Computed values |
-| `audit.json` | `properties.status` (final_status), `property_details.audit` | Final classification |
+The `properties` table stores the `PropertyOpportunity` shape for UI consumption.
 
-### FieldValue Structure
+| Column | Type | Maps From | Notes |
+|--------|------|-----------|-------|
+| `id` | `text` PRIMARY KEY | `meta.id` | Property slug (e.g., `123-main-st-tampa-fl`) |
+| `address` | `text` NOT NULL | `meta.address` | Full street address |
+| `location` | `text` NOT NULL | `meta.location` | City, State |
+| `listing_url` | `text` NOT NULL | `meta.listing_url` | Original listing URL |
+| `purchase_price` | `jsonb` NOT NULL | `evidence.purchase_price` | FieldValue object |
+| `monthly_rent` | `jsonb` NOT NULL | `evidence.monthly_rent` | FieldValue object |
+| `annual_gross_rent` | `numeric` NOT NULL | `underwriting.annual_gross_rent` | Computed value |
+| `annual_operating_expenses` | `numeric` NOT NULL | `underwriting.annual_operating_expenses` | Computed value |
+| `noi` | `numeric` NOT NULL | `underwriting.noi` | Net Operating Income |
+| `cap_rate` | `numeric` NOT NULL | `underwriting.cap_rate` | Unlevered cap rate |
+| `hoa` | `jsonb` NOT NULL | `evidence.hoa_monthly` | FieldValue object |
+| `assessment` | `jsonb` NOT NULL | `evidence.special_assessments` | FieldValue object |
+| `confidence` | `text` NOT NULL | Derived | `HIGH`, `MEDIUM`, or `LOW` |
+| `status` | `text` NOT NULL | `audit.final_status` | `VIABLE`, `WATCHLIST`, or `REJECTED` |
+| `workflow_state` | `text` NOT NULL | `meta.workflow_state` | Current workflow state |
+| `sources` | `jsonb` | Derived | Array of source references |
+| `ranked_at` | `timestamptz` | Sync time | When property was ranked/published |
+| `created_at` | `timestamptz` DEFAULT now() | — | Row creation time |
+| `updated_at` | `timestamptz` DEFAULT now() | — | Last update time |
 
-Each financial field is stored as JSONB matching the `field-value.json` schema:
+### FieldValue JSONB Structure
+
+All financial fields use the standard FieldValue shape:
 
 ```json
 {
-  "value": 200000,
+  "value": 485,
   "status": "VERIFIED",
   "confidence": "HIGH",
   "source": "https://listing-url",
-  "evidence": "Listing asking price $200,000",
-  "range_low": null,
-  "range_high": null
+  "evidence": "Listing states HOA fee of $485/month"
 }
 ```
 
-### PropertyOpportunity → Supabase Row
+### Mapping from Git Artifacts
 
-The TypeScript `PropertyOpportunity` interface maps directly to the `properties` table:
+| Git File | Primary Fields Used |
+|----------|---------------------|
+| `meta.json` | `id`, `address`, `location`, `listing_url`, `workflow_state` |
+| `evidence.json` | `purchase_price`, `monthly_rent`, `hoa_monthly`, `special_assessments` |
+| `underwriting.json` | `annual_gross_rent`, `annual_operating_expenses`, `noi`, `cap_rate` |
+| `audit.json` | `final_status` (becomes `status`) |
 
-| Interface Field | Column | Type |
-|-----------------|--------|------|
-| `id` | `id` | TEXT |
-| `address` | `address` | TEXT |
-| `location` | `location` | TEXT |
-| `listingUrl` | `listing_url` | TEXT |
-| `purchasePrice` | `purchase_price` | JSONB |
-| `monthlyRent` | `monthly_rent` | JSONB |
-| `annualGrossRent` | `annual_gross_rent` | NUMERIC |
-| `annualOperatingExpenses` | `annual_operating_expenses` | NUMERIC |
-| `noi` | `noi` | NUMERIC |
-| `capRate` | `cap_rate` | NUMERIC |
-| `hoa` | `hoa` | JSONB |
-| `assessment` | `assessment` | JSONB |
-| `confidence` | `confidence` | TEXT |
-| `status` | `status` | TEXT |
-| `sources` | `sources` | JSONB |
-| `rankedAt` | `ranked_at` | TIMESTAMPTZ |
+### Confidence Derivation
 
-## Row Level Security (RLS)
+Overall confidence is the **minimum** confidence across key financial fields:
+- `purchase_price.confidence`
+- `monthly_rent.confidence`
+- `hoa_monthly.confidence`
 
-### Read Policy
+### Sources Derivation
 
-Allow anonymous reads for published/ranked properties:
+Sources array is built from unique URLs in evidence fields:
+- `purchase_price.source`
+- `monthly_rent.source`
+- `hoa_monthly.source`
+
+## Sync Rules
+
+### When to Sync
+
+Properties are synced to Supabase when:
+1. `workflow_state` is `RANKED` or `PUBLISHED`
+2. OR `audit.result` is `PASS`
+
+This ensures only validated opportunities appear in UIs.
+
+### Idempotent Upserts
+
+Sync uses `ON CONFLICT (id) DO UPDATE` to:
+- Insert new properties
+- Update existing properties with changed data
+- Never duplicate rows
+
+### Excluded from Sync
+
+- Properties with `workflow_state` in early stages (`CANDIDATE`, `SCREENED`, `RESEARCHING`)
+- Scout rejects without full underwriting
+- Archived properties (stay Git-only until rescreened)
+
+## Row-Level Security (RLS)
+
+### Recommended Policies
 
 ```sql
 -- Enable RLS
 ALTER TABLE properties ENABLE ROW LEVEL SECURITY;
 
--- Public read for ranked/published properties
-CREATE POLICY "Public read for published properties"
-  ON properties FOR SELECT
-  USING (workflow_state IN ('RANKED', 'PUBLISHED'));
-
--- Authenticated users can read all
-CREATE POLICY "Authenticated read all"
-  ON properties FOR SELECT
-  TO authenticated
+-- Public read access for UI (anon key)
+CREATE POLICY "Public read access"
+  ON properties
+  FOR SELECT
   USING (true);
+
+-- Service role can do everything (sync script)
+CREATE POLICY "Service role full access"
+  ON properties
+  FOR ALL
+  USING (auth.role() = 'service_role');
 ```
 
-### Write Policy
+### Access Patterns
 
-Only service role (sync scripts) can write:
+| Client | Key | Permissions |
+|--------|-----|-------------|
+| React UI / Browser | `SUPABASE_ANON_KEY` | SELECT only (RLS allows public read) |
+| Streamlit Backend | `SUPABASE_SERVICE_ROLE_KEY` | SELECT only (no writes from UI) |
+| Sync Script | `SUPABASE_SERVICE_ROLE_KEY` | INSERT, UPDATE (upserts) |
+| GitHub Actions | `SUPABASE_SERVICE_ROLE_KEY` | INSERT, UPDATE (CI sync) |
+
+**Security Rule:** Never expose `SUPABASE_SERVICE_ROLE_KEY` to browser bundles or Streamlit frontend code.
+
+## Environment Variables
+
+Required environment variables (see `.env.example`):
+
+| Variable | Required | Used By |
+|----------|----------|---------|
+| `SUPABASE_URL` | Yes | All clients |
+| `SUPABASE_ANON_KEY` | For browser | React UI |
+| `SUPABASE_SERVICE_ROLE_KEY` | For sync | Sync script, Streamlit backend |
+
+## Migration (If Needed)
+
+If the existing Supabase schema differs from the mapping above, create migration files in `supabase/migrations/`:
 
 ```sql
--- Service role has full access by default (bypasses RLS)
--- No additional write policies needed for anon/authenticated
+-- supabase/migrations/001_add_workflow_state.sql
+ALTER TABLE properties
+ADD COLUMN IF NOT EXISTS workflow_state text NOT NULL DEFAULT 'PUBLISHED';
 ```
 
-## Sync Process
+### Schema Gaps
 
-### When to Sync
+Document any gaps between existing Supabase tables and the `PropertyOpportunity` schema:
 
-Properties are synced to Supabase when:
-1. `workflow_state` changes to `RANKED` or `PUBLISHED`
-2. `audit.result` is `PASS`
-3. Manual sync via `scripts/sync-properties-to-supabase.mjs`
+| Gap | Resolution |
+|-----|------------|
+| Missing `workflow_state` column | Add via migration |
+| Different column names | Alias in SELECT queries |
+| Extra columns in Supabase | Ignore (backward compatible) |
 
-### Sync Script
+## Read Client Usage
 
-Location: `scripts/sync-properties-to-supabase.mjs`
-
-```bash
-# Sync all eligible properties
-node scripts/sync-properties-to-supabase.mjs
-
-# Sync specific property
-node scripts/sync-properties-to-supabase.mjs --property 123-main-st-tampa-fl
-
-# Dry run (no writes)
-node scripts/sync-properties-to-supabase.mjs --dry-run
-```
-
-### GitHub Action
-
-Runs automatically on push to `main` when `data/properties/**` changes.
-
-Location: `.github/workflows/sync-properties.yml`
-
-## Read Clients
-
-### TypeScript (`lib/supabase/`)
+### TypeScript
 
 ```typescript
-import { createClient } from './client';
-import { listOpportunities, getProperty } from './queries';
+import { SupabaseClient, listOpportunities, getProperty } from '@realestatehunter/supabase';
 
-const supabase = createClient();
-const opportunities = await listOpportunities(supabase, { status: 'VIABLE' });
-const property = await getProperty(supabase, '123-main-st-tampa-fl');
+const client = new SupabaseClient();
+
+// List all opportunities
+const opportunities = await listOpportunities(client);
+
+// Get single property
+const property = await getProperty(client, '123-main-st-tampa-fl');
 ```
 
-### Python (`lib/supabase_py/`)
+### Python (Streamlit)
 
 ```python
-from lib.supabase_py import create_client, list_opportunities, get_property
+from db_client import SupabaseClient, list_opportunities, get_property
 
-client = create_client()
-opportunities = list_opportunities(client, status='VIABLE')
+client = SupabaseClient()
+
+# List all opportunities
+opportunities = list_opportunities(client)
+
+# Get single property
 property = get_property(client, '123-main-st-tampa-fl')
 ```
 
-## Environment Setup
-
-### Local Development
+## Sync Script Usage
 
 ```bash
-cp .env.example .env
-# Edit .env with your Supabase keys
+# Set environment variables
+export SUPABASE_URL="https://quvfkegqgbrvtmufndpn.supabase.co"
+export SUPABASE_SERVICE_ROLE_KEY="your-service-role-key"
+
+# Run sync
+npm run sync:supabase
+
+# Or directly
+node scripts/sync-properties-to-supabase.mjs
 ```
 
-### Streamlit
+The sync script:
+1. Scans `data/properties/*/`
+2. Filters for `RANKED`, `PUBLISHED`, or audit `PASS` properties
+3. Maps Git artifacts to `PropertyOpportunity` shape
+4. Upserts to Supabase
+5. Logs results and fails on schema mismatch
 
-Create `.streamlit/secrets.toml`:
+## Future Considerations
 
-```toml
-SUPABASE_URL = "https://quvfkegqgbrvtmufndpn.supabase.co"
-SUPABASE_SERVICE_ROLE_KEY = "your-service-role-key"
-```
+1. **Bidirectional Sync:** Currently one-way (Git → Supabase). Future task may add Supabase → Git for non-agent edits.
 
-### GitHub Actions
+2. **Real-time Subscriptions:** Supabase supports real-time; UIs could subscribe to property changes.
 
-Add secrets in repository settings:
-- `SUPABASE_URL`
-- `SUPABASE_SERVICE_ROLE_KEY`
+3. **Historical Data:** Consider a `properties_history` table for audit trail separate from Git.
 
-## Migrations
-
-If schema changes are needed, use the Supabase CLI:
-
-```bash
-# Install Supabase CLI
-npm install -g supabase
-
-# Create migration
-supabase migration new add_new_column
-
-# Apply migrations
-supabase db push
-```
-
-Migration files go in `supabase/migrations/`.
+4. **Agent Direct Writes:** Future agents might write directly to Supabase instead of Git files, with Git as backup.

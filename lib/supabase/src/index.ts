@@ -1,31 +1,12 @@
-/**
- * Supabase client for RealEstateHunter
- *
- * @module @realestatehunter/supabase
- */
-
-export { createClient, validateConfig, isBrowser } from './client.js';
-export type { SupabaseClientType, ClientOptions } from './client.js';
-
-export {
-  listOpportunities,
-  getProperty,
-  getPropertyWithDetails,
-  countOpportunities,
-  getViableOpportunities,
-  getWatchlistOpportunities,
-  rowToOpportunity,
-} from './queries.js';
-
+export { SupabaseClient, listOpportunities, getProperty } from './client.js';
+export { rowToOpportunity, opportunityToRow, deriveConfidence, deriveSources } from './mapper.js';
 export type {
-  FieldStatus,
-  Confidence,
-  PropertyStatus,
-  WorkflowState,
   FieldValue,
+  PropertyStatus,
   Source,
-  PropertyRow,
   PropertyOpportunity,
+  SupabaseConfig,
+  PropertyRow,
   ListOpportunitiesOptions,
-  Database,
+  SyncResult,
 } from './types.js';
