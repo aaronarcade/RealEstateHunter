@@ -1,6 +1,6 @@
 # TASK-005: End-to-end pipeline validation
 
-**Status:** BACKLOG  
+**Status:** COMPLETE  
 **Assignee:** Builder  
 **Priority:** P2
 
@@ -10,11 +10,11 @@ Validate that the orchestrator correctly spawns agents and the full property pip
 
 ## Acceptance criteria
 
-- [ ] Orchestrator `plan` command correctly identifies pending work from backlog tasks
-- [ ] Orchestrator `plan` command correctly identifies property workflow state transitions
-- [ ] Orchestrator `run --dry-run` shows expected agent spawns
-- [ ] Registry tracks spawned agents correctly after real run
-- [ ] Agent branches follow naming convention `agent/task-NNN-*` or `agent/{role}-*`
+- [x] Orchestrator `plan` command correctly identifies pending work from backlog tasks
+- [x] Orchestrator `plan` command correctly identifies property workflow state transitions
+- [x] Orchestrator `run --dry-run` shows expected agent spawns
+- [x] Registry tracks spawned agents correctly after real run
+- [x] Agent branches follow naming convention `agent/task-NNN-*` or `agent/{role}-*`
 
 ## Test scenarios
 
