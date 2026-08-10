@@ -1,0 +1,4 @@
+# Streamlit app dependencies
+streamlit>=1.37.0
+supabase>=2.5.0
+pytest>=8.0.0

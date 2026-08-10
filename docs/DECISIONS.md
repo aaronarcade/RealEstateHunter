@@ -72,7 +72,7 @@ Log of significant technical and process decisions. Add a new entry when introdu
 ## ADR-006: Supabase as UI runtime store; Git as agent artifacts
 
 **Date:** 2026-08-10  
-**Status:** Proposed
+**Status:** Accepted
 
 **Context:** Property records currently live as JSON in Git (`data/properties/`). Agents and PR review work well with files, but UIs (React, Streamlit) need a queryable runtime store. Aaron already operates a Supabase project with similar property data.
 
@@ -84,6 +84,19 @@ Log of significant technical and process decisions. Add a new entry when introdu
 Credentials via `SUPABASE_URL` + keys in environment/secrets only. Service role for server-side sync; anon key + RLS for browser reads where applicable.
 
 **Consequences:** Builder implements TASK-007 (mapping, read client, sync). Streamlit and React read Supabase, not repo files. Agents continue Git-based handoffs until a future task optionally writes directly to Supabase.
+
+---
+
+## ADR-007: @supabase/supabase-js for Supabase integration
+
+**Date:** 2026-08-10  
+**Status:** Accepted
+
+**Context:** TASK-007 requires TypeScript and Python clients to read from and sync to Supabase. Multiple approaches exist: raw fetch/SQL, Supabase client libraries, or custom REST wrappers.
+
+**Decision:** Use `@supabase/supabase-js` for TypeScript and `supabase-py` for Python. These official SDKs handle authentication, RLS, and provide typed queries out of the box.
+
+**Consequences:** Added dependencies: `@supabase/supabase-js` in `lib/supabase/`, `supabase` package for Python in `streamlit/`. Both libraries are well-maintained by Supabase.
 
 ---
 
