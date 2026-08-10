@@ -3,12 +3,23 @@ import type { PropertyOpportunity, SortConfig, SortField } from '../types/proper
 import { fetchOpportunities, sampleOpportunities } from '../data/loader'
 import { sortOpportunities, getNextSortDirection } from '../data/sorting'
 
+/**
+ * Check if sample data fallback is enabled via environment variable.
+ * When true, sample data is used if Supabase returns empty results.
+ */
+const USE_SAMPLE_DATA_FALLBACK = import.meta.env.VITE_USE_SAMPLE_DATA === 'true'
+
 interface UseOpportunitiesOptions {
-  useSampleData?: boolean
+  /**
+   * Force sample data usage regardless of Supabase.
+   * Primarily for testing or offline development.
+   * @deprecated Prefer using VITE_USE_SAMPLE_DATA=true environment variable
+   */
+  forceSampleData?: boolean
 }
 
 export function useOpportunities(options: UseOpportunitiesOptions = {}) {
-  const { useSampleData = false } = options
+  const { forceSampleData = false } = options
 
   const [opportunities, setOpportunities] = useState<PropertyOpportunity[]>([])
   const [loading, setLoading] = useState(true)
@@ -23,11 +34,12 @@ export function useOpportunities(options: UseOpportunitiesOptions = {}) {
       setError(null)
 
       try {
-        if (useSampleData) {
+        if (forceSampleData) {
           setOpportunities(sampleOpportunities)
         } else {
           const data = await fetchOpportunities()
-          if (data.length === 0) {
+          if (data.length === 0 && USE_SAMPLE_DATA_FALLBACK) {
+            console.info('Supabase returned empty, using sample data fallback (VITE_USE_SAMPLE_DATA=true)')
             setOpportunities(sampleOpportunities)
           } else {
             setOpportunities(data)
@@ -36,7 +48,10 @@ export function useOpportunities(options: UseOpportunitiesOptions = {}) {
       } catch (e) {
         if (mounted) {
           setError(e instanceof Error ? e : new Error('Failed to load opportunities'))
-          setOpportunities(sampleOpportunities)
+          if (USE_SAMPLE_DATA_FALLBACK) {
+            console.info('Error fetching opportunities, using sample data fallback')
+            setOpportunities(sampleOpportunities)
+          }
         }
       } finally {
         if (mounted) {
@@ -50,7 +65,7 @@ export function useOpportunities(options: UseOpportunitiesOptions = {}) {
     return () => {
       mounted = false
     }
-  }, [useSampleData])
+  }, [forceSampleData])
 
   const handleSort = useCallback((field: SortField) => {
     setSortConfig((current) => getNextSortDirection(current, field))

@@ -1,6 +1,6 @@
 # TASK-008: Wire React UI to Supabase
 
-**Status:** BACKLOG  
+**Status:** ACTIVE  
 **Assignee:** Builder  
 **Priority:** P1
 
@@ -10,13 +10,13 @@ Replace hardcoded sample data in `ui/` with live opportunities loaded from **Sup
 
 ## Acceptance criteria
 
-- [ ] Remove `useSampleData: true` default from `App.tsx`
-- [ ] `fetchOpportunities()` calls Supabase (or repo API that reads Supabase) — not `/data/opportunities.json`
-- [ ] Sample data fallback **only** when Supabase returns empty and `VITE_USE_SAMPLE_DATA=true`
-- [ ] Env vars documented: `VITE_SUPABASE_URL`, `VITE_SUPABASE_ANON_KEY` (anon key only — never service role in browser)
-- [ ] Loading and error states preserved
-- [ ] Tests updated (mock Supabase client)
-- [ ] `ui/README.md` documents local setup with `.env`
+- [x] Remove `useSampleData: true` default from `App.tsx`
+- [x] `fetchOpportunities()` calls Supabase (or repo API that reads Supabase) — not `/data/opportunities.json`
+- [x] Sample data fallback **only** when Supabase returns empty and `VITE_USE_SAMPLE_DATA=true`
+- [x] Env vars documented: `VITE_SUPABASE_URL`, `VITE_SUPABASE_ANON_KEY` (anon key only — never service role in browser)
+- [x] Loading and error states preserved
+- [x] Tests updated (mock Supabase client)
+- [x] `ui/README.md` documents local setup with `.env`
 
 ## Depends on
 

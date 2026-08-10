@@ -1,4 +1,5 @@
 import type { PropertyOpportunity, Confidence, Status } from '../types/property'
+import { fetchOpportunitiesFromSupabase, isSupabaseConfigured } from './supabase'
 
 /**
  * Raw property file data structure (as stored in data/properties/{id}/)
@@ -99,11 +100,24 @@ export function transformPropertyData(
 }
 
 /**
- * Fetch published opportunities from API or static data
- * In production, this would fetch from an API endpoint
- * For development, it loads from /data/opportunities.json
+ * Fetch published opportunities from Supabase.
+ * Falls back to static JSON if Supabase is not configured.
  */
 export async function fetchOpportunities(): Promise<PropertyOpportunity[]> {
+  if (isSupabaseConfigured()) {
+    const opportunities = await fetchOpportunitiesFromSupabase()
+    return opportunities
+  }
+
+  console.warn('Supabase not configured — falling back to static JSON')
+  return fetchOpportunitiesFromStaticJson()
+}
+
+/**
+ * Fetch opportunities from static JSON file.
+ * Used as fallback when Supabase is not configured.
+ */
+export async function fetchOpportunitiesFromStaticJson(): Promise<PropertyOpportunity[]> {
   try {
     const response = await fetch('/data/opportunities.json')
     if (!response.ok) {
@@ -112,7 +126,7 @@ export async function fetchOpportunities(): Promise<PropertyOpportunity[]> {
     }
     return await response.json()
   } catch (error) {
-    console.error('Failed to fetch opportunities:', error)
+    console.error('Failed to fetch opportunities from static JSON:', error)
     return []
   }
 }
