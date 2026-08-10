@@ -1,0 +1,75 @@
+{
+  "$schema": "../schemas/search-criteria.json",
+  "version": 1,
+  "updated_at": "2026-08-10T03:00:00Z",
+  "updated_by": "manager",
+  "target_cap_rate": 0.10,
+  "target_yield_minimum": 0.12,
+  "notes": "Gross yield must exceed 12% at scout stage to have realistic path to 10% cap rate after expenses",
+  "markets": [
+    {
+      "id": "tampa-fl",
+      "name": "Tampa, FL",
+      "priority": 1,
+      "status": "ACTIVE",
+      "rationale": "Strong rental demand, no state income tax, diverse economy"
+    },
+    {
+      "id": "jacksonville-fl",
+      "name": "Jacksonville, FL",
+      "priority": 2,
+      "status": "ACTIVE",
+      "rationale": "Affordable price points, growing population, military presence"
+    },
+    {
+      "id": "birmingham-al",
+      "name": "Birmingham, AL",
+      "priority": 3,
+      "status": "ACTIVE",
+      "rationale": "Low entry prices, potential for higher yields"
+    },
+    {
+      "id": "memphis-tn",
+      "name": "Memphis, TN",
+      "priority": 4,
+      "status": "ACTIVE",
+      "rationale": "Strong rental market, affordable prices, no state income tax"
+    },
+    {
+      "id": "cleveland-oh",
+      "name": "Cleveland, OH",
+      "priority": 5,
+      "status": "ACTIVE",
+      "rationale": "Low prices relative to rent, diverse employment base"
+    }
+  ],
+  "property_filters": {
+    "types": ["condo", "townhouse", "single_family"],
+    "price_range": {
+      "min": 75000,
+      "max": 300000
+    },
+    "beds_min": 2,
+    "baths_min": 1,
+    "exclude": [
+      "land_only",
+      "commercial",
+      "mobile_home",
+      "55_plus_community"
+    ]
+  },
+  "scout_instructions": {
+    "sources": [
+      "Zillow",
+      "Realtor.com",
+      "Redfin",
+      "MLS listings"
+    ],
+    "screening_threshold": "Rough gross yield must exceed 12% to pass to RESEARCH. Reject properties with gross yield below 10%.",
+    "flags": [
+      "Properties with HOA over $500/month require extra scrutiny",
+      "Known special assessments are a yellow flag",
+      "STR restrictions may limit upside but don't disqualify for LTR strategy"
+    ]
+  }
+}

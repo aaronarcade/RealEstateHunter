@@ -15,9 +15,14 @@ Build the primary interface for comparing ranked property opportunities. Display
 - [x] Visual distinction for VIABLE / WATCHLIST / REJECTED
 - [x] Reads from published/ranked property data
 
+## Dependencies
+
+- TASK-001 (property schema helpers) - needed for data layer
+- Pipeline must have RANKED properties to display
+
 ## Notes
 
-Depends on TASK-001. UI agent should render pipeline output, not make investment judgments.
+UI agent should render pipeline output, not make investment judgments.
 
 ## Implementation
 
