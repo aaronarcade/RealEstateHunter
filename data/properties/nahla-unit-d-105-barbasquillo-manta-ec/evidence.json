@@ -1,0 +1,88 @@
+{
+  "property_id": "nahla-unit-d-105-barbasquillo-manta-ec",
+  "researched_at": "2026-08-10T05:00:00Z",
+  "purchase_price": {
+    "value": 59444,
+    "status": "VERIFIED",
+    "confidence": "HIGH",
+    "source": "https://trivo.com.ec/propiedades/nahla/",
+    "evidence": "Listing shows Unit D-105 priced at $59,444 for 41.52m² studio with 1 parking space. Immediate delivery. Developer: Andrade Coello Constructora."
+  },
+  "monthly_rent": {
+    "value": 475,
+    "status": "ESTIMATED",
+    "confidence": "MEDIUM",
+    "source": "Rent comps from FazWaz, Rentola, Mantasol, AirROI STR data",
+    "evidence": "Long-term rental comps in Barbasquillo: $380/mo (50m² 2BR), $400/mo (55m² 1BR), $450-600/mo (75m² suite), $700/mo (68m² 1BR Riva di Mare incl. alicuota). STR data: Manta median $390/mo, top 25% $859/mo at 21.7% avg occupancy. Nahla marketed as Airbnb-friendly with modern amenities. For 41.52m² studio, estimated $400-550/mo long-term or similar STR at mid-tier performance. Subject smaller than most comps but newer construction with premium amenities.",
+    "range_low": 400,
+    "range_high": 550
+  },
+  "hoa_monthly": {
+    "value": null,
+    "status": "UNKNOWN",
+    "confidence": "LOW",
+    "source": "Rental listings for Nahla houses, Ecuador HOA market data",
+    "evidence": "No direct HOA fee published for Nahla building. House rentals in Nahla urbanization include alicuota in $650-750/mo rent prices. Ecuador typical HOA ranges $30-100/mo for basic buildings, higher for amenity-rich complexes. Nahla has 13 shared amenities (pool, jacuzzi, spa, sauna, gym, cinema, coworking, kids room, pet area, etc.) plus 24/7 security and concierge - likely toward upper range. Estimate $80-150/mo but cannot verify without direct inquiry to developer or HOA."
+  },
+  "special_assessments": {
+    "value": null,
+    "status": "UNKNOWN",
+    "confidence": "LOW",
+    "source": "No source available",
+    "evidence": "No information found regarding current or upcoming special assessments for Nahla building. Building appears to be newly constructed (immediate delivery as of 2026), so major capital expenditures unlikely in near term. However, cannot confirm zero assessments without HOA documentation."
+  },
+  "property_taxes_annual": {
+    "value": 75,
+    "status": "ESTIMATED",
+    "confidence": "MEDIUM",
+    "source": "https://www.expatfocus.com/ecuador/guide/ecuador-property-taxes, https://taxsummaries.pwc.com/ecuador/individual/other-taxes",
+    "evidence": "Ecuador impuesto predial ranges 0.025%-0.5% of cadastral value (government-assessed, typically much lower than market price). Annual bills for $100-150k market value properties typically $100-300/year. For $59k property, estimated $50-100/year. Used midpoint $75. Exact amount depends on Manta municipal rate and cadastral assessment. Early payment discounts available (up to 10% in January).",
+    "range_low": 50,
+    "range_high": 150
+  },
+  "insurance_annual": {
+    "value": 250,
+    "status": "ESTIMATED",
+    "confidence": "MEDIUM",
+    "source": "https://ameliaandjp.com/insurances-in-ecuador/, https://expatsecuador.com/living/homeowners-renters-insurance-ecuador/",
+    "evidence": "Ecuador condo buildings required to carry structure insurance (included in alicuota). Owner content insurance: ~$140/year for $10k coverage, ~$210/year for $20k. Manta coastal location adds 15-20% premium due to earthquake risk. For comprehensive owner policy (contents + liability), estimated $200-350/year. Used $250 midpoint. Building structure coverage assumed included in HOA fees."
+  },
+  "management_annual": {
+    "value": 1080,
+    "status": "ESTIMATED",
+    "confidence": "MEDIUM",
+    "source": "https://www.airdna.co/blog/how-much-do-property-managers-charge, https://www.guestable.com/blog/airbnb-management-fees/",
+    "evidence": "For STR management in Ecuador: full-service 15-35% of gross rental income, co-hosting 10-20%. At estimated $6,000/year gross rent ($500/mo), 15-20% fee = $900-1,200/year. For long-term rental: typically 8-10% or ~$50-100/mo. Used $1,080 (18% of estimated gross) assuming STR strategy given Airbnb-friendly marketing. Self-management would reduce to $0.",
+    "range_low": 0,
+    "range_high": 1500
+  },
+  "utilities_annual": {
+    "value": 0,
+    "status": "ESTIMATED",
+    "confidence": "MEDIUM",
+    "source": "https://www.numbeo.com/cost-of-living/in/Manta, https://mylatinlife.com/manta-ecuador-travel-guide/",
+    "evidence": "Manta utilities (electricity, water, garbage): $70-130/mo typical, up to $220/mo with heavy AC use. For STR: utilities typically passed to guests or included in nightly rate (owner recovers cost). For long-term rental: typically tenant-paid per lease terms (common in Ecuador). Assuming utilities passed through to tenant/guest, owner cost = $0. If owner-paid, budget $1,000-1,500/year."
+  },
+  "other_expenses_annual": {
+    "value": 300,
+    "status": "ESTIMATED",
+    "confidence": "LOW",
+    "source": "General Ecuador condo ownership research",
+    "evidence": "Potential additional costs: internet for STR ($26-31/mo = ~$350/year), furnishing maintenance/replacement reserves (~$200-500/year for STR), cleaning supplies/turnover costs (typically in management fee for STR), minor repairs. Estimated $300/year for miscellaneous. Nahla amenity fees (if any beyond alicuota) unknown."
+  },
+  "rental_restrictions": {
+    "value": null,
+    "status": "VERIFIED",
+    "confidence": "HIGH",
+    "source": "https://trivo.com.ec/propiedades/nahla/",
+    "evidence": "No rental restrictions found. Nahla explicitly marketed for rental use: 'renta temporal (Airbnb-friendly)' and 'Invierte en una suite, departamento o estudio y vive de las rentas.' Building designed for owner-occupants and investors."
+  },
+  "str_restrictions": {
+    "value": null,
+    "status": "VERIFIED",
+    "confidence": "HIGH",
+    "source": "https://trivo.com.ec/propiedades/nahla/, https://www.airroi.com/airbnb-data/ecuador/manab%C3%AD/manta",
+    "evidence": "No STR restrictions. Nahla marketing explicitly states 'Airbnb-friendly'. Manta STR regulation level rated 'Low' with minimal registration requirements per AirROI 2026 data. Ecuador generally operator-friendly for vacation rentals."
+  },
+  "notes": "Key uncertainty: HOA (alicuota) fee is not publicly available and could not be verified. Given extensive amenities (pool, jacuzzi, spa, gym, cinema, coworking, 24/7 security, concierge), monthly fee likely $80-150 but must be confirmed with developer. This is material to cap rate calculation. Property is studio (41.52m²) in new construction with immediate delivery. Building has multiple unit types (studios, suites, 2BR, houses). STR market in Manta shows 21.7% avg occupancy, $85 ADR, suggesting $4,100/year average revenue - but well-managed properties in top 25% achieve $10,300+/year. Rental estimate assumes mid-tier STR or long-term rental performance."
+}
