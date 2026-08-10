@@ -231,3 +231,44 @@ export function hasActiveWork(registry: Registry, workKey: string): boolean {
   const entry = registry.entries[workKey];
   return entry?.status === "ACTIVE";
 }
+
+/** Block duplicate spawns while an agent is running or recently finished (PR may be open). */
+const IN_FLIGHT_MS = 48 * 60 * 60 * 1000;
+
+export function hasInFlightWork(
+  registry: Registry,
+  role: string,
+  subjectType: string,
+  subjectId: string,
+  now = Date.now()
+): boolean {
+  return Object.values(registry.entries).some((entry) => {
+    if (
+      entry.role !== role ||
+      entry.subjectType !== subjectType ||
+      entry.subjectId !== subjectId
+    ) {
+      return false;
+    }
+    if (entry.status === "ACTIVE") {
+      return true;
+    }
+    if (entry.status === "FINISHED") {
+      const updated = new Date(entry.updatedAt).getTime();
+      return now - updated < IN_FLIGHT_MS;
+    }
+    return false;
+  });
+}
+
+export function parseChangedPropertyIds(raw: string | undefined): Set<string> {
+  if (!raw?.trim()) {
+    return new Set();
+  }
+  return new Set(
+    raw
+      .split(",")
+      .map((id) => id.trim())
+      .filter(Boolean)
+  );
+}
