@@ -1,0 +1,96 @@
+{
+  "property_id": "torre-del-sol-barbasquillo-manta-ec",
+  "researched_at": "2026-08-10T06:45:00Z",
+  "purchase_price": {
+    "value": 139000,
+    "status": "VERIFIED",
+    "confidence": "HIGH",
+    "source": "https://manta360realty.com/departamento-venta-sur-de-manta-manta/9705059",
+    "evidence": "Listing 9705059: Torre del Sol, Ciudadela Universitaria–Barbasquillo, 2BR/2BA furnished, 90.35m² interior (138.36m² total), 1 parking. Asking $139,000. Marketed for year-round Airbnb."
+  },
+  "monthly_rent": {
+    "value": 950,
+    "status": "ESTIMATED",
+    "confidence": "MEDIUM",
+    "source": "FazWaz 2BR Manta median ~$732; oceanfront 2BR comps; AirROI Manta STR",
+    "evidence": "FazWaz 2BR Manta median ~$732 LTR. Listing targets Airbnb year-round with beach access, pool, rooftop BBQ, tennis shared with MantaHost. Oceanfront 2BR comps and Poseidon 2BR rents cluster $1,200-1,300 (often including alicuota). AirROI Manta avg STR only $342/mo — top-quartile needed for $1,200. Used $950 (range $800-1,200) as mid between solid LTR and optimistic STR.",
+    "range_low": 800,
+    "range_high": 1200
+  },
+  "hoa_monthly": {
+    "value": 140,
+    "status": "ESTIMATED",
+    "confidence": "LOW",
+    "source": "https://www.ecuadoriancoastalproperties.com/listings/stunning-ocean-view-condo-in-torre-del-sol-1-bed-prime-location/, subject listing lacks HOA",
+    "evidence": "Subject listing does not disclose alicuota. A different Torre del Sol 1BR listing cites HOA $105/mo. Subject is larger 2BR (90m²) with beach/pool/tennis amenities — estimated $120-180/mo; used $140. Status ESTIMATED pending verification from building admin.",
+    "range_low": 105,
+    "range_high": 180
+  },
+  "special_assessments": {
+    "value": null,
+    "status": "UNKNOWN",
+    "confidence": "LOW",
+    "source": "No source available",
+    "evidence": "No assessment disclosed. Existing beach-access condo; capital projects possible. Not verified zero."
+  },
+  "property_taxes_annual": {
+    "value": 175,
+    "status": "ESTIMATED",
+    "confidence": "MEDIUM",
+    "source": "https://taxsummaries.pwc.com/ecuador/individual/other-taxes, https://www.expatfocus.com/ecuador/guide/ecuador-property-taxes",
+    "evidence": "Ecuador impuesto predial is 0.025%-0.5% of cadastral value (typically well below market). Comparable Manta condos often pay $100-400/yr. For ~$139,000 market price, estimated $111-417/yr; used $175. Exact bill depends on Manta municipal rate and cadastral assessment.",
+    "range_low": 111,
+    "range_high": 417
+  },
+  "insurance_annual": {
+    "value": 325,
+    "status": "ESTIMATED",
+    "confidence": "MEDIUM",
+    "source": "https://expatsecuador.com/living/homeowners-renters-insurance-ecuador/, https://ameliaandjp.com/insurances-in-ecuador/",
+    "evidence": "Building structure insurance is typically included in Ecuador alicuota. Owner contents/liability: ~$140-210/yr base; Manta coastal earthquake risk adds 15-20%. For ~$139,000 condo, estimated $200-400/yr supplemental owner policy; used $325.",
+    "range_low": 200,
+    "range_high": 400
+  },
+  "management_annual": {
+    "value": 2052,
+    "status": "ESTIMATED",
+    "confidence": "MEDIUM",
+    "source": "https://www.airdna.co/blog/how-much-do-property-managers-charge, https://www.guestable.com/blog/airbnb-management-fees/",
+    "evidence": "STR full-service management in LatAm commonly 15-30% of gross. At estimated $950/mo ($11400/yr), 18% = $2052/yr. Co-hosting or self-management would reduce this.",
+    "range_low": 0,
+    "range_high": 3420
+  },
+  "utilities_annual": {
+    "value": 0,
+    "status": "ESTIMATED",
+    "confidence": "MEDIUM",
+    "source": "https://www.numbeo.com/cost-of-living/in/Manta, Market lease convention",
+    "evidence": "For long-term Ecuador rentals, electricity/water/internet are typically tenant-paid. For STR, utilities are usually recovered in nightly rates or included in management fee. Owner direct cost assumed $0 under standard lease; if owner-paid budget $600-1,500/yr.",
+    "range_low": 0,
+    "range_high": 1500
+  },
+  "other_expenses_annual": {
+    "value": 400,
+    "status": "ESTIMATED",
+    "confidence": "LOW",
+    "source": "Furnished STR ownership research",
+    "evidence": "Furnished unit marketed for Airbnb: FF&E reserve and turnover supplies. Estimated $400/yr beyond management.",
+    "range_low": 0,
+    "range_high": 900
+  },
+  "rental_restrictions": {
+    "value": null,
+    "status": "ESTIMATED",
+    "confidence": "MEDIUM",
+    "source": "https://manta360realty.com/departamento-venta-sur-de-manta-manta/9705059",
+    "evidence": "Listing explicitly pitches living or vacation rental (Airbnb year-round). No restriction found; confirm building rules."
+  },
+  "str_restrictions": {
+    "value": null,
+    "status": "ESTIMATED",
+    "confidence": "MEDIUM",
+    "source": "https://manta360realty.com/departamento-venta-sur-de-manta-manta/9705059, AirROI Manta Low regulation",
+    "evidence": "STR actively marketed. City regulation Low. Building-level STR rules unknown — confirm with HOA."
+  },
+  "notes": "HOA estimated from sibling 1BR listing ($105) scaled up — still not VERIFIED. Rent path depends heavily on STR outperformance vs AirROI averages. Material unknowns: HOA confirmation, assessments, STR bylaws."
+}

@@ -1,0 +1,90 @@
+{
+  "property_id": "suite-vista-mar-centro-manta-ec",
+  "researched_at": "2026-08-10T06:45:00Z",
+  "purchase_price": {
+    "value": 130000,
+    "status": "ESTIMATED",
+    "confidence": "LOW",
+    "source": "https://www.realtor.com/international/ec/manta-manabi-province/, Scout screening snapshot",
+    "evidence": "Scout recorded $130,000 for oceanfront 1BR suite Centro-Manta / Malecón via Realtor.com international aggregate. Current listing_url points to a market search page, not a unit-level listing. Could not re-verify a live unit page under egress constraints. Treat price as ESTIMATED until a specific listing ID/URL is confirmed."
+  },
+  "monthly_rent": {
+    "value": 800,
+    "status": "ESTIMATED",
+    "confidence": "LOW",
+    "source": "AirROI Manta STR; FazWaz 1BR median; scout STR $1,100",
+    "evidence": "Scout used $1,100 STR. Manta AirROI avg $4,104/yr ($342/mo) at 21.7% occupancy makes $1,100 require top-tier performance. FazWaz 1BR median ~$419 LTR; oceanfront Malecón premium could reach $700-1,000. Used $800 with wide range pending unit confirmation.",
+    "range_low": 500,
+    "range_high": 1100
+  },
+  "hoa_monthly": {
+    "value": null,
+    "status": "UNKNOWN",
+    "confidence": "LOW",
+    "source": "No unit-level source",
+    "evidence": "Building/HOA not identified. Oceanfront Centro-Manta buildings can have material alicuotas. Cannot estimate responsibly without building name — left UNKNOWN."
+  },
+  "special_assessments": {
+    "value": null,
+    "status": "UNKNOWN",
+    "confidence": "LOW",
+    "source": "No source available",
+    "evidence": "Building unknown; no assessment data available."
+  },
+  "property_taxes_annual": {
+    "value": 160,
+    "status": "ESTIMATED",
+    "confidence": "MEDIUM",
+    "source": "https://taxsummaries.pwc.com/ecuador/individual/other-taxes, https://www.expatfocus.com/ecuador/guide/ecuador-property-taxes",
+    "evidence": "Ecuador impuesto predial is 0.025%-0.5% of cadastral value (typically well below market). Comparable Manta condos often pay $100-400/yr. For ~$130,000 market price, estimated $104-390/yr; used $160. Exact bill depends on Manta municipal rate and cadastral assessment.",
+    "range_low": 104,
+    "range_high": 390
+  },
+  "insurance_annual": {
+    "value": 300,
+    "status": "ESTIMATED",
+    "confidence": "MEDIUM",
+    "source": "https://expatsecuador.com/living/homeowners-renters-insurance-ecuador/, https://ameliaandjp.com/insurances-in-ecuador/",
+    "evidence": "Building structure insurance is typically included in Ecuador alicuota. Owner contents/liability: ~$140-210/yr base; Manta coastal earthquake risk adds 15-20%. For ~$130,000 condo, estimated $200-400/yr supplemental owner policy; used $300.",
+    "range_low": 200,
+    "range_high": 400
+  },
+  "management_annual": {
+    "value": 1920,
+    "status": "ESTIMATED",
+    "confidence": "MEDIUM",
+    "source": "https://www.airdna.co/blog/how-much-do-property-managers-charge, https://www.guestable.com/blog/airbnb-management-fees/",
+    "evidence": "STR full-service management in LatAm commonly 15-30% of gross. At estimated $800/mo ($9600/yr), 20% = $1920/yr. Co-hosting or self-management would reduce this.",
+    "range_low": 0,
+    "range_high": 2880
+  },
+  "utilities_annual": {
+    "value": null,
+    "status": "UNKNOWN",
+    "confidence": "LOW",
+    "source": "No lease/building data",
+    "evidence": "Owner-paid utilities unknown without building and rental strategy confirmation."
+  },
+  "other_expenses_annual": {
+    "value": null,
+    "status": "UNKNOWN",
+    "confidence": "LOW",
+    "source": "N/A",
+    "evidence": "Other recurring fees unknown until exact building/unit identified."
+  },
+  "rental_restrictions": {
+    "value": null,
+    "status": "UNKNOWN",
+    "confidence": "LOW",
+    "source": "No source",
+    "evidence": "Cannot assess rental restrictions without building bylaws / exact building identity."
+  },
+  "str_restrictions": {
+    "value": null,
+    "status": "UNKNOWN",
+    "confidence": "LOW",
+    "source": "https://www.airroi.com/airbnb-data/ecuador/manab%C3%AD/manta",
+    "evidence": "City-level STR regulation Low, but building-level rules unknown. Unit identity not confirmed."
+  },
+  "notes": "WEAK EVIDENCE FILE: listing URL is not unit-specific; price/HOA/rent poorly supported. Recommend Scout/Manager attach a concrete listing link or ARCHIVE pending better source. Not suitable for VIABLE without major re-research."
+}

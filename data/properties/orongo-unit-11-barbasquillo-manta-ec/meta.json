@@ -1,11 +1,11 @@
 {
   "id": "orongo-unit-11-barbasquillo-manta-ec",
-  "address": "Orongo Unit 11, Barbasquillo, Manta, Manab\u00ed, Ecuador",
-  "location": "Manta, Manab\u00ed, Ecuador",
+  "address": "Orongo Unit 11, Barbasquillo, Manta, Manabí, Ecuador",
+  "location": "Manta, Manabí, Ecuador",
   "listing_url": "https://trivo.com.ec/propiedades/orongo/",
   "market_id": "manta-ec",
   "created_at": "2026-08-10T05:00:00Z",
-  "updated_at": "2026-08-10T05:00:00Z",
+  "updated_at": "2026-08-10T06:45:00Z",
   "last_screened_at": "2026-08-10T05:00:00Z",
   "screening_snapshot": {
     "price": 43046,
@@ -14,7 +14,7 @@
     "advertised_hoa": null,
     "screened_at": "2026-08-10T05:00:00Z"
   },
-  "scout_notes": "Pre-sale studio 38.5m\u00b2 piso 1, delivery H2 2026. Same yield math as unit 21; building cluster opportunity.",
+  "scout_notes": "Pre-sale studio 38.5m² piso 1, delivery H2 2026. Same yield math as unit 21; building cluster opportunity.",
   "property_type": "condo",
   "building_name": "Orongo",
   "unit": "11",
@@ -25,6 +25,6 @@
   "rough_gross_yield": 0.1254,
   "rent_source": "FazWaz Manta 1BR median $419/mo, adjusted",
   "rent_confidence": "MEDIUM",
-  "workflow_state": "SCREENED",
+  "workflow_state": "READY_FOR_UNDERWRITING",
   "scout_decision": "RESEARCH"
 }

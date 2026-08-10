@@ -1,0 +1,30 @@
+{
+  "id": "cuenca-banos-ultramodern-mansion-ec",
+  "address": "Ultra-Modern Mansion, Baños, Cuenca, Azuay, Ecuador",
+  "location": "Cuenca, Azuay, Ecuador",
+  "listing_url": "https://yapatree.com/buy-properties-cuenca/luxury-ultra-modern-mansion-in-a-gated-community/",
+  "market_id": "cuenca-ec",
+  "created_at": "2026-08-10T07:00:00Z",
+  "updated_at": "2026-08-10T07:00:00Z",
+  "last_screened_at": "2026-08-10T07:00:00Z",
+  "screening_snapshot": {
+    "price": 550000,
+    "rough_monthly_rent": 1800,
+    "rough_gross_yield": 0.0393,
+    "advertised_hoa": null,
+    "screened_at": "2026-08-10T07:00:00Z"
+  },
+  "scout_notes": "Tracker unit researching; luxury SFH — yield screen unlikely to pass. Tracker unit_id=9ddf8229-6a70-4a2c-9433-8e0850909a2e.",
+  "property_type": "single_family",
+  "building_name": "Baños gated hillside residence",
+  "unit": "1",
+  "beds": 7,
+  "baths": 8,
+  "asking_price": 550000,
+  "rough_monthly_rent": 1800,
+  "rough_gross_yield": 0.0393,
+  "rent_source": "Researcher comps 2026-08-10",
+  "rent_confidence": "MEDIUM",
+  "workflow_state": "READY_FOR_UNDERWRITING",
+  "scout_decision": "RESEARCH"
+}

@@ -1,11 +1,11 @@
 {
   "id": "torre-del-sol-barbasquillo-manta-ec",
-  "address": "Torre del Sol, Ciudadela Universitaria, Barbasquillo, Manta, Manab\u00ed, Ecuador",
-  "location": "Manta, Manab\u00ed, Ecuador",
+  "address": "Torre del Sol, Ciudadela Universitaria, Barbasquillo, Manta, Manabí, Ecuador",
+  "location": "Manta, Manabí, Ecuador",
   "listing_url": "https://manta360realty.com/departamento-venta-sur-de-manta-manta/9705059",
   "market_id": "manta-ec",
   "created_at": "2026-08-10T05:00:00Z",
-  "updated_at": "2026-08-10T05:00:00Z",
+  "updated_at": "2026-08-10T06:45:00Z",
   "last_screened_at": "2026-08-10T05:00:00Z",
   "screening_snapshot": {
     "price": 139000,
@@ -14,7 +14,7 @@
     "advertised_hoa": null,
     "screened_at": "2026-08-10T05:00:00Z"
   },
-  "scout_notes": "2/2 furnished 90m\u00b2; listing explicitly targets Airbnb year-round. STR $1,200/mo estimate (oceanfront 2BR comp) \u2192 10.4% gross. Beach-access condo building; scan sibling units if available.",
+  "scout_notes": "2/2 furnished 90m²; listing explicitly targets Airbnb year-round. STR $1,200/mo estimate (oceanfront 2BR comp) → 10.4% gross. Beach-access condo building; scan sibling units if available.",
   "property_type": "condo",
   "building_name": "Torre del Sol",
   "beds": 2,
@@ -24,6 +24,6 @@
   "rough_gross_yield": 0.1036,
   "rent_source": "MLS oceanfront 2BR rent comp $1,200/mo; listing Airbnb marketing",
   "rent_confidence": "MEDIUM",
-  "workflow_state": "SCREENED",
+  "workflow_state": "READY_FOR_UNDERWRITING",
   "scout_decision": "RESEARCH"
 }

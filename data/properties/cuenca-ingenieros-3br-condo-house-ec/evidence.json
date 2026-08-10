@@ -1,0 +1,84 @@
+{
+  "property_id": "cuenca-ingenieros-3br-condo-house-ec",
+  "researched_at": "2026-08-10T07:00:00Z",
+  "purchase_price": {
+    "value": 187000,
+    "status": "VERIFIED",
+    "confidence": "HIGH",
+    "source": "https://yapatree.com/buy-properties-cuenca/spacious-house-in-private-condominium/",
+    "evidence": "Listing asking price $187,000."
+  },
+  "monthly_rent": {
+    "value": 800,
+    "status": "ESTIMATED",
+    "confidence": "MEDIUM",
+    "source": "Local rent comps (YapaTree/FazWaz/GringoPost/MLS)",
+    "evidence": "See research notes. Range $650-$1000.",
+    "range_low": 650,
+    "range_high": 1000
+  },
+  "hoa_monthly": {
+    "value": 80,
+    "status": "ESTIMATED",
+    "confidence": "LOW",
+    "source": "https://yapatree.com/buy-properties-cuenca/spacious-house-in-private-condominium/",
+    "evidence": "Private condominium alicuota estimated at $80/mo pending confirmation."
+  },
+  "special_assessments": {
+    "value": null,
+    "status": "UNKNOWN",
+    "confidence": "LOW",
+    "source": "No source",
+    "evidence": "No special assessment disclosure found."
+  },
+  "property_taxes_annual": {
+    "value": 50,
+    "status": "ESTIMATED",
+    "confidence": "LOW",
+    "source": "Listing mirrors / Ecuador impuesto predial norms",
+    "evidence": "Ecuador predial typically low vs market value; estimate pending municipal bill."
+  },
+  "insurance_annual": {
+    "value": 250,
+    "status": "ESTIMATED",
+    "confidence": "MEDIUM",
+    "source": "Ecuador homeowners insurance norms",
+    "evidence": "Owner policy estimate for highland SFH."
+  },
+  "management_annual": {
+    "value": 960,
+    "status": "ESTIMATED",
+    "confidence": "MEDIUM",
+    "source": "Ecuador LTR management 8-15%",
+    "evidence": "10% of $800/mo rent."
+  },
+  "utilities_annual": {
+    "value": 0,
+    "status": "ESTIMATED",
+    "confidence": "MEDIUM",
+    "source": "Lease convention",
+    "evidence": "Tenant-paid utilities assumed for LTR."
+  },
+  "other_expenses_annual": {
+    "value": 600,
+    "status": "ESTIMATED",
+    "confidence": "LOW",
+    "source": "Maintenance reserves",
+    "evidence": "Gardening/maintenance reserve for SFH."
+  },
+  "rental_restrictions": {
+    "value": null,
+    "status": "UNKNOWN",
+    "confidence": "LOW",
+    "source": "No bylaws",
+    "evidence": "No rental restriction docs obtained."
+  },
+  "str_restrictions": {
+    "value": null,
+    "status": "UNKNOWN",
+    "confidence": "LOW",
+    "source": "No bylaws",
+    "evidence": "STR not evidenced; treat as LTR-only until verified."
+  },
+  "notes": "Best of Ecuador tracker set on yield, still below 10% path after HOA. Supabase unit_id=092db4bd-14ef-4d29-b351-f234e80fd4e7."
+}

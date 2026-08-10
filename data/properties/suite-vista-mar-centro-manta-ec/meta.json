@@ -1,11 +1,11 @@
 {
   "id": "suite-vista-mar-centro-manta-ec",
-  "address": "Suite vista al Mar, Malec\u00f3n, Centro-Manta, Manab\u00ed, Ecuador",
-  "location": "Manta, Manab\u00ed, Ecuador",
+  "address": "Suite vista al Mar, Malecón, Centro-Manta, Manabí, Ecuador",
+  "location": "Manta, Manabí, Ecuador",
   "listing_url": "https://www.realtor.com/international/ec/manta-manabi-province/",
   "market_id": "manta-ec",
   "created_at": "2026-08-10T05:00:00Z",
-  "updated_at": "2026-08-10T05:00:00Z",
+  "updated_at": "2026-08-10T06:45:00Z",
   "last_screened_at": "2026-08-10T05:00:00Z",
   "screening_snapshot": {
     "price": 130000,
@@ -14,7 +14,7 @@
     "advertised_hoa": null,
     "screened_at": "2026-08-10T05:00:00Z"
   },
-  "scout_notes": "Oceanfront 1BR suite Centro-Manta per Realtor.com intl. STR $1,100/mo estimate \u2192 10.15% gross. Verify HOA and exact unit on research pass.",
+  "scout_notes": "Oceanfront 1BR suite Centro-Manta per Realtor.com intl. STR $1,100/mo estimate → 10.15% gross. Verify HOA and exact unit on research pass.",
   "property_type": "condo",
   "beds": 1,
   "baths": 1,
@@ -23,6 +23,6 @@
   "rough_gross_yield": 0.1015,
   "rent_source": "Oceanfront 1BR STR comp; Realtor.com listing $130,000",
   "rent_confidence": "MEDIUM",
-  "workflow_state": "SCREENED",
+  "workflow_state": "READY_FOR_UNDERWRITING",
   "scout_decision": "RESEARCH"
 }
