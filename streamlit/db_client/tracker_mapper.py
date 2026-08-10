@@ -55,6 +55,39 @@ def _numeric_field(
     )
 
 
+def tracker_financials_to_opportunity(
+    fin: dict,
+    *,
+    building: dict | None = None,
+    source_url: str | None = None,
+    source_confidence: int | None = None,
+) -> PropertyOpportunity:
+    """Build PropertyOpportunity from unit_financials when RPC is unavailable."""
+    neighborhood = (building or {}).get('neighborhoods') or {}
+    region = neighborhood.get('regions') or {}
+    country = region.get('countries') or {}
+    row = {
+        'unit_id': fin.get('unit_id'),
+        'unit_number': fin.get('unit_number'),
+        'monthly_rent': fin.get('monthly_rent'),
+        'noi': fin.get('noi'),
+        'cap_rate_pct': fin.get('cap_rate_pct'),
+        'value_basis': fin.get('value_basis'),
+        'has_complete_financials': fin.get('has_complete_financials'),
+        'status': fin.get('status'),
+        'building_address': (building or {}).get('address') or '',
+        'neighborhood_name': neighborhood.get('name'),
+        'region_name': region.get('name'),
+        'country_name': country.get('name'),
+    }
+    return tracker_row_to_opportunity(
+        row,
+        financials=fin,
+        source_url=source_url,
+        source_confidence=source_confidence,
+    )
+
+
 def tracker_row_to_opportunity(
     row: dict,
     *,

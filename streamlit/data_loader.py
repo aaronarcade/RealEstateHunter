@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import os
 from dataclasses import dataclass
+from pathlib import Path
 from typing import Optional
 
 import streamlit as st
@@ -22,6 +23,19 @@ class LoadResult:
     error: Optional[str] = None
 
 
+def _load_dotenv() -> None:
+    """Load repo-root .env for local Streamlit runs (secrets.toml takes precedence)."""
+    env_path = Path(__file__).resolve().parent.parent / '.env'
+    if not env_path.exists():
+        return
+    for line in env_path.read_text().splitlines():
+        line = line.strip()
+        if not line or line.startswith('#') or '=' not in line:
+            continue
+        key, value = line.split('=', 1)
+        os.environ.setdefault(key.strip(), value.strip().strip('"').strip("'"))
+
+
 def _secrets_get(key: str) -> Optional[str]:
     try:
         return st.secrets.get(key)
@@ -30,6 +44,7 @@ def _secrets_get(key: str) -> Optional[str]:
 
 
 def _resolve_supabase_config() -> tuple[Optional[str], Optional[str], Optional[str]]:
+    _load_dotenv()
     url = _secrets_get('SUPABASE_URL') or os.environ.get('SUPABASE_URL')
     service_key = _secrets_get('SUPABASE_SERVICE_ROLE_KEY') or os.environ.get('SUPABASE_SERVICE_ROLE_KEY')
     anon_key = _secrets_get('SUPABASE_ANON_KEY') or os.environ.get('SUPABASE_ANON_KEY')
@@ -57,9 +72,16 @@ def load_opportunities(*, use_sample_data: bool = False) -> LoadResult:
             return LoadResult(
                 opportunities=[],
                 source='supabase',
-                error='No units with financial data found in Supabase.',
+                error='No units found in Supabase (units, unit_financials, or properties).',
             )
-        return LoadResult(opportunities=rows, source='supabase')
+
+        note = None
+        if not service_key and anon_key:
+            note = (
+                'Using anon key — add SUPABASE_SERVICE_ROLE_KEY to secrets for '
+                'building addresses, listing links, and full location names.'
+            )
+        return LoadResult(opportunities=rows, source='supabase', error=note)
     except Exception as exc:
         return LoadResult(
             opportunities=list(SAMPLE_OPPORTUNITIES),

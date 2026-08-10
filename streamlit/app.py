@@ -89,7 +89,10 @@ with header_cols[1]:
     st.metric('Opportunities', len(opportunities))
 
 if result.error:
-    st.warning(result.error)
+    if result.opportunities:
+        st.info(result.error)
+    else:
+        st.warning(result.error)
 
 if result.source == 'sample' and not use_sample:
     st.info('Showing sample data. Configure Supabase secrets for live RealEstateTracker units.')

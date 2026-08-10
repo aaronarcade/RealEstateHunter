@@ -7,9 +7,9 @@ from typing import Optional, List
 
 from supabase import create_client, Client
 
-from .types import PropertyOpportunity, ListOpportunitiesOptions, SyncResult, PropertyStatus
+from .types import PropertyOpportunity, ListOpportunitiesOptions, SyncResult
 from .mapper import row_to_opportunity, opportunity_to_row
-from .tracker_mapper import tracker_row_to_opportunity
+from .tracker_mapper import tracker_financials_to_opportunity, tracker_row_to_opportunity
 
 PROPERTIES_TABLE = 'properties'
 UNIT_FINANCIALS_VIEW = 'unit_financials'
@@ -38,10 +38,15 @@ class SupabaseClient:
             raise ValueError('Either SUPABASE_SERVICE_ROLE_KEY or SUPABASE_ANON_KEY is required.')
 
         self._client: Client = create_client(self.url, key)
+        self.uses_service_role = bool(self.service_role_key)
 
     @property
     def client(self) -> Client:
         return self._client
+
+    def _fetch_all_unit_financials(self) -> list[dict]:
+        response = self._client.table(UNIT_FINANCIALS_VIEW).select('*').execute()
+        return response.data or []
 
     def _fetch_unit_financials(self, unit_ids: list[str]) -> dict[str, dict]:
         if not unit_ids:
@@ -54,16 +59,34 @@ class SupabaseClient:
         )
         return {str(row['unit_id']): row for row in (response.data or [])}
 
+    def _fetch_buildings_context(self, building_ids: list[str]) -> dict[str, dict]:
+        if not building_ids:
+            return {}
+        try:
+            response = (
+                self._client.table('buildings')
+                .select('id, address, alias, neighborhoods(name, regions(name, countries(name)))')
+                .in_('id', building_ids)
+                .execute()
+            )
+            return {str(row['id']): row for row in (response.data or [])}
+        except Exception:
+            return {}
+
     def _fetch_primary_sources(self, unit_ids: list[str]) -> dict[str, dict]:
         if not unit_ids:
             return {}
-        response = (
-            self._client.table('data_sources')
-            .select('entity_id, source_url, source_type, confidence, created_at')
-            .eq('entity_type', 'unit')
-            .in_('entity_id', unit_ids)
-            .execute()
-        )
+        try:
+            response = (
+                self._client.table('data_sources')
+                .select('entity_id, source_url, source_type, confidence, created_at')
+                .eq('entity_type', 'unit')
+                .in_('entity_id', unit_ids)
+                .execute()
+            )
+        except Exception:
+            return {}
+
         grouped: dict[str, list[dict]] = {}
         for row in response.data or []:
             grouped.setdefault(str(row['entity_id']), []).append(row)
@@ -84,14 +107,35 @@ class SupabaseClient:
             selected[unit_id] = with_url[0]
         return selected
 
-    def list_tracker_opportunities(
+    def _fetch_properties_table(self) -> list[PropertyOpportunity]:
+        try:
+            response = self._client.table(PROPERTIES_TABLE).select('*').execute()
+        except Exception:
+            return []
+        return [row_to_opportunity(row) for row in (response.data or [])]
+
+    def _filter_opportunities(
         self,
-        options: Optional[ListOpportunitiesOptions] = None,
-    ) -> List[PropertyOpportunity]:
-        """Load units from RealEstateTracker via get_cap_rate_summary."""
-        options = options or ListOpportunitiesOptions()
+        opportunities: list[PropertyOpportunity],
+        options: ListOpportunitiesOptions,
+    ) -> list[PropertyOpportunity]:
+        filtered = opportunities
+        if options.status:
+            filtered = [item for item in filtered if item.status in options.status]
+        if options.min_cap_rate is not None:
+            filtered = [item for item in filtered if item.cap_rate >= options.min_cap_rate]
+        filtered.sort(key=lambda item: item.cap_rate, reverse=True)
+        if options.offset:
+            filtered = filtered[options.offset :]
+        if options.limit:
+            filtered = filtered[: options.limit]
+        return filtered
+
+    def _load_from_rpc(self) -> list[PropertyOpportunity]:
         response = self._client.rpc(CAP_RATE_RPC, {}).execute()
         rows = response.data or []
+        if not rows:
+            return []
 
         unit_ids = [str(row['unit_id']) for row in rows if row.get('unit_id')]
         financials_by_id = self._fetch_unit_financials(unit_ids)
@@ -101,49 +145,69 @@ class SupabaseClient:
         for row in rows:
             unit_id = str(row.get('unit_id'))
             source = sources_by_id.get(unit_id, {})
-            opportunity = tracker_row_to_opportunity(
-                row,
-                financials=financials_by_id.get(unit_id),
-                source_url=source.get('source_url'),
-                source_confidence=source.get('confidence'),
+            opportunities.append(
+                tracker_row_to_opportunity(
+                    row,
+                    financials=financials_by_id.get(unit_id),
+                    source_url=source.get('source_url'),
+                    source_confidence=source.get('confidence'),
+                )
             )
-            if options.status and opportunity.status not in options.status:
-                continue
-            if options.min_cap_rate is not None and opportunity.cap_rate < options.min_cap_rate:
-                continue
-            opportunities.append(opportunity)
-
-        opportunities.sort(key=lambda item: item.cap_rate, reverse=True)
-
-        if options.offset:
-            opportunities = opportunities[options.offset :]
-        if options.limit:
-            opportunities = opportunities[: options.limit]
-
         return opportunities
+
+    def _load_from_unit_financials(self) -> list[PropertyOpportunity]:
+        financials_rows = self._fetch_all_unit_financials()
+        if not financials_rows:
+            return []
+
+        building_ids = list({str(row['building_id']) for row in financials_rows if row.get('building_id')})
+        buildings_by_id = self._fetch_buildings_context(building_ids)
+        unit_ids = [str(row['unit_id']) for row in financials_rows if row.get('unit_id')]
+        sources_by_id = self._fetch_primary_sources(unit_ids)
+
+        opportunities: list[PropertyOpportunity] = []
+        for fin in financials_rows:
+            unit_id = str(fin.get('unit_id'))
+            building = buildings_by_id.get(str(fin.get('building_id')))
+            source = sources_by_id.get(unit_id, {})
+            opportunities.append(
+                tracker_financials_to_opportunity(
+                    fin,
+                    building=building,
+                    source_url=source.get('source_url'),
+                    source_confidence=source.get('confidence'),
+                )
+            )
+        return opportunities
+
+    def list_tracker_opportunities(
+        self,
+        options: Optional[ListOpportunitiesOptions] = None,
+    ) -> List[PropertyOpportunity]:
+        """Load units from RealEstateTracker (RPC, unit_financials, and properties fallbacks)."""
+        options = options or ListOpportunitiesOptions()
+
+        opportunities = self._load_from_rpc()
+        if not opportunities:
+            opportunities = self._load_from_unit_financials()
+
+        by_id = {item.id: item for item in opportunities}
+        for item in self._fetch_properties_table():
+            by_id.setdefault(item.id, item)
+
+        return self._filter_opportunities(list(by_id.values()), options)
 
     def list_opportunities(
         self,
         options: Optional[ListOpportunitiesOptions] = None,
     ) -> List[PropertyOpportunity]:
-        """List opportunities from the shared RealEstateTracker database."""
         return self.list_tracker_opportunities(options)
 
     def get_property(self, property_id: str) -> Optional[PropertyOpportunity]:
-        """Get a single unit opportunity by unit UUID."""
-        response = self._client.rpc(CAP_RATE_RPC, {}).execute()
-        rows = [row for row in (response.data or []) if str(row.get('unit_id')) == property_id]
-        if not rows:
-            return None
-
-        financials = self._fetch_unit_financials([property_id]).get(property_id)
-        source = self._fetch_primary_sources([property_id]).get(property_id, {})
-        return tracker_row_to_opportunity(
-            rows[0],
-            financials=financials,
-            source_url=source.get('source_url'),
-            source_confidence=source.get('confidence'),
-        )
+        for item in self.list_tracker_opportunities():
+            if item.id == property_id:
+                return item
+        return None
 
     def upsert_property(
         self,
