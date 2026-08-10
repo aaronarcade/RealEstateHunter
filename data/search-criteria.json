@@ -5,7 +5,7 @@
   "updated_by": "manager",
   "target_cap_rate": 0.10,
   "target_yield_minimum": 0.12,
-  "notes": "Gross yield must exceed 12% at scout stage to have realistic path to 10% cap rate after expenses",
+  "notes": "Scout uses gross yield vs target_yield_minimum. Underwriting target remains target_cap_rate after expenses.",
   "markets": [
     {
       "id": "tampa-fl",
@@ -59,17 +59,12 @@
     ]
   },
   "scout_instructions": {
-    "sources": [
-      "Zillow",
-      "Realtor.com",
-      "Redfin",
-      "MLS listings"
-    ],
-    "screening_threshold": "Rough gross yield must exceed 12% to pass to RESEARCH. Reject properties with gross yield below 10%.",
+    "sources": ["Zillow", "Realtor.com", "Redfin", "MLS listings"],
+    "screening_threshold": "Rough gross yield must be >= target_yield_minimum (12%) to pass to RESEARCH. Reject below 10% unless documented override.",
     "flags": [
-      "Properties with HOA over $500/month require extra scrutiny",
+      "HOA over $500/month requires extra scrutiny",
       "Known special assessments are a yellow flag",
-      "STR restrictions may limit upside but don't disqualify for LTR strategy"
+      "STR restrictions may limit upside but do not disqualify for LTR strategy"
     ]
   }
 }

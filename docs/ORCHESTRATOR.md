@@ -60,6 +60,7 @@ Edit `orchestrator.config.json` at the repo root:
 | `maxConcurrentAgents` | Global cap on simultaneous agents |
 | `roles.*.maxConcurrent` | Per-role caps |
 | `autoCreatePR` | Open PR when agent completes |
+| `manager.scanCriteriaFile` | Path to scout search params (default: `data/search-criteria.json`) |
 
 If you use a named cloud environment from the dashboard, set `cloudEnvName` and the orchestrator omits inline `repos` (the environment already defines them).
 
@@ -111,6 +112,7 @@ The orchestrator reads:
 - `data/properties/*/audit.json` — audit routing (e.g. `NEEDS_RESEARCH`)
 - `tasks/backlog/*.md` — Builder tasks
 - `data/orchestrator/registry.json` — active agents
+- `data/search-criteria.json` — scout markets and screening rules (via `manager.scanCriteriaFile`)
 
 ### Property state → role
 

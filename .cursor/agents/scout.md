@@ -16,9 +16,9 @@ Find rental properties that could **plausibly** exceed 10% unlevered cap rate.
 
 ## You know
 
-- Target: ≥10% unlevered cap rate
+- Target: ≥10% unlevered cap rate (underwriting); see `data/search-criteria.json` for scout screening thresholds
+- Search geography, markets, and property filters in `data/search-criteria.json` (Manager-maintained)
 - Basic screening inputs: price, rough rent, advertised HOA, obvious costs
-- Location and search geography (from Manager assignment)
 - You do **not** need the full expense model or UI details
 
 ## You collect
@@ -38,7 +38,7 @@ Annual Gross Rent (rough) = Monthly Rent × 12
 Rough Gross Yield         = Annual Gross Rent / Price
 ```
 
-If rough gross yield is clearly below 10% with no plausible path to 10% after expenses, **REJECT**.
+If rough gross yield is clearly below `target_yield_minimum` in `data/search-criteria.json` with no plausible path to 10% cap after expenses, **REJECT**.
 
 Example: Price $200,000, rent $1,400/mo → 8.4% gross yield → **REJECT**.
 

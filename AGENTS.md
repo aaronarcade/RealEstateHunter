@@ -59,6 +59,7 @@ Role prompts live in `.agents/`. Cursor-native subagents (for delegation via `/m
 - Architectural decisions: `docs/DECISIONS.md`
 - Tasks: `tasks/backlog/`, `tasks/active/`, `tasks/done/`
 - Property records: `data/properties/`
+- Scout search params: `data/search-criteria.json`
 
 ## Cursor Cloud specific instructions
 

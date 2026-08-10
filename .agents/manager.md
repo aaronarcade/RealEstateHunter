@@ -44,6 +44,7 @@ Prioritize investment quality and confidence over listing count.
 ## Outputs
 
 - Updated `data/properties/{id}/meta.json` workflow state
+- `data/search-criteria.json` — markets, filters, and scout instructions for the pipeline
 - Ranked opportunity list (future: `data/ranked.json` or equivalent)
 - Tasks in `tasks/backlog/`
 - Notifications to Aaron for material VIABLE findings
