@@ -123,9 +123,51 @@
       "agentId": "bc-ae143f46-730a-4b30-a23c-e917a88e20b2",
       "runId": "run-696efab5-4ff7-42d9-80a8-682d52726a9d",
       "agentUrl": "https://cursor.com/agents/bc-ae143f46-730a-4b30-a23c-e917a88e20b2",
-      "status": "ACTIVE",
+      "status": "ERROR",
       "createdAt": "2026-08-10T04:46:39.653Z",
-      "updatedAt": "2026-08-10T04:46:39.653Z"
+      "updatedAt": "2026-08-10T04:57:50.825Z"
+    },
+    "researcher:property:fez-manta-unit-209-barbasquillo-manta-ec:build-evidence": {
+      "workKey": "researcher:property:fez-manta-unit-209-barbasquillo-manta-ec:build-evidence",
+      "role": "researcher",
+      "subjectType": "property",
+      "subjectId": "fez-manta-unit-209-barbasquillo-manta-ec",
+      "action": "build-evidence",
+      "branch": "agent/fez-manta-unit-209-barbasquillo-manta-ec-research",
+      "agentId": "bc-5791611f-247a-45d4-9d29-fbfc7210a36f",
+      "runId": "run-1d382a22-1353-4523-ba7c-3f7f4868eb57",
+      "agentUrl": "https://cursor.com/agents/bc-5791611f-247a-45d4-9d29-fbfc7210a36f",
+      "status": "ACTIVE",
+      "createdAt": "2026-08-10T04:57:53.605Z",
+      "updatedAt": "2026-08-10T04:57:53.605Z"
+    },
+    "researcher:property:nahla-unit-60-barbasquillo-manta-ec:build-evidence": {
+      "workKey": "researcher:property:nahla-unit-60-barbasquillo-manta-ec:build-evidence",
+      "role": "researcher",
+      "subjectType": "property",
+      "subjectId": "nahla-unit-60-barbasquillo-manta-ec",
+      "action": "build-evidence",
+      "branch": "agent/nahla-unit-60-barbasquillo-manta-ec-research",
+      "agentId": "bc-4d0ca98d-3655-40b0-b215-498bd6a5e3ae",
+      "runId": "run-5a9ff97b-d153-48ad-8b27-b46eaf21319e",
+      "agentUrl": "https://cursor.com/agents/bc-4d0ca98d-3655-40b0-b215-498bd6a5e3ae",
+      "status": "ACTIVE",
+      "createdAt": "2026-08-10T04:57:56.095Z",
+      "updatedAt": "2026-08-10T04:57:56.095Z"
+    },
+    "researcher:property:nahla-unit-d-105-barbasquillo-manta-ec:build-evidence": {
+      "workKey": "researcher:property:nahla-unit-d-105-barbasquillo-manta-ec:build-evidence",
+      "role": "researcher",
+      "subjectType": "property",
+      "subjectId": "nahla-unit-d-105-barbasquillo-manta-ec",
+      "action": "build-evidence",
+      "branch": "agent/nahla-unit-d-105-barbasquillo-manta-ec-research",
+      "agentId": "bc-cc898231-cf0b-441d-bda8-8ccb72e112c4",
+      "runId": "run-4b57805d-e2b0-4e2b-85f4-45030faa6533",
+      "agentUrl": "https://cursor.com/agents/bc-cc898231-cf0b-441d-bda8-8ccb72e112c4",
+      "status": "ACTIVE",
+      "createdAt": "2026-08-10T04:57:58.656Z",
+      "updatedAt": "2026-08-10T04:57:58.656Z"
     }
   }
 }
