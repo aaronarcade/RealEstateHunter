@@ -1,0 +1,32 @@
+{
+  "id": "torre-marina-1br-el-murci\u00e9lago-manta-ec",
+  "address": "Torre Marina 1BR, El Murci\u00e9lago, Manta, Manab\u00ed, Ecuador",
+  "location": "Manta, Manab\u00ed, Ecuador",
+  "listing_url": "https://www.owninecuador.com/forsale/torre-marina-1",
+  "market_id": "manta-ec",
+  "created_at": "2026-08-10T05:00:00Z",
+  "updated_at": "2026-08-10T05:00:00Z",
+  "last_screened_at": "2026-08-10T05:00:00Z",
+  "screening_snapshot": {
+    "price": 68000,
+    "rough_monthly_rent": 500,
+    "rough_gross_yield": 0.0882,
+    "advertised_hoa": null,
+    "screened_at": "2026-08-10T05:00:00Z"
+  },
+  "scout_notes": "1BR 72m\u00b2 steps from beach at $68K. $500/mo generous LTR estimate \u2192 8.8% gross, below 10% threshold.",
+  "property_type": "condo",
+  "building_name": "Torre Marina",
+  "beds": 1,
+  "baths": 1,
+  "asking_price": 68000,
+  "rough_monthly_rent": 500,
+  "rough_gross_yield": 0.0882,
+  "rent_source": "FazWaz 1BR median $419 + location premium estimate",
+  "rent_confidence": "MEDIUM",
+  "workflow_state": "ARCHIVED",
+  "scout_decision": "REJECT",
+  "archive_reason": "scout_reject",
+  "rescreen_after": "2026-09-09T05:00:00Z",
+  "rescreen_count": 0
+}

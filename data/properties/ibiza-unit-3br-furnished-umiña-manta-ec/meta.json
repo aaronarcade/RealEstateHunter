@@ -1,0 +1,32 @@
+{
+  "id": "ibiza-unit-3br-furnished-umi\u00f1a-manta-ec",
+  "address": "Ibiza Building 3BR Furnished, Umi\u00f1a, Manta, Manab\u00ed, Ecuador",
+  "location": "Manta, Manab\u00ed, Ecuador",
+  "listing_url": "https://www.realtor.com/international/ec/manta-manabi-province/p3/",
+  "market_id": "manta-ec",
+  "created_at": "2026-08-10T05:00:00Z",
+  "updated_at": "2026-08-10T05:00:00Z",
+  "last_screened_at": "2026-08-10T05:00:00Z",
+  "screening_snapshot": {
+    "price": 275000,
+    "rough_monthly_rent": 900,
+    "rough_gross_yield": 0.0393,
+    "advertised_hoa": null,
+    "screened_at": "2026-08-10T05:00:00Z"
+  },
+  "scout_notes": "3/2.5 furnished Ibiza beachfront. $900/mo STR \u2192 3.9% gross.",
+  "property_type": "condo",
+  "building_name": "Ibiza",
+  "beds": 3,
+  "baths": 2,
+  "asking_price": 275000,
+  "rough_monthly_rent": 900,
+  "rough_gross_yield": 0.0393,
+  "rent_source": "3BR STR estimate",
+  "rent_confidence": "MEDIUM",
+  "workflow_state": "ARCHIVED",
+  "scout_decision": "REJECT",
+  "archive_reason": "scout_reject",
+  "rescreen_after": "2026-09-09T05:00:00Z",
+  "rescreen_count": 0
+}

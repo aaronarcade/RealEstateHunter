@@ -1,0 +1,32 @@
+{
+  "id": "grand-bay-3br-corner-manta-ec",
+  "address": "Grand Bay 3BR Corner Unit, Manta, Manab\u00ed, Ecuador",
+  "location": "Manta, Manab\u00ed, Ecuador",
+  "listing_url": "https://www.realtor.com/international/ec/manta-manabi-province/p2/",
+  "market_id": "manta-ec",
+  "created_at": "2026-08-10T05:00:00Z",
+  "updated_at": "2026-08-10T05:00:00Z",
+  "last_screened_at": "2026-08-10T05:00:00Z",
+  "screening_snapshot": {
+    "price": 494800,
+    "rough_monthly_rent": 1500,
+    "rough_gross_yield": 0.0364,
+    "advertised_hoa": null,
+    "screened_at": "2026-08-10T05:00:00Z"
+  },
+  "scout_notes": "Beachfront 3BR corner. Even $1,500/mo STR \u2192 3.6% gross.",
+  "property_type": "condo",
+  "building_name": "Grand Bay",
+  "beds": 3,
+  "baths": 2,
+  "asking_price": 494800,
+  "rough_monthly_rent": 1500,
+  "rough_gross_yield": 0.0364,
+  "rent_source": "Luxury STR estimate",
+  "rent_confidence": "MEDIUM",
+  "workflow_state": "ARCHIVED",
+  "scout_decision": "REJECT",
+  "archive_reason": "scout_reject",
+  "rescreen_after": "2026-09-09T05:00:00Z",
+  "rescreen_count": 0
+}

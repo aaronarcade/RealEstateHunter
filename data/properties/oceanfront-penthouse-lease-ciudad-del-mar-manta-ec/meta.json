@@ -1,0 +1,32 @@
+{
+  "id": "oceanfront-penthouse-lease-ciudad-del-mar-manta-ec",
+  "address": "Penthouse Ciudad del Mar Oceanfront (lease), Manta, Manab\u00ed, Ecuador",
+  "location": "Manta, Manab\u00ed, Ecuador",
+  "listing_url": "https://mls-ecuador.com/en/real-estate/manta-real-estate/rl2600080",
+  "market_id": "manta-ec",
+  "created_at": "2026-08-10T05:00:00Z",
+  "updated_at": "2026-08-10T05:00:00Z",
+  "last_screened_at": "2026-08-10T05:00:00Z",
+  "screening_snapshot": {
+    "price": 480000,
+    "rough_monthly_rent": 2400,
+    "rough_gross_yield": 0.06,
+    "advertised_hoa": null,
+    "screened_at": "2026-08-10T05:00:00Z"
+  },
+  "scout_notes": "Lease-only listing ($2,400/mo); imputed value ~$480K at 6% cap for screening. Not a purchase candidate \u2014 comp for Ciudad del Mar penthouse rents.",
+  "property_type": "condo",
+  "building_name": "Ciudad del Mar",
+  "beds": 3,
+  "baths": 3,
+  "asking_price": 480000,
+  "rough_monthly_rent": 2400,
+  "rough_gross_yield": 0.06,
+  "rent_source": "MLS lease listing rl2600080",
+  "rent_confidence": "MEDIUM",
+  "workflow_state": "ARCHIVED",
+  "scout_decision": "REJECT",
+  "archive_reason": "scout_reject",
+  "rescreen_after": "2026-09-09T05:00:00Z",
+  "rescreen_count": 0
+}

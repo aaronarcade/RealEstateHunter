@@ -1,0 +1,32 @@
+{
+  "id": "oceania-sky-loft-manta-ec",
+  "address": "Oceania Sky Loft 180, Edificio Oceania, Manta, Manab\u00ed, Ecuador",
+  "location": "Manta, Manab\u00ed, Ecuador",
+  "listing_url": "https://www.realtor.com/international/ec/manta-manabi-province/p2/",
+  "market_id": "manta-ec",
+  "created_at": "2026-08-10T05:00:00Z",
+  "updated_at": "2026-08-10T05:00:00Z",
+  "last_screened_at": "2026-08-10T05:00:00Z",
+  "screening_snapshot": {
+    "price": 194000,
+    "rough_monthly_rent": 1500,
+    "rough_gross_yield": 0.0928,
+    "advertised_hoa": null,
+    "screened_at": "2026-08-10T05:00:00Z"
+  },
+  "scout_notes": "Ultra-luxury oceanfront loft. $1,500/mo STR \u2192 9.3% gross \u2014 close but below 10%. Premium asset, not yield play.",
+  "property_type": "condo",
+  "building_name": "Oceania",
+  "beds": 1,
+  "baths": 1,
+  "asking_price": 194000,
+  "rough_monthly_rent": 1500,
+  "rough_gross_yield": 0.0928,
+  "rent_source": "Luxury STR estimate",
+  "rent_confidence": "MEDIUM",
+  "workflow_state": "ARCHIVED",
+  "scout_decision": "REJECT",
+  "archive_reason": "scout_reject",
+  "rescreen_after": "2026-09-09T05:00:00Z",
+  "rescreen_count": 0
+}
