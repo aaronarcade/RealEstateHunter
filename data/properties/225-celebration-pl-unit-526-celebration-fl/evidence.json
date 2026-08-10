@@ -1,0 +1,90 @@
+{
+  "property_id": "225-celebration-pl-unit-526-celebration-fl",
+  "researched_at": "2026-08-10T13:50:00Z",
+  "purchase_price": {
+    "value": 149999,
+    "status": "VERIFIED",
+    "confidence": "HIGH",
+    "source": "https://www.coldwellbanker.com/fl/kissimmee/225-celebration-pl-unit-526/lid-P00800000H68IsbpAzsHuszTV1FfOZ93Ds7BvArR",
+    "evidence": "MLS #S5143564 lists asking price at $149,999. Melia Orlando Celebration condo-hotel unit 526. 2BR/2BA turnkey STR unit. Cash-only purchase typical for condo-hotels."
+  },
+  "monthly_rent": {
+    "value": 2582,
+    "status": "ESTIMATED",
+    "confidence": "MEDIUM",
+    "source": "Mashvisor STR estimate for comparable Melia unit #427",
+    "evidence": "Gross rent estimated from Mashvisor comp at 225 Celebration Pl #427 ($2,582/mo STR). Listing does not publish unit-specific gross revenue. Condo-hotel income model differs from traditional STR: revenue is typically shared with hotel management after expenses. Comparable building listings note owners often break even after all-in HOA and hotel management fees. Actual net to owner may be significantly lower than gross.",
+    "range_low": 2000,
+    "range_high": 3000
+  },
+  "hoa_monthly": {
+    "value": 1242,
+    "status": "VERIFIED",
+    "confidence": "HIGH",
+    "source": "https://www.coldwellbanker.com/fl/kissimmee/225-celebration-pl-unit-526/lid-P00800000H68IsbpAzsHuszTV1FfOZ93Ds7BvArR",
+    "evidence": "HOA fee of $1,242/month ($3,727/quarter) per MLS listing and comparable unit data. This is an all-inclusive condo-hotel HOA that covers: building maintenance, common area insurance, amenities, utilities for common areas, and potentially some unit services. This HOA far exceeds the $500/mo scrutiny threshold and represents ~83% of estimated monthly rent."
+  },
+  "special_assessments": {
+    "value": null,
+    "status": "UNKNOWN",
+    "confidence": "LOW",
+    "source": "Florida statute requires estoppel certificate for assessment disclosure",
+    "evidence": "Special assessment amounts cannot be verified without estoppel certificate per Fla. Stat. §718.116. Melia Orlando is a condo-hotel resort. No public records of recent major assessments found, but high-end resort buildings often have significant capital reserve requirements. Recommend requesting estoppel certificate and HOA financials before purchase."
+  },
+  "property_taxes_annual": {
+    "value": 2200,
+    "status": "ESTIMATED",
+    "confidence": "MEDIUM",
+    "source": "Osceola County property appraiser data; comparable Celebration condos",
+    "evidence": "Estimated based on $149,999 purchase price and Osceola County millage rates. Celebration is in Osceola County. Comparable condo-hotel units in Celebration show property taxes between $1,800-$2,600. Used $2,200 as mid-range estimate. Actual amount should be verified via title search.",
+    "range_low": 1800,
+    "range_high": 2600
+  },
+  "insurance_annual": {
+    "value": 600,
+    "status": "ESTIMATED",
+    "confidence": "MEDIUM",
+    "source": "Florida condo HO-6 insurance market data",
+    "evidence": "Owner needs HO-6 policy (walls-in coverage). Condo-hotel master policies often provide more comprehensive coverage than typical HOAs. Celebration is inland (lower wind risk than coastal properties). Estimated $600/year for basic HO-6 coverage. Actual requirements depend on HOA master policy coverage details.",
+    "range_low": 400,
+    "range_high": 800
+  },
+  "management_annual": {
+    "value": 0,
+    "status": "ESTIMATED",
+    "confidence": "LOW",
+    "source": "Condo-hotel management structure",
+    "evidence": "CRITICAL: Condo-hotel units like Melia Orlando operate under a hotel management agreement, NOT typical STR self-management. Management fees are typically embedded in the revenue-sharing arrangement or deducted before owner distributions. The $1,242/mo HOA may include management services. Separate management fee shown as $0 to avoid double-counting, but actual owner net income depends on hotel management agreement terms which are UNKNOWN."
+  },
+  "utilities_annual": {
+    "value": 0,
+    "status": "ESTIMATED",
+    "confidence": "LOW",
+    "source": "Condo-hotel operating structure",
+    "evidence": "Condo-hotel units typically have utilities included in the HOA fee as part of the hotel operating structure. Verify with HOA documents whether owner pays any utilities directly. Shown as $0 assuming utilities are included in the $1,242/mo HOA fee."
+  },
+  "other_expenses_annual": {
+    "value": 1500,
+    "status": "ESTIMATED",
+    "confidence": "LOW",
+    "source": "General condo-hotel operating costs",
+    "evidence": "Estimated other expenses include: (1) Unit furnishing reserves/replacement ~$1,000/year (condo-hotels require maintained furnishings); (2) Personal property insurance ~$300/year; (3) Miscellaneous fees ~$200/year. Actual expenses depend on hotel management agreement terms. Does not include STR licensing fees as hotel operates under commercial license.",
+    "range_low": 1000,
+    "range_high": 2500
+  },
+  "rental_restrictions": {
+    "value": null,
+    "status": "UNKNOWN",
+    "confidence": "LOW",
+    "source": "Condo-hotel management agreement terms",
+    "evidence": "CRITICAL: Condo-hotel units operate under hotel management agreements that may restrict owner use and rental options. Owner may be required to participate in hotel rental pool. Personal use days may be limited. Owner cannot typically self-manage as a traditional STR. Rental restrictions depend on specific management agreement terms which require review."
+  },
+  "str_restrictions": {
+    "value": null,
+    "status": "UNKNOWN",
+    "confidence": "LOW",
+    "source": "Condo-hotel management agreement terms",
+    "evidence": "CRITICAL: Unlike traditional STRs, condo-hotel units operate under hotel licensing, not individual STR permits. Owner does not control rental pricing, listing platforms, or guest selection. Revenue is typically pooled and distributed according to management agreement. The apparent 20.7% gross yield assumes traditional STR operation which may not be applicable. Management agreement terms must be reviewed to understand actual owner income model."
+  },
+  "notes": "WATCH STATUS - Condo-hotel complexity requires additional due diligence. Melia Orlando Celebration is a condo-hotel at 225 Celebration Pl. Unit 526 is a 2BR/2BA turnkey unit. KEY CONCERNS: (1) $1,242/mo HOA is 83% of estimated gross rent - owners reportedly often break even; (2) Condo-hotel revenue model differs fundamentally from traditional STR - gross rent estimates may not translate to owner income; (3) Management agreement terms are UNKNOWN and control actual owner economics; (4) Cash-only purchase typical. This property has the highest gross yield (20.7%) among candidates but lowest confidence due to condo-hotel operating model complexity. Recommend: (1) Request hotel management agreement, (2) Request actual owner P&L statements from comparable units, (3) Verify revenue-sharing terms before underwriting. Priority 3 per task guidance due to model complexity."
+}

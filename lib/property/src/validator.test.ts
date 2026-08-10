@@ -463,4 +463,83 @@ describe('SchemaValidator', () => {
       expect(result.valid).toBe(true);
     });
   });
+
+  describe('TASK-010 screened batch property validation', () => {
+    it('validates 9860-s-thomas-dr evidence.json', async () => {
+      const { readFileSync } = await import('node:fs');
+      const evidencePath = resolve(
+        __dirname,
+        '../../../data/properties/9860-s-thomas-dr-unit-917-panama-city-beach-fl/evidence.json'
+      );
+      const evidence = JSON.parse(readFileSync(evidencePath, 'utf-8'));
+
+      const result = validator.validateEvidence(evidence);
+      expect(result.valid).toBe(true);
+    });
+
+    it('validates 9860-s-thomas-dr meta.json', async () => {
+      const { readFileSync } = await import('node:fs');
+      const metaPath = resolve(
+        __dirname,
+        '../../../data/properties/9860-s-thomas-dr-unit-917-panama-city-beach-fl/meta.json'
+      );
+      const meta = JSON.parse(readFileSync(metaPath, 'utf-8'));
+
+      const result = validator.validateMeta(meta);
+      expect(result.valid).toBe(true);
+      expect(meta.workflow_state).toBe('READY_FOR_UNDERWRITING');
+    });
+
+    it('validates 225-celebration-pl evidence.json', async () => {
+      const { readFileSync } = await import('node:fs');
+      const evidencePath = resolve(
+        __dirname,
+        '../../../data/properties/225-celebration-pl-unit-526-celebration-fl/evidence.json'
+      );
+      const evidence = JSON.parse(readFileSync(evidencePath, 'utf-8'));
+
+      const result = validator.validateEvidence(evidence);
+      expect(result.valid).toBe(true);
+    });
+
+    it('validates 225-celebration-pl meta.json', async () => {
+      const { readFileSync } = await import('node:fs');
+      const metaPath = resolve(
+        __dirname,
+        '../../../data/properties/225-celebration-pl-unit-526-celebration-fl/meta.json'
+      );
+      const meta = JSON.parse(readFileSync(metaPath, 'utf-8'));
+
+      const result = validator.validateMeta(meta);
+      expect(result.valid).toBe(true);
+      expect(meta.workflow_state).toBe('READY_FOR_UNDERWRITING');
+    });
+
+    it('verifies all TASK-010 properties have required evidence fields', async () => {
+      const { readFileSync } = await import('node:fs');
+      const propertyIds = [
+        '9860-s-thomas-dr-unit-917-panama-city-beach-fl',
+        '225-celebration-pl-unit-526-celebration-fl',
+      ];
+
+      for (const id of propertyIds) {
+        const evidencePath = resolve(__dirname, `../../../data/properties/${id}/evidence.json`);
+        const evidence = JSON.parse(readFileSync(evidencePath, 'utf-8'));
+
+        expect(evidence.property_id, `${id} should have property_id`).toBe(id);
+        expect(evidence.researched_at, `${id} should have researched_at`).toBeDefined();
+        expect(evidence.purchase_price, `${id} should have purchase_price`).toBeDefined();
+        expect(evidence.monthly_rent, `${id} should have monthly_rent`).toBeDefined();
+        expect(evidence.hoa_monthly, `${id} should have hoa_monthly`).toBeDefined();
+        expect(evidence.special_assessments, `${id} should have special_assessments`).toBeDefined();
+        expect(evidence.property_taxes_annual, `${id} should have property_taxes_annual`).toBeDefined();
+        expect(evidence.insurance_annual, `${id} should have insurance_annual`).toBeDefined();
+        expect(evidence.management_annual, `${id} should have management_annual`).toBeDefined();
+        expect(evidence.utilities_annual, `${id} should have utilities_annual`).toBeDefined();
+        expect(evidence.other_expenses_annual, `${id} should have other_expenses_annual`).toBeDefined();
+        expect(evidence.rental_restrictions, `${id} should have rental_restrictions`).toBeDefined();
+        expect(evidence.str_restrictions, `${id} should have str_restrictions`).toBeDefined();
+      }
+    });
+  });
 });
