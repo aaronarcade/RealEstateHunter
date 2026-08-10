@@ -1,8 +1,8 @@
 # TASK-005: End-to-end pipeline validation
 
-**Status:** COMPLETE  
+**Status:** DONE  
 **Assignee:** Builder  
-**Priority:** P2
+**Priority:** P1
 
 ## Description
 
@@ -34,14 +34,14 @@ Validate that the orchestrator correctly spawns agents and the full property pip
 
 ## Depends on
 
-- TASK-001 (property schema) - partial, schemas complete; **helper scripts needed**
+- TASK-001 (property schema) - partial, schemas complete
 - TASK-003 (orchestrator) - complete
-
-## Priority note (2026-08-10 Manager triage)
-
-With 3 real properties now in `SCREENED` state (TASK-010 ready to research), pipeline validation is less critical than completing TASK-001 helper scripts. Demote to P2 until TASK-001 remaining work is done.
 
 ## Notes
 
 Run before heavy Scout volume (TASK-009) to ensure infrastructure is ready.
 Can use the `_example` property or real screened properties as test cases.
+
+## Completion
+
+Completed 2026-08-10 via PR #6. Tests added to `orchestrator/src/`.
