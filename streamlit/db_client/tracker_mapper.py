@@ -61,6 +61,7 @@ def tracker_financials_to_opportunity(
     building: dict | None = None,
     source_url: str | None = None,
     source_confidence: int | None = None,
+    unit_images: dict | None = None,
 ) -> PropertyOpportunity:
     """Build PropertyOpportunity from unit_financials when RPC is unavailable."""
     neighborhood = (building or {}).get('neighborhoods') or {}
@@ -69,12 +70,15 @@ def tracker_financials_to_opportunity(
     row = {
         'unit_id': fin.get('unit_id'),
         'unit_number': fin.get('unit_number'),
+        'building_id': fin.get('building_id'),
+        'neighborhood_id': neighborhood.get('id'),
         'monthly_rent': fin.get('monthly_rent'),
         'noi': fin.get('noi'),
         'cap_rate_pct': fin.get('cap_rate_pct'),
         'value_basis': fin.get('value_basis'),
         'has_complete_financials': fin.get('has_complete_financials'),
         'status': fin.get('status'),
+        'str_allowed': fin.get('str_allowed'),
         'building_address': (building or {}).get('address') or '',
         'neighborhood_name': neighborhood.get('name'),
         'region_name': region.get('name'),
@@ -85,6 +89,8 @@ def tracker_financials_to_opportunity(
         financials=fin,
         source_url=source_url,
         source_confidence=source_confidence,
+        unit_images=unit_images,
+        property_type=fin.get('property_type'),
     )
 
 
@@ -94,6 +100,8 @@ def tracker_row_to_opportunity(
     financials: dict | None = None,
     source_url: str | None = None,
     source_confidence: int | None = None,
+    unit_images: dict | None = None,
+    property_type: str | None = None,
 ) -> PropertyOpportunity:
     """Convert get_cap_rate_summary row (+ optional unit_financials) to PropertyOpportunity."""
     fin = financials or {}
@@ -156,6 +164,11 @@ def tracker_row_to_opportunity(
     listing_url = source_url or '#'
     sources = [Source(label='Listing', url=source_url)] if source_url else None
 
+    images = unit_images or {}
+    image_url = images.get('image_url') or row.get('image_url')
+    image_url_2 = images.get('image_url_2') or row.get('image_url_2')
+    prop_type = property_type or row.get('property_type') or fin.get('property_type')
+
     return PropertyOpportunity(
         id=str(row.get('unit_id') or fin.get('unit_id')),
         address=address,
@@ -173,4 +186,14 @@ def tracker_row_to_opportunity(
         status=status,
         sources=sources,
         ranked_at=None,
+        country=row.get('country_name'),
+        region=row.get('region_name'),
+        neighborhood=row.get('neighborhood_name'),
+        image_url=image_url,
+        image_url_2=image_url_2,
+        property_type=str(prop_type) if prop_type else None,
+        building_id=str(row.get('building_id') or fin.get('building_id') or '') or None,
+        neighborhood_id=str(row.get('neighborhood_id') or '') or None,
+        unit_number=str(unit_number) if unit_number != '?' else None,
+        str_allowed=row.get('str_allowed') if row.get('str_allowed') is not None else fin.get('str_allowed'),
     )

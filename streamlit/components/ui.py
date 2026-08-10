@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import html
+from collections import defaultdict
 from typing import Optional
 
 import streamlit as st
@@ -12,16 +13,19 @@ from sorting import SortConfig, SortField
 
 CARD_COLUMNS = 3
 
+_PROPERTY_EMOJI = {
+    'condo': '🏢',
+    'single_family': '🏡',
+    'multi_family': '🏬',
+    'townhouse': '🏘️',
+    'commercial': '🏭',
+    'other': '📍',
+}
+
 _STATUS_ROW_BG = {
     'VIABLE': '#f0fdf4',
     'WATCHLIST': '#fffbeb',
     'REJECTED': '#fef2f2',
-}
-
-_STATUS_MARKER = {
-    'VIABLE': 'opp-card-viable',
-    'WATCHLIST': 'opp-card-watchlist',
-    'REJECTED': 'opp-card-rejected',
 }
 
 _STATUS_PILL = {
@@ -52,41 +56,40 @@ def inject_global_styles() -> None:
     color: #94a3b8;
     font-size: 0.75rem;
   }
-  div[data-testid="stVerticalBlockBorderWrapper"] {
+  div[data-testid="stVerticalBlockBorderWrapper"]:has(.opp-card-marker) {
     border-radius: 14px !important;
     border-color: #e2e8f0 !important;
     box-shadow: 0 2px 8px rgba(15, 23, 42, 0.05);
     transition: box-shadow 0.2s ease;
     padding: 0.85rem !important;
   }
-  div[data-testid="stVerticalBlockBorderWrapper"]:hover {
+  div[data-testid="stVerticalBlockBorderWrapper"]:has(.opp-card-marker):hover {
     box-shadow: 0 6px 18px rgba(15, 23, 42, 0.08);
   }
-  div[data-testid="stVerticalBlockBorderWrapper"]:has(.opp-card-viable) {
-    border-left: 4px solid #22c55e !important;
-  }
-  div[data-testid="stVerticalBlockBorderWrapper"]:has(.opp-card-watchlist) {
-    border-left: 4px solid #eab308 !important;
-  }
-  div[data-testid="stVerticalBlockBorderWrapper"]:has(.opp-card-rejected) {
-    border-left: 4px solid #ef4444 !important;
-  }
-  div[data-testid="stHorizontalBlock"]:has(div[data-testid="stVerticalBlockBorderWrapper"]) {
+  div[data-testid="stHorizontalBlock"]:has(div[data-testid="stVerticalBlockBorderWrapper"]:has(.opp-card-marker)) {
     align-items: stretch !important;
   }
-  div[data-testid="stHorizontalBlock"]:has(div[data-testid="stVerticalBlockBorderWrapper"]) > div[data-testid="column"] {
+  div[data-testid="stHorizontalBlock"]:has(div[data-testid="stVerticalBlockBorderWrapper"]:has(.opp-card-marker)) > div[data-testid="column"] {
     display: flex !important;
     flex-direction: column !important;
   }
-  div[data-testid="stHorizontalBlock"]:has(div[data-testid="stVerticalBlockBorderWrapper"]) div[data-testid="stVerticalBlockBorderWrapper"] {
+  div[data-testid="stHorizontalBlock"]:has(div[data-testid="stVerticalBlockBorderWrapper"]:has(.opp-card-marker)) div[data-testid="stVerticalBlockBorderWrapper"]:has(.opp-card-marker) {
     flex: 1 1 auto !important;
     width: 100% !important;
     min-height: 0 !important;
     display: flex !important;
     flex-direction: column !important;
   }
-  div[data-testid="stVerticalBlockBorderWrapper"] div[data-testid="stMarkdown"]:has(.card-footer-block) {
+  div[data-testid="stVerticalBlockBorderWrapper"]:has(.opp-card-marker) div[data-testid="stMarkdown"]:has(.card-footer-block) {
     margin-top: auto !important;
+  }
+  div[data-testid="stVerticalBlockBorderWrapper"]:has(.opp-card-marker) div[data-testid="stHorizontalBlock"]:last-of-type {
+    margin-top: 0.35rem;
+    gap: 0.35rem;
+  }
+  div[data-testid="stVerticalBlockBorderWrapper"]:has(.opp-card-marker) div[data-testid="stHorizontalBlock"]:last-of-type button {
+    white-space: nowrap;
+    font-size: 0.82rem;
   }
   .card-title {
     font-size: 1rem;
@@ -110,6 +113,12 @@ def inject_global_styles() -> None:
     background: linear-gradient(135deg, #e2e8f0 0%, #f8fafc 55%, #dbeafe 100%);
     flex-shrink: 0;
   }
+  .card-media img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
   .card-media-placeholder {
     width: 100%;
     height: 100%;
@@ -118,6 +127,33 @@ def inject_global_styles() -> None:
     justify-content: center;
     font-size: 2.2rem;
   }
+  .card-media-duo {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4px;
+    height: 148px;
+    width: 100%;
+    border-radius: 10px;
+    overflow: hidden;
+    margin-bottom: 0.7rem;
+    flex-shrink: 0;
+  }
+  .card-media-duo .card-media {
+    height: 100%;
+    margin-bottom: 0;
+    border-radius: 0;
+  }
+  .section-country {
+    font-size: 1.35rem;
+    font-weight: 700;
+    color: #0f172a;
+    margin: 1.75rem 0 0.75rem;
+    padding-bottom: 0.35rem;
+    border-bottom: 2px solid #2563eb;
+  }
+  .section-country:first-of-type { margin-top: 0.5rem; }
+  .accordion-toggle { margin: 0.35rem 0 0.75rem; }
+  .accordion-panel { margin-bottom: 1.25rem; }
   .financial-tags {
     display: flex;
     flex-wrap: wrap;
@@ -282,6 +318,30 @@ def render_card_header(title: str, subtitle: str | None = None) -> None:
     )
 
 
+def render_detail_images(
+    image_urls: list[str | None],
+    *,
+    fallback_emoji: str = '🏠',
+) -> None:
+    """Full-width images for detail pages."""
+    urls = [url for url in image_urls if url]
+    if not urls:
+        st.markdown(
+            f'<div class="card-media" style="height:220px;margin-bottom:1rem">'
+            f'<div class="card-media-placeholder">{html.escape(fallback_emoji)}</div></div>',
+            unsafe_allow_html=True,
+        )
+        return
+    if len(urls) == 1:
+        st.image(urls[0], use_column_width=True)
+        return
+    col1, col2 = st.columns(2, gap='small')
+    with col1:
+        st.image(urls[0], use_column_width=True)
+    with col2:
+        st.image(urls[1], use_column_width=True)
+
+
 def render_card_media(image_url: str | None, *, fallback_emoji: str = '🏠') -> None:
     if image_url:
         safe_url = html.escape(image_url, quote=True)
@@ -294,6 +354,35 @@ def render_card_media(image_url: str | None, *, fallback_emoji: str = '🏠') ->
             f'<div class="card-media"><div class="card-media-placeholder">{html.escape(fallback_emoji)}</div></div>',
             unsafe_allow_html=True,
         )
+
+
+def render_card_media_pair(
+    image_urls: list[str | None],
+    *,
+    fallback_emoji: str = '🏠',
+) -> None:
+    urls = [url for url in image_urls if url]
+    if not urls:
+        render_card_media(None, fallback_emoji=fallback_emoji)
+        return
+    if len(urls) == 1:
+        render_card_media(urls[0], fallback_emoji=fallback_emoji)
+        return
+    img1 = html.escape(urls[0], quote=True)
+    img2 = html.escape(urls[1], quote=True)
+    st.markdown(
+        f'<div class="card-media-duo">'
+        f'<div class="card-media"><img src="{img1}" alt="" loading="lazy" /></div>'
+        f'<div class="card-media"><img src="{img2}" alt="" loading="lazy" /></div>'
+        f'</div>',
+        unsafe_allow_html=True,
+    )
+
+
+def _property_emoji(opportunity: PropertyOpportunity) -> str:
+    if opportunity.property_type:
+        return _PROPERTY_EMOJI.get(opportunity.property_type, '🏠')
+    return '🏠'
 
 
 def _metric_chip(label: str, value_html: str, *, kind: str = '', missing: bool = False) -> str:
@@ -410,29 +499,127 @@ def render_opportunity_table(
 
 
 def _opportunity_card(opp: PropertyOpportunity) -> None:
-    listing = html.escape(opp.listing_url, quote=True)
-    marker = _STATUS_MARKER[opp.status]
+    from navigation import go_building, go_unit, set_context_from_opportunity
+
+    listing = opp.listing_url if opp.listing_url and opp.listing_url != '#' else None
 
     with st.container(border=True):
-        st.markdown(f'<div class="opp-card-marker {marker}"></div>', unsafe_allow_html=True)
-        render_card_header(opp.address, opp.location)
-        render_card_media(None, fallback_emoji='🏠')
+        st.markdown('<div class="opp-card-marker"></div>', unsafe_allow_html=True)
+        render_card_header(opp.address, opp.location or None)
+        render_card_media_pair(
+            [opp.image_url, opp.image_url_2],
+            fallback_emoji=_property_emoji(opp),
+        )
         render_opportunity_financial_tags(opp)
         render_opportunity_metric_grid(opp)
         st.markdown(
-            f"""
-<div class="card-footer-block">
-  <div class="badge-row">{_status_badge(opp.status)}{_confidence_badge(opp.confidence)}</div>
-  <a class="card-footer-link" href="{listing}" target="_blank" rel="noopener noreferrer">View Listing →</a>
-</div>
-            """,
+            f'<div class="card-footer-block"><div class="badge-row">{_status_badge(opp.status)}{_confidence_badge(opp.confidence)}</div></div>',
             unsafe_allow_html=True,
+        )
+        action_cols = st.columns(3, gap='small')
+        with action_cols[0]:
+            if st.button('Unit', key=f'view_unit_{opp.id}', use_container_width=True, type='primary'):
+                set_context_from_opportunity(opp)
+                go_unit()
+        with action_cols[1]:
+            if opp.building_id and st.button(
+                'Building',
+                key=f'view_building_{opp.id}',
+                use_container_width=True,
+            ):
+                set_context_from_opportunity(opp)
+                go_building()
+        with action_cols[2]:
+            if listing:
+                st.link_button('Listing', listing, use_container_width=True)
+
+
+def _section_id(prefix: str, name: str) -> str:
+    safe = name.lower().replace(' ', '_').replace('é', 'e')
+    return f'{prefix}_{safe}'
+
+
+def _render_accordion_section(
+    label: str,
+    section_id: str,
+    *,
+    open_key: str,
+    key_prefix: str,
+    render_content,
+) -> None:
+    """RealEstateTracker-style toggle — content is NOT wrapped in an extra bordered box."""
+    is_open = st.session_state.get(open_key) == section_id
+    indicator = '▾' if is_open else '▸'
+    if st.button(
+        f'{indicator} {label}',
+        key=f'{key_prefix}_acc_{section_id}',
+        use_container_width=True,
+        type='secondary',
+    ):
+        st.session_state[open_key] = None if is_open else section_id
+        st.rerun()
+
+    if is_open:
+        render_content()
+
+
+def _group_by_country(
+    opportunities: list[PropertyOpportunity],
+) -> dict[str, list[PropertyOpportunity]]:
+    grouped: dict[str, list[PropertyOpportunity]] = defaultdict(list)
+    for opp in opportunities:
+        grouped[opp.country or 'Unknown country'].append(opp)
+    return grouped
+
+
+def render_opportunity_cards(
+    opportunities: list[PropertyOpportunity],
+    *,
+    group_by_country: bool = False,
+    accordion_key: str = 'cards_open_country',
+) -> None:
+    if not opportunities:
+        st.info('No opportunities to display')
+        return
+
+    if not group_by_country:
+        card_grid(opportunities, _opportunity_card)
+        return
+
+    by_country = _group_by_country(opportunities)
+    country_names = sorted(by_country.keys())
+
+    if accordion_key not in st.session_state:
+        st.session_state[accordion_key] = _section_id('country', country_names[0])
+
+    if len(country_names) == 1:
+        card_grid(by_country[country_names[0]], _opportunity_card)
+        return
+
+    for country_name in country_names:
+        items = by_country[country_name]
+        region_count = len({opp.region for opp in items if opp.region})
+        neighborhood_count = len({opp.neighborhood for opp in items if opp.neighborhood})
+        label = (
+            f'{country_name} · {len(items)} unit{"s" if len(items) != 1 else ""} · '
+            f'{region_count} region{"s" if region_count != 1 else ""} · '
+            f'{neighborhood_count} neighborhood{"s" if neighborhood_count != 1 else ""}'
+        )
+
+        def render_country_cards(country_items=items) -> None:
+            card_grid(country_items, _opportunity_card)
+
+        _render_accordion_section(
+            label,
+            _section_id('country', country_name),
+            open_key=accordion_key,
+            key_prefix='opp',
+            render_content=render_country_cards,
         )
 
 
 def card_grid(items: list, render_item, columns: int = CARD_COLUMNS) -> None:
     if not items:
-        st.info('No opportunities to display')
         return
     for row_start in range(0, len(items), columns):
         cols = st.columns(columns, gap='medium')
@@ -442,7 +629,3 @@ def card_grid(items: list, render_item, columns: int = CARD_COLUMNS) -> None:
                 break
             with col:
                 render_item(items[index])
-
-
-def render_opportunity_cards(opportunities: list[PropertyOpportunity]) -> None:
-    card_grid(opportunities, _opportunity_card)

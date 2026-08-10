@@ -76,6 +76,16 @@ class PropertyOpportunity:
     status: PropertyStatus
     sources: Optional[List[Source]] = None
     ranked_at: Optional[str] = None
+    country: Optional[str] = None
+    region: Optional[str] = None
+    neighborhood: Optional[str] = None
+    image_url: Optional[str] = None
+    image_url_2: Optional[str] = None
+    property_type: Optional[str] = None
+    building_id: Optional[str] = None
+    neighborhood_id: Optional[str] = None
+    unit_number: Optional[str] = None
+    str_allowed: Optional[bool] = None
 
 
 @dataclass

@@ -39,10 +39,21 @@ class SupabaseClient:
 
         self._client: Client = create_client(self.url, key)
         self.uses_service_role = bool(self.service_role_key)
+        self._image_url_2_available: bool | None = None
 
     @property
     def client(self) -> Client:
         return self._client
+
+    def _supports_image_url_2(self) -> bool:
+        if self._image_url_2_available is not None:
+            return self._image_url_2_available
+        try:
+            self._client.table('units').select('image_url_2').limit(1).execute()
+            self._image_url_2_available = True
+        except Exception:
+            self._image_url_2_available = False
+        return self._image_url_2_available
 
     def _fetch_all_unit_financials(self) -> list[dict]:
         response = self._client.table(UNIT_FINANCIALS_VIEW).select('*').execute()
@@ -59,19 +70,69 @@ class SupabaseClient:
         )
         return {str(row['unit_id']): row for row in (response.data or [])}
 
-    def _fetch_buildings_context(self, building_ids: list[str]) -> dict[str, dict]:
-        if not building_ids:
+    def _unit_image_select(self) -> str:
+        fields = 'id, image_url, building_id'
+        if self._supports_image_url_2():
+            fields += ', image_url_2'
+        return fields
+
+    def _fetch_unit_images(self, unit_ids: list[str]) -> dict[str, dict]:
+        if not unit_ids:
             return {}
         try:
             response = (
-                self._client.table('buildings')
-                .select('id, address, alias, neighborhoods(name, regions(name, countries(name)))')
-                .in_('id', building_ids)
+                self._client.table('units')
+                .select(self._unit_image_select())
+                .in_('id', unit_ids)
                 .execute()
             )
             return {str(row['id']): row for row in (response.data or [])}
         except Exception:
             return {}
+
+    def _fetch_buildings_context(self, building_ids: list[str]) -> dict[str, dict]:
+        if not building_ids:
+            return {}
+        select = 'id, address, alias, image_url, neighborhoods(name, image_url, regions(name, countries(name)))'
+        if self._supports_image_url_2():
+            select = 'id, address, alias, image_url, image_url_2, neighborhoods(name, image_url, regions(name, countries(name)))'
+        try:
+            response = (
+                self._client.table('buildings')
+                .select(select)
+                .in_('id', building_ids)
+                .execute()
+            )
+            return {str(row['id']): row for row in (response.data or [])}
+        except Exception:
+            try:
+                response = (
+                    self._client.table('buildings')
+                    .select('id, address, alias, image_url, neighborhoods(name, regions(name, countries(name)))')
+                    .in_('id', building_ids)
+                    .execute()
+                )
+                return {str(row['id']): row for row in (response.data or [])}
+            except Exception:
+                return {}
+
+    def _resolve_unit_images(
+        self,
+        unit_id: str,
+        unit_images: dict[str, dict],
+        building: dict | None,
+    ) -> dict[str, str | None]:
+        images = unit_images.get(unit_id, {})
+        image_url = images.get('image_url')
+        image_url_2 = images.get('image_url_2')
+        if not image_url and building:
+            image_url = building.get('image_url')
+        if not image_url_2 and building:
+            image_url_2 = building.get('image_url_2')
+        neighborhood = (building or {}).get('neighborhoods') or {}
+        if not image_url:
+            image_url = neighborhood.get('image_url')
+        return {'image_url': image_url, 'image_url_2': image_url_2}
 
     def _fetch_primary_sources(self, unit_ids: list[str]) -> dict[str, dict]:
         if not unit_ids:
@@ -140,17 +201,24 @@ class SupabaseClient:
         unit_ids = [str(row['unit_id']) for row in rows if row.get('unit_id')]
         financials_by_id = self._fetch_unit_financials(unit_ids)
         sources_by_id = self._fetch_primary_sources(unit_ids)
+        unit_images_by_id = self._fetch_unit_images(unit_ids)
+        building_ids = list({str(row['building_id']) for row in rows if row.get('building_id')})
+        buildings_by_id = self._fetch_buildings_context(building_ids)
 
         opportunities: list[PropertyOpportunity] = []
         for row in rows:
             unit_id = str(row.get('unit_id'))
             source = sources_by_id.get(unit_id, {})
+            building = buildings_by_id.get(str(row.get('building_id')))
+            images = self._resolve_unit_images(unit_id, unit_images_by_id, building)
             opportunities.append(
                 tracker_row_to_opportunity(
                     row,
                     financials=financials_by_id.get(unit_id),
                     source_url=source.get('source_url'),
                     source_confidence=source.get('confidence'),
+                    unit_images=images,
+                    property_type=row.get('property_type'),
                 )
             )
         return opportunities
@@ -164,18 +232,21 @@ class SupabaseClient:
         buildings_by_id = self._fetch_buildings_context(building_ids)
         unit_ids = [str(row['unit_id']) for row in financials_rows if row.get('unit_id')]
         sources_by_id = self._fetch_primary_sources(unit_ids)
+        unit_images_by_id = self._fetch_unit_images(unit_ids)
 
         opportunities: list[PropertyOpportunity] = []
         for fin in financials_rows:
             unit_id = str(fin.get('unit_id'))
             building = buildings_by_id.get(str(fin.get('building_id')))
             source = sources_by_id.get(unit_id, {})
+            images = self._resolve_unit_images(unit_id, unit_images_by_id, building)
             opportunities.append(
                 tracker_financials_to_opportunity(
                     fin,
                     building=building,
                     source_url=source.get('source_url'),
                     source_confidence=source.get('confidence'),
+                    unit_images=images,
                 )
             )
         return opportunities
