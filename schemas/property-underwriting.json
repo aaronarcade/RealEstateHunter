@@ -19,6 +19,10 @@
     "annual_operating_expenses": { "type": "number" },
     "noi": { "type": "number" },
     "cap_rate": { "type": "number", "minimum": 0 },
+    "cap_rate_percent": { 
+      "type": "string",
+      "description": "Human-readable cap rate percentage"
+    },
     "proposed_status": {
       "type": "string",
       "enum": ["VIABLE", "WATCHLIST", "REJECTED"]
@@ -26,13 +30,28 @@
     "proposed_status_reason": { "type": "string" },
     "input_summary": {
       "type": "object",
-      "additionalProperties": {
-        "type": "object",
-        "properties": {
-          "status": { "type": "string" },
-          "confidence": { "type": "string" }
-        }
-      }
+      "description": "Summary of input values used in underwriting",
+      "additionalProperties": true
+    },
+    "operating_expense_breakdown": {
+      "type": "object",
+      "description": "Detailed breakdown of annual operating expenses",
+      "additionalProperties": true
+    },
+    "sensitivity_analysis": {
+      "type": "object",
+      "description": "Scenario analysis with different assumptions",
+      "additionalProperties": true
+    },
+    "breakeven_analysis": {
+      "type": "object",
+      "description": "Breakeven analysis for target cap rate",
+      "additionalProperties": true
+    },
+    "risk_factors": {
+      "type": "array",
+      "description": "List of identified risk factors",
+      "items": { "type": "string" }
     },
     "computed_at": { "type": "string", "format": "date-time" }
   },
