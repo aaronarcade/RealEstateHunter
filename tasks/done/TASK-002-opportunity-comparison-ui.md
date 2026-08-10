@@ -1,8 +1,9 @@
 # TASK-002: Opportunity comparison UI
 
-**Status:** ACTIVE  
+**Status:** DONE  
 **Assignee:** Builder  
-**Priority:** P1
+**Priority:** P1  
+**Completed:** 2026-08-10
 
 ## Description
 
