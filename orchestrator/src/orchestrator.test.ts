@@ -31,7 +31,7 @@ async function setup(): Promise<string> {
     roles: {
       builder: { enabled: true, maxConcurrent: 2 },
       scout: { enabled: true, maxConcurrent: 1 },
-      researcher: { enabled: true, maxConcurrent: 2 },
+      analyst: { enabled: true, maxConcurrent: 2 },
     },
   };
 
@@ -110,7 +110,7 @@ test("AC-1 integration: plan excludes tasks already in active", async () => {
 // AC-2: plan command correctly identifies property workflow state transitions
 // =============================================================================
 
-test("AC-2 integration: plan identifies SCREENED+RESEARCH property for researcher", async () => {
+test("AC-2 integration: plan identifies SCREENED+RESEARCH property for analyst", async () => {
   const repoRoot = await setup();
 
   await mkdir(path.join(repoRoot, "data", "properties", "test-property"), {
@@ -128,11 +128,11 @@ test("AC-2 integration: plan identifies SCREENED+RESEARCH property for researche
 
   const planned = await planOnly(repoRoot);
 
-  const researcherWork = planned.find(
-    (w) => w.role === "researcher" && w.subjectId === "test-property"
+  const analystWork = planned.find(
+    (w) => w.role === "analyst" && w.subjectId === "test-property"
   );
-  assert.ok(researcherWork, "should plan researcher for SCREENED+RESEARCH");
-  assert.equal(researcherWork.action, "build-evidence");
+  assert.ok(analystWork, "should plan analyst for SCREENED+RESEARCH");
+  assert.equal(analystWork.action, "analyze");
 
   await teardown();
 });
@@ -423,7 +423,19 @@ test("loadConfig uses defaults for optional fields", () => {
 
   assert.equal(config.startingRef, "main");
   assert.equal(config.maxConcurrentAgents, 3);
+  assert.equal(config.modelId, "auto");
   assert.equal(config.autoCreatePR, true);
+});
+
+test("loadConfig accepts explicit modelId", () => {
+  const raw = JSON.stringify({
+    repoUrl: "https://github.com/test/repo",
+    modelId: "composer-2.5",
+  });
+
+  const config = loadConfig("test.json", raw);
+
+  assert.equal(config.modelId, "composer-2.5");
 });
 
 test("isRoleEnabled returns true when role not in config", () => {
@@ -431,6 +443,7 @@ test("isRoleEnabled returns true when role not in config", () => {
     repoUrl: "",
     startingRef: "main",
     cloudEnvName: null,
+    modelId: "auto",
     maxConcurrentAgents: 3,
     autoCreatePR: true,
     skipReviewerRequest: true,
@@ -445,6 +458,7 @@ test("isRoleEnabled returns false when explicitly disabled", () => {
     repoUrl: "",
     startingRef: "main",
     cloudEnvName: null,
+    modelId: "auto",
     maxConcurrentAgents: 3,
     autoCreatePR: true,
     skipReviewerRequest: true,
@@ -466,7 +480,7 @@ test("countActiveForRole counts only matching ACTIVE entries", () => {
 
   assert.equal(countActiveForRole(entries, "builder"), 2);
   assert.equal(countActiveForRole(entries, "scout"), 1);
-  assert.equal(countActiveForRole(entries, "researcher"), 0);
+  assert.equal(countActiveForRole(entries, "analyst"), 0);
 });
 
 test("roleHasCapacity respects per-role limits", () => {
@@ -474,6 +488,7 @@ test("roleHasCapacity respects per-role limits", () => {
     repoUrl: "",
     startingRef: "main",
     cloudEnvName: null,
+    modelId: "auto",
     maxConcurrentAgents: 10,
     autoCreatePR: true,
     skipReviewerRequest: true,
@@ -493,6 +508,7 @@ test("roleHasCapacity uses global limit when role not configured", () => {
     repoUrl: "",
     startingRef: "main",
     cloudEnvName: null,
+    modelId: "auto",
     maxConcurrentAgents: 3,
     autoCreatePR: true,
     skipReviewerRequest: true,
@@ -543,7 +559,7 @@ test("integration: mixed properties and tasks produce correct plan", async () =>
   const roles = new Set(planned.map((w) => w.role));
 
   assert.ok(roles.has("scout"), "should have scout work");
-  assert.ok(roles.has("researcher"), "should have researcher work");
+  assert.ok(roles.has("analyst"), "should have analyst work");
   assert.ok(roles.has("builder"), "should have builder work");
   assert.ok(roles.has("manager"), "should have manager work (triage)");
 

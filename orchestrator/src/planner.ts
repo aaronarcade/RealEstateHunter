@@ -12,8 +12,7 @@ export type WorkflowState =
 export type AgentRole =
   | "manager"
   | "scout"
-  | "researcher"
-  | "underwriter"
+  | "analyst"
   | "auditor"
   | "builder";
 
@@ -119,62 +118,53 @@ function planPropertyWork(ctx: PropertyContext): WorkItem | null {
         }
         return null;
       }
-      if (!ctx.hasEvidence) {
-        return workItem({
-          role: "researcher",
-          subjectType: "property",
-          subjectId: propertyId,
-          action: "build-evidence",
-          branch: `${branchBase}-research`,
+      if (!ctx.hasEvidence || !ctx.hasUnderwriting) {
+        return analystWorkItem({
+          propertyId,
+          meta,
+          branchBase,
+          action: "analyze",
           priority: 20,
-          prompt: researcherPrompt(propertyId, meta),
+          mode: ctx.hasEvidence ? "underwrite-only" : "full",
         });
       }
       return null;
 
     case "RESEARCHING":
-      return workItem({
-        role: "researcher",
-        subjectType: "property",
-        subjectId: propertyId,
-        action: "complete-evidence",
-        branch: `${branchBase}-research`,
+      if (ctx.hasEvidence && ctx.hasUnderwriting) {
+        return null;
+      }
+      return analystWorkItem({
+        propertyId,
+        meta,
+        branchBase,
+        action: ctx.hasEvidence ? "complete-underwriting" : "analyze",
         priority: 20,
-        prompt: researcherPrompt(propertyId, meta),
+        mode: ctx.hasEvidence ? "underwrite-only" : "full",
       });
 
     case "READY_FOR_UNDERWRITING":
-      if (!ctx.hasEvidence) {
-        return workItem({
-          role: "researcher",
-          subjectType: "property",
-          subjectId: propertyId,
-          action: "build-evidence",
-          branch: `${branchBase}-research`,
-          priority: 15,
-          prompt: researcherPrompt(propertyId, meta),
-        });
+      if (ctx.hasEvidence && ctx.hasUnderwriting) {
+        return null;
       }
-      return workItem({
-        role: "underwriter",
-        subjectType: "property",
-        subjectId: propertyId,
-        action: "underwrite",
-        branch: `${branchBase}-underwrite`,
-        priority: 30,
-        prompt: underwriterPrompt(propertyId, meta),
+      return analystWorkItem({
+        propertyId,
+        meta,
+        branchBase,
+        action: ctx.hasEvidence ? "complete-underwriting" : "analyze",
+        priority: 20,
+        mode: ctx.hasEvidence ? "underwrite-only" : "full",
       });
 
     case "UNDERWRITTEN":
       if (!ctx.hasUnderwriting) {
-        return workItem({
-          role: "underwriter",
-          subjectType: "property",
-          subjectId: propertyId,
-          action: "underwrite",
-          branch: `${branchBase}-underwrite`,
-          priority: 30,
-          prompt: underwriterPrompt(propertyId, meta),
+        return analystWorkItem({
+          propertyId,
+          meta,
+          branchBase,
+          action: "complete-underwriting",
+          priority: 25,
+          mode: ctx.hasEvidence ? "underwrite-only" : "full",
         });
       }
       return workItem({
@@ -200,14 +190,14 @@ function planPropertyWork(ctx: PropertyContext): WorkItem | null {
         });
       }
       if (ctx.audit?.result === "NEEDS_RESEARCH") {
-        return workItem({
-          role: "researcher",
-          subjectType: "property",
-          subjectId: propertyId,
+        return analystWorkItem({
+          propertyId,
+          meta,
+          branchBase,
           action: "fill-audit-gaps",
-          branch: `${branchBase}-research`,
           priority: 15,
-          prompt: researcherGapPrompt(propertyId, meta, ctx.audit),
+          mode: "audit-gaps",
+          audit: ctx.audit,
         });
       }
       if (ctx.audit?.result === "PASS" || ctx.audit?.result === "DOWNGRADE") {
@@ -277,6 +267,31 @@ function workItem(input: Omit<WorkItem, "key">): WorkItem {
     ...input,
     key: `${input.role}:${input.subjectType}:${input.subjectId}:${input.action}`,
   };
+}
+
+function analystWorkItem(input: {
+  propertyId: string;
+  meta: PropertyMeta;
+  branchBase: string;
+  action: string;
+  priority: number;
+  mode: "full" | "underwrite-only" | "audit-gaps";
+  audit?: PropertyAudit;
+}): WorkItem {
+  return workItem({
+    role: "analyst",
+    subjectType: "property",
+    subjectId: input.propertyId,
+    action: input.action,
+    branch: `${input.branchBase}-analyze`,
+    priority: input.priority,
+    prompt: analystPrompt(
+      input.propertyId,
+      input.meta,
+      input.mode,
+      input.audit
+    ),
+  });
 }
 
 function roleHeader(role: AgentRole): string {
@@ -368,47 +383,45 @@ function rescreenPrompt(propertyId: string, meta: PropertyMeta): string {
     .join("\n");
 }
 
-function researcherPrompt(propertyId: string, meta: PropertyMeta): string {
-  return [
-    roleHeader("researcher"),
-    `Property ID: ${propertyId}`,
-    meta.address ? `Address: ${meta.address}` : "",
-    "",
-    "Build a complete `evidence.json` for this property using schemas in `schemas/`.",
-    "Update `meta.json` workflow_state to READY_FOR_UNDERWRITING when complete.",
-    "Never infer HOA or assessments as zero without evidence. Use UNKNOWN when appropriate.",
-  ]
-    .filter(Boolean)
-    .join("\n");
-}
-
-function researcherGapPrompt(
+function analystPrompt(
   propertyId: string,
   meta: PropertyMeta,
-  audit: PropertyAudit
+  mode: "full" | "underwrite-only" | "audit-gaps",
+  audit?: PropertyAudit
 ): string {
-  return [
-    roleHeader("researcher"),
+  const lines = [
+    roleHeader("analyst"),
     `Property ID: ${propertyId}`,
     meta.address ? `Address: ${meta.address}` : "",
     "",
-    "Auditor returned NEEDS_RESEARCH. Address only the gaps noted in audit.json findings.",
-    `Current audit result: ${audit.result ?? "NEEDS_RESEARCH"}`,
-    "Update evidence.json and set meta.json workflow_state back to READY_FOR_UNDERWRITING.",
-  ]
-    .filter(Boolean)
-    .join("\n");
-}
+  ];
 
-function underwriterPrompt(propertyId: string, meta: PropertyMeta): string {
-  return [
-    roleHeader("underwriter"),
-    `Property ID: ${propertyId}`,
-    "",
-    "Read evidence.json and produce underwriting.json with NOI and cap rate.",
-    "Propose VIABLE, WATCHLIST, or REJECTED per docs/PRODUCT.md.",
-    "Set meta.json workflow_state to UNDERWRITTEN.",
-  ].join("\n");
+  if (mode === "underwrite-only") {
+    lines.push(
+      "Evidence file already exists. Complete Phase 2 only:",
+      "Read evidence.json, produce underwriting.json with NOI and cap rate.",
+      "Do not redo unrelated web research.",
+      "Set meta.json workflow_state to UNDERWRITTEN when complete."
+    );
+  } else if (mode === "audit-gaps") {
+    lines.push(
+      "Auditor returned NEEDS_RESEARCH. Address only the gaps noted in audit.json findings.",
+      audit?.result ? `Current audit result: ${audit.result}` : "",
+      "Update evidence.json if needed, re-run underwriting from updated evidence only.",
+      "Set meta.json workflow_state to UNDERWRITTEN when complete."
+    );
+  } else {
+    lines.push(
+      "Complete both phases in one run:",
+      "1. Build evidence.json (Phase 1 — web research).",
+      "2. Lock evidence, then produce underwriting.json (Phase 2 — no new web research).",
+      "Set meta.json workflow_state to RESEARCHING when you begin.",
+      "Set meta.json workflow_state to UNDERWRITTEN when both artifacts are complete.",
+      "Never infer HOA or assessments as zero without evidence. Use UNKNOWN when appropriate."
+    );
+  }
+
+  return lines.filter(Boolean).join("\n");
 }
 
 function auditorPrompt(propertyId: string, meta: PropertyMeta): string {

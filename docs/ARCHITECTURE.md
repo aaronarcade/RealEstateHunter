@@ -2,14 +2,13 @@
 
 ## Agent System
 
-Six roles with asymmetric authority. No agent has unilateral authority over everything.
+Five roles with asymmetric authority. No agent has unilateral authority over everything.
 
 | Role | Authority | Does not |
 |------|-----------|----------|
 | **Manager** | Product scope, prioritization, ranking, notifications | Research listings, calculate deals |
 | **Scout** | Early reject / send to research | Classify as VIABLE |
-| **Researcher** | Property evidence file | Underwrite or classify |
-| **Underwriter** | NOI, cap rate, proposed status | Web research (unless routed back) |
+| **Analyst** | Property evidence file + underwriting | Finalize VIABLE without Auditor |
 | **Auditor** | Block merge; downgrade status | Upgrade to VIABLE |
 | **Builder** | Implementation | Investment decisions |
 
@@ -22,14 +21,12 @@ CANDIDATE
     ↓
 SCREENED          (Scout: REJECT or RESEARCH)
     ↓
-RESEARCHING       (Researcher: build evidence file)
+RESEARCHING       (Analyst: evidence + underwriting)
     ↓
-READY_FOR_UNDERWRITING
-    ↓
-UNDERWRITTEN      (Underwriter: NOI, cap rate, proposed status)
+UNDERWRITTEN      (Analyst complete; ready for Auditor)
     ↓
 AUDIT             (Auditor: PASS or NEEDS_RESEARCH)
-    ├── NEEDS_RESEARCH → Researcher
+    ├── NEEDS_RESEARCH → Analyst
     └── PASS → Manager
     ↓
 RANKED            (Manager: rank opportunities)
@@ -57,10 +54,10 @@ Scout compares the live listing to `screening_snapshot` (price, rent, yield). Or
 ### Orchestration rules
 
 - If gross yield < 10% at scout stage: archive with `rescreen_after` (do not discard the listing).
-- If HOA unknown: route back to Researcher.
+- If HOA unknown: route back to Analyst.
 - If assessment unknown: **WATCHLIST** at most unless evidence indicates none exists.
 - If underwriting complete: send to Auditor.
-- If audit requests more evidence: route back to Researcher.
+- If audit requests more evidence: route back to Analyst.
 - If **VIABLE**: add to ranked opportunities.
 - If audit **REJECTED** or **WATCHLIST**: Manager archives with `rescreen_after` for periodic rescreen.
 - If significant new **VIABLE** property appears: notify Aaron.
@@ -82,8 +79,8 @@ The orchestrator reads property workflow state and `tasks/backlog/`, then calls 
 ```
 data/properties/{property-id}/
 ├── meta.json           # Address, listing URL, workflow state
-├── evidence.json       # Researcher output (structured fields)
-├── underwriting.json   # Underwriter output
+├── evidence.json       # Analyst output (structured fields)
+├── underwriting.json   # Analyst output (NOI, cap rate, proposed status)
 └── audit.json          # Auditor output
 ```
 
@@ -111,7 +108,7 @@ Every material financial value uses this shape:
 
 ### Evidence file (`evidence.json`)
 
-Researcher-owned. Required fields:
+Analyst-owned (Phase 1). Required fields:
 
 - `purchase_price`
 - `monthly_rent`
@@ -127,7 +124,7 @@ Researcher-owned. Required fields:
 
 ### Underwriting file (`underwriting.json`)
 
-Underwriter-owned. Outputs:
+Analyst-owned (Phase 2). Outputs:
 
 ```json
 {
@@ -214,7 +211,6 @@ Agents should know the minimum information necessary for their decision:
 |-------|-------|---------------|
 | Manager | Goal, 10% threshold, classification rules, workflow | Scraping logic, UI implementation |
 | Scout | Price, rough rent, rough fees, location, listing link | Full expense model |
-| Researcher | Required fields, evidence rules, HOA/assessment requirements | Portfolio ranking logic |
-| Underwriter | Structured financial inputs, formulas, thresholds | How data was scraped |
+| Analyst | Required fields, evidence rules, formulas, thresholds | Portfolio ranking logic |
 | Auditor | Full underwriting standard, evidence record | Search strategy |
 | Builder | Data schema, UI contract, agent outputs | Investment judgment |

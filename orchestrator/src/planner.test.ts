@@ -110,7 +110,7 @@ test("AC-2: CANDIDATE routes to scout", () => {
   assert.equal(items[0]?.action, "screen-listing");
 });
 
-test("AC-2: SCREENED with RESEARCH decision routes to researcher", () => {
+test("AC-2: SCREENED with RESEARCH decision routes to analyst", () => {
   const items = planWork({
     properties: [
       property({
@@ -128,11 +128,11 @@ test("AC-2: SCREENED with RESEARCH decision routes to researcher", () => {
   });
 
   assert.equal(items.length, 1);
-  assert.equal(items[0]?.role, "researcher");
-  assert.equal(items[0]?.action, "build-evidence");
+  assert.equal(items[0]?.role, "analyst");
+  assert.equal(items[0]?.action, "analyze");
 });
 
-test("AC-2: SCREENED with REJECT does not spawn researcher", () => {
+test("AC-2: SCREENED with REJECT does not spawn analyst", () => {
   const items = planWork({
     properties: [
       property({
@@ -151,7 +151,7 @@ test("AC-2: SCREENED with REJECT does not spawn researcher", () => {
   assert.equal(items.length, 0);
 });
 
-test("AC-2: RESEARCHING routes to researcher", () => {
+test("AC-2: RESEARCHING routes to analyst", () => {
   const items = planWork({
     properties: [
       property({
@@ -163,11 +163,11 @@ test("AC-2: RESEARCHING routes to researcher", () => {
     pendingManagerReview: false,
   });
 
-  assert.equal(items[0]?.role, "researcher");
-  assert.equal(items[0]?.action, "complete-evidence");
+  assert.equal(items[0]?.role, "analyst");
+  assert.equal(items[0]?.action, "analyze");
 });
 
-test("AC-2: READY_FOR_UNDERWRITING routes to underwriter when evidence exists", () => {
+test("AC-2: READY_FOR_UNDERWRITING routes to analyst when evidence exists", () => {
   const items = planWork({
     properties: [
       property({
@@ -180,11 +180,11 @@ test("AC-2: READY_FOR_UNDERWRITING routes to underwriter when evidence exists", 
     pendingManagerReview: false,
   });
 
-  assert.equal(items[0]?.role, "underwriter");
-  assert.equal(items[0]?.action, "underwrite");
+  assert.equal(items[0]?.role, "analyst");
+  assert.equal(items[0]?.action, "complete-underwriting");
 });
 
-test("AC-2: READY_FOR_UNDERWRITING routes to researcher when evidence missing", () => {
+test("AC-2: READY_FOR_UNDERWRITING routes to analyst when evidence missing", () => {
   const items = planWork({
     properties: [
       property({
@@ -197,8 +197,8 @@ test("AC-2: READY_FOR_UNDERWRITING routes to researcher when evidence missing", 
     pendingManagerReview: false,
   });
 
-  assert.equal(items[0]?.role, "researcher");
-  assert.equal(items[0]?.action, "build-evidence");
+  assert.equal(items[0]?.role, "analyst");
+  assert.equal(items[0]?.action, "analyze");
 });
 
 test("AC-2: UNDERWRITTEN routes to auditor when underwriting exists", () => {
@@ -219,7 +219,7 @@ test("AC-2: UNDERWRITTEN routes to auditor when underwriting exists", () => {
   assert.equal(items[0]?.action, "audit");
 });
 
-test("AC-2: UNDERWRITTEN routes to underwriter when underwriting missing", () => {
+test("AC-2: UNDERWRITTEN routes to analyst when underwriting missing", () => {
   const items = planWork({
     properties: [
       property({
@@ -233,10 +233,11 @@ test("AC-2: UNDERWRITTEN routes to underwriter when underwriting missing", () =>
     pendingManagerReview: false,
   });
 
-  assert.equal(items[0]?.role, "underwriter");
+  assert.equal(items[0]?.role, "analyst");
+  assert.equal(items[0]?.action, "complete-underwriting");
 });
 
-test("AC-2: AUDIT with NEEDS_RESEARCH routes back to researcher", () => {
+test("AC-2: AUDIT with NEEDS_RESEARCH routes back to analyst", () => {
   const items = planWork({
     properties: [
       property({
@@ -252,7 +253,7 @@ test("AC-2: AUDIT with NEEDS_RESEARCH routes back to researcher", () => {
     pendingManagerReview: false,
   });
 
-  assert.equal(items[0]?.role, "researcher");
+  assert.equal(items[0]?.role, "analyst");
   assert.equal(items[0]?.action, "fill-audit-gaps");
 });
 
@@ -430,8 +431,8 @@ test("AC-3: work items are sorted by priority", () => {
 test("AC-5: property branches follow agent/{property-id}-{role} pattern", () => {
   const states: Array<{ state: string; expectedRole: string }> = [
     { state: "CANDIDATE", expectedRole: "scout" },
-    { state: "RESEARCHING", expectedRole: "research" },
-    { state: "READY_FOR_UNDERWRITING", expectedRole: "underwrite" },
+    { state: "RESEARCHING", expectedRole: "analyze" },
+    { state: "READY_FOR_UNDERWRITING", expectedRole: "analyze" },
   ];
 
   for (const { state, expectedRole } of states) {
@@ -544,7 +545,7 @@ test("mixed properties and tasks are all included", () => {
 
   const roles = items.map((i) => i.role);
   assert.ok(roles.includes("scout"), "should include scout");
-  assert.ok(roles.includes("researcher"), "should include researcher");
+  assert.ok(roles.includes("analyst"), "should include analyst");
   assert.ok(roles.includes("builder"), "should include builder");
   assert.ok(roles.includes("manager"), "should include manager");
 });

@@ -57,6 +57,7 @@ Edit `orchestrator.config.json` at the repo root:
 | `repoUrl` | GitHub repo URL |
 | `startingRef` | Base branch (usually `main`) |
 | `cloudEnvName` | Named Cursor cloud environment, or `null` to use inline `repos` |
+| `modelId` | Cloud agent model (default: `auto` — Cursor Auto). Omit from config to use the same default. Other ids from `GET /v1/models` (e.g. `composer-2.5`). |
 | `maxConcurrentAgents` | Global cap on simultaneous agents |
 | `roles.*.maxConcurrent` | Per-role caps |
 | `autoCreatePR` | Open PR when agent completes |
@@ -119,11 +120,11 @@ The orchestrator reads:
 | `workflow_state` | Spawns |
 |------------------|--------|
 | `CANDIDATE` | Scout |
-| `SCREENED` (RESEARCH) | Researcher |
-| `RESEARCHING` | Researcher |
-| `READY_FOR_UNDERWRITING` | Underwriter |
+| `SCREENED` (RESEARCH) | Analyst |
+| `RESEARCHING` | Analyst |
+| `READY_FOR_UNDERWRITING` | Analyst (legacy state; complete underwriting if evidence exists) |
 | `UNDERWRITTEN` | Auditor |
-| `AUDIT` + `NEEDS_RESEARCH` | Researcher |
+| `AUDIT` + `NEEDS_RESEARCH` | Analyst |
 | `AUDIT` + PASS | Manager (rank) |
 | `RANKED` | Manager (publish) |
 | `ARCHIVED` (rescreen due) | Scout (rescreen) |

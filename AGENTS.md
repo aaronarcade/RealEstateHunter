@@ -37,8 +37,7 @@ git worktree add ../RealEstateHunter-task-101 -b agent/task-101
 |------|------|
 | **Manager** | Goal, prioritization, workflow state, ranking |
 | **Scout** | Fast first-pass screening |
-| **Researcher** | Property evidence file (facts + sources) |
-| **Underwriter** | NOI, cap rate, proposed classification |
+| **Analyst** | Property evidence + underwriting (diligence and cap rate) |
 | **Auditor** | Evidence validation; can block or downgrade |
 | **Builder** | Software, data pipeline, UI |
 
@@ -68,7 +67,7 @@ These rules apply when running as a **Cursor Cloud Agent** against this reposito
 ### Before you start
 
 1. Read `AGENTS.md` (this file) and **only** your role prompt in `.agents/<role>.md`.
-2. Confirm your assigned role (Manager, Scout, Researcher, Underwriter, Auditor, or Builder).
+2. Confirm your assigned role (Manager, Scout, Analyst, Auditor, or Builder).
 3. Do not rely on conversation history from other agents — read current Git artifacts instead.
 
 ### Branching and PRs
@@ -85,8 +84,7 @@ These rules apply when running as a **Cursor Cloud Agent** against this reposito
 |------|------|-------|--------|
 | **Manager** | `tasks/`, `data/properties/`, `docs/PRODUCT.md` | `tasks/backlog/`, property `meta.json` workflow state | Research listings, write application code |
 | **Scout** | `.agents/scout.md`, Manager search criteria | `data/properties/{id}/meta.json`, scout screening output | Classify VIABLE/WATCHLIST/REJECTED |
-| **Researcher** | Assigned property in `data/properties/` | `evidence.json`, update `meta.json` state | Calculate cap rate or final classification |
-| **Underwriter** | `evidence.json`, `docs/PRODUCT.md` | `underwriting.json`, update `meta.json` state | Web research unless routed back |
+| **Analyst** | Assigned property in `data/properties/`, `docs/PRODUCT.md` | `evidence.json`, `underwriting.json`, update `meta.json` state | Finalize VIABLE without Auditor |
 | **Auditor** | Full property record + `docs/PRODUCT.md` | `audit.json`, final status in `meta.json` | Upgrade to VIABLE; rewrite implementation |
 | **Builder** | Assigned task in `tasks/active/` or `tasks/backlog/` | Application code, tests, schemas | Investment or classification decisions |
 
@@ -94,7 +92,9 @@ These rules apply when running as a **Cursor Cloud Agent** against this reposito
 
 - Property candidates follow the state machine in `docs/ARCHITECTURE.md`:
 
-  `CANDIDATE → SCREENED → RESEARCHING → READY_FOR_UNDERWRITING → UNDERWRITTEN → AUDIT → RANKED → PUBLISHED`
+  `CANDIDATE → SCREENED → RESEARCHING → UNDERWRITTEN → AUDIT → RANKED → PUBLISHED`
+
+  (`READY_FOR_UNDERWRITING` is a legacy intermediate state; Analyst now completes diligence and underwriting in one run.)
 
   Infeasible listings go to `ARCHIVED` with `rescreen_after`; Scout rescreens when due.
 
@@ -118,7 +118,7 @@ These rules apply when running as a **Cursor Cloud Agent** against this reposito
 
 - Multiple cloud agents may run concurrently on different branches.
 - Coordinate only through Git artifacts and PRs — do not assume another agent's chat context.
-- Invoke role subagents explicitly: `/manager`, `/scout`, `/researcher`, `/underwriter`, `/auditor`, `/builder`
+- Invoke role subagents explicitly: `/manager`, `/scout`, `/analyst`, `/auditor`, `/builder`
 - Example worktree (local or documented in PR): `git worktree add ../RealEstateHunter-task-101 -b agent/task-101`
 
 ### First Builder task

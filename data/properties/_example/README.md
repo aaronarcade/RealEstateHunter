@@ -7,14 +7,14 @@ This directory demonstrates the artifact structure agents produce. Do not treat 
 | File | Owner | Purpose |
 |------|-------|---------|
 | `meta.json` | Scout → Manager | Workflow state and listing metadata |
-| `evidence.json` | Researcher | Sourced factual record |
-| `underwriting.json` | Underwriter | NOI and cap rate calculation |
+| `evidence.json` | Analyst | Sourced factual record |
+| `underwriting.json` | Analyst | NOI and cap rate calculation |
 | `audit.json` | Auditor | Validation result |
 
 ## Workflow progression
 
 ```
-SCREENED → RESEARCHING → READY_FOR_UNDERWRITING → UNDERWRITTEN → AUDIT → RANKED
+SCREENED → RESEARCHING → UNDERWRITTEN → AUDIT → RANKED
 ```
 
 This example is frozen at `AUDIT` with a PASS result for documentation purposes.

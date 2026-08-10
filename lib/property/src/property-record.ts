@@ -252,7 +252,7 @@ export class PropertyRecordManager {
     const validTransitions: Record<WorkflowState, WorkflowState[]> = {
       CANDIDATE: ['SCREENED'],
       SCREENED: ['RESEARCHING', 'ARCHIVED'],
-      RESEARCHING: ['READY_FOR_UNDERWRITING'],
+      RESEARCHING: ['UNDERWRITTEN', 'READY_FOR_UNDERWRITING'],
       READY_FOR_UNDERWRITING: ['UNDERWRITTEN'],
       UNDERWRITTEN: ['AUDIT'],
       AUDIT: ['RANKED', 'RESEARCHING', 'ARCHIVED'],

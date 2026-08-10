@@ -7,15 +7,13 @@ Log of significant technical and process decisions. Add a new entry when introdu
 ## ADR-001: Six-role agent model
 
 **Date:** 2026-08-09  
-**Status:** Accepted
+**Status:** Superseded (partially by ADR-008)
 
 **Context:** Need a multi-agent workflow for finding rental investments with ≥10% unlevered cap rate without excessive communication overhead.
 
 **Decision:** Use six roles — Manager, Scout, Researcher, Underwriter, Auditor, Builder — collapsing Planner/Orchestrator/Ranker into Manager and Property Researcher/Rent Analyst/Expense Analyst into Researcher.
 
-**Consequences:** Each role has a focused prompt in `.agents/`. Split roles only if a bottleneck emerges.
-
----
+**Consequences:** Each role has a focused prompt in `.agents/`. Split roles only if a bottleneck emerges. Researcher + Underwriter merged into Analyst per ADR-008.
 
 ## ADR-002: Git artifacts as agent communication
 
@@ -37,9 +35,9 @@ Log of significant technical and process decisions. Add a new entry when introdu
 
 **Context:** Need a skeptical gatekeeper without creating optimistic bias.
 
-**Decision:** Auditor validates or downgrades classifications only. Upgrading to VIABLE requires Researcher + Underwriter cycle, then Auditor approval.
+**Decision:** Auditor validates or downgrades classifications only. Upgrading to VIABLE requires Analyst output, then Auditor approval.
 
-**Consequences:** False negatives are corrected by sending properties back to Researcher; false positives are blocked at audit.
+**Consequences:** False negatives are corrected by sending properties back to Analyst; false positives are blocked at audit.
 
 ---
 
@@ -97,6 +95,20 @@ Credentials via `SUPABASE_URL` + keys in environment/secrets only. Service role 
 **Decision:** Use `@supabase/supabase-js` for TypeScript and `supabase-py` for Python. These official SDKs handle authentication, RLS, and provide typed queries out of the box.
 
 **Consequences:** Added dependencies: `@supabase/supabase-js` in `lib/supabase/`, `supabase` package for Python in `streamlit/`. Both libraries are well-maintained by Supabase.
+
+---
+
+## ADR-008: Merge Researcher and Underwriter into Analyst
+
+**Date:** 2026-08-10  
+**Status:** Accepted  
+**Supersedes:** Partial scope of ADR-001 (Researcher + Underwriter split)
+
+**Context:** Researcher and Underwriter ran as separate Cloud Agent spawns per property. Each incurred cold-start context, orchestrator round-trips, and PR merge latency. Underwriter work is lightweight math on evidence the Researcher already gathered.
+
+**Decision:** Combine Researcher and Underwriter into a single **Analyst** role that produces both `evidence.json` and `underwriting.json` in one run (Phase 1 research, then Phase 2 underwriting with evidence locked). Keep **Scout** separate as the volume filter. Keep **Auditor** as the adversarial gate.
+
+**Consequences:** Five agent roles (Manager, Scout, Analyst, Auditor, Builder). `READY_FOR_UNDERWRITING` remains valid for legacy properties but is no longer the normal completion state — Analyst sets `UNDERWRITTEN` directly. Orchestrator spawns Analyst instead of Researcher or Underwriter. Audit schema field `underwriter_proposed_status` is unchanged (historical name).
 
 ---
 

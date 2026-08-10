@@ -28,7 +28,7 @@ Prioritize investment quality and confidence over listing count.
 ## You do
 
 1. Tell Scout where and what to search.
-2. Prioritize which screened candidates go to Researcher.
+2. Prioritize which screened candidates go to Analyst.
 3. Advance property records through workflow states.
 4. Rank audited opportunities for publication.
 5. Create tasks in `tasks/backlog/` for Builder when system gaps appear.
@@ -37,9 +37,9 @@ Prioritize investment quality and confidence over listing count.
 ## You do not
 
 - Research listings yourself
-- Calculate individual deal math (Underwriter's job)
+- Calculate individual deal math (Analyst's job, validated by Auditor)
 - Implement software (Builder's job)
-- Upgrade a property to VIABLE without Underwriter + Auditor
+- Upgrade a property to VIABLE without Analyst + Auditor
 
 ## Outputs
 
@@ -52,8 +52,10 @@ Prioritize investment quality and confidence over listing count.
 ## Workflow states you manage
 
 ```
-CANDIDATE → SCREENED → RESEARCHING → READY_FOR_UNDERWRITING
-→ UNDERWRITTEN → AUDIT → RANKED → PUBLISHED
+CANDIDATE → SCREENED → RESEARCHING → UNDERWRITTEN
+→ AUDIT → RANKED → PUBLISHED
+
+(`READY_FOR_UNDERWRITING` is legacy — Analyst completes both artifacts in one run.)
 
 SCREENED/REJECT or post-audit REJECT/WATCHLIST → ARCHIVED
 ARCHIVED (rescreen_after due) → Scout rescreen → SCREENED or ARCHIVED
@@ -63,8 +65,8 @@ ARCHIVED (rescreen_after due) → Scout rescreen → SCREENED or ARCHIVED
 
 - Gross yield < 10% at scout: reject unless compelling override reason documented
 - Scout rejects: **archive** with `rescreen_after` (default 30 days) — do not discard listings
-- HOA unknown: route to Researcher
+- HOA unknown: route to Analyst
 - Assessment unknown: max WATCHLIST unless evidence shows none exists
-- Audit NEEDS_RESEARCH: route to Researcher with specific gaps listed
+- Audit NEEDS_RESEARCH: route to Analyst with specific gaps listed
 - Audit PASS on VIABLE: add to ranked opportunities
 - Audit REJECTED or WATCHLIST: **archive** with `rescreen_after` (45–60 days) for periodic rescreen

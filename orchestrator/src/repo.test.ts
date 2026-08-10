@@ -498,13 +498,13 @@ test("hasInFlightWork blocks recently finished subject", () => {
   const registry: Registry = {
     version: 1,
     entries: {
-      "researcher:property:prop-a:build-evidence": {
-        workKey: "researcher:property:prop-a:build-evidence",
-        role: "researcher",
+      "analyst:property:prop-a:analyze": {
+        workKey: "analyst:property:prop-a:analyze",
+        role: "analyst",
         subjectType: "property",
         subjectId: "prop-a",
-        action: "build-evidence",
-        branch: "agent/prop-a-research",
+        action: "analyze",
+        branch: "agent/prop-a-analyze",
         agentId: "bc-test",
         status: "FINISHED",
         createdAt: "2026-08-10T00:00:00Z",
@@ -514,11 +514,11 @@ test("hasInFlightWork blocks recently finished subject", () => {
   };
 
   assert.equal(
-    hasInFlightWork(registry, "researcher", "property", "prop-a"),
+    hasInFlightWork(registry, "analyst", "property", "prop-a"),
     true
   );
   assert.equal(
-    hasInFlightWork(registry, "underwriter", "property", "prop-a"),
+    hasInFlightWork(registry, "auditor", "property", "prop-a"),
     false
   );
 });

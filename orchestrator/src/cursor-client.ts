@@ -2,6 +2,8 @@ export interface OrchestratorConfig {
   repoUrl: string;
   startingRef: string;
   cloudEnvName: string | null;
+  /** Cloud agent model id (e.g. "auto", "composer-2.5"). See GET /v1/models. */
+  modelId: string;
   maxConcurrentAgents: number;
   autoCreatePR: boolean;
   skipReviewerRequest: boolean;
@@ -69,6 +71,9 @@ export class CursorCloudClient {
       ],
       autoCreatePR: request.autoCreatePR,
       skipReviewerRequest: request.skipReviewerRequest,
+      model: {
+        id: config.modelId,
+      },
     };
 
     if (config.cloudEnvName) {
@@ -157,6 +162,7 @@ export function loadConfig(configPath: string, raw: string): OrchestratorConfig 
     repoUrl: parsed.repoUrl,
     startingRef: parsed.startingRef ?? "main",
     cloudEnvName: parsed.cloudEnvName ?? null,
+    modelId: parsed.modelId ?? "auto",
     maxConcurrentAgents: parsed.maxConcurrentAgents ?? 3,
     autoCreatePR: parsed.autoCreatePR ?? true,
     skipReviewerRequest: parsed.skipReviewerRequest ?? true,
