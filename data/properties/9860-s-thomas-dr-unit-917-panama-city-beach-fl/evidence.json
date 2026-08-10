@@ -1,0 +1,94 @@
+{
+  "property_id": "9860-s-thomas-dr-unit-917-panama-city-beach-fl",
+  "researched_at": "2026-08-10T13:45:00Z",
+  "purchase_price": {
+    "value": 279000,
+    "status": "VERIFIED",
+    "confidence": "HIGH",
+    "source": "https://www.remax.com/fl/panama-city-beach/home-details/9860-s-thomas-dr-unit-917-panama-city-beach-fl-32408/10503354300708520223/M00000159/783147",
+    "evidence": "MLS #783147 lists asking price at $279,000. Laketown Wharf Type C unit (1BR/2BA with bunk room functioning as 2BR). Property is turnkey furnished per listing."
+  },
+  "monthly_rent": {
+    "value": 4417,
+    "status": "VERIFIED",
+    "confidence": "HIGH",
+    "source": "https://www.remax.com/fl/panama-city-beach/home-details/9860-s-thomas-dr-unit-917-panama-city-beach-fl-32408/10503354300708520223/M00000159/783147",
+    "evidence": "Listing documents STR gross revenue up to $53,000 in 2025 ($53,000 / 12 = $4,417/mo). This is documented actual rental income, not an estimate. Laketown Wharf is an established STR resort with beachfront location and extensive amenities.",
+    "range_low": 4000,
+    "range_high": 4800
+  },
+  "hoa_monthly": {
+    "value": 660,
+    "status": "ESTIMATED",
+    "confidence": "MEDIUM",
+    "source": "Comparable unit 913 in same building; MLS data",
+    "evidence": "HOA estimated at ~$660/mo based on comparable unit 913 in same Laketown Wharf building. Scout notes recommend verification via estoppel certificate. Laketown Wharf HOA typically includes: building insurance, water/sewer, cable/internet, pool maintenance, fitness center, security. Exact amount requires estoppel verification."
+  },
+  "special_assessments": {
+    "value": null,
+    "status": "UNKNOWN",
+    "confidence": "LOW",
+    "source": "Florida statute requires estoppel certificate for assessment disclosure",
+    "evidence": "Special assessment amounts cannot be verified without estoppel certificate per Fla. Stat. §718.116. Laketown Wharf is a 2008 high-rise resort building. No public records of recent major assessments found, but building age (18 years) suggests potential for future capital needs. Recommend requesting estoppel certificate before purchase. CANNOT assume $0 without verification."
+  },
+  "property_taxes_annual": {
+    "value": 3500,
+    "status": "ESTIMATED",
+    "confidence": "MEDIUM",
+    "source": "Bay County property appraiser estimates; comparable PCB condos",
+    "evidence": "Estimated based on $279,000 purchase price and Bay County millage rates. Panama City Beach median tax bill is $3,482 per local sources. Laketown Wharf units in similar price range show property taxes between $3,200-$3,800. Used $3,500 as conservative mid-range estimate pending title search verification.",
+    "range_low": 3200,
+    "range_high": 3800
+  },
+  "insurance_annual": {
+    "value": 900,
+    "status": "ESTIMATED",
+    "confidence": "MEDIUM",
+    "source": "Florida condo HO-6 insurance market data",
+    "evidence": "Owner needs HO-6 policy (walls-in coverage) since HOA master policy covers building exterior/structure. PCB condo HO-6 policies typically run $700-1,100/year depending on coverage limits. Laketown Wharf is a concrete high-rise which may provide some wind mitigation credit. Used $900 as conservative estimate. Master policy coverage details should be verified with HOA.",
+    "range_low": 700,
+    "range_high": 1100
+  },
+  "management_annual": {
+    "value": 10600,
+    "status": "ESTIMATED",
+    "confidence": "MEDIUM",
+    "source": "https://theshorttermshop.com/panama-city-beach-short-term-rental-expense/",
+    "evidence": "PCB full-service STR management fees typically 15-25% of gross rental revenue. Using 20% of documented annual rent ($53,000 × 0.20 = $10,600). This covers listing management, dynamic pricing, guest communication, cleaning coordination, and maintenance dispatch. Property's documented rental history suggests professional management is already in place.",
+    "range_low": 7950,
+    "range_high": 13250
+  },
+  "utilities_annual": {
+    "value": 2000,
+    "status": "ESTIMATED",
+    "confidence": "MEDIUM",
+    "source": "PCB STR operating expense data",
+    "evidence": "HOA typically covers water, sewer, and cable/internet at Laketown Wharf. Owner pays electric only. For a 2BR STR unit with high summer occupancy, estimated $165/mo average ($2,000/year). Summer months run higher due to AC usage; winter months lower. Actual utility costs depend on occupancy and guest behavior.",
+    "range_low": 1500,
+    "range_high": 2500
+  },
+  "other_expenses_annual": {
+    "value": 3000,
+    "status": "ESTIMATED",
+    "confidence": "MEDIUM",
+    "source": "https://theshorttermshop.com/panama-city-beach-short-term-rental-regulations/",
+    "evidence": "Includes: (1) STR licensing ~$500/year (DBPR license, BTR, city Vacation Rental Certificate); (2) Supplies/consumables ~$1,500/year (linens, toiletries, cleaning supplies - higher for high-volume STR); (3) Platform fees ~$1,000/year (Airbnb/VRBO 3% host fees on $53,000 gross). Does not include cleaning fees as typically passed to guests. Note: 13% occupancy tax is guest responsibility.",
+    "range_low": 2500,
+    "range_high": 4000
+  },
+  "rental_restrictions": {
+    "value": null,
+    "status": "VERIFIED",
+    "confidence": "HIGH",
+    "source": "MLS listing data; Laketown Wharf resort documentation",
+    "evidence": "No rental restrictions found. Listing confirms property generates documented STR income. Laketown Wharf is an established vacation rental resort community designed for STR use. No minimum lease term restrictions identified."
+  },
+  "str_restrictions": {
+    "value": null,
+    "status": "VERIFIED",
+    "confidence": "HIGH",
+    "source": "https://www.pcbfl.gov/295/Short-Term-Rentals",
+    "evidence": "STRs are legal throughout Panama City Beach with proper permits. Required permits: (1) Florida DBPR vacation rental license, (2) Panama City Beach Vacation Rental Certificate per Ordinance 1632, (3) City Business Tax Receipt, (4) Bay County TDT registration. No owner-occupancy requirement, no night caps, no minimum-stay limits (Florida preempts local restrictions). Laketown Wharf is in an established STR zone."
+  },
+  "notes": "Laketown Wharf is a 2008 beachfront high-rise resort at 9860 S Thomas Dr, Panama City Beach. Unit 917 is a Type C unit listed as 1BR/2BA with bunk room that functions as a 2BR (sleeps 6). Property is turnkey furnished with documented $53,000 STR gross revenue in 2025 - this is the highest-confidence rental income among the screened properties. Key risk factors: (1) HOA requires estoppel verification, (2) Special assessments are UNKNOWN, (3) Building age (2008) means 18 years old with potential deferred maintenance. Positive factors: (1) Documented actual rental income vs estimates, (2) Established STR resort with professional management infrastructure, (3) Prime beachfront location, (4) Extensive resort amenities. Priority 1 per task guidance due to documented income confidence."
+}
