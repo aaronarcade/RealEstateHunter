@@ -193,9 +193,23 @@
       "agentId": "bc-c28cea1c-522d-4153-835e-bbf45b45903e",
       "runId": "run-5895e830-52e2-4e0b-85d5-1b997b1dc3ad",
       "agentUrl": "https://cursor.com/agents/bc-c28cea1c-522d-4153-835e-bbf45b45903e",
-      "status": "ACTIVE",
+      "status": "ERROR",
       "createdAt": "2026-08-10T05:05:45.233Z",
-      "updatedAt": "2026-08-10T05:05:45.233Z"
+      "updatedAt": "2026-08-10T05:09:35.920Z"
+    },
+    "auditor:property:fez-manta-unit-209-barbasquillo-manta-ec:audit": {
+      "workKey": "auditor:property:fez-manta-unit-209-barbasquillo-manta-ec:audit",
+      "role": "auditor",
+      "subjectType": "property",
+      "subjectId": "fez-manta-unit-209-barbasquillo-manta-ec",
+      "action": "audit",
+      "branch": "agent/fez-manta-unit-209-barbasquillo-manta-ec-audit",
+      "agentId": "bc-9cb1435d-7915-4c04-8c35-f66585bf3ad5",
+      "runId": "run-9bc52e89-9f14-4359-baa9-b36d31df7299",
+      "agentUrl": "https://cursor.com/agents/bc-9cb1435d-7915-4c04-8c35-f66585bf3ad5",
+      "status": "ACTIVE",
+      "createdAt": "2026-08-10T05:09:38.711Z",
+      "updatedAt": "2026-08-10T05:09:38.711Z"
     }
   }
 }
