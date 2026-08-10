@@ -286,19 +286,19 @@ def _pill(text: str, tone: str = 'muted') -> str:
     return f'<span class="pill pill-{tone}">{html.escape(text)}</span>'
 
 
-def _field_value_html(field: FieldValue, *, show_status: bool = True) -> str:
+def _field_value_html(field: FieldValue, *, show_status: bool = True, suffix: str = '') -> str:
     if field.value is None:
         return '<span style="color:#94a3b8">—</span>'
 
     formatted = format_currency(field.value)
     if not show_status:
-        return html.escape(formatted)
+        return html.escape(formatted) + suffix
 
     indicator = {'VERIFIED': '✓', 'ESTIMATED': '~', 'UNKNOWN': '?'}[field.status]
     color = {'VERIFIED': '#16a34a', 'ESTIMATED': '#d97706', 'UNKNOWN': '#94a3b8'}[field.status]
     title = html.escape(field.evidence or f'Status: {field.status}, Confidence: {field.confidence}')
     return (
-        f'<span title="{title}">{html.escape(formatted)}'
+        f'<span title="{title}">{html.escape(formatted)}{suffix}'
         f'<span class="field-status" style="color:{color}">{indicator}</span></span>'
     )
 
@@ -410,18 +410,16 @@ def render_opportunity_financial_tags(opp: PropertyOpportunity) -> None:
     parts: list[str] = []
     parts.append(f'<span class="card-price">{_field_value_html(opp.purchase_price)}</span>')
     if opp.monthly_rent.value is not None:
-        rent_html = _field_value_html(opp.monthly_rent)
-        parts.append(f'<span class="pill pill-rent">Rent {rent_html}/mo</span>')
-    cap_tone = 'pill-cap' if opp.cap_rate >= 0.1 else 'pill-cap-missing'
-    parts.append(f'<span class="pill {cap_tone}">Cap {html.escape(format_percent(opp.cap_rate))}</span>')
+        rent_html = _field_value_html(opp.monthly_rent, suffix='/mo')
+        parts.append(f'<span class="pill pill-rent">Rent {rent_html}</span>')
+    parts.append(_status_badge(opp.status))
+    parts.append(_confidence_badge(opp.confidence))
     st.markdown(f'<div class="financial-tags">{"".join(parts)}</div>', unsafe_allow_html=True)
 
 
 def render_opportunity_metric_grid(opp: PropertyOpportunity) -> None:
     cap_kind = 'cap' if opp.cap_rate >= 0.1 else 'cap-bad'
-    hoa_html = _field_value_html(opp.hoa)
-    if opp.hoa.value is not None:
-        hoa_html = f'{hoa_html}<span style="color:#94a3b8;font-size:0.75rem;font-weight:500">/mo</span>'
+    hoa_html = _field_value_html(opp.hoa, suffix='/mo') if opp.hoa.value is not None else _field_value_html(opp.hoa)
 
     chips = [
         _metric_chip('NOI', html.escape(format_currency(opp.noi)), kind='noi'),
@@ -523,10 +521,6 @@ def _opportunity_card(opp: PropertyOpportunity) -> None:
         )
         render_opportunity_financial_tags(opp)
         render_opportunity_metric_grid(opp)
-        st.markdown(
-            f'<div class="card-footer-block"><div class="badge-row">{_status_badge(opp.status)}{_confidence_badge(opp.confidence)}</div></div>',
-            unsafe_allow_html=True,
-        )
         action_cols = st.columns(3, gap='small')
         with action_cols[0]:
             if st.button('Unit', key=f'view_unit_{opp.id}', use_container_width=True, type='primary'):

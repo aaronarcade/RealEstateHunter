@@ -60,7 +60,9 @@ Edit `orchestrator.config.json` at the repo root:
 | `modelId` | Cloud agent model (default: `auto` — Cursor Auto). Omit from config to use the same default. Other ids from `GET /v1/models` (e.g. `composer-2.5`). |
 | `maxConcurrentAgents` | Global cap on simultaneous agents |
 | `roles.*.maxConcurrent` | Per-role caps |
-| `autoCreatePR` | Open PR when agent completes |
+| `autoCreatePR` | Global default: open PR when agent completes |
+| `roles.*.autoCreatePR` | Per-role override. Property roles (`manager`, `scout`, `analyst`, `auditor`) default to `false` — agents push directly to `startingRef`. `builder` keeps PRs. |
+| `skipReviewerRequest` | Skip Cursor reviewer request on PR creation |
 | `manager.scanCriteriaFile` | Path to scout search params (default: `data/search-criteria.json`) |
 
 If you use a named cloud environment from the dashboard, set `cloudEnvName` and the orchestrator omits inline `repos` (the environment already defines them).
@@ -145,7 +147,10 @@ Workflow: `.github/workflows/orchestrator.yml`
 | **Push to `main`** | `data/properties/**` changes (e.g. after merging an agent PR) | **Push** — only the property(ies) in that merge |
 | **Manual** | Actions → Orchestrator → Run workflow | **Full** |
 
-After a Cloud Agent finishes and you **merge its PR**, the push to `main` automatically runs the orchestrator so the **next role for that same property** can spawn — without starting work on unrelated properties or backlog tasks still in flight elsewhere.
+After a Cloud Agent finishes, the orchestrator advances the pipeline in one of two ways:
+
+- **Property pipeline** (`scout`, `analyst`, `auditor`, `manager`): agents push JSON artifacts **directly to `main`** (no PR). The push triggers the orchestrator for that property.
+- **Builder tasks**: agents push to `agent/task-NNN-*` branches and open a PR. `.github/workflows/pull-request.yml` runs CI and **auto-merges** agent PRs when checks pass.
 
 Registry-only commits use `[skip ci]` and do not re-trigger the workflow.
 

@@ -112,6 +112,23 @@ Credentials via `SUPABASE_URL` + keys in environment/secrets only. Service role 
 
 ---
 
+## ADR-009: Direct-to-main for property pipeline; PR auto-merge for Builder
+
+**Date:** 2026-08-10  
+**Status:** Accepted
+
+**Context:** Each agent handoff required opening and manually merging a PR before the orchestrator could spawn the next role. That added hours of latency per property with no investment benefit — the Auditor is already the quality gate.
+
+**Decision:**
+
+1. **Property pipeline** (Manager, Scout, Analyst, Auditor): `roles.*.autoCreatePR: false` — Cloud Agents push JSON artifacts directly to `main`. Push triggers the orchestrator for that property.
+2. **Builder**: keep feature branches + PRs. `.github/workflows/pull-request.yml` runs CI and enables GitHub auto-merge for `agent/` and `cursor/` branch PRs.
+3. Per-role `autoCreatePR` and `skipReviewerRequest` overrides in `orchestrator.config.json`, falling back to global defaults.
+
+**Consequences:** Faster property workflow (no PR wait between Scout → Analyst → Auditor → Manager). Builder code still goes through PR + CI. Concurrent property agents must scope edits to separate `data/properties/{id}/` paths to avoid push conflicts.
+
+---
+
 ## Template
 
 ```markdown

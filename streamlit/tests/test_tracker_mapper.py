@@ -1,10 +1,6 @@
 """Tests for RealEstateTracker row mapping."""
 
-from db_client.tracker_mapper import (
-    derive_tracker_confidence,
-    derive_tracker_status,
-    tracker_row_to_opportunity,
-)
+from db_client.tracker_mapper import derive_tracker_confidence, derive_tracker_status, tracker_row_to_opportunity, _format_unit_address
 
 
 def test_derive_tracker_status_viable():
@@ -62,3 +58,10 @@ def test_tracker_row_to_opportunity_maps_cap_rate_decimal():
     assert opp.purchase_price.value == 210000
     assert opp.hoa.value == 450
     assert opp.listing_url == 'https://example.com/listing'
+
+
+def test_format_unit_address_omits_unit_one_for_homes():
+    assert _format_unit_address('1', 'Private Condominium House, Cuenca, Ecuador') == (
+        'Private Condominium House, Cuenca, Ecuador'
+    )
+    assert _format_unit_address('301', '15413 Front Beach Rd') == 'Unit 301, 15413 Front Beach Rd'
