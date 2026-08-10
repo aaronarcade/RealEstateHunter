@@ -25,9 +25,9 @@
       "agentId": "bc-98bfc7ea-2cd4-4ada-9868-493c66370041",
       "runId": "run-003a2190-0ce6-4b35-af02-699d1543920d",
       "agentUrl": "https://cursor.com/agents/bc-98bfc7ea-2cd4-4ada-9868-493c66370041",
-      "status": "ACTIVE",
+      "status": "ERROR",
       "createdAt": "2026-08-10T04:33:57.512Z",
-      "updatedAt": "2026-08-10T04:33:57.512Z"
+      "updatedAt": "2026-08-10T04:44:01.012Z"
     },
     "builder:task:TASK-002:implement-task": {
       "workKey": "builder:task:TASK-002:implement-task",
@@ -81,9 +81,9 @@
       "agentId": "bc-bd46d0a5-b9d6-484d-a90b-5b26f78dfcf5",
       "runId": "run-07db1e1f-7286-49cf-89f9-e588fbaf2f2b",
       "agentUrl": "https://cursor.com/agents/bc-bd46d0a5-b9d6-484d-a90b-5b26f78dfcf5",
-      "status": "ACTIVE",
+      "status": "ERROR",
       "createdAt": "2026-08-10T04:33:59.757Z",
-      "updatedAt": "2026-08-10T04:33:59.757Z"
+      "updatedAt": "2026-08-10T04:44:01.375Z"
     },
     "researcher:property:17462-front-beach-rd-unit-31c-panama-city-beach-fl:build-evidence": {
       "workKey": "researcher:property:17462-front-beach-rd-unit-31c-panama-city-beach-fl:build-evidence",
@@ -95,9 +95,23 @@
       "agentId": "bc-5571cf78-712e-4b6a-871e-e19ff6fea025",
       "runId": "run-9834375a-463c-4d53-9c49-2dc91722aa50",
       "agentUrl": "https://cursor.com/agents/bc-5571cf78-712e-4b6a-871e-e19ff6fea025",
-      "status": "ACTIVE",
+      "status": "ERROR",
       "createdAt": "2026-08-10T04:34:02.328Z",
-      "updatedAt": "2026-08-10T04:34:02.328Z"
+      "updatedAt": "2026-08-10T04:44:01.739Z"
+    },
+    "underwriter:property:17462-front-beach-rd-unit-31c-panama-city-beach-fl:underwrite": {
+      "workKey": "underwriter:property:17462-front-beach-rd-unit-31c-panama-city-beach-fl:underwrite",
+      "role": "underwriter",
+      "subjectType": "property",
+      "subjectId": "17462-front-beach-rd-unit-31c-panama-city-beach-fl",
+      "action": "underwrite",
+      "branch": "agent/17462-front-beach-rd-unit-31c-panama-city-beach-fl-underwrite",
+      "agentId": "bc-a78ee05f-c201-4ff8-87ee-be63ce08a16e",
+      "runId": "run-3dde480f-0b2c-48d8-86b0-18e71f393f67",
+      "agentUrl": "https://cursor.com/agents/bc-a78ee05f-c201-4ff8-87ee-be63ce08a16e",
+      "status": "ACTIVE",
+      "createdAt": "2026-08-10T04:44:04.397Z",
+      "updatedAt": "2026-08-10T04:44:04.397Z"
     }
   }
 }
