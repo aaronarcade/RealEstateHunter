@@ -212,10 +212,11 @@ describe('PropertyRecordManager', () => {
       expect(updated.created_at).toBe(original.created_at);
     });
 
-    it('updates updated_at timestamp', () => {
+    it('updates updated_at timestamp', async () => {
       const original = manager.readMeta('update-test');
 
       // Small delay to ensure different timestamp
+      await new Promise((resolve) => setTimeout(resolve, 10));
       const updated = manager.updateMeta('update-test', { location: 'New Location' });
 
       expect(updated.updated_at).not.toBe(original.updated_at);
