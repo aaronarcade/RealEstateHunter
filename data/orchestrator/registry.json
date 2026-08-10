@@ -22,12 +22,12 @@
       "subjectId": "pipeline",
       "action": "triage-pipeline",
       "branch": "agent/manager-triage",
-      "agentId": "bc-98bfc7ea-2cd4-4ada-9868-493c66370041",
-      "runId": "run-003a2190-0ce6-4b35-af02-699d1543920d",
-      "agentUrl": "https://cursor.com/agents/bc-98bfc7ea-2cd4-4ada-9868-493c66370041",
-      "status": "ERROR",
-      "createdAt": "2026-08-10T04:33:57.512Z",
-      "updatedAt": "2026-08-10T04:44:01.012Z"
+      "agentId": "bc-a058c18e-5c9f-431c-9762-ae4b4fb68b95",
+      "runId": "run-9fe6c311-9851-4d00-840c-20296e3c5825",
+      "agentUrl": "https://cursor.com/agents/bc-a058c18e-5c9f-431c-9762-ae4b4fb68b95",
+      "status": "ACTIVE",
+      "createdAt": "2026-08-10T08:20:42.147Z",
+      "updatedAt": "2026-08-10T08:20:42.147Z"
     },
     "builder:task:TASK-002:implement-task": {
       "workKey": "builder:task:TASK-002:implement-task",
@@ -207,9 +207,37 @@
       "agentId": "bc-9cb1435d-7915-4c04-8c35-f66585bf3ad5",
       "runId": "run-9bc52e89-9f14-4359-baa9-b36d31df7299",
       "agentUrl": "https://cursor.com/agents/bc-9cb1435d-7915-4c04-8c35-f66585bf3ad5",
-      "status": "ACTIVE",
+      "status": "ERROR",
       "createdAt": "2026-08-10T05:09:38.711Z",
-      "updatedAt": "2026-08-10T05:09:38.711Z"
+      "updatedAt": "2026-08-10T08:20:33.624Z"
+    },
+    "builder:task:TASK-009:implement-task": {
+      "workKey": "builder:task:TASK-009:implement-task",
+      "role": "builder",
+      "subjectType": "task",
+      "subjectId": "TASK-009",
+      "action": "implement-task",
+      "branch": "agent/task-009-scout-condo-volume-sweep",
+      "agentId": "bc-2d35fc22-9310-4386-be95-8e5fc5ec9dd8",
+      "runId": "run-599f0660-28a8-4a03-a5d8-f96ecc952d14",
+      "agentUrl": "https://cursor.com/agents/bc-2d35fc22-9310-4386-be95-8e5fc5ec9dd8",
+      "status": "ACTIVE",
+      "createdAt": "2026-08-10T08:20:36.867Z",
+      "updatedAt": "2026-08-10T08:20:36.867Z"
+    },
+    "builder:task:TASK-010:implement-task": {
+      "workKey": "builder:task:TASK-010:implement-task",
+      "role": "builder",
+      "subjectType": "task",
+      "subjectId": "TASK-010",
+      "action": "implement-task",
+      "branch": "agent/task-010-researcher-screened-batch",
+      "agentId": "bc-3709da02-e30c-49d2-9ae8-17e5c75c88b7",
+      "runId": "run-f68035a9-afb8-47c8-8fe5-53dd2cf767f3",
+      "agentUrl": "https://cursor.com/agents/bc-3709da02-e30c-49d2-9ae8-17e5c75c88b7",
+      "status": "ACTIVE",
+      "createdAt": "2026-08-10T08:20:39.657Z",
+      "updatedAt": "2026-08-10T08:20:39.657Z"
     }
   }
 }
