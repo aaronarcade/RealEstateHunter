@@ -37,6 +37,9 @@ def _load_dotenv() -> None:
 
 
 from compat import secrets_get as _secrets_get
+
+
+def _resolve_supabase_config() -> tuple[Optional[str], Optional[str], Optional[str]]:
     _load_dotenv()
     url = _secrets_get('SUPABASE_URL') or os.environ.get('SUPABASE_URL')
     service_key = _secrets_get('SUPABASE_SERVICE_ROLE_KEY') or os.environ.get('SUPABASE_SERVICE_ROLE_KEY')
