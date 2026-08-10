@@ -5,7 +5,7 @@
   "listing_url": "https://trivo.com.ec/propiedades/fez-manta/",
   "market_id": "manta-ec",
   "created_at": "2026-08-10T05:00:00Z",
-  "updated_at": "2026-08-10T05:30:00Z",
+  "updated_at": "2026-08-10T05:05:00Z",
   "last_screened_at": "2026-08-10T05:00:00Z",
   "screening_snapshot": {
     "price": 62150,
@@ -25,6 +25,12 @@
   "rough_gross_yield": 0.1004,
   "rent_source": "FazWaz 1BR median $419 + amenity premium",
   "rent_confidence": "MEDIUM",
-  "workflow_state": "READY_FOR_UNDERWRITING",
-  "scout_decision": "RESEARCH"
+  "workflow_state": "UNDERWRITTEN",
+  "scout_decision": "RESEARCH",
+  "underwriting_summary": {
+    "noi": 2525,
+    "cap_rate": 0.0406,
+    "proposed_status": "REJECTED",
+    "underwritten_at": "2026-08-10T05:05:00Z"
+  }
 }
