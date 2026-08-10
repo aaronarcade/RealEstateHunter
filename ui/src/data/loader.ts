@@ -1,5 +1,5 @@
 import type { PropertyOpportunity, Confidence, Status } from '../types/property'
-import { fetchOpportunitiesFromSupabase, isSupabaseConfigured } from './supabaseClient'
+import { fetchOpportunitiesFromSupabase, isSupabaseConfigured } from './supabase'
 
 /**
  * Raw property file data structure (as stored in data/properties/{id}/)
@@ -100,33 +100,16 @@ export function transformPropertyData(
 }
 
 /**
- * Fetch published opportunities from Supabase via the shared read client.
+ * Fetch published opportunities from Supabase
+ * Falls back to empty array if Supabase is not configured or fails
  */
 export async function fetchOpportunities(): Promise<PropertyOpportunity[]> {
-  if (isSupabaseConfigured()) {
-    return fetchOpportunitiesFromSupabase()
-  }
-
-  console.warn('Supabase not configured — falling back to static JSON')
-  return fetchOpportunitiesFromStaticJson()
-}
-
-/**
- * Fetch opportunities from static JSON file.
- * Used as fallback when Supabase is not configured.
- */
-export async function fetchOpportunitiesFromStaticJson(): Promise<PropertyOpportunity[]> {
-  try {
-    const response = await fetch('/data/opportunities.json')
-    if (!response.ok) {
-      console.warn('No opportunities data found, returning empty array')
-      return []
-    }
-    return await response.json()
-  } catch (error) {
-    console.error('Failed to fetch opportunities from static JSON:', error)
+  if (!isSupabaseConfigured()) {
+    console.warn('Supabase not configured. Set VITE_SUPABASE_URL and VITE_SUPABASE_ANON_KEY.')
     return []
   }
+
+  return fetchOpportunitiesFromSupabase()
 }
 
 /**

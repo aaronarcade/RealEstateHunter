@@ -1,99 +1,94 @@
 # RealEstateHunter UI
 
-React-based opportunity comparison UI for RealEstateHunter investment analysis.
+React-based opportunity comparison UI for RealEstateHunter. Displays investment opportunities loaded from Supabase.
 
-## Quick Start
+## Setup
+
+### 1. Install dependencies
 
 ```bash
-# Build the shared Supabase client (required dependency)
-cd ../lib/supabase && npm install && npm run build && cd ../../ui
-
-# Install UI dependencies
 npm install
-
-# Start development server
-npm run dev
-
-# Run tests
-npm test
-
-# Build for production
-npm run build
 ```
 
-## Environment Setup
+### 2. Configure environment variables
 
-The UI reads opportunities from **Supabase** via the shared read client in `lib/supabase/` (TASK-007). Create a `.env` file in this directory:
-
-```bash
-cp .env.example .env
-```
-
-### Required Environment Variables
-
-| Variable | Description |
-|----------|-------------|
-| `VITE_SUPABASE_URL` | Supabase project URL (e.g., `https://xxx.supabase.co`) |
-| `VITE_SUPABASE_ANON_KEY` | Supabase anonymous/public key (safe for browser) |
-
-### Optional Environment Variables
-
-| Variable | Default | Description |
-|----------|---------|-------------|
-| `VITE_USE_SAMPLE_DATA` | `false` | Set to `true` to use sample data when Supabase returns empty or is not configured |
-
-### Example `.env` file
+Create a `.env` file in the `ui/` directory:
 
 ```bash
+# Required: Supabase connection
 VITE_SUPABASE_URL=https://quvfkegqgbrvtmufndpn.supabase.co
 VITE_SUPABASE_ANON_KEY=your-anon-key-here
+
+# Optional: Fall back to sample data when Supabase returns empty
 VITE_USE_SAMPLE_DATA=false
 ```
 
-> **Security Note**: Only use the **anon key** in the browser bundle. Never expose the service role key in frontend code.
+| Variable | Required | Description |
+|----------|----------|-------------|
+| `VITE_SUPABASE_URL` | Yes | Supabase project URL |
+| `VITE_SUPABASE_ANON_KEY` | Yes | Supabase anonymous/public key (safe for browser use) |
+| `VITE_USE_SAMPLE_DATA` | No | Set to `true` to show sample data when Supabase returns empty results |
+
+**Security notes:**
+- Only use the **anon key** in the browser, never the service role key
+- The anon key is safe to expose because Supabase uses Row Level Security (RLS)
+- See `docs/SUPABASE.md` for RLS policy details
+
+### 3. Run development server
+
+```bash
+npm run dev
+```
+
+## Scripts
+
+| Command | Description |
+|---------|-------------|
+| `npm run dev` | Start development server |
+| `npm run build` | Build for production |
+| `npm run preview` | Preview production build |
+| `npm run test` | Run tests |
+| `npm run test:watch` | Run tests in watch mode |
+| `npm run lint` | Run linter |
+
+## Architecture
+
+```
+src/
+├── components/       # UI components (OpportunityCard, OpportunityTable, etc.)
+├── data/
+│   ├── loader.ts    # Data fetching (calls Supabase)
+│   ├── supabase.ts  # Supabase client configuration
+│   └── sorting.ts   # Sorting utilities
+├── hooks/
+│   └── useOpportunities.ts  # Data hook with loading/error states
+└── types/
+    └── property.ts  # TypeScript interfaces
+```
 
 ## Data Flow
 
-```
-Supabase (properties table)
-    ↓ @realestatehunter/supabase read client
-ui/src/data/supabaseClient.ts
-    ↓ fetchOpportunities()
-useOpportunities hook
-    ↓
-OpportunityTable / OpportunityCard
-```
+1. UI loads opportunities via `useOpportunities()` hook
+2. Hook calls `fetchOpportunities()` which queries Supabase
+3. If Supabase returns empty AND `VITE_USE_SAMPLE_DATA=true`, falls back to sample data
+4. Opportunities are sorted and displayed in table or card view
 
-### Fallback Behavior
+## Development without Supabase
 
-1. **Supabase configured + data available**: Display Supabase data
-2. **Supabase configured + empty**: Display empty state (or sample data if `VITE_USE_SAMPLE_DATA=true`)
-3. **Supabase not configured**: Fall back to static `/data/opportunities.json`
-4. **Any error + `VITE_USE_SAMPLE_DATA=true`**: Display sample data
+For offline development or when Supabase credentials aren't available:
 
-## Development
+1. Set `VITE_USE_SAMPLE_DATA=true` in `.env`
+2. The UI will display sample data when Supabase returns empty results
 
-### Offline Development
+## Tech Stack
 
-For offline development without Supabase credentials:
-
-```bash
-VITE_USE_SAMPLE_DATA=true npm run dev
-```
-
-This displays built-in sample opportunities for UI development.
-
-### Testing
-
-```bash
-npm test
-npm run test:watch
-```
-
-Tests mock the Supabase client to avoid network calls.
+- React 19 with TypeScript
+- Vite for bundling
+- Vitest for testing
+- Supabase for data storage
 
 ## Related Documentation
 
-- [Architecture](../docs/ARCHITECTURE.md) - System design and data schemas
-- [Supabase Setup](../docs/SUPABASE.md) - Database schema and sync (TASK-007)
-- [Product Rules](../docs/PRODUCT.md) - Investment criteria and thresholds
+- Supabase schema and setup: `docs/SUPABASE.md`
+- Data architecture: `docs/ARCHITECTURE.md`
+- Environment variables: `.env.example` (repo root)

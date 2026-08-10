@@ -1,6 +1,6 @@
 # TASK-005: End-to-end pipeline validation
 
-**Status:** COMPLETE  
+**Status:** DONE
 **Assignee:** Builder  
 **Priority:** P1
 
@@ -39,5 +39,9 @@ Validate that the orchestrator correctly spawns agents and the full property pip
 
 ## Notes
 
-Run before TASK-004 (scout search) to ensure infrastructure is ready.
-Can use the `_example` property as a test case by temporarily changing its state.
+Run before heavy Scout volume (TASK-009) to ensure infrastructure is ready.
+Can use the `_example` property or real screened properties as test cases.
+
+## Completion
+
+Completed 2026-08-10 via PR #6. Tests added to `orchestrator/src/`.

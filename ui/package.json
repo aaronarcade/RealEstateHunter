@@ -13,7 +13,7 @@
     "test:watch": "vitest"
   },
   "dependencies": {
-    "@realestatehunter/supabase": "file:../lib/supabase",
+    "@supabase/supabase-js": "^2.112.2",
     "react": "^19.2.8",
     "react-dom": "^19.2.8"
   },

@@ -1,10 +1,9 @@
-import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest'
-import { transformPropertyData, sampleOpportunities, fetchOpportunities, fetchOpportunitiesFromStaticJson } from './loader'
-import * as supabaseClientModule from './supabaseClient'
+import { describe, it, expect, vi, beforeEach } from 'vitest'
+import { transformPropertyData, sampleOpportunities, fetchOpportunities } from './loader'
 
-vi.mock('./supabaseClient', () => ({
-  isSupabaseConfigured: vi.fn(),
-  fetchOpportunitiesFromSupabase: vi.fn(),
+vi.mock('./supabase', () => ({
+  isSupabaseConfigured: vi.fn(() => false),
+  fetchOpportunitiesFromSupabase: vi.fn(() => Promise.resolve([])),
 }))
 
 describe('transformPropertyData', () => {
@@ -166,104 +165,53 @@ describe('sampleOpportunities', () => {
 })
 
 describe('fetchOpportunities', () => {
-  const mockOpportunity = {
-    id: 'supabase-property',
-    address: '456 Supabase St',
-    location: 'Tampa, FL',
-    listingUrl: 'https://example.com/456',
-    purchasePrice: { value: 250000, status: 'VERIFIED' as const, confidence: 'HIGH' as const },
-    monthlyRent: { value: 2500, status: 'VERIFIED' as const, confidence: 'HIGH' as const },
-    annualGrossRent: 30000,
-    annualOperatingExpenses: 8000,
-    noi: 22000,
-    capRate: 0.088,
-    hoa: { value: 300, status: 'VERIFIED' as const, confidence: 'HIGH' as const },
-    assessment: { value: 0, status: 'VERIFIED' as const, confidence: 'HIGH' as const },
-    confidence: 'HIGH' as const,
-    status: 'VIABLE' as const,
-    sources: [],
-    rankedAt: '2026-08-09T12:00:00Z',
-  }
-
   beforeEach(() => {
-    vi.clearAllMocks()
+    vi.resetModules()
   })
 
-  afterEach(() => {
-    vi.clearAllMocks()
+  it('returns empty array when Supabase is not configured', async () => {
+    const { isSupabaseConfigured } = await import('./supabase')
+    vi.mocked(isSupabaseConfigured).mockReturnValue(false)
+
+    const consoleWarn = vi.spyOn(console, 'warn').mockImplementation(() => {})
+    const result = await fetchOpportunities()
+
+    expect(result).toEqual([])
+    expect(consoleWarn).toHaveBeenCalledWith(
+      'Supabase not configured. Set VITE_SUPABASE_URL and VITE_SUPABASE_ANON_KEY.'
+    )
+
+    consoleWarn.mockRestore()
   })
 
-  it('fetches from Supabase when configured', async () => {
-    vi.mocked(supabaseClientModule.isSupabaseConfigured).mockReturnValue(true)
-    vi.mocked(supabaseClientModule.fetchOpportunitiesFromSupabase).mockResolvedValue([mockOpportunity])
+  it('calls fetchOpportunitiesFromSupabase when configured', async () => {
+    const mockData = [
+      {
+        id: 'test',
+        address: '123 Test',
+        location: 'Tampa, FL',
+        listingUrl: 'https://example.com',
+        purchasePrice: { value: 200000, status: 'VERIFIED', confidence: 'HIGH' },
+        monthlyRent: { value: 2000, status: 'VERIFIED', confidence: 'HIGH' },
+        annualGrossRent: 24000,
+        annualOperatingExpenses: 6000,
+        noi: 18000,
+        capRate: 0.09,
+        hoa: { value: 300, status: 'VERIFIED', confidence: 'HIGH' },
+        assessment: { value: 0, status: 'VERIFIED', confidence: 'HIGH' },
+        confidence: 'HIGH',
+        status: 'VIABLE',
+      },
+    ]
+
+    const { isSupabaseConfigured, fetchOpportunitiesFromSupabase } = await import('./supabase')
+    vi.mocked(isSupabaseConfigured).mockReturnValue(true)
+    vi.mocked(fetchOpportunitiesFromSupabase).mockResolvedValue(mockData as any)
 
     const result = await fetchOpportunities()
 
-    expect(supabaseClientModule.isSupabaseConfigured).toHaveBeenCalled()
-    expect(supabaseClientModule.fetchOpportunitiesFromSupabase).toHaveBeenCalled()
-    expect(result).toHaveLength(1)
-    expect(result[0].id).toBe('supabase-property')
-  })
-
-  it('falls back to static JSON when Supabase is not configured', async () => {
-    vi.mocked(supabaseClientModule.isSupabaseConfigured).mockReturnValue(false)
-
-    const mockFetch = vi.fn().mockResolvedValue({
-      ok: true,
-      json: () => Promise.resolve([mockOpportunity]),
-    })
-    vi.stubGlobal('fetch', mockFetch)
-
-    await fetchOpportunities()
-
-    expect(supabaseClientModule.isSupabaseConfigured).toHaveBeenCalled()
-    expect(supabaseClientModule.fetchOpportunitiesFromSupabase).not.toHaveBeenCalled()
-    expect(mockFetch).toHaveBeenCalledWith('/data/opportunities.json')
-
-    vi.unstubAllGlobals()
-  })
-})
-
-describe('fetchOpportunitiesFromStaticJson', () => {
-  beforeEach(() => {
-    vi.clearAllMocks()
-  })
-
-  afterEach(() => {
-    vi.unstubAllGlobals()
-  })
-
-  it('fetches from static JSON file', async () => {
-    const mockData = [{ id: 'static-property' }]
-    const mockFetch = vi.fn().mockResolvedValue({
-      ok: true,
-      json: () => Promise.resolve(mockData),
-    })
-    vi.stubGlobal('fetch', mockFetch)
-
-    const result = await fetchOpportunitiesFromStaticJson()
-
-    expect(mockFetch).toHaveBeenCalledWith('/data/opportunities.json')
+    expect(isSupabaseConfigured).toHaveBeenCalled()
+    expect(fetchOpportunitiesFromSupabase).toHaveBeenCalled()
     expect(result).toEqual(mockData)
-  })
-
-  it('returns empty array when fetch fails', async () => {
-    const mockFetch = vi.fn().mockResolvedValue({
-      ok: false,
-    })
-    vi.stubGlobal('fetch', mockFetch)
-
-    const result = await fetchOpportunitiesFromStaticJson()
-
-    expect(result).toEqual([])
-  })
-
-  it('returns empty array on network error', async () => {
-    const mockFetch = vi.fn().mockRejectedValue(new Error('Network error'))
-    vi.stubGlobal('fetch', mockFetch)
-
-    const result = await fetchOpportunitiesFromStaticJson()
-
-    expect(result).toEqual([])
   })
 })

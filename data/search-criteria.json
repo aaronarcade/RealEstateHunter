@@ -1,7 +1,7 @@
 {
   "$schema": "../schemas/search-criteria.json",
-  "version": 1,
-  "updated_at": "2026-08-10T03:00:00Z",
+  "version": 2,
+  "updated_at": "2026-08-10T04:20:00Z",
   "updated_by": "manager",
   "target_cap_rate": 0.10,
   "target_yield_minimum": 0.10,
@@ -27,25 +27,43 @@
       "rationale": "Affordable price points, growing population, military presence"
     },
     {
+      "id": "panama-city-beach-fl",
+      "name": "Panama City Beach, FL",
+      "priority": 3,
+      "status": "ACTIVE",
+      "rationale": "Strong STR market, 2 candidates passed yield screen (19%+), established condo buildings with documented rental history",
+      "added": "2026-08-10",
+      "added_by": "manager"
+    },
+    {
       "id": "birmingham-al",
       "name": "Birmingham, AL",
-      "priority": 3,
+      "priority": 4,
       "status": "ACTIVE",
       "rationale": "Low entry prices, potential for higher yields"
     },
     {
       "id": "memphis-tn",
       "name": "Memphis, TN",
-      "priority": 4,
+      "priority": 5,
       "status": "ACTIVE",
       "rationale": "Strong rental market, affordable prices, no state income tax"
     },
     {
       "id": "cleveland-oh",
       "name": "Cleveland, OH",
-      "priority": 5,
+      "priority": 6,
       "status": "ACTIVE",
       "rationale": "Low prices relative to rent, diverse employment base"
+    },
+    {
+      "id": "celebration-fl",
+      "name": "Celebration, FL (Orlando metro)",
+      "priority": 7,
+      "status": "WATCH",
+      "rationale": "Condo-hotel model found (Melia); high HOA ($1,242/mo) but 20%+ gross yield. Monitor for price drops.",
+      "added": "2026-08-10",
+      "added_by": "manager"
     }
   ],
   "property_filters": {

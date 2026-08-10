@@ -2,17 +2,10 @@ import { useState, useEffect, useCallback, useMemo } from 'react'
 import type { PropertyOpportunity, SortConfig, SortField } from '../types/property'
 import { fetchOpportunities, sampleOpportunities } from '../data/loader'
 import { sortOpportunities, getNextSortDirection } from '../data/sorting'
-
-/**
- * Sample data fallback is enabled only when VITE_USE_SAMPLE_DATA=true.
- */
-const USE_SAMPLE_DATA_FALLBACK = import.meta.env.VITE_USE_SAMPLE_DATA === 'true'
+import { isSampleDataEnabled } from '../data/supabase'
 
 interface UseOpportunitiesOptions {
-  /**
-   * Force sample data usage regardless of Supabase.
-   * Primarily for testing or offline development.
-   */
+  /** Force use of sample data (for testing) - overrides VITE_USE_SAMPLE_DATA */
   forceSampleData?: boolean
 }
 
@@ -36,8 +29,7 @@ export function useOpportunities(options: UseOpportunitiesOptions = {}) {
           setOpportunities(sampleOpportunities)
         } else {
           const data = await fetchOpportunities()
-          if (data.length === 0 && USE_SAMPLE_DATA_FALLBACK) {
-            console.info('Supabase returned empty, using sample data fallback (VITE_USE_SAMPLE_DATA=true)')
+          if (data.length === 0 && isSampleDataEnabled()) {
             setOpportunities(sampleOpportunities)
           } else {
             setOpportunities(data)
@@ -46,8 +38,7 @@ export function useOpportunities(options: UseOpportunitiesOptions = {}) {
       } catch (e) {
         if (mounted) {
           setError(e instanceof Error ? e : new Error('Failed to load opportunities'))
-          if (USE_SAMPLE_DATA_FALLBACK) {
-            console.info('Error fetching opportunities, using sample data fallback')
+          if (isSampleDataEnabled()) {
             setOpportunities(sampleOpportunities)
           }
         }

@@ -1,0 +1,92 @@
+{
+  "property_id": "17462-front-beach-rd-unit-31c-panama-city-beach-fl",
+  "researched_at": "2026-08-10T04:45:00Z",
+  "purchase_price": {
+    "value": 249900,
+    "status": "VERIFIED",
+    "confidence": "HIGH",
+    "source": "https://www.coldwellbanker.com/fl/panama-city-beach/17462-front-beach-rd-unit-31c/lid-P00800000HCIkd7SYskjUjQwp25E3lWdaIFyCn5l",
+    "evidence": "MLS #1005938 lists asking price at $249,900. Listing updated August 9, 2026. Seller financing available per listing."
+  },
+  "monthly_rent": {
+    "value": 3200,
+    "status": "ESTIMATED",
+    "confidence": "MEDIUM",
+    "source": "Mashvisor STR projection, AirDNA/AirROI market data, Florida Rentals comps",
+    "evidence": "Mashvisor projects $3,234/mo STR income for this specific unit (Aug 2026). AirDNA 2025 data shows average 2BR Panama City Beach STR generates $49,982/year (~$4,165/mo). Market median for all PCB listings is $31,852/year (~$2,654/mo). This unit at Horizon South is 0.25 mi from beach with proven rental history per listing. Conservative estimate at $3,200/mo accounting for unit's non-gulf-front location and building age (1983). Highly seasonal market: peak June-July at 80%+ occupancy, winter 25-35% occupancy.",
+    "range_low": 2800,
+    "range_high": 4000
+  },
+  "hoa_monthly": {
+    "value": 630,
+    "status": "VERIFIED",
+    "confidence": "HIGH",
+    "source": "https://tropicshoresrealty.com/listings/1173932634-17462+front+beach+road+31c-panama+city+beach-fl-32413",
+    "evidence": "MLS data states HOA fee of $630/month. HOA includes: Association Management, Fitness Facility, Insurance (master policy exterior/wind/hail), Internet, Legal/Accounting, Grounds Maintenance, Pools (4 pools including 1 heated), Sewer, Tennis Courts, Trash, Water. Bay County median HOA is $604/mo; this is slightly above median but includes extensive amenities at Horizon South resort."
+  },
+  "special_assessments": {
+    "value": null,
+    "status": "UNKNOWN",
+    "confidence": "LOW",
+    "source": "Florida statute requires estoppel certificate for assessment disclosure; Common Elements report for Horizon South HOA",
+    "evidence": "Special assessment amounts are member-gated by Florida statute and cannot be verified without estoppel certificate (Fla. Stat. §718.116). Common Elements data shows Horizon South Homeowners Association has recent major building permits with median value ~$160,050 (last 6 years), suggesting potential capital needs. Bay County residential insurance average $1,530/policy (Mar 2026). Recommend requesting estoppel certificate from association before purchase to verify any current or scheduled assessments. CANNOT assume $0 without verification."
+  },
+  "property_taxes_annual": {
+    "value": 3064,
+    "status": "VERIFIED",
+    "confidence": "HIGH",
+    "source": "https://www.compass.com/homedetails/17462-Front-Beach-Rd-Unit-31C-Panama-City-Beach-FL-32413/FPC7O_pid/",
+    "evidence": "Compass MLS listing shows Tax Annual Amount: $3,064.00 (Tax Year 2025). Parcel Number: 38335-145-000. Located in Panama City Beach city limits (Tax District 13). Panama City Beach 2026 millage rate is 5.4362 per flpropertycheck data. Median PCB tax bill is $3,482, so this property is below median."
+  },
+  "insurance_annual": {
+    "value": 800,
+    "status": "ESTIMATED",
+    "confidence": "MEDIUM",
+    "source": "https://seltzerrealestate.com/average-home-cost-in-panama-city-beach/, https://insuranceleadsflorida.com/florida-condo-insurance-ho6-guide-2/",
+    "evidence": "Owner needs HO-6 policy (walls-in coverage) since HOA master policy covers building exterior/structure/wind/hail. Local sources indicate PCB condo HO-6 policies run $600-900/year due to master policy coverage. Statewide average is $900-$2,500. Used $800 as conservative mid-range estimate for this modest 663 sq ft unit. Master policy premiums have decreased 10-15% in 2026 per local market data.",
+    "range_low": 600,
+    "range_high": 1200
+  },
+  "management_annual": {
+    "value": 7680,
+    "status": "ESTIMATED",
+    "confidence": "MEDIUM",
+    "source": "https://theshorttermshop.com/panama-city-beach-short-term-rental-expense/, https://www.coastalvacationrentals.com/how-much-do-vacation-rental-property-managers-charge-panama-city-beach",
+    "evidence": "PCB full-service STR management fees typically 15-25% of gross rental revenue; most cluster at 18-22%. Using 20% of estimated annual rent ($3,200 × 12 = $38,400 × 0.20 = $7,680). This covers listing management, dynamic pricing, guest communication, cleaning coordination, and maintenance dispatch. Self-management would eliminate this cost but requires significant time commitment, especially during summer peak with turnovers every 2-3 days.",
+    "range_low": 5760,
+    "range_high": 9600
+  },
+  "utilities_annual": {
+    "value": 1800,
+    "status": "ESTIMATED",
+    "confidence": "MEDIUM",
+    "source": "https://theshorttermshop.com/panama-city-beach-short-term-rental-expense/",
+    "evidence": "HOA covers water, sewer, trash, internet, and cable. Owner pays electric only. STR expense breakdowns for PCB show utilities at $4,200-$7,800/year for 3BR homes where owner pays all utilities. For this 663 sq ft 2BR with HOA covering most utilities, estimated $150/mo electric ($1,800/year). Building has AC replaced 2021 per listing, which helps efficiency.",
+    "range_low": 1200,
+    "range_high": 2400
+  },
+  "other_expenses_annual": {
+    "value": 2500,
+    "status": "ESTIMATED",
+    "confidence": "MEDIUM",
+    "source": "https://theshorttermshop.com/panama-city-beach-short-term-rental-regulations/, https://www.pcbfl.gov/295/Short-Term-Rentals",
+    "evidence": "Includes: (1) STR licensing ~$500/year (DBPR license, BTR, city Vacation Rental Certificate $150 renewal + $75 inspection); (2) Supplies/consumables ~$1,200/year (linens, toiletries, cleaning supplies); (3) Platform fees ~$800/year (Airbnb/VRBO 3% host fees on $38,400 gross). Does not include cleaning fees as typically passed to guests. Note: 13% occupancy tax (5% TDT + 7% sales + 1% BTR) is guest responsibility, not owner expense.",
+    "range_low": 2000,
+    "range_high": 3500
+  },
+  "rental_restrictions": {
+    "value": null,
+    "status": "VERIFIED",
+    "confidence": "HIGH",
+    "source": "https://www.mashvisor.com/property/fl/17462-front-beach-rd-apt-31c-32413/1221207, MLS listing data",
+    "evidence": "No rental restrictions found. Listing confirms 'proven rental history' and property is currently tenant-occupied per MLS data (Occupant Type: Tenant). Horizon South is an established STR-friendly resort community. No minimum lease term restrictions identified."
+  },
+  "str_restrictions": {
+    "value": null,
+    "status": "VERIFIED",
+    "confidence": "HIGH",
+    "source": "https://www.pcbfl.gov/295/Short-Term-Rentals, https://theshorttermshop.com/panama-city-beach-short-term-rental-regulations/",
+    "evidence": "STRs are legal throughout Panama City Beach with proper permits. Mashvisor shows property as 'Legal for non-occupied' STR. Required permits: (1) Florida DBPR vacation rental license (VRC for condo), (2) Panama City Beach Vacation Rental Certificate per Ordinance 1632, (3) City Business Tax Receipt (BTR), (4) Bay County TDT registration. No owner-occupancy requirement, no night caps, no minimum-stay limits (Florida preempts). Annual fire/life-safety inspection required. This is an active STR market with 10,141+ active Airbnb rentals in PCB."
+  },
+  "notes": "Horizon South IV is a 1983 gated resort community at 17462 Front Beach Rd. Unit 31C is a 2BR/2BA, 663 sq ft unit (legal description shows '1BR 2B/LOFT' suggesting loft configuration). Fully furnished and turnkey per listing. Property is quarter mile from beach with private beach entrance through community. Resort amenities include 4 pools (1 heated), hot tub, fitness center, mini golf, tennis courts, basketball, shuffleboard. Golf cart friendly. Unit updates: AC 2021, stainless refrigerator, updated water heater. Seller financing available. Key risk factors: (1) Building age (1983) may mean deferred maintenance and potential future assessments, (2) HOA at $630/mo is above scrutiny threshold and exceeds county median, (3) Special assessments are UNKNOWN and require estoppel verification, (4) Highly seasonal rental market with weak winter occupancy 25-35%. Horizon South has multiple sub-associations (I, II, III, IV) - this unit is in Horizon South IV."
+}

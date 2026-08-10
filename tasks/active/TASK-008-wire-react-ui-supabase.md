@@ -25,3 +25,11 @@ Replace hardcoded sample data in `ui/` with live opportunities loaded from **Sup
 ## Notes
 
 Git `data/properties/` remains source for agents; UI reads Supabase after sync.
+
+## Implementation Notes
+
+- Added browser Supabase client in `ui/src/data/supabase.ts`
+- Modified `ui/src/data/loader.ts` to call Supabase via `fetchOpportunitiesFromSupabase()`
+- Updated `useOpportunities` hook with `isSampleDataEnabled()` check for fallback logic
+- Added comprehensive tests in `ui/src/data/supabase.test.ts`
+- Updated `ui/README.md` with full environment variable documentation and setup instructions
