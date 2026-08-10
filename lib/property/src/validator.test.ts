@@ -178,6 +178,152 @@ describe('SchemaValidator', () => {
       const result = validator.validateMeta(meta);
       expect(result.valid).toBe(false);
     });
+
+    it('validates meta with Scout screening fields', () => {
+      const meta: PropertyMeta = {
+        id: '123-main-st-tampa-fl',
+        address: '123 Main St, Tampa, FL 33602',
+        location: 'Tampa, FL',
+        listing_url: 'https://example.com/listing/123',
+        workflow_state: 'SCREENED',
+        scout_decision: 'RESEARCH',
+        property_type: 'condo',
+        building_name: 'Sunset Towers',
+        unit: '305',
+        beds: 2,
+        baths: 2,
+        asking_price: 199000,
+        rough_monthly_rent: 2200,
+        rough_gross_yield: 0.133,
+        advertised_hoa: 485,
+        market_id: 'tampa-fl',
+        mls_id: 'TB123456',
+        rent_source: 'Zillow estimate',
+        rent_confidence: 'MEDIUM',
+        scout_notes: 'HOA exceeds $500/mo threshold. Building has 50+ units.',
+        created_at: '2026-08-09T12:00:00Z',
+        updated_at: '2026-08-09T12:00:00Z',
+      };
+
+      const result = validator.validateMeta(meta);
+      expect(result.valid).toBe(true);
+    });
+
+    it('validates meta with null advertised_hoa', () => {
+      const meta: PropertyMeta = {
+        id: 'test-property',
+        address: '456 Oak Ave, Jacksonville, FL',
+        listing_url: 'https://example.com/listing/456',
+        workflow_state: 'SCREENED',
+        scout_decision: 'RESEARCH',
+        beds: 3,
+        baths: 2.5,
+        asking_price: 250000,
+        rough_monthly_rent: 2500,
+        rough_gross_yield: 0.12,
+        advertised_hoa: null,
+        market_id: 'jacksonville-fl',
+        created_at: '2026-08-09T12:00:00Z',
+        updated_at: '2026-08-09T12:00:00Z',
+      };
+
+      const result = validator.validateMeta(meta);
+      expect(result.valid).toBe(true);
+    });
+
+    it('validates all rent_confidence values', () => {
+      const confidences = ['HIGH', 'MEDIUM', 'LOW'];
+
+      for (const confidence of confidences) {
+        const meta = {
+          id: 'test',
+          address: 'Test Address',
+          listing_url: 'https://example.com',
+          workflow_state: 'SCREENED',
+          rent_confidence: confidence,
+          created_at: '2026-08-09T12:00:00Z',
+          updated_at: '2026-08-09T12:00:00Z',
+        };
+
+        const result = validator.validateMeta(meta);
+        expect(result.valid, `Confidence ${confidence} should be valid`).toBe(true);
+      }
+    });
+
+    it('rejects invalid rent_confidence value', () => {
+      const meta = {
+        id: 'test',
+        address: 'Test Address',
+        listing_url: 'https://example.com',
+        workflow_state: 'SCREENED',
+        rent_confidence: 'VERY_HIGH',
+        created_at: '2026-08-09T12:00:00Z',
+        updated_at: '2026-08-09T12:00:00Z',
+      };
+
+      const result = validator.validateMeta(meta);
+      expect(result.valid).toBe(false);
+    });
+
+    it('rejects negative asking_price', () => {
+      const meta = {
+        id: 'test',
+        address: 'Test Address',
+        listing_url: 'https://example.com',
+        workflow_state: 'SCREENED',
+        asking_price: -100000,
+        created_at: '2026-08-09T12:00:00Z',
+        updated_at: '2026-08-09T12:00:00Z',
+      };
+
+      const result = validator.validateMeta(meta);
+      expect(result.valid).toBe(false);
+    });
+
+    it('rejects rough_gross_yield greater than 1', () => {
+      const meta = {
+        id: 'test',
+        address: 'Test Address',
+        listing_url: 'https://example.com',
+        workflow_state: 'SCREENED',
+        rough_gross_yield: 1.5,
+        created_at: '2026-08-09T12:00:00Z',
+        updated_at: '2026-08-09T12:00:00Z',
+      };
+
+      const result = validator.validateMeta(meta);
+      expect(result.valid).toBe(false);
+    });
+
+    it('validates meta with rescreen fields for archived property', () => {
+      const meta: PropertyMeta = {
+        id: 'archived-property',
+        address: '789 Elm St, Memphis, TN',
+        listing_url: 'https://example.com/listing/789',
+        workflow_state: 'ARCHIVED',
+        scout_decision: 'REJECT',
+        asking_price: 150000,
+        rough_monthly_rent: 1100,
+        rough_gross_yield: 0.088,
+        market_id: 'memphis-tn',
+        rescreen_after: '2026-09-10T00:00:00Z',
+        last_screened_at: '2026-08-10T14:00:00Z',
+        rescreen_count: 0,
+        screening_snapshot: {
+          price: 150000,
+          rough_monthly_rent: 1100,
+          rough_gross_yield: 0.088,
+          advertised_hoa: null,
+          screened_at: '2026-08-10T14:00:00Z',
+        },
+        scout_notes: 'Gross yield 8.8% below 10% threshold. Rescreen in 30 days.',
+        created_at: '2026-08-10T14:00:00Z',
+        updated_at: '2026-08-10T14:00:00Z',
+      };
+
+      const result = validator.validateMeta(meta);
+      expect(result.valid).toBe(true);
+    });
   });
 
   describe('PropertyEvidence schema', () => {
@@ -461,6 +607,33 @@ describe('SchemaValidator', () => {
 
       const result = validator.validateAudit(audit);
       expect(result.valid).toBe(true);
+    });
+  });
+
+  describe('TASK-009 Scout condo screening fields validation', () => {
+    it('validates 17462-front-beach-rd meta.json with Scout fields', async () => {
+      const { readFileSync } = await import('node:fs');
+      const metaPath = resolve(
+        __dirname,
+        '../../../data/properties/17462-front-beach-rd-unit-31c-panama-city-beach-fl/meta.json'
+      );
+      const meta = JSON.parse(readFileSync(metaPath, 'utf-8'));
+
+      const result = validator.validateMeta(meta);
+      expect(result.valid).toBe(true);
+
+      expect(meta.property_type).toBe('condo');
+      expect(meta.beds).toBe(2);
+      expect(meta.baths).toBe(2);
+      expect(meta.asking_price).toBe(249900);
+      expect(meta.rough_monthly_rent).toBe(3234);
+      expect(meta.rough_gross_yield).toBe(0.155);
+      expect(meta.advertised_hoa).toBe(630);
+      expect(meta.market_id).toBe('panama-city-beach-fl');
+      expect(meta.mls_id).toBe('1005938');
+      expect(meta.rent_source).toBeDefined();
+      expect(meta.rent_confidence).toBe('MEDIUM');
+      expect(meta.scout_notes).toContain('HOA');
     });
   });
 

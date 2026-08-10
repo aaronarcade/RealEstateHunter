@@ -91,6 +91,54 @@
         "screened_at": { "type": "string", "format": "date-time" }
       }
     },
+    "beds": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "Number of bedrooms"
+    },
+    "baths": {
+      "type": "number",
+      "minimum": 0,
+      "description": "Number of bathrooms (can be fractional, e.g., 1.5)"
+    },
+    "asking_price": {
+      "type": "number",
+      "minimum": 0,
+      "description": "Current listing asking price"
+    },
+    "rough_monthly_rent": {
+      "type": "number",
+      "minimum": 0,
+      "description": "Scout's rough estimate of monthly rent"
+    },
+    "rough_gross_yield": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 1,
+      "description": "Scout's rough gross yield calculation (annual rent / price)"
+    },
+    "advertised_hoa": {
+      "type": ["number", "null"],
+      "minimum": 0,
+      "description": "Advertised monthly HOA fee from listing, null if not stated"
+    },
+    "market_id": {
+      "type": "string",
+      "description": "Market identifier matching search-criteria.json markets[].id"
+    },
+    "mls_id": {
+      "type": "string",
+      "description": "MLS listing identifier"
+    },
+    "rent_source": {
+      "type": "string",
+      "description": "Source of the rent estimate (e.g., Zillow, Rentometer, listing)"
+    },
+    "rent_confidence": {
+      "type": "string",
+      "enum": ["HIGH", "MEDIUM", "LOW"],
+      "description": "Scout's confidence in the rent estimate"
+    },
     "created_at": {
       "type": "string",
       "format": "date-time"

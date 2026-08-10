@@ -46,6 +46,32 @@ export type AuditResult = 'PASS' | 'NEEDS_RESEARCH' | 'DOWNGRADE';
 export type FindingSeverity = 'info' | 'warning' | 'blocking';
 
 /**
+ * Archive reason for properties that left the active pipeline
+ */
+export type ArchiveReason =
+  | 'scout_reject'
+  | 'underwrite_reject'
+  | 'audit_reject'
+  | 'watchlist'
+  | 'listing_inactive';
+
+/**
+ * Confidence level for estimates
+ */
+export type ConfidenceLevel = 'HIGH' | 'MEDIUM' | 'LOW';
+
+/**
+ * Screening snapshot for rescreen comparison
+ */
+export interface ScreeningSnapshot {
+  price?: number;
+  rough_monthly_rent?: number;
+  rough_gross_yield?: number;
+  advertised_hoa?: number | null;
+  screened_at?: string;
+}
+
+/**
  * Property metadata - workflow state and listing info
  */
 export interface PropertyMeta {
@@ -55,6 +81,25 @@ export interface PropertyMeta {
   listing_url: string;
   workflow_state: WorkflowState;
   scout_decision?: ScoutDecision;
+  property_type?: string;
+  building_name?: string;
+  unit?: string;
+  scout_notes?: string;
+  archive_reason?: ArchiveReason;
+  rescreen_after?: string;
+  last_screened_at?: string;
+  rescreen_count?: number;
+  screening_snapshot?: ScreeningSnapshot;
+  beds?: number;
+  baths?: number;
+  asking_price?: number;
+  rough_monthly_rent?: number;
+  rough_gross_yield?: number;
+  advertised_hoa?: number | null;
+  market_id?: string;
+  mls_id?: string;
+  rent_source?: string;
+  rent_confidence?: ConfidenceLevel;
   created_at: string;
   updated_at: string;
 }
