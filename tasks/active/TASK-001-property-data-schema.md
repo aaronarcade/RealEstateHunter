@@ -27,6 +27,15 @@ Implement the property evidence and workflow file structure defined in `docs/ARC
    - Test invalid inputs are rejected
    - Run in CI
 
+## Urgency note (2026-08-10 Manager triage)
+
+Scout (TASK-009) and Researcher (TASK-010) are ready to generate/update property records at volume. Helper scripts are needed to:
+- Let Scout batch-create `meta.json` reliably
+- Let Researcher validate evidence files before committing
+- Let orchestrator verify property state
+
+**Complete helper scripts before TASK-009 starts heavy volume scanning.**
+
 ## Notes
 
 Reference: `docs/ARCHITECTURE.md` data layout section.
