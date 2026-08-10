@@ -69,6 +69,24 @@ Log of significant technical and process decisions. Add a new entry when introdu
 
 ---
 
+## ADR-006: Supabase as UI runtime store; Git as agent artifacts
+
+**Date:** 2026-08-10  
+**Status:** Proposed
+
+**Context:** Property records currently live as JSON in Git (`data/properties/`). Agents and PR review work well with files, but UIs (React, Streamlit) need a queryable runtime store. Aaron already operates a Supabase project with similar property data.
+
+**Decision:** Use a **dual-layer** model:
+
+1. **Git JSON** — agent workflow, validation, audit trail, orchestrator input (unchanged).
+2. **Supabase (Postgres)** — runtime source for UIs; populated by sync when properties are ranked/published.
+
+Credentials via `SUPABASE_URL` + keys in environment/secrets only. Service role for server-side sync; anon key + RLS for browser reads where applicable.
+
+**Consequences:** Builder implements TASK-007 (mapping, read client, sync). Streamlit and React read Supabase, not repo files. Agents continue Git-based handoffs until a future task optionally writes directly to Supabase.
+
+---
+
 ## Template
 
 ```markdown

@@ -251,13 +251,14 @@ export class PropertyRecordManager {
 
     const validTransitions: Record<WorkflowState, WorkflowState[]> = {
       CANDIDATE: ['SCREENED'],
-      SCREENED: ['RESEARCHING'],
+      SCREENED: ['RESEARCHING', 'ARCHIVED'],
       RESEARCHING: ['READY_FOR_UNDERWRITING'],
       READY_FOR_UNDERWRITING: ['UNDERWRITTEN'],
       UNDERWRITTEN: ['AUDIT'],
-      AUDIT: ['RANKED', 'RESEARCHING'], // NEEDS_RESEARCH routes back
-      RANKED: ['PUBLISHED'],
-      PUBLISHED: [],
+      AUDIT: ['RANKED', 'RESEARCHING', 'ARCHIVED'],
+      RANKED: ['PUBLISHED', 'ARCHIVED'],
+      PUBLISHED: ['ARCHIVED'],
+      ARCHIVED: ['CANDIDATE', 'SCREENED'],
     };
 
     const allowed = validTransitions[currentState];

@@ -22,7 +22,8 @@ export type WorkflowState =
   | 'UNDERWRITTEN'
   | 'AUDIT'
   | 'RANKED'
-  | 'PUBLISHED';
+  | 'PUBLISHED'
+  | 'ARCHIVED';
 
 /**
  * Scout decision outcome

@@ -5,6 +5,17 @@ on:
     # 07:00 UTC daily (~2am US Eastern during standard time)
     - cron: "0 7 * * *"
   workflow_dispatch:
+  push:
+    branches:
+      - main
+    paths:
+      - "data/properties/**"
+      - "tasks/**"
+      - "data/search-criteria.json"
+
+concurrency:
+  group: orchestrator
+  cancel-in-progress: false
 
 jobs:
   orchestrate:

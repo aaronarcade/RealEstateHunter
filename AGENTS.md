@@ -96,6 +96,8 @@ These rules apply when running as a **Cursor Cloud Agent** against this reposito
 
   `CANDIDATE → SCREENED → RESEARCHING → READY_FOR_UNDERWRITING → UNDERWRITTEN → AUDIT → RANKED → PUBLISHED`
 
+  Infeasible listings go to `ARCHIVED` with `rescreen_after`; Scout rescreens when due.
+
 - Write structured JSON under `data/properties/{id}/` using schemas in `schemas/`.
 - Every material financial field must include `value`, `status` (`VERIFIED` | `ESTIMATED` | `UNKNOWN`), `confidence`, `source`, and `evidence`.
 - Move Builder tasks: `tasks/backlog/` → `tasks/active/` → `tasks/done/` as work progresses.

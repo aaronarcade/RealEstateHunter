@@ -54,12 +54,17 @@ Prioritize investment quality and confidence over listing count.
 ```
 CANDIDATE → SCREENED → RESEARCHING → READY_FOR_UNDERWRITING
 → UNDERWRITTEN → AUDIT → RANKED → PUBLISHED
+
+SCREENED/REJECT or post-audit REJECT/WATCHLIST → ARCHIVED
+ARCHIVED (rescreen_after due) → Scout rescreen → SCREENED or ARCHIVED
 ```
 
 ## Escalation rules
 
 - Gross yield < 10% at scout: reject unless compelling override reason documented
+- Scout rejects: **archive** with `rescreen_after` (default 30 days) — do not discard listings
 - HOA unknown: route to Researcher
 - Assessment unknown: max WATCHLIST unless evidence shows none exists
 - Audit NEEDS_RESEARCH: route to Researcher with specific gaps listed
 - Audit PASS on VIABLE: add to ranked opportunities
+- Audit REJECTED or WATCHLIST: **archive** with `rescreen_after` (45–60 days) for periodic rescreen

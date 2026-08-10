@@ -6,7 +6,8 @@ export type WorkflowState =
   | "UNDERWRITTEN"
   | "AUDIT"
   | "RANKED"
-  | "PUBLISHED";
+  | "PUBLISHED"
+  | "ARCHIVED";
 
 export type AgentRole =
   | "manager"
@@ -35,6 +36,16 @@ export interface PropertyMeta {
   listing_url?: string;
   workflow_state: WorkflowState;
   scout_decision?: "REJECT" | "RESEARCH";
+  rescreen_after?: string;
+  rescreen_count?: number;
+  archive_reason?: string;
+  screening_snapshot?: {
+    price?: number;
+    rough_monthly_rent?: number;
+    rough_gross_yield?: number;
+    advertised_hoa?: number | null;
+    screened_at?: string;
+  };
 }
 
 export interface PropertyAudit {
@@ -103,6 +114,9 @@ function planPropertyWork(ctx: PropertyContext): WorkItem | null {
 
     case "SCREENED":
       if (meta.scout_decision === "REJECT") {
+        if (isRescreenDue(meta)) {
+          return rescreenWorkItem(propertyId, meta, branchBase);
+        }
         return null;
       }
       if (!ctx.hasEvidence) {
@@ -223,6 +237,12 @@ function planPropertyWork(ctx: PropertyContext): WorkItem | null {
     case "PUBLISHED":
       return null;
 
+    case "ARCHIVED":
+      if (isRescreenDue(meta)) {
+        return rescreenWorkItem(propertyId, meta, branchBase);
+      }
+      return null;
+
     default:
       return null;
   }
@@ -269,6 +289,29 @@ function roleHeader(role: AgentRole): string {
   ].join("\n");
 }
 
+function isRescreenDue(meta: PropertyMeta, now = new Date()): boolean {
+  if (!meta.rescreen_after) {
+    return false;
+  }
+  return new Date(meta.rescreen_after) <= now;
+}
+
+function rescreenWorkItem(
+  propertyId: string,
+  meta: PropertyMeta,
+  branchBase: string
+): WorkItem {
+  return workItem({
+    role: "scout",
+    subjectType: "property",
+    subjectId: propertyId,
+    action: "rescreen-listing",
+    branch: `${branchBase}-rescreen`,
+    priority: 12,
+    prompt: rescreenPrompt(propertyId, meta),
+  });
+}
+
 function scoutPrompt(propertyId: string, meta: PropertyMeta): string {
   return [
     roleHeader("scout"),
@@ -276,9 +319,50 @@ function scoutPrompt(propertyId: string, meta: PropertyMeta): string {
     meta.listing_url ? `Listing: ${meta.listing_url}` : "",
     meta.address ? `Address: ${meta.address}` : "",
     "",
+    "Read data/search-criteria.json — prioritize CONDO BUILDINGS (multi-unit complexes).",
+    "Review 40+ listings per market; aim for 10+ RESEARCH total. Do not stop at 3–5.",
     "Screen this listing. Output REJECT or RESEARCH.",
     "Write or update `data/properties/" + propertyId + "/meta.json` with workflow_state SCREENED.",
-    "Reject aggressively if gross yield is clearly below 10%.",
+    "Include building_name and property_type for condos. Reject if gross yield below target_yield_minimum.",
+    "On REJECT: set workflow_state ARCHIVED, archive_reason scout_reject, rescreen_after per rescreen_policy.intervals_days.scout_reject, and screening_snapshot.",
+  ]
+    .filter(Boolean)
+    .join("\n");
+}
+
+function rescreenPrompt(propertyId: string, meta: PropertyMeta): string {
+  const snapshot = meta.screening_snapshot;
+  const snapshotLines = snapshot
+    ? [
+        "",
+        "Previous screening snapshot:",
+        snapshot.price != null ? `- Price: $${snapshot.price}` : "",
+        snapshot.rough_monthly_rent != null
+          ? `- Rough rent: $${snapshot.rough_monthly_rent}/mo`
+          : "",
+        snapshot.rough_gross_yield != null
+          ? `- Gross yield: ${(snapshot.rough_gross_yield * 100).toFixed(1)}%`
+          : "",
+        snapshot.screened_at ? `- Screened at: ${snapshot.screened_at}` : "",
+      ].filter(Boolean)
+    : [];
+
+  return [
+    roleHeader("scout"),
+    `Property ID: ${propertyId}`,
+    meta.listing_url ? `Listing: ${meta.listing_url}` : "",
+    meta.address ? `Address: ${meta.address}` : "",
+    meta.archive_reason ? `Archive reason: ${meta.archive_reason}` : "",
+    meta.rescreen_count != null ? `Rescreen count: ${meta.rescreen_count}` : "",
+    ...snapshotLines,
+    "",
+    "This listing was previously deemed infeasible. Re-check the live listing.",
+    "Read data/search-criteria.json rescreen_policy for intervals and change triggers.",
+    "Compare current price/rent/status to screening_snapshot.",
+    "",
+    "If now passes yield screen: set workflow_state SCREENED, scout_decision RESEARCH, clear archive fields.",
+    "If still infeasible: stay ARCHIVED, update screening_snapshot, set new rescreen_after, increment rescreen_count.",
+    "If listing inactive/sold: stay ARCHIVED, archive_reason listing_inactive, rescreen_after per listing_inactive interval.",
   ]
     .filter(Boolean)
     .join("\n");
@@ -349,7 +433,8 @@ function managerRankPrompt(
     meta.address ? `Address: ${meta.address}` : "",
     "",
     `Audit complete with final_status ${audit.final_status ?? "unknown"}.`,
-    "Rank this opportunity and update meta.json workflow_state to RANKED.",
+    "If REJECTED or WATCHLIST (not VIABLE): set workflow_state ARCHIVED with archive_reason audit_reject or watchlist, rescreen_after per rescreen_policy, and screening_snapshot from latest known price/rent.",
+    "If VIABLE: rank this opportunity and update meta.json workflow_state to RANKED.",
     "If VIABLE, note that Aaron should be notified.",
   ]
     .filter(Boolean)
@@ -369,8 +454,8 @@ function managerPublishPrompt(propertyId: string, meta: PropertyMeta): string {
 function managerTriagePrompt(): string {
   return [
     roleHeader("manager"),
-    "Review tasks/backlog/, data/properties/, and docs/PRODUCT.md.",
-    "Prioritize Scout search criteria and Builder tasks.",
+    "Review tasks/backlog/, data/properties/, docs/PRODUCT.md, and data/search-criteria.json.",
+    "Prioritize Scout condo-building search and volume targets. Tune Builder tasks as needed.",
     "Create or update tasks in tasks/backlog/ as needed.",
     "Do not implement application code.",
   ].join("\n");

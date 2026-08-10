@@ -82,3 +82,45 @@ test("builder tasks are included from backlog metadata", () => {
   assert.equal(items[0]?.role, "builder");
   assert.match(items[0]?.branch ?? "", /agent\/task-001-property-data-schema/);
 });
+
+test("ARCHIVED with due rescreen routes to scout", () => {
+  const items = planWork({
+    properties: [
+      property({
+        propertyId: "550-shore-dr-unit-304",
+        meta: {
+          id: "550-shore-dr-unit-304",
+          workflow_state: "ARCHIVED",
+          listing_url: "https://example.com/listing",
+          rescreen_after: "2020-01-01T00:00:00Z",
+          archive_reason: "scout_reject",
+        },
+      }),
+    ],
+    builderTasks: [],
+    pendingManagerReview: false,
+  });
+
+  assert.equal(items.length, 1);
+  assert.equal(items[0]?.role, "scout");
+  assert.equal(items[0]?.action, "rescreen-listing");
+});
+
+test("ARCHIVED before rescreen_after does not spawn scout", () => {
+  const items = planWork({
+    properties: [
+      property({
+        propertyId: "550-shore-dr-unit-304",
+        meta: {
+          id: "550-shore-dr-unit-304",
+          workflow_state: "ARCHIVED",
+          rescreen_after: "2099-01-01T00:00:00Z",
+        },
+      }),
+    ],
+    builderTasks: [],
+    pendingManagerReview: false,
+  });
+
+  assert.equal(items.length, 0);
+});

@@ -35,16 +35,34 @@ AUDIT             (Auditor: PASS or NEEDS_RESEARCH)
 RANKED            (Manager: rank opportunities)
     ↓
 PUBLISHED
+
+ARCHIVED          (Scout/Manager: infeasible for now, scheduled rescreen)
+    ↓ (rescreen_after due)
+CANDIDATE/SCREENED (Scout: re-check listing; promote if improved)
 ```
+
+### Rescreen policy
+
+Infeasible listings are **not discarded**. Scout and Manager archive them with `rescreen_after` per `data/search-criteria.json` → `rescreen_policy`:
+
+| Reason | Default interval |
+|--------|------------------|
+| Scout reject | 30 days |
+| WATCHLIST | 45 days |
+| Audit/diligence reject | 60 days |
+| Listing inactive | 90 days |
+
+Scout compares the live listing to `screening_snapshot` (price, rent, yield). Orchestrator spawns Scout when `rescreen_after` is due.
 
 ### Orchestration rules
 
-- If gross yield < 10% at scout stage: reject early unless Manager overrides.
+- If gross yield < 10% at scout stage: archive with `rescreen_after` (do not discard the listing).
 - If HOA unknown: route back to Researcher.
 - If assessment unknown: **WATCHLIST** at most unless evidence indicates none exists.
 - If underwriting complete: send to Auditor.
 - If audit requests more evidence: route back to Researcher.
 - If **VIABLE**: add to ranked opportunities.
+- If audit **REJECTED** or **WATCHLIST**: Manager archives with `rescreen_after` for periodic rescreen.
 - If significant new **VIABLE** property appears: notify Aaron.
 
 ### Pipeline orchestrator

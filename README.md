@@ -67,7 +67,7 @@ Scout and Manager use **[data/search-criteria.json](data/search-criteria.json)**
 
 - Active target markets (priority order)
 - Property types, price range, exclusions
-- Scout gross-yield threshold (`target_yield_minimum`, currently 12%)
+- Scout gross-yield threshold (`target_yield_minimum`, currently 10%)
 - Underwriting target (`target_cap_rate`, 10%)
 
 Schema: [schemas/search-criteria.json](schemas/search-criteria.json). Config reference: `orchestrator.config.json` → `manager.scanCriteriaFile`.

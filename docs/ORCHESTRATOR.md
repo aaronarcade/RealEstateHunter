@@ -126,6 +126,7 @@ The orchestrator reads:
 | `AUDIT` + `NEEDS_RESEARCH` | Researcher |
 | `AUDIT` + PASS | Manager (rank) |
 | `RANKED` | Manager (publish) |
+| `ARCHIVED` (rescreen due) | Scout (rescreen) |
 
 Builder tasks in `tasks/backlog/` spawn Builder agents (one per task, respecting caps).
 
@@ -137,8 +138,15 @@ When properties or backlog need triage, a Manager agent may also be planned.
 
 Workflow: `.github/workflows/orchestrator.yml`
 
-- **Schedule**: daily at 07:00 UTC (2am US Eastern during standard time)
-- **Manual**: Actions → Orchestrator → Run workflow
+| Trigger | When |
+|---------|------|
+| **Schedule** | Daily at 07:00 UTC (~2am US Eastern during standard time) |
+| **Push to `main`** | Property records, task files, or search criteria change (e.g. after an agent PR merges) |
+| **Manual** | Actions → Orchestrator → Run workflow |
+
+After a Cloud Agent finishes and you **merge its PR**, the push to `main` automatically runs the orchestrator so the next role (Researcher, Underwriter, etc.) can spawn without waiting for the daily cron.
+
+Registry-only commits use `[skip ci]` and do not re-trigger the workflow.
 
 Requires `CURSOR_API_KEY` repository secret.
 

@@ -4,8 +4,13 @@
   "updated_at": "2026-08-10T03:00:00Z",
   "updated_by": "manager",
   "target_cap_rate": 0.10,
-  "target_yield_minimum": 0.12,
-  "notes": "Scout uses gross yield vs target_yield_minimum. Underwriting target remains target_cap_rate after expenses.",
+  "target_yield_minimum": 0.10,
+  "notes": "Condo buildings first. Scout scans high volume; only RESEARCH listings that pass yield screen. Underwriting target remains target_cap_rate after expenses.",
+  "asset_focus": {
+    "primary": "condo",
+    "prioritize_condo_buildings": true,
+    "rationale": "Multi-unit condo buildings offer repeatable comps, known HOA, and cluster opportunities; SFH/townhouse are secondary."
+  },
   "markets": [
     {
       "id": "tampa-fl",
@@ -44,10 +49,12 @@
     }
   ],
   "property_filters": {
+    "type_priority": ["condo", "townhouse", "single_family"],
     "types": ["condo", "townhouse", "single_family"],
+    "condo_only_first_pass": true,
     "price_range": {
       "min": 75000,
-      "max": 300000
+      "max": 750000
     },
     "beds_min": 2,
     "baths_min": 1,
@@ -60,11 +67,53 @@
   },
   "scout_instructions": {
     "sources": ["Zillow", "Realtor.com", "Redfin", "MLS listings"],
-    "screening_threshold": "Rough gross yield must be >= target_yield_minimum (12%) to pass to RESEARCH. Reject below 10% unless documented override.",
+    "screening_threshold": "Rough gross yield must be >= target_yield_minimum (10%) to pass to RESEARCH. Reject below 10%.",
+    "volume_targets": {
+      "listings_reviewed_per_market_min": 40,
+      "research_candidates_total_min": 10,
+      "research_candidates_per_market_min": 3,
+      "do_not_stop_early": true
+    },
+    "condo_building_search": {
+      "enabled": true,
+      "strategy": [
+        "Filter each market for Condo / Condominium only before SFH or townhouse.",
+        "Search by building name or street address when a condo complex has multiple active listings.",
+        "When one unit in a building passes yield screen, review other units in the same building.",
+        "Prefer established condo buildings (20+ units) with published HOA fees on the listing.",
+        "Record building_name and unit in meta.json when available."
+      ],
+      "building_signals": [
+        "Multiple units for sale in same building",
+        "HOA fee stated on listing",
+        "Rental history or 'investor-friendly' in remarks",
+        "Lower price per sqft vs neighborhood SFH"
+      ],
+      "hoa_screening": {
+        "flag_above_monthly": 500,
+        "quick_adjusted_yield": "For condos with stated HOA, also compute (monthly_rent - hoa_monthly) * 12 / price; flag if below 8% even when gross yield passes."
+      }
+    },
     "flags": [
       "HOA over $500/month requires extra scrutiny",
       "Known special assessments are a yellow flag",
       "STR restrictions may limit upside but do not disqualify for LTR strategy"
+    ]
+  },
+  "rescreen_policy": {
+    "enabled": true,
+    "intervals_days": {
+      "scout_reject": 30,
+      "watchlist": 45,
+      "diligence_reject": 60,
+      "listing_inactive": 90
+    },
+    "max_rescreens": 6,
+    "rescreen_triggers": [
+      "Price decrease of 5% or more vs screening_snapshot",
+      "Rent estimate increased vs screening_snapshot",
+      "Listing relisted after inactive or pending status change",
+      "HOA or special assessment change noted on listing"
     ]
   }
 }
