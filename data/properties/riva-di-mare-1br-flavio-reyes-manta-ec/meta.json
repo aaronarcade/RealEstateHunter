@@ -1,0 +1,33 @@
+{
+  "id": "riva-di-mare-1br-flavio-reyes-manta-ec",
+  "address": "Riva Di Mare 1BR, Av. Flavio Reyes, Manta, Manab\u00ed, Ecuador",
+  "location": "Manta, Manab\u00ed, Ecuador",
+  "listing_url": "https://www.ecuadorshoresrealty.com/property/stunning-ocean-view-condo-perfect-for-vacationers-residents-or-investors-manta-ecuador/",
+  "market_id": "manta-ec",
+  "created_at": "2026-08-10T05:00:00Z",
+  "updated_at": "2026-08-10T05:00:00Z",
+  "last_screened_at": "2026-08-10T05:00:00Z",
+  "screening_snapshot": {
+    "price": 179700,
+    "rough_monthly_rent": 950,
+    "rough_gross_yield": 0.0634,
+    "advertised_hoa": 150,
+    "screened_at": "2026-08-10T05:00:00Z"
+  },
+  "scout_notes": "Tenant in place but rent undisclosed. Even $950/mo STR \u2192 6.3% gross. Adjusted 5.3% with HOA.",
+  "property_type": "condo",
+  "building_name": "Riva Di Mare",
+  "beds": 1,
+  "baths": 1,
+  "asking_price": 179700,
+  "rough_monthly_rent": 950,
+  "rough_gross_yield": 0.0634,
+  "advertised_hoa": 150,
+  "rent_source": "Optimistic STR estimate; tenant rent unknown",
+  "rent_confidence": "MEDIUM",
+  "workflow_state": "ARCHIVED",
+  "scout_decision": "REJECT",
+  "archive_reason": "scout_reject",
+  "rescreen_after": "2026-09-09T05:00:00Z",
+  "rescreen_count": 0
+}

@@ -1,0 +1,30 @@
+{
+  "id": "nahla-unit-d-105-barbasquillo-manta-ec",
+  "address": "Nahla Unit D-105, Barbasquillo, Manta, Manab\u00ed, Ecuador",
+  "location": "Manta, Manab\u00ed, Ecuador",
+  "listing_url": "https://trivo.com.ec/propiedades/nahla/",
+  "market_id": "manta-ec",
+  "created_at": "2026-08-10T05:00:00Z",
+  "updated_at": "2026-08-10T05:00:00Z",
+  "last_screened_at": "2026-08-10T05:00:00Z",
+  "screening_snapshot": {
+    "price": 59444,
+    "rough_monthly_rent": 500,
+    "rough_gross_yield": 0.1009,
+    "advertised_hoa": null,
+    "screened_at": "2026-08-10T05:00:00Z"
+  },
+  "scout_notes": "Nahla studio 41.52m\u00b2, immediate delivery, Airbnb-friendly. Gross yield 10.1% at $500/mo STR estimate.",
+  "property_type": "condo",
+  "building_name": "Nahla",
+  "unit": "D-105",
+  "beds": 1,
+  "baths": 1,
+  "asking_price": 59444,
+  "rough_monthly_rent": 500,
+  "rough_gross_yield": 0.1009,
+  "rent_source": "FazWaz 1BR median + STR premium",
+  "rent_confidence": "MEDIUM",
+  "workflow_state": "SCREENED",
+  "scout_decision": "RESEARCH"
+}

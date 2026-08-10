@@ -1,0 +1,33 @@
+{
+  "id": "elite-towers-3br-oceanfront-manta-ec",
+  "address": "Elite Towers 3BR, Manta, Manab\u00ed, Ecuador",
+  "location": "Manta, Manab\u00ed, Ecuador",
+  "listing_url": "https://www.ecuadorshoresrealty.com/property/3-2-double-balcony-fully-furnished-oceanfront-condo-manta-ecuador/",
+  "market_id": "manta-ec",
+  "created_at": "2026-08-10T05:00:00Z",
+  "updated_at": "2026-08-10T05:00:00Z",
+  "last_screened_at": "2026-08-10T05:00:00Z",
+  "screening_snapshot": {
+    "price": 319900,
+    "rough_monthly_rent": 1500,
+    "rough_gross_yield": 0.0563,
+    "advertised_hoa": 225,
+    "screened_at": "2026-08-10T05:00:00Z"
+  },
+  "scout_notes": "Premium 3/2 oceanfront Elite Towers. Listing claims >$4K STR but at $1,500 conservative \u2192 5.6% gross.",
+  "property_type": "condo",
+  "building_name": "Elite Towers",
+  "beds": 3,
+  "baths": 2,
+  "asking_price": 319900,
+  "rough_monthly_rent": 1500,
+  "rough_gross_yield": 0.0563,
+  "advertised_hoa": 225,
+  "rent_source": "Listing STR marketing; conservative $1,500 applied",
+  "rent_confidence": "MEDIUM",
+  "workflow_state": "ARCHIVED",
+  "scout_decision": "REJECT",
+  "archive_reason": "scout_reject",
+  "rescreen_after": "2026-09-09T05:00:00Z",
+  "rescreen_count": 0
+}

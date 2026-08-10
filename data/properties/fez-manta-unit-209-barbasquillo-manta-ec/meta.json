@@ -1,0 +1,30 @@
+{
+  "id": "fez-manta-unit-209-barbasquillo-manta-ec",
+  "address": "Fez Manta Unit 209, Barbasquillo, Manta, Manab\u00ed, Ecuador",
+  "location": "Manta, Manab\u00ed, Ecuador",
+  "listing_url": "https://trivo.com.ec/propiedades/fez-manta/",
+  "market_id": "manta-ec",
+  "created_at": "2026-08-10T05:00:00Z",
+  "updated_at": "2026-08-10T05:00:00Z",
+  "last_screened_at": "2026-08-10T05:00:00Z",
+  "screening_snapshot": {
+    "price": 62150,
+    "rough_monthly_rent": 520,
+    "rough_gross_yield": 0.1004,
+    "advertised_hoa": null,
+    "screened_at": "2026-08-10T05:00:00Z"
+  },
+  "scout_notes": "Pre-sale suite 32.29m\u00b2 piso 2, delivery H2 2026, includes parking. $520/mo estimate \u2192 10.0% gross yield borderline pass.",
+  "property_type": "condo",
+  "building_name": "Fez Manta",
+  "unit": "209",
+  "beds": 1,
+  "baths": 1,
+  "asking_price": 62150,
+  "rough_monthly_rent": 520,
+  "rough_gross_yield": 0.1004,
+  "rent_source": "FazWaz 1BR median $419 + amenity premium",
+  "rent_confidence": "MEDIUM",
+  "workflow_state": "SCREENED",
+  "scout_decision": "RESEARCH"
+}

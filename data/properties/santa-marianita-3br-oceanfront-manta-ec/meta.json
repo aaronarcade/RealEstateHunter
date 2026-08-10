@@ -1,0 +1,31 @@
+{
+  "id": "santa-marianita-3br-oceanfront-manta-ec",
+  "address": "Punta Tortuga 3BR Oceanfront, Santa Marianita, Manta, Manab\u00ed, Ecuador",
+  "location": "Manta, Manab\u00ed, Ecuador",
+  "listing_url": "https://mls-ecuador.com/en/real-estate/manta-real-estate/rs2600197",
+  "market_id": "manta-ec",
+  "created_at": "2026-08-10T05:00:00Z",
+  "updated_at": "2026-08-10T05:00:00Z",
+  "last_screened_at": "2026-08-10T05:00:00Z",
+  "screening_snapshot": {
+    "price": 439000,
+    "rough_monthly_rent": 1200,
+    "rough_gross_yield": 0.0328,
+    "advertised_hoa": null,
+    "screened_at": "2026-08-10T05:00:00Z"
+  },
+  "scout_notes": "Santa Marianita oceanfront 3/3 with private pool. $1,200/mo \u2192 3.3% gross.",
+  "property_type": "condo",
+  "beds": 3,
+  "baths": 3,
+  "asking_price": 439000,
+  "rough_monthly_rent": 1200,
+  "rough_gross_yield": 0.0328,
+  "rent_source": "Vacation rental estimate",
+  "rent_confidence": "MEDIUM",
+  "workflow_state": "ARCHIVED",
+  "scout_decision": "REJECT",
+  "archive_reason": "scout_reject",
+  "rescreen_after": "2026-09-09T05:00:00Z",
+  "rescreen_count": 0
+}

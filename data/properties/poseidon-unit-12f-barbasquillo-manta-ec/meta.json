@@ -1,0 +1,31 @@
+{
+  "id": "poseidon-unit-12f-barbasquillo-manta-ec",
+  "address": "Poseidon Building Unit 12F, Barbasquillo, Manta, Manab\u00ed, Ecuador",
+  "location": "Manta, Manab\u00ed, Ecuador",
+  "listing_url": "https://ecuador.propertyshelf.com/en/front-page/rs1800320",
+  "market_id": "manta-ec",
+  "created_at": "2026-08-10T05:00:00Z",
+  "updated_at": "2026-08-10T05:00:00Z",
+  "last_screened_at": "2026-08-10T05:00:00Z",
+  "screening_snapshot": {
+    "price": 139000,
+    "rough_monthly_rent": 1200,
+    "rough_gross_yield": 0.1036,
+    "advertised_hoa": 185,
+    "screened_at": "2026-08-10T05:00:00Z"
+  },
+  "scout_notes": "1/1 corner unit; listing cites 'most popular rental unit' in building. STR estimate $1,200/mo (El Murci\u00e9lago oceanfront 2BR rents $1,200/mo per MLS rl2600064). Gross 10.4%; adjusted (1200-185)*12/139000 = 8.8% \u2014 passes gross screen, HOA flagged.",
+  "property_type": "condo",
+  "building_name": "Poseidon",
+  "unit": "12F",
+  "beds": 1,
+  "baths": 1,
+  "asking_price": 139000,
+  "rough_monthly_rent": 1200,
+  "rough_gross_yield": 0.1036,
+  "advertised_hoa": 185,
+  "rent_source": "Comparable Poseidon/oceanfront STR; listing rental popularity claim",
+  "rent_confidence": "MEDIUM",
+  "workflow_state": "SCREENED",
+  "scout_decision": "RESEARCH"
+}

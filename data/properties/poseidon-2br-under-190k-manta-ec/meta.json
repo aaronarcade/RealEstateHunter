@@ -1,0 +1,32 @@
+{
+  "id": "poseidon-2br-under-190k-manta-ec",
+  "address": "Poseidon 2BR Furnished, Barbasquillo, Manta, Manab\u00ed, Ecuador",
+  "location": "Manta, Manab\u00ed, Ecuador",
+  "listing_url": "https://www.fazwaz.com.ec/en/projects/ecuador/manabi/manta/manta/furnished-22-beachfront-prime-location-under-190k",
+  "market_id": "manta-ec",
+  "created_at": "2026-08-10T05:00:00Z",
+  "updated_at": "2026-08-10T05:00:00Z",
+  "last_screened_at": "2026-08-10T05:00:00Z",
+  "screening_snapshot": {
+    "price": 189000,
+    "rough_monthly_rent": 1300,
+    "rough_gross_yield": 0.0825,
+    "advertised_hoa": null,
+    "screened_at": "2026-08-10T05:00:00Z"
+  },
+  "scout_notes": "Poseidon 2/2 under $190K per FazWaz. $1,300 rent \u2192 8.3% gross, below threshold.",
+  "property_type": "condo",
+  "building_name": "Poseidon",
+  "beds": 2,
+  "baths": 2,
+  "asking_price": 189000,
+  "rough_monthly_rent": 1300,
+  "rough_gross_yield": 0.0825,
+  "rent_source": "Poseidon verified rent comp",
+  "rent_confidence": "MEDIUM",
+  "workflow_state": "ARCHIVED",
+  "scout_decision": "REJECT",
+  "archive_reason": "scout_reject",
+  "rescreen_after": "2026-09-09T05:00:00Z",
+  "rescreen_count": 0
+}
