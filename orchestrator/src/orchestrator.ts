@@ -3,8 +3,12 @@ import path from "node:path";
 import {
   CursorCloudClient,
   countActiveForRole,
+  directMainPushInstructions,
   isRoleEnabled,
   loadConfig,
+  resolveAgentBranch,
+  resolveRoleAutoCreatePR,
+  resolveRoleSkipReviewerRequest,
   roleHasCapacity,
   type OrchestratorConfig,
 } from "./cursor-client.js";
@@ -136,12 +140,21 @@ export async function runOrchestrator(
     const client = new CursorCloudClient(options.apiKey);
 
     for (const item of toSpawn) {
+      const autoCreatePR = resolveRoleAutoCreatePR(config, item.role);
+      const branch = resolveAgentBranch(config, item.role, item.branch);
+      const promptText = autoCreatePR
+        ? item.prompt
+        : item.prompt + directMainPushInstructions(config);
+
       const created = await client.createAgent(config, {
-        promptText: item.prompt,
-        branch: item.branch,
+        promptText,
+        branch,
         name: `${item.role}: ${item.subjectId}`,
-        autoCreatePR: config.autoCreatePR,
-        skipReviewerRequest: config.skipReviewerRequest,
+        autoCreatePR,
+        skipReviewerRequest: resolveRoleSkipReviewerRequest(
+          config,
+          item.role
+        ),
       });
 
       const now = new Date().toISOString();
@@ -151,7 +164,7 @@ export async function runOrchestrator(
         subjectType: item.subjectType,
         subjectId: item.subjectId,
         action: item.action,
-        branch: item.branch,
+        branch,
         agentId: created.agentId,
         runId: created.runId,
         agentUrl: created.agentUrl,

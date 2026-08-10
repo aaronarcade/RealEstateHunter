@@ -55,6 +55,15 @@ def _numeric_field(
     )
 
 
+def _format_unit_address(unit_number: str | int | None, building_address: str) -> str:
+    """Unit number 1 means single-family — omit the unit prefix."""
+    unit = str(unit_number or '').strip()
+    address = (building_address or '').strip()
+    if unit in ('', '?', '1'):
+        return address or 'Unknown'
+    return f'Unit {unit}, {address}'.strip(', ')
+
+
 def tracker_financials_to_opportunity(
     fin: dict,
     *,
@@ -121,7 +130,7 @@ def tracker_row_to_opportunity(
 
     unit_number = row.get('unit_number') or fin.get('unit_number') or '?'
     building_address = row.get('building_address') or ''
-    address = f'Unit {unit_number}, {building_address}'.strip(', ')
+    address = _format_unit_address(unit_number, building_address)
 
     location_parts = [
         row.get('neighborhood_name'),

@@ -1,3 +1,12 @@
+export interface RoleConfig {
+  enabled: boolean;
+  maxConcurrent: number;
+  /** Override global autoCreatePR for this role. */
+  autoCreatePR?: boolean;
+  /** Override global skipReviewerRequest for this role. */
+  skipReviewerRequest?: boolean;
+}
+
 export interface OrchestratorConfig {
   repoUrl: string;
   startingRef: string;
@@ -7,13 +16,7 @@ export interface OrchestratorConfig {
   maxConcurrentAgents: number;
   autoCreatePR: boolean;
   skipReviewerRequest: boolean;
-  roles: Record<
-    string,
-    {
-      enabled: boolean;
-      maxConcurrent: number;
-    }
-  >;
+  roles: Record<string, RoleConfig>;
 }
 
 export interface CreateAgentRequest {
@@ -198,4 +201,49 @@ export function roleHasCapacity(
   const roleConfig = config.roles[role];
   const max = roleConfig?.maxConcurrent ?? config.maxConcurrentAgents;
   return activeCount < max;
+}
+
+export function resolveRoleAutoCreatePR(
+  config: OrchestratorConfig,
+  role: string
+): boolean {
+  const roleConfig = config.roles[role];
+  if (roleConfig?.autoCreatePR !== undefined) {
+    return roleConfig.autoCreatePR;
+  }
+  return config.autoCreatePR;
+}
+
+export function resolveRoleSkipReviewerRequest(
+  config: OrchestratorConfig,
+  role: string
+): boolean {
+  const roleConfig = config.roles[role];
+  if (roleConfig?.skipReviewerRequest !== undefined) {
+    return roleConfig.skipReviewerRequest;
+  }
+  return config.skipReviewerRequest;
+}
+
+/** Property pipeline roles push to main; Builder keeps feature branches + PR. */
+export function resolveAgentBranch(
+  config: OrchestratorConfig,
+  role: string,
+  plannedBranch: string
+): string {
+  if (resolveRoleAutoCreatePR(config, role)) {
+    return plannedBranch;
+  }
+  return config.startingRef;
+}
+
+export function directMainPushInstructions(
+  config: OrchestratorConfig
+): string {
+  return [
+    "",
+    "## Push instructions",
+    `Commit and push directly to \`${config.startingRef}\`. Do not create a feature branch or open a PR.`,
+    "Scope changes to your assigned property or manager task only.",
+  ].join("\n");
 }

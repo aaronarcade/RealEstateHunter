@@ -198,10 +198,11 @@ Suggested task states for software work: `BACKLOG → ACTIVE → REVIEW → DONE
 
 ## Git Conventions
 
-- Branch naming: `agent/task-NNN-short-description`
-- One task per branch
-- Use worktrees for parallel agent work
-- Builder merges via PR; never commit directly to `main`
+- Branch naming: `agent/task-NNN-short-description` (Builder)
+- Property pipeline (Scout, Analyst, Auditor, Manager): push directly to `main` via orchestrator spawn
+- One task per branch (Builder only)
+- Use worktrees for parallel Builder work
+- Builder merges via PR (auto-merged when CI passes); property agents push to `main`
 
 ## Information Boundaries
 

@@ -7,11 +7,11 @@
   "autoCreatePR": true,
   "skipReviewerRequest": true,
   "roles": {
-    "manager": { "enabled": true, "maxConcurrent": 1 },
-    "scout": { "enabled": true, "maxConcurrent": 1 },
-    "analyst": { "enabled": true, "maxConcurrent": 2 },
-    "auditor": { "enabled": true, "maxConcurrent": 2 },
-    "builder": { "enabled": true, "maxConcurrent": 1 }
+    "manager": { "enabled": true, "maxConcurrent": 1, "autoCreatePR": false },
+    "scout": { "enabled": true, "maxConcurrent": 1, "autoCreatePR": false },
+    "analyst": { "enabled": true, "maxConcurrent": 2, "autoCreatePR": false },
+    "auditor": { "enabled": true, "maxConcurrent": 2, "autoCreatePR": false },
+    "builder": { "enabled": true, "maxConcurrent": 1, "autoCreatePR": true }
   },
   "manager": {
     "scanCriteriaFile": "data/search-criteria.json"

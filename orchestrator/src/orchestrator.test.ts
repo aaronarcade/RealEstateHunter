@@ -8,6 +8,9 @@ import {
   isRoleEnabled,
   roleHasCapacity,
   countActiveForRole,
+  resolveRoleAutoCreatePR,
+  resolveRoleSkipReviewerRequest,
+  resolveAgentBranch,
   type OrchestratorConfig,
 } from "./cursor-client.js";
 
@@ -517,6 +520,69 @@ test("roleHasCapacity uses global limit when role not configured", () => {
 
   assert.equal(roleHasCapacity(config, "scout", 2), true);
   assert.equal(roleHasCapacity(config, "scout", 3), false);
+});
+
+test("resolveRoleAutoCreatePR uses per-role override", () => {
+  const config: OrchestratorConfig = {
+    repoUrl: "",
+    startingRef: "main",
+    cloudEnvName: null,
+    modelId: "auto",
+    maxConcurrentAgents: 3,
+    autoCreatePR: true,
+    skipReviewerRequest: true,
+    roles: {
+      scout: { enabled: true, maxConcurrent: 1, autoCreatePR: false },
+      builder: { enabled: true, maxConcurrent: 1, autoCreatePR: true },
+    },
+  };
+
+  assert.equal(resolveRoleAutoCreatePR(config, "scout"), false);
+  assert.equal(resolveRoleAutoCreatePR(config, "builder"), true);
+  assert.equal(resolveRoleAutoCreatePR(config, "analyst"), true);
+});
+
+test("resolveRoleSkipReviewerRequest uses per-role override", () => {
+  const config: OrchestratorConfig = {
+    repoUrl: "",
+    startingRef: "main",
+    cloudEnvName: null,
+    modelId: "auto",
+    maxConcurrentAgents: 3,
+    autoCreatePR: true,
+    skipReviewerRequest: true,
+    roles: {
+      builder: { enabled: true, maxConcurrent: 1, skipReviewerRequest: false },
+    },
+  };
+
+  assert.equal(resolveRoleSkipReviewerRequest(config, "builder"), false);
+  assert.equal(resolveRoleSkipReviewerRequest(config, "scout"), true);
+});
+
+test("resolveAgentBranch uses main when role skips PR", () => {
+  const config: OrchestratorConfig = {
+    repoUrl: "",
+    startingRef: "main",
+    cloudEnvName: null,
+    modelId: "auto",
+    maxConcurrentAgents: 3,
+    autoCreatePR: true,
+    skipReviewerRequest: true,
+    roles: {
+      scout: { enabled: true, maxConcurrent: 1, autoCreatePR: false },
+      builder: { enabled: true, maxConcurrent: 1, autoCreatePR: true },
+    },
+  };
+
+  assert.equal(
+    resolveAgentBranch(config, "scout", "agent/foo-scout"),
+    "main"
+  );
+  assert.equal(
+    resolveAgentBranch(config, "builder", "agent/task-001"),
+    "agent/task-001"
+  );
 });
 
 // =============================================================================

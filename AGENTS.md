@@ -16,8 +16,8 @@ Prioritize investment quality and confidence over the number of listings found.
 
 ## Rules
 
-- Never commit directly to `main`.
-- One task per branch.
+- Never commit directly to `main` **except** Manager, Scout, Analyst, and Auditor property pipeline work (orchestrator pushes to `main` when `roles.*.autoCreatePR` is `false`).
+- Builder and human contributors: one task per branch, PR required.
 - Do not modify unrelated code.
 - Read `docs/ARCHITECTURE.md` before making structural changes.
 - Add tests for behavioral changes.
@@ -72,11 +72,15 @@ These rules apply when running as a **Cursor Cloud Agent** against this reposito
 
 ### Branching and PRs
 
-- Never commit directly to `main`.
-- Use branch names: `agent/task-NNN-short-description` or `agent/<role>-<slug>`.
-- One task or property workflow per branch.
-- Open a PR when work is complete; include what changed, test/build results, and which artifacts were updated.
-- Cloud agents push to `cursor/...` branches by default — that is fine as long as the branch maps to one scoped task.
+| Role | Branch | PR |
+|------|--------|-----|
+| Manager, Scout, Analyst, Auditor | `main` (direct push) | No |
+| Builder | `agent/task-NNN-short-description` | Yes (auto-merged when CI passes) |
+
+- Builder and manual work: never commit directly to `main`.
+- One task or property workflow per agent run.
+- Builder PRs should include what changed, test/build results, and which artifacts were updated.
+- Cloud agents on feature branches use `agent/` or `cursor/` prefixes.
 
 ### Role-specific cloud behavior
 
@@ -131,5 +135,6 @@ You may be created automatically by the pipeline orchestrator (`docs/ORCHESTRATO
 
 - Read the role and target branch from your spawn prompt.
 - Your work item key is tracked in `data/orchestrator/registry.json`.
-- Complete your scoped artifact updates, then push and open a PR if `autoCreatePR` is enabled.
+- Property roles: push directly to `main` when your spawn prompt says so (no PR).
+- Builder: push to your task branch and open a PR (auto-merged when CI passes).
 - Do not start work outside your assigned role or property/task scope.

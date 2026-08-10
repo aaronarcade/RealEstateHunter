@@ -12,7 +12,7 @@ import streamlit as st
 from auth import require_auth
 from components.building_display import building_nav_label
 from components.financial_metrics import feasibility_badge, format_currency, format_pct
-from components.ui import card_grid, inject_global_styles, render_card_media, render_card_header, render_card_media_pair, render_opportunity_financial_tags, render_opportunity_metric_grid, _status_badge, _confidence_badge, _property_emoji
+from components.ui import card_grid, inject_global_styles, render_card_media, render_card_header, render_card_media_pair, render_opportunity_financial_tags, render_opportunity_metric_grid, _property_emoji
 from compat import link_button
 from db import table, unit_image_select
 from db_client.tracker_mapper import tracker_financials_to_opportunity
@@ -102,14 +102,10 @@ def _render_building_unit_card(fin: dict) -> None:
 
     with st.container(border=True):
         st.markdown('<div class="opp-card-marker"></div>', unsafe_allow_html=True)
-        render_card_header(f"Unit {fin['unit_number']}", opp.location or None)
+        render_card_header(opp.address, opp.location or None)
         render_card_media_pair([opp.image_url, opp.image_url_2], fallback_emoji=_property_emoji(opp))
         render_opportunity_financial_tags(opp)
         render_opportunity_metric_grid(opp)
-        st.markdown(
-            f'<div class="card-footer-block"><div class="badge-row">{_status_badge(opp.status)}{_confidence_badge(opp.confidence)}</div></div>',
-            unsafe_allow_html=True,
-        )
         action_cols = st.columns(2, gap='small')
         with action_cols[0]:
             if st.button('Unit', key=f'bldg_unit_{fin["unit_id"]}', use_container_width=True, type='primary'):
