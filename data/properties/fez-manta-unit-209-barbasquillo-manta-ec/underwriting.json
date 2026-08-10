@@ -1,0 +1,119 @@
+{
+  "property_id": "fez-manta-unit-209-barbasquillo-manta-ec",
+  "annual_gross_rent": 6000,
+  "annual_operating_expenses": 3475,
+  "operating_expense_breakdown": {
+    "hoa_annual": {
+      "value": 2400,
+      "note": "UNKNOWN from evidence; using $200/mo mid-range estimate based on comparable buildings ($103-288/mo range)"
+    },
+    "special_assessments_annual": {
+      "value": 0,
+      "note": "Pre-sale building with no existing assessments"
+    },
+    "property_taxes_annual": {
+      "value": 175,
+      "note": "From evidence, ESTIMATED at 0.28% of purchase price"
+    },
+    "insurance_annual": {
+      "value": 300,
+      "note": "From evidence, ESTIMATED owner supplemental coverage"
+    },
+    "management_annual": {
+      "value": 600,
+      "note": "From evidence, ESTIMATED at 10% of rent"
+    },
+    "utilities_annual": {
+      "value": 0,
+      "note": "Assumed tenant-paid per Ecuador market convention"
+    },
+    "other_expenses_annual": {
+      "value": 0,
+      "note": "No additional recurring owner costs identified"
+    }
+  },
+  "noi": 2525,
+  "cap_rate": 0.0406,
+  "cap_rate_percent": "4.06%",
+  "proposed_status": "REJECTED",
+  "proposed_status_reason": "Cap rate of 4.06% is well below the 10% threshold. Even with the most optimistic HOA assumption ($103/mo from lowest comparable), cap rate reaches only 5.94%. The property's small size (32.29m²) limits rent potential while HOA costs for amenity-rich building remain significant. Additionally, HOA is UNKNOWN which adds material uncertainty.",
+  "sensitivity_analysis": {
+    "low_hoa_scenario": {
+      "hoa_monthly": 103,
+      "hoa_annual": 1236,
+      "operating_expenses": 2311,
+      "noi": 3689,
+      "cap_rate": 0.0594,
+      "cap_rate_percent": "5.94%",
+      "note": "Using lowest comparable (Oceania $103/mo) - still below 10%"
+    },
+    "mid_hoa_scenario": {
+      "hoa_monthly": 200,
+      "hoa_annual": 2400,
+      "operating_expenses": 3475,
+      "noi": 2525,
+      "cap_rate": 0.0406,
+      "cap_rate_percent": "4.06%",
+      "note": "Base case using mid-range estimate"
+    },
+    "high_hoa_scenario": {
+      "hoa_monthly": 288,
+      "hoa_annual": 3456,
+      "operating_expenses": 4531,
+      "noi": 1469,
+      "cap_rate": 0.0236,
+      "cap_rate_percent": "2.36%",
+      "note": "Using highest comparable (Ibiza $288/mo)"
+    }
+  },
+  "breakeven_analysis": {
+    "required_monthly_rent_for_10pct": 920,
+    "note": "At $200/mo HOA, would need $920/mo rent (84% increase) to achieve 10% cap rate. Comps suggest max achievable is $550/mo."
+  },
+  "input_summary": {
+    "purchase_price": {
+      "value": 62150,
+      "status": "VERIFIED",
+      "confidence": "HIGH"
+    },
+    "monthly_rent": {
+      "value": 500,
+      "status": "ESTIMATED",
+      "confidence": "MEDIUM"
+    },
+    "hoa_monthly": {
+      "value": 200,
+      "status": "UNKNOWN",
+      "confidence": "LOW",
+      "note": "Critical unknown - estimate based on comparable buildings"
+    },
+    "special_assessments": {
+      "value": null,
+      "status": "UNKNOWN",
+      "confidence": "LOW"
+    },
+    "property_taxes_annual": {
+      "value": 175,
+      "status": "ESTIMATED",
+      "confidence": "MEDIUM"
+    },
+    "insurance_annual": {
+      "value": 300,
+      "status": "ESTIMATED",
+      "confidence": "MEDIUM"
+    },
+    "management_annual": {
+      "value": 600,
+      "status": "ESTIMATED",
+      "confidence": "MEDIUM"
+    }
+  },
+  "risk_factors": [
+    "HOA fee is UNKNOWN - critical for accurate cap rate calculation",
+    "Pre-sale property with H2 2026 delivery - construction/delivery risk",
+    "Building bylaws not finalized - rental/STR permissions unconfirmed",
+    "Small unit size (32.29m²) limits rent potential relative to comps",
+    "Cap rate below 10% even under most optimistic assumptions"
+  ],
+  "computed_at": "2026-08-10T05:05:00Z"
+}
