@@ -41,3 +41,17 @@ Scout (TASK-009) and Researcher (TASK-010) are ready to generate/update property
 Reference: `docs/ARCHITECTURE.md` data layout section.
 
 Schemas and example completed. Prioritize helper scripts so agents can reliably create/update records.
+
+## Manager triage (2026-08-10)
+
+**Remaining work priority:**
+1. `validate-property` script — needed for CI and orchestrator validation
+2. `property-status` script — useful for Manager/orchestrator to query state
+3. `create-property` script — lower priority; Scout creates properties directly via JSON
+
+**Recommendation:** Complete helper scripts before TASK-005 (pipeline validation) so validation tests have proper tooling. This unblocks orchestrator reliability testing.
+
+**Dependencies for other roles:**
+- Scout (TASK-009) can create `meta.json` directly without helper scripts
+- Researcher (TASK-010) can update `evidence.json` and `meta.json` directly
+- Builder should prioritize TASK-007 (Supabase) over completing helper scripts if blocked

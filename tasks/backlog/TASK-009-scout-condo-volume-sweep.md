@@ -10,15 +10,19 @@ Execute a high-volume condo-focused search sweep across all 5 active markets def
 
 **Current gap:** Only 3 properties screened to date, all outside the 5 defined markets. Volume targets (40 listings/market, 10 research candidates total, 3+ per market) are not met.
 
-## Markets (priority order per search-criteria.json)
+## Markets (priority order per search-criteria.json v2)
 
-1. Tampa, FL
-2. Jacksonville, FL
-3. Panama City Beach, FL *(added 2026-08-10 — 2 candidates already passed screen)*
-4. Birmingham, AL
-5. Memphis, TN
-6. Cleveland, OH
-7. Celebration, FL (Orlando metro) — WATCH status *(high HOA condo-hotel; monitor only)*
+| Priority | Market | Status | Notes |
+|----------|--------|--------|-------|
+| 1 | Tampa, FL | ACTIVE | Primary target |
+| 2 | Jacksonville, FL | ACTIVE | Primary target |
+| 3 | Panama City Beach, FL | ACTIVE | Added 2026-08-10; 2 candidates passed screen |
+| 4 | Birmingham, AL | ACTIVE | |
+| 5 | Memphis, TN | ACTIVE | |
+| 6 | Cleveland, OH | ACTIVE | |
+| 7 | Celebration, FL (Orlando metro) | WATCH | High HOA condo-hotel; monitor only |
+
+**Volume gap:** Only 3 candidates screened across all markets (2 in PCB, 1 in Celebration). Target markets 1-2, 4-6 have 0 candidates — prioritize Tampa, Jacksonville, Birmingham, Memphis, Cleveland.
 
 ## Instructions
 

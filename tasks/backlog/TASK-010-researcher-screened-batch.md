@@ -71,3 +71,15 @@ For each property:
 ## Notes
 
 Panama City Beach properties are now in active markets (added 2026-08-10). Celebration FL is in WATCH status due to condo-hotel complexity. Research all 3 properties; prioritize PCB where confidence is higher.
+
+## Manager triage (2026-08-10)
+
+**Coordination with TASK-009 (Scout volume sweep):**
+- Scout should continue searching while Researcher works these 3 candidates
+- New SCREENED candidates from TASK-009 will be added to a future Researcher batch
+- Prioritize completing evidence files for high-confidence PCB properties first
+
+**Pipeline state:**
+- 3 properties in SCREENED state awaiting research
+- 0 properties in RESEARCHING or later states
+- Goal: move at least 1 property to READY_FOR_UNDERWRITING to validate full pipeline
