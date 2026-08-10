@@ -1,10 +1,6 @@
 # TASK-005: End-to-end pipeline validation
 
-<<<<<<<< HEAD:tasks/active/TASK-005-pipeline-validation.md
-**Status:** COMPLETE  
-========
-**Status:** DONE  
->>>>>>>> agent/manager-triage:tasks/done/TASK-005-pipeline-validation.md
+**Status:** DONE
 **Assignee:** Builder  
 **Priority:** P1
 

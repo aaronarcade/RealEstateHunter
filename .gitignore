@@ -1,21 +1,36 @@
 # Dependencies
 node_modules/
 dist/
+build/
+*.egg-info/
 __pycache__/
 *.pyc
+.venv/
+venv/
 .pytest_cache/
 
 # Logs
 *.log
 npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
 
-# Environment
+# Environment and secrets (NEVER commit)
 .env
 .env.local
 .env.*.local
-
-# Streamlit
 .streamlit/secrets.toml
+
+# Test coverage
+coverage/
+.coverage
+htmlcov/
+
+# Build artifacts
+*.tsbuildinfo
+
+# Supabase local
+.supabase/
 
 # OS files
 .DS_Store
@@ -26,6 +41,4 @@ Thumbs.db
 .vscode/
 *.swp
 *.swo
-
-# Build artifacts
-*.tsbuildinfo
+*~
