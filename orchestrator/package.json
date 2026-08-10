@@ -1,0 +1,25 @@
+{
+  "name": "@realestatehunter/orchestrator",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Workflow orchestrator that spawns Cursor Cloud Agents for RealEstateHunter roles",
+  "bin": {
+    "orchestrate": "./dist/cli.js"
+  },
+  "scripts": {
+    "build": "tsc",
+    "orchestrate": "node dist/cli.js",
+    "plan": "node dist/cli.js plan",
+    "run": "node dist/cli.js run",
+    "sync": "node dist/cli.js sync",
+    "test": "npm run build && node --test dist/**/*.test.js"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.0",
+    "typescript": "^5.7.2"
+  }
+}

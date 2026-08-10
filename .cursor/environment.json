@@ -1,4 +1,3 @@
 {
-  "name": "RealEstateHunter",
-  "install": "npm ci"
+  "install": "cd orchestrator && npm ci && npm run build && npm test"
 }

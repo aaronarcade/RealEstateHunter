@@ -1,0 +1,19 @@
+{
+  "repoUrl": "https://github.com/aaronarcade/RealEstateHunter",
+  "startingRef": "main",
+  "cloudEnvName": null,
+  "maxConcurrentAgents": 3,
+  "autoCreatePR": true,
+  "skipReviewerRequest": true,
+  "roles": {
+    "manager": { "enabled": true, "maxConcurrent": 1 },
+    "scout": { "enabled": true, "maxConcurrent": 1 },
+    "researcher": { "enabled": true, "maxConcurrent": 2 },
+    "underwriter": { "enabled": true, "maxConcurrent": 2 },
+    "auditor": { "enabled": true, "maxConcurrent": 2 },
+    "builder": { "enabled": true, "maxConcurrent": 1 }
+  },
+  "manager": {
+    "scanCriteriaFile": "data/scout/criteria.json"
+  }
+}
