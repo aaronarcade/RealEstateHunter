@@ -179,9 +179,23 @@
       "agentId": "bc-68601000-492b-4ba3-9161-21c924e30a8a",
       "runId": "run-fd2a8b4b-e8de-4c08-8173-e3c9337794f8",
       "agentUrl": "https://cursor.com/agents/bc-68601000-492b-4ba3-9161-21c924e30a8a",
-      "status": "ACTIVE",
+      "status": "ERROR",
       "createdAt": "2026-08-10T05:03:53.680Z",
-      "updatedAt": "2026-08-10T05:03:53.680Z"
+      "updatedAt": "2026-08-10T05:05:42.415Z"
+    },
+    "underwriter:property:fez-manta-unit-209-barbasquillo-manta-ec:underwrite": {
+      "workKey": "underwriter:property:fez-manta-unit-209-barbasquillo-manta-ec:underwrite",
+      "role": "underwriter",
+      "subjectType": "property",
+      "subjectId": "fez-manta-unit-209-barbasquillo-manta-ec",
+      "action": "underwrite",
+      "branch": "agent/fez-manta-unit-209-barbasquillo-manta-ec-underwrite",
+      "agentId": "bc-c28cea1c-522d-4153-835e-bbf45b45903e",
+      "runId": "run-5895e830-52e2-4e0b-85d5-1b997b1dc3ad",
+      "agentUrl": "https://cursor.com/agents/bc-c28cea1c-522d-4153-835e-bbf45b45903e",
+      "status": "ACTIVE",
+      "createdAt": "2026-08-10T05:05:45.233Z",
+      "updatedAt": "2026-08-10T05:05:45.233Z"
     }
   }
 }
