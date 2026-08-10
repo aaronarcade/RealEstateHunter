@@ -137,9 +137,9 @@
       "agentId": "bc-5791611f-247a-45d4-9d29-fbfc7210a36f",
       "runId": "run-1d382a22-1353-4523-ba7c-3f7f4868eb57",
       "agentUrl": "https://cursor.com/agents/bc-5791611f-247a-45d4-9d29-fbfc7210a36f",
-      "status": "ACTIVE",
+      "status": "ERROR",
       "createdAt": "2026-08-10T04:57:53.605Z",
-      "updatedAt": "2026-08-10T04:57:53.605Z"
+      "updatedAt": "2026-08-10T05:03:50.546Z"
     },
     "researcher:property:nahla-unit-60-barbasquillo-manta-ec:build-evidence": {
       "workKey": "researcher:property:nahla-unit-60-barbasquillo-manta-ec:build-evidence",
@@ -151,9 +151,9 @@
       "agentId": "bc-4d0ca98d-3655-40b0-b215-498bd6a5e3ae",
       "runId": "run-5a9ff97b-d153-48ad-8b27-b46eaf21319e",
       "agentUrl": "https://cursor.com/agents/bc-4d0ca98d-3655-40b0-b215-498bd6a5e3ae",
-      "status": "ACTIVE",
+      "status": "ERROR",
       "createdAt": "2026-08-10T04:57:56.095Z",
-      "updatedAt": "2026-08-10T04:57:56.095Z"
+      "updatedAt": "2026-08-10T05:03:50.817Z"
     },
     "researcher:property:nahla-unit-d-105-barbasquillo-manta-ec:build-evidence": {
       "workKey": "researcher:property:nahla-unit-d-105-barbasquillo-manta-ec:build-evidence",
@@ -165,9 +165,23 @@
       "agentId": "bc-cc898231-cf0b-441d-bda8-8ccb72e112c4",
       "runId": "run-4b57805d-e2b0-4e2b-85f4-45030faa6533",
       "agentUrl": "https://cursor.com/agents/bc-cc898231-cf0b-441d-bda8-8ccb72e112c4",
-      "status": "ACTIVE",
+      "status": "ERROR",
       "createdAt": "2026-08-10T04:57:58.656Z",
-      "updatedAt": "2026-08-10T04:57:58.656Z"
+      "updatedAt": "2026-08-10T05:03:51.082Z"
+    },
+    "underwriter:property:nahla-unit-d-105-barbasquillo-manta-ec:underwrite": {
+      "workKey": "underwriter:property:nahla-unit-d-105-barbasquillo-manta-ec:underwrite",
+      "role": "underwriter",
+      "subjectType": "property",
+      "subjectId": "nahla-unit-d-105-barbasquillo-manta-ec",
+      "action": "underwrite",
+      "branch": "agent/nahla-unit-d-105-barbasquillo-manta-ec-underwrite",
+      "agentId": "bc-68601000-492b-4ba3-9161-21c924e30a8a",
+      "runId": "run-fd2a8b4b-e8de-4c08-8173-e3c9337794f8",
+      "agentUrl": "https://cursor.com/agents/bc-68601000-492b-4ba3-9161-21c924e30a8a",
+      "status": "ACTIVE",
+      "createdAt": "2026-08-10T05:03:53.680Z",
+      "updatedAt": "2026-08-10T05:03:53.680Z"
     }
   }
 }
