@@ -1,0 +1,54 @@
+{
+  "property_id": "17462-front-beach-rd-unit-31c-panama-city-beach-fl",
+  "result": "PASS",
+  "final_status": "REJECTED",
+  "underwriter_proposed_status": "REJECTED",
+  "findings": [
+    {
+      "severity": "info",
+      "field": "cap_rate",
+      "message": "Cap rate calculation verified at 6.0%. Math confirmed: $38,400 gross rent - $23,404 operating expenses = $14,996 NOI / $249,900 purchase price = 6.0%."
+    },
+    {
+      "severity": "info",
+      "field": "purchase_price",
+      "message": "Purchase price VERIFIED HIGH at $249,900 via MLS #1005938. No concerns."
+    },
+    {
+      "severity": "info",
+      "field": "monthly_rent",
+      "message": "Rent estimate of $3,200/mo is ESTIMATED MEDIUM and appropriately conservative. Mashvisor projects $3,234/mo; AirDNA shows 2BR average of $4,165/mo with median $2,654/mo. Estimate correctly accounts for non-gulf-front location and 1983 building age."
+    },
+    {
+      "severity": "info",
+      "field": "hoa_monthly",
+      "message": "HOA VERIFIED HIGH at $630/mo via MLS. Covers extensive amenities including master insurance policy (exterior/wind/hail), pools, internet, water, sewer, trash. Slightly above Bay County median ($604/mo)."
+    },
+    {
+      "severity": "warning",
+      "field": "special_assessments",
+      "message": "Special assessments are UNKNOWN LOW. Underwriter correctly used $0 in calculations but flagged this as a risk factor. Per Florida statute, estoppel certificate required for verification. Building permit activity suggests potential capital needs. This gap does not affect REJECTED classification since property fails cap rate threshold regardless."
+    },
+    {
+      "severity": "info",
+      "field": "property_taxes_annual",
+      "message": "Property taxes VERIFIED HIGH at $3,064/year via Compass MLS and county records. Below PCB median of $3,482."
+    },
+    {
+      "severity": "info",
+      "field": "insurance_annual",
+      "message": "Insurance ESTIMATED MEDIUM at $800/year. HO-6 walls-in coverage is appropriate since HOA master policy covers building exterior/wind/hail. Range of $600-$1,200 reasonable for 663 sq ft unit."
+    },
+    {
+      "severity": "info",
+      "field": "management_annual",
+      "message": "Management ESTIMATED MEDIUM at $7,680/year (20% of gross). Within typical PCB STR management range of 15-25%. Appropriately factored for passive investment analysis."
+    },
+    {
+      "severity": "info",
+      "field": "proposed_status",
+      "message": "REJECTED classification is correct. Base case cap rate of 6.0% is 40% below the 10% threshold. Even self-managed optimistic scenario only reaches 10.5% cap rate, requiring top-end rent ($4,000/mo) AND eliminating professional management. This does not represent a reliable, hands-off 10%+ opportunity."
+    }
+  ],
+  "audited_at": "2026-08-10T04:58:00Z"
+}
