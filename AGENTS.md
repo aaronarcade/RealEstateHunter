@@ -121,3 +121,12 @@ These rules apply when running as a **Cursor Cloud Agent** against this reposito
 ### First Builder task
 
 If no other task is assigned, start with `tasks/backlog/TASK-001-property-data-schema.md` on branch `agent/task-001`.
+
+### Orchestrator-spawned agents
+
+You may be created automatically by the pipeline orchestrator (`docs/ORCHESTRATOR.md`):
+
+- Read the role and target branch from your spawn prompt.
+- Your work item key is tracked in `data/orchestrator/registry.json`.
+- Complete your scoped artifact updates, then push and open a PR if `autoCreatePR` is enabled.
+- Do not start work outside your assigned role or property/task scope.

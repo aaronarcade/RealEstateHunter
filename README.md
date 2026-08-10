@@ -56,8 +56,26 @@ Six specialized agents operate against shared artifacts in this repo:
 │   ├── active/            # In-progress work
 │   └── done/              # Completed work
 ├── data/
-│   └── properties/        # Property evidence and analysis records
+│   ├── properties/        # Property evidence and analysis records
+│   └── orchestrator/      # Agent spawn registry
+├── orchestrator/          # Pipeline orchestrator (spawns Cloud Agents)
 └── schemas/               # JSON schemas for structured data
+```
+
+## Pipeline orchestrator
+
+The **orchestrator** scans repo state and spawns Cursor Cloud Agents for the next required roles (Scout, Researcher, Builder, etc.).
+
+- Docs: `docs/ORCHESTRATOR.md`
+- Config: `orchestrator.config.json`
+- Schedule: `.github/workflows/orchestrator.yml` (daily + manual dispatch)
+- Requires GitHub secret: `CURSOR_API_KEY`
+
+```bash
+cd orchestrator && npm ci && npm run build
+npm run plan -- --repo-root ..          # preview
+npm run run -- --repo-root .. --dry-run # preview spawns
+npm run run -- --repo-root ..           # spawn agents
 ```
 
 ## Getting Started

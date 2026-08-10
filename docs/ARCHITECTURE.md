@@ -47,6 +47,18 @@ PUBLISHED
 - If **VIABLE**: add to ranked opportunities.
 - If significant new **VIABLE** property appears: notify Aaron.
 
+### Pipeline orchestrator
+
+Automated agent spawning is handled by `orchestrator/` — see `docs/ORCHESTRATOR.md`.
+
+| Trigger | Action |
+|---------|--------|
+| GitHub Action (daily cron) | Runs `orchestrate run`, commits `registry.json` |
+| Manual CLI | `cd orchestrator && npm run run -- --repo-root ..` |
+| Cursor Automation webhook | Optional; GitHub Action is recommended |
+
+The orchestrator reads property workflow state and `tasks/backlog/`, then calls the Cursor Cloud Agents API to create role-specific agent instances. `data/orchestrator/registry.json` tracks active spawns.
+
 ## Data Layout
 
 ```
