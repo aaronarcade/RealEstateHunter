@@ -1,0 +1,84 @@
+{
+  "property_id": "nahla-unit-60-barbasquillo-manta-ec",
+  "researched_at": "2026-08-10T05:00:00Z",
+  "purchase_price": {
+    "value": 96900,
+    "status": "VERIFIED",
+    "confidence": "HIGH",
+    "source": "https://trivo.com.ec/propiedades/nahla/",
+    "evidence": "Trivo listing shows Unit 60 at Nahla priced at $96,900 for 107m² 3BR unit with immediate delivery."
+  },
+  "monthly_rent": {
+    "value": 825,
+    "status": "ESTIMATED",
+    "confidence": "MEDIUM",
+    "source": "Rent comps",
+    "evidence": "FazWaz Manta 3BR median $825/mo (96 listings). Barbasquillo area comps range widely: unfurnished basic 3BR $490-500/mo, furnished premium 3BR $1,200-1,450/mo. Nahla is a new mid-tier building with good amenities but not oceanfront. Conservative estimate aligned with area median. Comp A: 3BR 65m² Barbasquillo unfurnished $490/mo (FazWaz U4098569). Comp B: 3BR 80m² Barbasquillo furnished $500/mo (Rentola). Comp C: 3BR 130m² Riva Di Mare premium $1,450/mo incl HOA (Rentola). Comp D: 3BR Poseidón oceanfront currently rented $1,300/mo (MLS Ecuador RS2600215). Subject is 107m² new construction with amenities but not oceanfront—positioned between basic and premium.",
+    "range_low": 700,
+    "range_high": 950
+  },
+  "hoa_monthly": {
+    "value": null,
+    "status": "UNKNOWN",
+    "confidence": "LOW",
+    "source": "Trivo listing + market comps",
+    "evidence": "HOA fee not disclosed on Trivo listing for Nahla. Building has 14 amenities (pool, jacuzzi, spa/sauna, coworking, gym, kids room, cine, cancha, pet spa, etc.) plus concierge, security 24/7, and elevator. Comparable Barbasquillo buildings with similar amenities: Buzios $175-270/mo, Las Olas $237/mo, Ibiza $288/mo, Poseidón $328-369/mo. Many include building insurance. For a new building with extensive amenities, estimate likely $150-$250/mo range, but verification required from developer Trivo."
+  },
+  "special_assessments": {
+    "value": null,
+    "status": "UNKNOWN",
+    "confidence": "LOW",
+    "source": "No public data available",
+    "evidence": "No information on special assessments found. Nahla is a newly delivered building so immediate large assessments are unlikely, but new buildings sometimes have post-delivery punch list items or reserve fund contributions. Ecuador condo law requires HOA financial review but no assessment data is publicly available for this building."
+  },
+  "property_taxes_annual": {
+    "value": 300,
+    "status": "ESTIMATED",
+    "confidence": "MEDIUM",
+    "source": "Ecuador property tax structure + comparable listings",
+    "evidence": "Ecuador Impuesto Predial is 0.025%-0.5% of cadastral (government-assessed) value, which is typically much lower than market value. Multiple Manta condo listings (Las Olas, Busios, Ibiza) state 'annual property taxes under $400'. For a $96,900 market value unit, cadastral value might be $30,000-$60,000, yielding estimated tax of $150-$400/year. Conservative estimate $300/year."
+  },
+  "insurance_annual": {
+    "value": 250,
+    "status": "ESTIMATED",
+    "confidence": "MEDIUM",
+    "source": "Ecuador insurance market data",
+    "evidence": "Ecuador condo buildings are required to carry structure insurance, typically included in HOA/aliquota. Additional owner policy for contents/earthquake coverage for a ~$100K condo in coastal Manta (higher earthquake risk zone, 15-20% premium vs highland) estimated at $225-$400/year. Basic renters contents policy ($10K coverage) ~$140/year. Estimate $250/year for supplemental owner policy if HOA includes building coverage; may be higher if owner wants comprehensive standalone policy."
+  },
+  "management_annual": {
+    "value": 990,
+    "status": "ESTIMATED",
+    "confidence": "MEDIUM",
+    "source": "Ecuador property management market rates",
+    "evidence": "Long-term rental management in Ecuador typically 8%-15% of monthly rent. At estimated $825/month rent, 10% management fee = $82.50/mo = $990/year. One-time tenant placement fee (typically 1 month rent, not included in annual). STR/Airbnb management would be 15-20% of gross revenue. Calculation: $825 × 12 × 10% = $990."
+  },
+  "utilities_annual": {
+    "value": 0,
+    "status": "ESTIMATED",
+    "confidence": "MEDIUM",
+    "source": "Ecuador rental market conventions",
+    "evidence": "For long-term rentals in Ecuador, tenants typically pay their own utilities directly or reimburse landlord. Electricity $30-60/mo without AC, $80-150/mo with AC (coastal area typically uses AC). Water $5-15/mo. In furnished/managed rentals, utilities may be included up to a cap. Owner-paid utilities assumed to be $0 for standard long-term rental structure where tenant pays. If owner covers, estimate $100-150/mo ($1,200-1,800/year)."
+  },
+  "other_expenses_annual": {
+    "value": 200,
+    "status": "ESTIMATED",
+    "confidence": "LOW",
+    "source": "General Ecuador rental property costs",
+    "evidence": "Other recurring costs may include: internet service if owner provides (~$25-50/mo but typically tenant-paid), minor maintenance/repairs reserve, vacancy buffer not captured in rent estimate. No resort fees, club fees, or rental program fees identified for Nahla. Conservative estimate $200/year for miscellaneous owner costs."
+  },
+  "rental_restrictions": {
+    "value": null,
+    "status": "VERIFIED",
+    "confidence": "HIGH",
+    "source": "https://trivo.com.ec/propiedades/nahla/",
+    "evidence": "Trivo listing explicitly states Nahla is suitable for 'renta temporal (Airbnb-friendly)' and targets both primary residents and those seeking 'espacio de descanso o renta temporal'. No rental restrictions identified."
+  },
+  "str_restrictions": {
+    "value": null,
+    "status": "VERIFIED",
+    "confidence": "HIGH",
+    "source": "https://trivo.com.ec/propiedades/nahla/",
+    "evidence": "Building explicitly marketed as 'Airbnb-friendly'. No STR restrictions identified. Ecuador does not have widespread municipal STR restrictions like some US cities."
+  },
+  "notes": "Key research gaps: (1) HOA/aliquota fee not disclosed—critical for underwriting, must contact Trivo for exact amount; (2) Special assessments unknown for this new building; (3) Rent estimate based on area comps, not verified lease data. Nahla is a new immediate-delivery building in Barbasquillo with extensive amenities. Property is 107m² (1,152 sqft), which at $96,900 represents $906/m² or $84/sqft—below comparables like Poseidón ($1,531-2,063/m²) and Buzios ($1,545/m²), making it relatively affordable. STR potential exists but Manta Airbnb market shows only 21.7% occupancy and $4,104 average annual revenue, suggesting long-term rental may be more reliable income strategy. Barbasquillo is a desirable coastal neighborhood near Playa Murciélago and Mall del Pacífico."
+}

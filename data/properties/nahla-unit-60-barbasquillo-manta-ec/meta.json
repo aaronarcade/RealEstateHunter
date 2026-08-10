@@ -1,0 +1,30 @@
+{
+  "id": "nahla-unit-60-barbasquillo-manta-ec",
+  "address": "Nahla Unit 60, Barbasquillo, Manta, Manab\u00ed, Ecuador",
+  "location": "Manta, Manab\u00ed, Ecuador",
+  "listing_url": "https://trivo.com.ec/propiedades/nahla/",
+  "market_id": "manta-ec",
+  "created_at": "2026-08-10T05:00:00Z",
+  "updated_at": "2026-08-10T05:05:00Z",
+  "last_screened_at": "2026-08-10T05:00:00Z",
+  "screening_snapshot": {
+    "price": 96900,
+    "rough_monthly_rent": 825,
+    "rough_gross_yield": 0.1022,
+    "advertised_hoa": null,
+    "screened_at": "2026-08-10T05:00:00Z"
+  },
+  "scout_notes": "3BR 107m\u00b2 at Nahla; FazWaz 3BR Manta median $825/mo \u2192 10.2% gross. Immediate delivery, Airbnb-friendly building.",
+  "property_type": "condo",
+  "building_name": "Nahla",
+  "unit": "60",
+  "beds": 3,
+  "baths": 2,
+  "asking_price": 96900,
+  "rough_monthly_rent": 825,
+  "rough_gross_yield": 0.1022,
+  "rent_source": "FazWaz Manta 3BR median $825/mo",
+  "rent_confidence": "MEDIUM",
+  "workflow_state": "READY_FOR_UNDERWRITING",
+  "scout_decision": "RESEARCH"
+}
