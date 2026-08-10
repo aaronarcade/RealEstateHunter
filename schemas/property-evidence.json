@@ -1,0 +1,25 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "property-evidence.json",
+  "title": "PropertyEvidence",
+  "description": "Researcher-owned factual record for a property",
+  "type": "object",
+  "required": ["property_id", "researched_at"],
+  "properties": {
+    "property_id": { "type": "string" },
+    "researched_at": { "type": "string", "format": "date-time" },
+    "purchase_price": { "$ref": "field-value.json" },
+    "monthly_rent": { "$ref": "field-value.json" },
+    "hoa_monthly": { "$ref": "field-value.json" },
+    "special_assessments": { "$ref": "field-value.json" },
+    "property_taxes_annual": { "$ref": "field-value.json" },
+    "insurance_annual": { "$ref": "field-value.json" },
+    "management_annual": { "$ref": "field-value.json" },
+    "utilities_annual": { "$ref": "field-value.json" },
+    "other_expenses_annual": { "$ref": "field-value.json" },
+    "rental_restrictions": { "$ref": "field-value.json" },
+    "str_restrictions": { "$ref": "field-value.json" },
+    "notes": { "type": "string" }
+  },
+  "additionalProperties": false
+}

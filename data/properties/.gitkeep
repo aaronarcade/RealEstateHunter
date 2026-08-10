@@ -1,0 +1,4 @@
+{
+  "description": "Exclude real candidate property data from version control until intentionally committed",
+  "note": "The _example/ directory is tracked for documentation. Real properties may be gitignored individually."
+}

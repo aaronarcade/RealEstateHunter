@@ -1,0 +1,19 @@
+{
+  "property_id": "_example",
+  "result": "PASS",
+  "final_status": "REJECTED",
+  "underwriter_proposed_status": "REJECTED",
+  "findings": [
+    {
+      "severity": "info",
+      "field": "cap_rate",
+      "message": "Underwriter correctly calculated 6.9% cap rate; below 10% threshold."
+    },
+    {
+      "severity": "info",
+      "field": "monthly_rent",
+      "message": "Rent ESTIMATED MEDIUM; even at range_high ($2,300) cap rate remains below 10%."
+    }
+  ],
+  "audited_at": "2026-08-09T18:00:00Z"
+}

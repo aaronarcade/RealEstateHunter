@@ -1,0 +1,16 @@
+{
+  "property_id": "_example",
+  "annual_gross_rent": 26400,
+  "annual_operating_expenses": 12572,
+  "noi": 13828,
+  "cap_rate": 0.0691,
+  "proposed_status": "REJECTED",
+  "proposed_status_reason": "Cap rate 6.9% below 10% threshold despite verified inputs.",
+  "input_summary": {
+    "purchase_price": { "status": "VERIFIED", "confidence": "HIGH" },
+    "monthly_rent": { "status": "ESTIMATED", "confidence": "MEDIUM" },
+    "hoa_monthly": { "status": "VERIFIED", "confidence": "HIGH" },
+    "special_assessments": { "status": "VERIFIED", "confidence": "HIGH" }
+  },
+  "computed_at": "2026-08-09T16:00:00Z"
+}

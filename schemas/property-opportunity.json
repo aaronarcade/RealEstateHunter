@@ -1,0 +1,57 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "property-opportunity.json",
+  "title": "PropertyOpportunity",
+  "description": "Published opportunity for UI display and ranking",
+  "type": "object",
+  "required": [
+    "id",
+    "address",
+    "location",
+    "listingUrl",
+    "purchasePrice",
+    "monthlyRent",
+    "annualGrossRent",
+    "annualOperatingExpenses",
+    "noi",
+    "capRate",
+    "hoa",
+    "assessment",
+    "confidence",
+    "status"
+  ],
+  "properties": {
+    "id": { "type": "string" },
+    "address": { "type": "string" },
+    "location": { "type": "string" },
+    "listingUrl": { "type": "string", "format": "uri" },
+    "purchasePrice": { "$ref": "field-value.json" },
+    "monthlyRent": { "$ref": "field-value.json" },
+    "annualGrossRent": { "type": "number" },
+    "annualOperatingExpenses": { "type": "number" },
+    "noi": { "type": "number" },
+    "capRate": { "type": "number" },
+    "hoa": { "$ref": "field-value.json" },
+    "assessment": { "$ref": "field-value.json" },
+    "confidence": {
+      "type": "string",
+      "enum": ["HIGH", "MEDIUM", "LOW"]
+    },
+    "status": {
+      "type": "string",
+      "enum": ["VIABLE", "WATCHLIST", "REJECTED"]
+    },
+    "sources": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "label": { "type": "string" },
+          "url": { "type": "string", "format": "uri" }
+        }
+      }
+    },
+    "rankedAt": { "type": "string", "format": "date-time" }
+  },
+  "additionalProperties": false
+}

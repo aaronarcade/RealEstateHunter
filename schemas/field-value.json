@@ -1,0 +1,39 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "field-value.json",
+  "title": "FieldValue",
+  "description": "A single financial or factual field with provenance",
+  "type": "object",
+  "required": ["status", "confidence"],
+  "properties": {
+    "value": {
+      "type": ["number", "null"],
+      "description": "Numeric value; null when UNKNOWN"
+    },
+    "status": {
+      "type": "string",
+      "enum": ["VERIFIED", "ESTIMATED", "UNKNOWN"]
+    },
+    "confidence": {
+      "type": "string",
+      "enum": ["HIGH", "MEDIUM", "LOW"]
+    },
+    "source": {
+      "type": "string",
+      "description": "URL or reference to source"
+    },
+    "evidence": {
+      "type": "string",
+      "description": "Human-readable explanation of the value"
+    },
+    "range_low": {
+      "type": "number",
+      "description": "Optional lower bound for estimated ranges"
+    },
+    "range_high": {
+      "type": "number",
+      "description": "Optional upper bound for estimated ranges"
+    }
+  },
+  "additionalProperties": false
+}

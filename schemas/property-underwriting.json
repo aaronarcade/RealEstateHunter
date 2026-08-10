@@ -1,0 +1,40 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "property-underwriting.json",
+  "title": "PropertyUnderwriting",
+  "description": "Underwriter-owned analysis output",
+  "type": "object",
+  "required": [
+    "property_id",
+    "annual_gross_rent",
+    "annual_operating_expenses",
+    "noi",
+    "cap_rate",
+    "proposed_status",
+    "computed_at"
+  ],
+  "properties": {
+    "property_id": { "type": "string" },
+    "annual_gross_rent": { "type": "number" },
+    "annual_operating_expenses": { "type": "number" },
+    "noi": { "type": "number" },
+    "cap_rate": { "type": "number", "minimum": 0 },
+    "proposed_status": {
+      "type": "string",
+      "enum": ["VIABLE", "WATCHLIST", "REJECTED"]
+    },
+    "proposed_status_reason": { "type": "string" },
+    "input_summary": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "object",
+        "properties": {
+          "status": { "type": "string" },
+          "confidence": { "type": "string" }
+        }
+      }
+    },
+    "computed_at": { "type": "string", "format": "date-time" }
+  },
+  "additionalProperties": false
+}

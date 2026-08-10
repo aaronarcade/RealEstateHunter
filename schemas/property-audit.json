@@ -1,0 +1,40 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "property-audit.json",
+  "title": "PropertyAudit",
+  "description": "Auditor-owned validation output",
+  "type": "object",
+  "required": ["property_id", "result", "final_status", "audited_at"],
+  "properties": {
+    "property_id": { "type": "string" },
+    "result": {
+      "type": "string",
+      "enum": ["PASS", "NEEDS_RESEARCH", "DOWNGRADE"]
+    },
+    "final_status": {
+      "type": "string",
+      "enum": ["VIABLE", "WATCHLIST", "REJECTED"]
+    },
+    "underwriter_proposed_status": {
+      "type": "string",
+      "enum": ["VIABLE", "WATCHLIST", "REJECTED"]
+    },
+    "findings": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["severity", "message"],
+        "properties": {
+          "severity": {
+            "type": "string",
+            "enum": ["info", "warning", "blocking"]
+          },
+          "field": { "type": "string" },
+          "message": { "type": "string" }
+        }
+      }
+    },
+    "audited_at": { "type": "string", "format": "date-time" }
+  },
+  "additionalProperties": false
+}

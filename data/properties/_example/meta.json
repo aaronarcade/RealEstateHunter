@@ -1,0 +1,10 @@
+{
+  "id": "_example",
+  "address": "123 Example St, Tampa, FL 33602",
+  "location": "Tampa, FL",
+  "listing_url": "https://example.com/listing/123",
+  "workflow_state": "AUDIT",
+  "scout_decision": "RESEARCH",
+  "created_at": "2026-08-09T12:00:00Z",
+  "updated_at": "2026-08-09T18:00:00Z"
+}
