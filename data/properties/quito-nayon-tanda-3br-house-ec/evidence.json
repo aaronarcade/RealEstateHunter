@@ -1,0 +1,84 @@
+{
+  "property_id": "quito-nayon-tanda-3br-house-ec",
+  "researched_at": "2026-08-10T07:00:00Z",
+  "purchase_price": {
+    "value": 380000,
+    "status": "VERIFIED",
+    "confidence": "HIGH",
+    "source": "https://www.realtor.com/international/ec/house-for-sale-in-nayon-quito-tanda-quito-pichincha-310109305274/",
+    "evidence": "Listing asking price $380,000."
+  },
+  "monthly_rent": {
+    "value": 1400,
+    "status": "ESTIMATED",
+    "confidence": "MEDIUM",
+    "source": "Local rent comps (YapaTree/FazWaz/GringoPost/MLS)",
+    "evidence": "See research notes. Range $1000-$2000.",
+    "range_low": 1000,
+    "range_high": 2000
+  },
+  "hoa_monthly": {
+    "value": null,
+    "status": "UNKNOWN",
+    "confidence": "LOW",
+    "source": "https://www.realtor.com/international/ec/house-for-sale-in-nayon-quito-tanda-quito-pichincha-310109305274/",
+    "evidence": "No published alicuota; prior tracker value of $0 cleared as unverified. Confirm with seller/admin."
+  },
+  "special_assessments": {
+    "value": null,
+    "status": "UNKNOWN",
+    "confidence": "LOW",
+    "source": "No source",
+    "evidence": "No special assessment disclosure found."
+  },
+  "property_taxes_annual": {
+    "value": 50,
+    "status": "ESTIMATED",
+    "confidence": "LOW",
+    "source": "Listing mirrors / Ecuador impuesto predial norms",
+    "evidence": "Ecuador predial typically low vs market value; estimate pending municipal bill."
+  },
+  "insurance_annual": {
+    "value": 400,
+    "status": "ESTIMATED",
+    "confidence": "MEDIUM",
+    "source": "Ecuador homeowners insurance norms",
+    "evidence": "Owner policy estimate for highland SFH."
+  },
+  "management_annual": {
+    "value": 1680,
+    "status": "ESTIMATED",
+    "confidence": "MEDIUM",
+    "source": "Ecuador LTR management 8-15%",
+    "evidence": "10% of $1400/mo rent."
+  },
+  "utilities_annual": {
+    "value": 0,
+    "status": "ESTIMATED",
+    "confidence": "MEDIUM",
+    "source": "Lease convention",
+    "evidence": "Tenant-paid utilities assumed for LTR."
+  },
+  "other_expenses_annual": {
+    "value": 1200,
+    "status": "ESTIMATED",
+    "confidence": "LOW",
+    "source": "Maintenance reserves",
+    "evidence": "Gardening/maintenance reserve for SFH."
+  },
+  "rental_restrictions": {
+    "value": null,
+    "status": "UNKNOWN",
+    "confidence": "LOW",
+    "source": "No bylaws",
+    "evidence": "No rental restriction docs obtained."
+  },
+  "str_restrictions": {
+    "value": null,
+    "status": "UNKNOWN",
+    "confidence": "LOW",
+    "source": "No bylaws",
+    "evidence": "STR not evidenced; treat as LTR-only until verified."
+  },
+  "notes": "Gross ~4.4% at $1,400. HOA unknown. Supabase unit_id=46818929-b408-4715-a5f0-caf101f7a705."
+}

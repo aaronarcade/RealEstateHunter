@@ -1,0 +1,84 @@
+{
+  "property_id": "cuenca-putishi-5br-award-residence-ec",
+  "researched_at": "2026-08-10T07:00:00Z",
+  "purchase_price": {
+    "value": 580000,
+    "status": "VERIFIED",
+    "confidence": "HIGH",
+    "source": "https://yapatree.com/buy-properties-cuenca/luxury-5bdr-home-countryside-green-area/",
+    "evidence": "Listing asking price $580,000."
+  },
+  "monthly_rent": {
+    "value": 1800,
+    "status": "ESTIMATED",
+    "confidence": "MEDIUM",
+    "source": "Local rent comps (YapaTree/FazWaz/GringoPost/MLS)",
+    "evidence": "See research notes. Range $1400-$2200.",
+    "range_low": 1400,
+    "range_high": 2200
+  },
+  "hoa_monthly": {
+    "value": null,
+    "status": "UNKNOWN",
+    "confidence": "LOW",
+    "source": "https://yapatree.com/buy-properties-cuenca/luxury-5bdr-home-countryside-green-area/",
+    "evidence": "No published alicuota; prior tracker value of $0 cleared as unverified. Confirm with seller/admin."
+  },
+  "special_assessments": {
+    "value": null,
+    "status": "UNKNOWN",
+    "confidence": "LOW",
+    "source": "No source",
+    "evidence": "No special assessment disclosure found."
+  },
+  "property_taxes_annual": {
+    "value": 50,
+    "status": "ESTIMATED",
+    "confidence": "LOW",
+    "source": "Listing mirrors / Ecuador impuesto predial norms",
+    "evidence": "Ecuador predial typically low vs market value; estimate pending municipal bill."
+  },
+  "insurance_annual": {
+    "value": 400,
+    "status": "ESTIMATED",
+    "confidence": "MEDIUM",
+    "source": "Ecuador homeowners insurance norms",
+    "evidence": "Owner policy estimate for highland SFH."
+  },
+  "management_annual": {
+    "value": 2160,
+    "status": "ESTIMATED",
+    "confidence": "MEDIUM",
+    "source": "Ecuador LTR management 8-15%",
+    "evidence": "10% of $1800/mo rent."
+  },
+  "utilities_annual": {
+    "value": 0,
+    "status": "ESTIMATED",
+    "confidence": "MEDIUM",
+    "source": "Lease convention",
+    "evidence": "Tenant-paid utilities assumed for LTR."
+  },
+  "other_expenses_annual": {
+    "value": 1200,
+    "status": "ESTIMATED",
+    "confidence": "LOW",
+    "source": "Maintenance reserves",
+    "evidence": "Gardening/maintenance reserve for SFH."
+  },
+  "rental_restrictions": {
+    "value": null,
+    "status": "UNKNOWN",
+    "confidence": "LOW",
+    "source": "No bylaws",
+    "evidence": "No rental restriction docs obtained."
+  },
+  "str_restrictions": {
+    "value": null,
+    "status": "UNKNOWN",
+    "confidence": "LOW",
+    "source": "No bylaws",
+    "evidence": "STR not evidenced; treat as LTR-only until verified."
+  },
+  "notes": "Gross ~3.7% at $1,800. Not a 10% cap candidate on LTR comps. Supabase unit_id=948eb932-f451-4f80-aa28-780a3bf0607b."
+}

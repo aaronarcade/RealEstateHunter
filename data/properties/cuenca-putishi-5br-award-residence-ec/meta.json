@@ -1,0 +1,30 @@
+{
+  "id": "cuenca-putishi-5br-award-residence-ec",
+  "address": "Award-winning Residence, San Miguel de Putishi, Cuenca, Azuay, Ecuador",
+  "location": "Cuenca, Azuay, Ecuador",
+  "listing_url": "https://yapatree.com/buy-properties-cuenca/luxury-5bdr-home-countryside-green-area/",
+  "market_id": "cuenca-ec",
+  "created_at": "2026-08-10T07:00:00Z",
+  "updated_at": "2026-08-10T07:00:00Z",
+  "last_screened_at": "2026-08-10T07:00:00Z",
+  "screening_snapshot": {
+    "price": 580000,
+    "rough_monthly_rent": 1800,
+    "rough_gross_yield": 0.0372,
+    "advertised_hoa": null,
+    "screened_at": "2026-08-10T07:00:00Z"
+  },
+  "scout_notes": "Furnished countryside estate; property tax cited ~$10.78/yr on listing mirrors. Tracker unit_id=948eb932-f451-4f80-aa28-780a3bf0607b.",
+  "property_type": "single_family",
+  "building_name": "San Miguel de Putishi estate",
+  "unit": "1",
+  "beds": 5,
+  "baths": 3.5,
+  "asking_price": 580000,
+  "rough_monthly_rent": 1800,
+  "rough_gross_yield": 0.0372,
+  "rent_source": "Researcher comps 2026-08-10",
+  "rent_confidence": "MEDIUM",
+  "workflow_state": "READY_FOR_UNDERWRITING",
+  "scout_decision": "RESEARCH"
+}

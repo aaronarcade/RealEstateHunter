@@ -1,0 +1,31 @@
+{
+  "id": "cuenca-ingenieros-3br-condo-house-ec",
+  "address": "Private Condominium House, Urb. de los Ingenieros, Cuenca, Azuay, Ecuador",
+  "location": "Cuenca, Azuay, Ecuador",
+  "listing_url": "https://yapatree.com/buy-properties-cuenca/spacious-house-in-private-condominium/",
+  "market_id": "cuenca-ec",
+  "created_at": "2026-08-10T07:00:00Z",
+  "updated_at": "2026-08-10T07:00:00Z",
+  "last_screened_at": "2026-08-10T07:00:00Z",
+  "screening_snapshot": {
+    "price": 187000,
+    "rough_monthly_rent": 800,
+    "rough_gross_yield": 0.0513,
+    "advertised_hoa": 80,
+    "screened_at": "2026-08-10T07:00:00Z"
+  },
+  "scout_notes": "Newest/lowest-priced Ecuador tracker unit; still ~5% gross. Tracker unit_id=092db4bd-14ef-4d29-b351-f234e80fd4e7.",
+  "property_type": "single_family",
+  "building_name": "Urb. de los Ingenieros",
+  "unit": "1",
+  "beds": 3,
+  "baths": 3,
+  "asking_price": 187000,
+  "rough_monthly_rent": 800,
+  "rough_gross_yield": 0.0513,
+  "rent_source": "Researcher comps 2026-08-10",
+  "rent_confidence": "MEDIUM",
+  "workflow_state": "READY_FOR_UNDERWRITING",
+  "scout_decision": "RESEARCH",
+  "advertised_hoa": 80
+}
