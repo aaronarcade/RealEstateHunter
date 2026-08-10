@@ -1,5 +1,10 @@
-import { describe, it, expect } from 'vitest'
-import { transformPropertyData, sampleOpportunities } from './loader'
+import { describe, it, expect, vi, beforeEach } from 'vitest'
+import { transformPropertyData, sampleOpportunities, fetchOpportunities } from './loader'
+
+vi.mock('./supabase', () => ({
+  isSupabaseConfigured: vi.fn(() => false),
+  fetchOpportunitiesFromSupabase: vi.fn(() => Promise.resolve([])),
+}))
 
 describe('transformPropertyData', () => {
   const mockMeta = {
@@ -156,5 +161,57 @@ describe('sampleOpportunities', () => {
       expect(['VIABLE', 'WATCHLIST', 'REJECTED']).toContain(opportunity.status)
       expect(['HIGH', 'MEDIUM', 'LOW']).toContain(opportunity.confidence)
     }
+  })
+})
+
+describe('fetchOpportunities', () => {
+  beforeEach(() => {
+    vi.resetModules()
+  })
+
+  it('returns empty array when Supabase is not configured', async () => {
+    const { isSupabaseConfigured } = await import('./supabase')
+    vi.mocked(isSupabaseConfigured).mockReturnValue(false)
+
+    const consoleWarn = vi.spyOn(console, 'warn').mockImplementation(() => {})
+    const result = await fetchOpportunities()
+
+    expect(result).toEqual([])
+    expect(consoleWarn).toHaveBeenCalledWith(
+      'Supabase not configured. Set VITE_SUPABASE_URL and VITE_SUPABASE_ANON_KEY.'
+    )
+
+    consoleWarn.mockRestore()
+  })
+
+  it('calls fetchOpportunitiesFromSupabase when configured', async () => {
+    const mockData = [
+      {
+        id: 'test',
+        address: '123 Test',
+        location: 'Tampa, FL',
+        listingUrl: 'https://example.com',
+        purchasePrice: { value: 200000, status: 'VERIFIED', confidence: 'HIGH' },
+        monthlyRent: { value: 2000, status: 'VERIFIED', confidence: 'HIGH' },
+        annualGrossRent: 24000,
+        annualOperatingExpenses: 6000,
+        noi: 18000,
+        capRate: 0.09,
+        hoa: { value: 300, status: 'VERIFIED', confidence: 'HIGH' },
+        assessment: { value: 0, status: 'VERIFIED', confidence: 'HIGH' },
+        confidence: 'HIGH',
+        status: 'VIABLE',
+      },
+    ]
+
+    const { isSupabaseConfigured, fetchOpportunitiesFromSupabase } = await import('./supabase')
+    vi.mocked(isSupabaseConfigured).mockReturnValue(true)
+    vi.mocked(fetchOpportunitiesFromSupabase).mockResolvedValue(mockData as any)
+
+    const result = await fetchOpportunities()
+
+    expect(isSupabaseConfigured).toHaveBeenCalled()
+    expect(fetchOpportunitiesFromSupabase).toHaveBeenCalled()
+    expect(result).toEqual(mockData)
   })
 })

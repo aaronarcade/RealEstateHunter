@@ -7,9 +7,7 @@ type ViewMode = 'table' | 'card'
 
 function App() {
   const [viewMode, setViewMode] = useState<ViewMode>('table')
-  const { opportunities, loading, error, sortConfig, handleSort } = useOpportunities({
-    useSampleData: true,
-  })
+  const { opportunities, loading, error, sortConfig, handleSort } = useOpportunities()
 
   return (
     <div

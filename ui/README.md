@@ -1,32 +1,94 @@
-# React + TypeScript + Vite
+# RealEstateHunter UI
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+React-based opportunity comparison UI for RealEstateHunter. Displays investment opportunities loaded from Supabase.
 
-Currently, two official plugins are available:
+## Setup
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+### 1. Install dependencies
 
-## React Compiler
-
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
-
-## Expanding the Oxlint configuration
-
-If you are developing a production application, we recommend enabling type-aware lint rules by installing `oxlint-tsgolint` and editing `.oxlintrc.json`:
-
-```json
-{
-  "$schema": "./node_modules/oxlint/configuration_schema.json",
-  "plugins": ["react", "typescript", "oxc"],
-  "options": {
-    "typeAware": true
-  },
-  "rules": {
-    "react/rules-of-hooks": "error",
-    "react/only-export-components": ["warn", { "allowConstantExport": true }]
-  }
-}
+```bash
+npm install
 ```
 
-See the [Oxlint rules documentation](https://oxc.rs/docs/guide/usage/linter/rules) for the full list of rules and categories.
+### 2. Configure environment variables
+
+Create a `.env` file in the `ui/` directory:
+
+```bash
+# Required: Supabase connection
+VITE_SUPABASE_URL=https://quvfkegqgbrvtmufndpn.supabase.co
+VITE_SUPABASE_ANON_KEY=your-anon-key-here
+
+# Optional: Fall back to sample data when Supabase returns empty
+VITE_USE_SAMPLE_DATA=false
+```
+
+| Variable | Required | Description |
+|----------|----------|-------------|
+| `VITE_SUPABASE_URL` | Yes | Supabase project URL |
+| `VITE_SUPABASE_ANON_KEY` | Yes | Supabase anonymous/public key (safe for browser use) |
+| `VITE_USE_SAMPLE_DATA` | No | Set to `true` to show sample data when Supabase returns empty results |
+
+**Security notes:**
+- Only use the **anon key** in the browser, never the service role key
+- The anon key is safe to expose because Supabase uses Row Level Security (RLS)
+- See `docs/SUPABASE.md` for RLS policy details
+
+### 3. Run development server
+
+```bash
+npm run dev
+```
+
+## Scripts
+
+| Command | Description |
+|---------|-------------|
+| `npm run dev` | Start development server |
+| `npm run build` | Build for production |
+| `npm run preview` | Preview production build |
+| `npm run test` | Run tests |
+| `npm run test:watch` | Run tests in watch mode |
+| `npm run lint` | Run linter |
+
+## Architecture
+
+```
+src/
+├── components/       # UI components (OpportunityCard, OpportunityTable, etc.)
+├── data/
+│   ├── loader.ts    # Data fetching (calls Supabase)
+│   ├── supabase.ts  # Supabase client configuration
+│   └── sorting.ts   # Sorting utilities
+├── hooks/
+│   └── useOpportunities.ts  # Data hook with loading/error states
+└── types/
+    └── property.ts  # TypeScript interfaces
+```
+
+## Data Flow
+
+1. UI loads opportunities via `useOpportunities()` hook
+2. Hook calls `fetchOpportunities()` which queries Supabase
+3. If Supabase returns empty AND `VITE_USE_SAMPLE_DATA=true`, falls back to sample data
+4. Opportunities are sorted and displayed in table or card view
+
+## Development without Supabase
+
+For offline development or when Supabase credentials aren't available:
+
+1. Set `VITE_USE_SAMPLE_DATA=true` in `.env`
+2. The UI will display sample data when Supabase returns empty results
+
+## Tech Stack
+
+- React 19 with TypeScript
+- Vite for bundling
+- Vitest for testing
+- Supabase for data storage
+
+## Related Documentation
+
+- Supabase schema and setup: `docs/SUPABASE.md`
+- Data architecture: `docs/ARCHITECTURE.md`
+- Environment variables: `.env.example` (repo root)
