@@ -64,3 +64,69 @@ test("meta rejects an invalid workflow_state", () => {
   });
   assert.equal(valid, false);
 });
+
+test("meta accepts Scout screening fields", () => {
+  const { valid } = validate("property-meta.json", {
+    id: "test-scout-fields",
+    address: "123 Condo Blvd, Tampa, FL",
+    listing_url: "https://example.com/123",
+    workflow_state: "SCREENED",
+    scout_decision: "RESEARCH",
+    property_type: "condo",
+    building_name: "Bayshore Towers",
+    unit: "1205",
+    beds: 2,
+    baths: 2,
+    asking_price: 199000,
+    rough_monthly_rent: 2200,
+    rough_gross_yield: 0.133,
+    advertised_hoa: 485,
+    market_id: "tampa-fl",
+    mls_id: "TB123456",
+    rent_source: "Zillow estimate",
+    rent_confidence: "MEDIUM",
+    scout_notes: "HOA exceeds $500/mo scrutiny threshold",
+    created_at: "2026-08-10T12:00:00Z",
+    updated_at: "2026-08-10T12:00:00Z",
+  });
+  assert.equal(valid, true);
+});
+
+test("meta rejects negative asking_price", () => {
+  const { valid } = validate("property-meta.json", {
+    id: "x",
+    address: "1 Test St",
+    listing_url: "https://example.com/1",
+    workflow_state: "SCREENED",
+    asking_price: -50000,
+    created_at: "2026-08-09T12:00:00Z",
+    updated_at: "2026-08-09T18:00:00Z",
+  });
+  assert.equal(valid, false);
+});
+
+test("meta rejects rent_confidence outside enum", () => {
+  const { valid } = validate("property-meta.json", {
+    id: "x",
+    address: "1 Test St",
+    listing_url: "https://example.com/1",
+    workflow_state: "SCREENED",
+    rent_confidence: "VERY_HIGH",
+    created_at: "2026-08-09T12:00:00Z",
+    updated_at: "2026-08-09T18:00:00Z",
+  });
+  assert.equal(valid, false);
+});
+
+test("meta rejects rough_gross_yield above 1.0", () => {
+  const { valid } = validate("property-meta.json", {
+    id: "x",
+    address: "1 Test St",
+    listing_url: "https://example.com/1",
+    workflow_state: "SCREENED",
+    rough_gross_yield: 1.5,
+    created_at: "2026-08-09T12:00:00Z",
+    updated_at: "2026-08-09T18:00:00Z",
+  });
+  assert.equal(valid, false);
+});
