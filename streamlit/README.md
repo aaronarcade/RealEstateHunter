@@ -64,3 +64,17 @@ Sorting tests mirror `ui/src/data/sorting.test.ts`.
 ## Data source
 
 Production reads from Supabase (`properties` table). Agent workflow JSON under `data/properties/` is synced separately — see `docs/SUPABASE.md`.
+
+### First-time Supabase setup
+
+RealEstateHunter shares the Supabase project with RealEstateTracker but uses its own `properties` table. If you see `Could not find the table 'public.properties'`:
+
+```bash
+# From repo root — creates the properties table + RLS
+python scripts/apply-supabase-migrations.py
+
+# Sync ranked/published Git artifacts into Supabase
+cd scripts && npm install && npm run sync:supabase
+```
+
+Requires `DATABASE_URL` (or `SUPABASE_DB_PASSWORD`) and `SUPABASE_SERVICE_ROLE_KEY` in `.env`.
