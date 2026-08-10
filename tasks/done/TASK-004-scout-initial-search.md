@@ -1,6 +1,6 @@
 # TASK-004: Scout initial property search
 
-**Status:** BACKLOG  
+**Status:** DONE  
 **Assignee:** Scout  
 **Priority:** P0
 
@@ -17,13 +17,15 @@ Read `data/search-criteria.json` for:
 - Minimum beds/baths (2 bed, 1 bath)
 - Screening threshold (12% gross yield minimum)
 
+**Manager-directed markets for this run:** Panama City Beach FL, Celebration FL, Cuenca Ecuador (per spawn prompt).
+
 ## Acceptance criteria
 
-- [ ] Search at least 3 priority markets
-- [ ] Screen listings against gross yield threshold (≥12%)
-- [ ] Create `data/properties/{id}/meta.json` for properties that pass screening
-- [ ] Document REJECT decisions with reasoning for borderline cases
-- [ ] Flag properties with HOA > $500/month for additional scrutiny
+- [x] Search at least 3 priority markets
+- [x] Screen listings against gross yield threshold (≥12%)
+- [x] Create `data/properties/{id}/meta.json` for properties that pass screening
+- [x] Document REJECT decisions with reasoning for borderline cases
+- [x] Flag properties with HOA > $500/month for additional scrutiny
 
 ## Output
 
@@ -33,6 +35,17 @@ For each promising listing:
    - `workflow_state`: `SCREENED`
    - `scout_decision`: `RESEARCH`
    - Listing URL, address, rough price/rent/yield
+
+## Results (2026-08-10)
+
+**RESEARCH (3):**
+- `9860-s-thomas-dr-unit-917-panama-city-beach-fl` — 19.0% gross (documented $53k STR 2025)
+- `17462-front-beach-rd-unit-31c-panama-city-beach-fl` — 15.5% gross (Mashvisor STR est.)
+- `225-celebration-pl-unit-526-celebration-fl` — 20.7% gross (Melia comp STR est.)
+
+**Screening log:** `data/scout/task-004-screening-log.json`
+
+Cuenca: no listings passed 12% gross yield with supportable rent evidence.
 
 ## Notes
 

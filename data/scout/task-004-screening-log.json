@@ -1,0 +1,83 @@
+{
+  "task": "TASK-004",
+  "scout_run_at": "2026-08-10T04:00:00Z",
+  "search_criteria_ref": "data/search-criteria.json",
+  "markets_searched": [
+    "panama-city-beach-fl",
+    "celebration-fl",
+    "cuenca-ecuador"
+  ],
+  "screening_threshold_gross_yield": 0.12,
+  "passed_count": 3,
+  "research_property_ids": [
+    "9860-s-thomas-dr-unit-917-panama-city-beach-fl",
+    "17462-front-beach-rd-unit-31c-panama-city-beach-fl",
+    "225-celebration-pl-unit-526-celebration-fl"
+  ],
+  "rejects": [
+    {
+      "decision": "REJECT",
+      "listing_url": "https://www.coldwellbanker.com/fl/panama-city-beach/4114-holiday-dr-apt-15/lid-P00800000HBuyQ0EdDJGI4ibtCtGIWNitWPOT8Zg",
+      "address": "4114 Holiday Drive #15, Panama City Beach, FL 32408",
+      "price": 145000,
+      "rough_gross_yield": 0.176,
+      "reason": "Borderline: documented $25,491 gross STR (17.6% yield) but studio/efficiency fails beds_min 2 filter."
+    },
+    {
+      "decision": "REJECT",
+      "listing_url": "https://tropicshoresrealty.com/listings/1153214801-14401+front+beach+road+403-panama-city-beach-fl-32413",
+      "address": "14401 Front Beach Rd Unit 403, Panama City Beach, FL 32413",
+      "price": 125000,
+      "rough_gross_yield": 0.216,
+      "reason": "Borderline: documented $27,000 gross STR (21.6% yield) but 0-bed efficiency fails beds_min 2 filter."
+    },
+    {
+      "decision": "REJECT",
+      "listing_url": "https://tropicshoresrealty.com/listings/1152431722-17614+front+beach+road+2b-panama-city-beach-fl-32413",
+      "address": "17614 Front Beach Rd Unit B2, Panama City Beach, FL 32413",
+      "price": 259000,
+      "rough_gross_yield": 0.089,
+      "reason": "Documented $23,063 gross STR 2025 (8.9% yield) below 12% threshold; 1BR fails beds_min."
+    },
+    {
+      "decision": "REJECT",
+      "listing_url": "https://www.coldwellbankerhomes.com/fl/panama-city-beach/301-lullwater-dr-435/pid_70930364/",
+      "address": "301 Lullwater Dr Unit 435, Panama City Beach, FL 32413",
+      "price": 248000,
+      "rough_gross_yield": 0.072,
+      "reason": "Borderline 2BR: only partial booking data ($10k+ future 2026); third-party Revnest estimate $17,794/yr (7.2%) below threshold. No verified annual gross on listing."
+    },
+    {
+      "decision": "REJECT",
+      "listing_url": "https://www.coldwellbanker.com/fl/panama-city-beach/9900-s-thomas-dr-unit-2213/lid-P00800000HEeY0DdQsUoFSOa4ojKNOjURp6lvlyz",
+      "address": "9900 S Thomas Dr Unit 2213, Panama City Beach, FL 32408",
+      "price": 335000,
+      "rough_gross_yield": 0.108,
+      "reason": "Documented $36,171 gross 2025 but price exceeds $300k max and yield 10.8% below 12%."
+    },
+    {
+      "decision": "REJECT",
+      "listing_url": "https://www.homes.com/celebration-fl/condos-for-sale/under-300k/",
+      "address": "720 Celebration Ave Unit 220, Celebration, FL 34747",
+      "price": 278000,
+      "rough_gross_yield": 0.108,
+      "reason": "Borderline: LTR comp ~$2,500/mo (10.8% gross) below 12%; Celebration residential condos rarely hit scout threshold after verified rents."
+    },
+    {
+      "decision": "REJECT",
+      "listing_url": "https://mls-ecuador.com/en/real-estate/cuenca/rs2300430",
+      "address": "Parque de la Madre, Cuenca, Azuay, Ecuador",
+      "price": 149000,
+      "rough_gross_yield": 0.053,
+      "reason": "Borderline: listing cites $65/night Airbnb rate but no verified annual gross. LTR comps $800-930/mo and market STR medians ~$661/mo imply 5-7% gross, well below 12%."
+    },
+    {
+      "decision": "REJECT",
+      "listing_url": "https://expatsecuador.com/property/fully-furnished-2-bedroom-apartment-with-spacious-balcony-in-puertas-del-sol",
+      "address": "Puertas del Sol, Cuenca, Azuay, Ecuador",
+      "price": 178000,
+      "rough_gross_yield": 0.063,
+      "reason": "Sale listing with documented LTR rent $930/mo (6.3% gross). Cuenca 2BR market insufficient for 12% scout threshold."
+    }
+  ]
+}
