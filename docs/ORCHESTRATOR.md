@@ -138,15 +138,23 @@ When properties or backlog need triage, a Manager agent may also be planned.
 
 Workflow: `.github/workflows/orchestrator.yml`
 
-| Trigger | When |
-|---------|------|
-| **Schedule** | Daily at 07:00 UTC (~2am US Eastern during standard time) |
-| **Push to `main`** | Property records, task files, or search criteria change (e.g. after an agent PR merges) |
-| **Manual** | Actions → Orchestrator → Run workflow |
+| Trigger | When | Spawn scope |
+|---------|------|-------------|
+| **Schedule** | Daily at 07:00 UTC (~2am US Eastern during standard time) | **Full** — all pending pipeline work |
+| **Push to `main`** | `data/properties/**` changes (e.g. after merging an agent PR) | **Push** — only the property(ies) in that merge |
+| **Manual** | Actions → Orchestrator → Run workflow | **Full** |
 
-After a Cloud Agent finishes and you **merge its PR**, the push to `main` automatically runs the orchestrator so the next role (Researcher, Underwriter, etc.) can spawn without waiting for the daily cron.
+After a Cloud Agent finishes and you **merge its PR**, the push to `main` automatically runs the orchestrator so the **next role for that same property** can spawn — without starting work on unrelated properties or backlog tasks still in flight elsewhere.
 
 Registry-only commits use `[skip ci]` and do not re-trigger the workflow.
+
+### Avoiding duplicate agents
+
+- **Push scope:** merge property A → only property A gets the next agent (Researcher, Underwriter, etc.), not property B.
+- **In-flight guard:** if an agent finished recently (PR open, &lt;48h), the same role+property will not spawn again until the window expires or registry sync marks it terminal and main state advances.
+- **Manual / daily runs** still plan all pending work — use when you want to drain the full queue.
+
+Sync registry after merges: `npm run sync -- --repo-root ..` clears stale `ACTIVE` entries.
 
 Requires `CURSOR_API_KEY` repository secret.
 

@@ -12,6 +12,7 @@ import { planWork, type WorkItem } from "./planner.js";
 import {
   activeRegistryEntries,
   hasActiveWork,
+  hasInFlightWork,
   loadActiveTaskIds,
   loadBuilderTasks,
   loadPropertyContexts,
@@ -29,6 +30,9 @@ export interface OrchestratorOptions {
   configPath: string;
   apiKey?: string;
   dryRun?: boolean;
+  /** full = plan everything; push = only next step for changed properties */
+  spawnScope?: "full" | "push";
+  changedPropertyIds?: Set<string>;
 }
 
 export interface OrchestratorResult {
@@ -69,11 +73,27 @@ export async function runOrchestrator(
     pendingManagerReview: shouldRunManagerTriage(properties, builderTasks),
   });
 
-  const filtered = planned.filter((item) => {
+  const scopedPlanned = applySpawnScope(
+    planned,
+    options.spawnScope ?? "full",
+    options.changedPropertyIds
+  );
+
+  const filtered = scopedPlanned.filter((item) => {
     if (!isRoleEnabled(config, item.role)) {
       return false;
     }
     if (hasActiveWork(registry, item.key)) {
+      return false;
+    }
+    if (
+      hasInFlightWork(
+        registry,
+        item.role,
+        item.subjectType,
+        item.subjectId
+      )
+    ) {
       return false;
     }
     if (
@@ -97,7 +117,7 @@ export async function runOrchestrator(
   );
   const toSpawn = filtered.slice(0, spawnBudget);
 
-  const skipped = planned
+  const skipped = scopedPlanned
     .filter((item) => !toSpawn.includes(item))
     .map((item) => ({
       item,
@@ -148,11 +168,30 @@ export async function runOrchestrator(
   }
 
   return {
-    planned,
+    planned: scopedPlanned,
     spawned: options.dryRun ? toSpawn : spawned,
     skipped,
     synced,
   };
+}
+
+/** Push-triggered runs: advance only properties touched by the merge, not the whole backlog. */
+function applySpawnScope(
+  planned: WorkItem[],
+  spawnScope: "full" | "push",
+  changedPropertyIds?: Set<string>
+): WorkItem[] {
+  if (spawnScope !== "push") {
+    return planned;
+  }
+  if (!changedPropertyIds || changedPropertyIds.size === 0) {
+    return [];
+  }
+  return planned.filter(
+    (item) =>
+      item.subjectType === "property" &&
+      changedPropertyIds.has(item.subjectId)
+  );
 }
 
 export async function syncRegistryOnly(
@@ -244,6 +283,16 @@ function skipReason(
   }
   if (hasActiveWork(registry, item.key)) {
     return "work item already active";
+  }
+  if (
+    hasInFlightWork(
+      registry,
+      item.role,
+      item.subjectType,
+      item.subjectId
+    )
+  ) {
+    return "agent in flight for this subject (running or recent PR pending)";
   }
   if (
     !roleHasCapacity(

@@ -10,8 +10,6 @@ on:
       - main
     paths:
       - "data/properties/**"
-      - "tasks/**"
-      - "data/search-criteria.json"
 
 concurrency:
   group: orchestrator
@@ -25,6 +23,8 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
 
       - name: Setup Node
         uses: actions/setup-node@v4
@@ -41,10 +41,29 @@ jobs:
         working-directory: orchestrator
         run: npm run build && npm test
 
+      - name: Resolve changed property IDs (push only)
+        id: push_scope
+        run: |
+          if [ "${{ github.event_name }}" = "push" ]; then
+            ids=$(git diff --name-only "${{ github.event.before }}" "${{ github.sha }}" \
+              | grep '^data/properties/' \
+              | awk -F/ 'NF>=3 {print $3}' \
+              | grep -v '^_example$' \
+              | sort -u \
+              | paste -sd, - || true)
+            echo "spawn_scope=push" >> "$GITHUB_OUTPUT"
+            echo "changed_properties=${ids}" >> "$GITHUB_OUTPUT"
+          else
+            echo "spawn_scope=full" >> "$GITHUB_OUTPUT"
+            echo "changed_properties=" >> "$GITHUB_OUTPUT"
+          fi
+
       - name: Sync registry and spawn agents
         working-directory: orchestrator
         env:
           CURSOR_API_KEY: ${{ secrets.CURSOR_API_KEY }}
+          ORCH_SPAWN_SCOPE: ${{ steps.push_scope.outputs.spawn_scope }}
+          ORCH_CHANGED_PROPERTIES: ${{ steps.push_scope.outputs.changed_properties }}
         run: node dist/cli.js run --repo-root ..
 
       - name: Commit registry updates
