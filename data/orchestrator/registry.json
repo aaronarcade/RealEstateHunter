@@ -109,9 +109,23 @@
       "agentId": "bc-a78ee05f-c201-4ff8-87ee-be63ce08a16e",
       "runId": "run-3dde480f-0b2c-48d8-86b0-18e71f393f67",
       "agentUrl": "https://cursor.com/agents/bc-a78ee05f-c201-4ff8-87ee-be63ce08a16e",
-      "status": "ACTIVE",
+      "status": "ERROR",
       "createdAt": "2026-08-10T04:44:04.397Z",
-      "updatedAt": "2026-08-10T04:44:04.397Z"
+      "updatedAt": "2026-08-10T04:46:36.706Z"
+    },
+    "auditor:property:17462-front-beach-rd-unit-31c-panama-city-beach-fl:audit": {
+      "workKey": "auditor:property:17462-front-beach-rd-unit-31c-panama-city-beach-fl:audit",
+      "role": "auditor",
+      "subjectType": "property",
+      "subjectId": "17462-front-beach-rd-unit-31c-panama-city-beach-fl",
+      "action": "audit",
+      "branch": "agent/17462-front-beach-rd-unit-31c-panama-city-beach-fl-audit",
+      "agentId": "bc-ae143f46-730a-4b30-a23c-e917a88e20b2",
+      "runId": "run-696efab5-4ff7-42d9-80a8-682d52726a9d",
+      "agentUrl": "https://cursor.com/agents/bc-ae143f46-730a-4b30-a23c-e917a88e20b2",
+      "status": "ACTIVE",
+      "createdAt": "2026-08-10T04:46:39.653Z",
+      "updatedAt": "2026-08-10T04:46:39.653Z"
     }
   }
 }
