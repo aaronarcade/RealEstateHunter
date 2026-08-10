@@ -22,12 +22,12 @@
       "subjectId": "pipeline",
       "action": "triage-pipeline",
       "branch": "agent/manager-triage",
-      "agentId": "bc-2ebf9f5b-30fd-410f-b253-417834f23fd8",
-      "runId": "run-eb1815b7-01b6-4463-afcf-b7d5ff5c29ea",
-      "agentUrl": "https://cursor.com/agents/bc-2ebf9f5b-30fd-410f-b253-417834f23fd8",
+      "agentId": "bc-98bfc7ea-2cd4-4ada-9868-493c66370041",
+      "runId": "run-003a2190-0ce6-4b35-af02-699d1543920d",
+      "agentUrl": "https://cursor.com/agents/bc-98bfc7ea-2cd4-4ada-9868-493c66370041",
       "status": "ACTIVE",
-      "createdAt": "2026-08-10T04:23:58.014Z",
-      "updatedAt": "2026-08-10T04:23:58.014Z"
+      "createdAt": "2026-08-10T04:33:57.512Z",
+      "updatedAt": "2026-08-10T04:33:57.512Z"
     },
     "builder:task:TASK-002:implement-task": {
       "workKey": "builder:task:TASK-002:implement-task",
@@ -53,9 +53,9 @@
       "agentId": "bc-7ff02893-85d4-4dec-984f-8a62abdb3c12",
       "runId": "run-badf6836-1fee-4bea-b6e8-0854e99823e1",
       "agentUrl": "https://cursor.com/agents/bc-7ff02893-85d4-4dec-984f-8a62abdb3c12",
-      "status": "ACTIVE",
+      "status": "ERROR",
       "createdAt": "2026-08-10T04:23:55.427Z",
-      "updatedAt": "2026-08-10T04:23:55.427Z"
+      "updatedAt": "2026-08-10T04:33:54.526Z"
     },
     "builder:task:TASK-005:implement-task": {
       "workKey": "builder:task:TASK-005:implement-task",
@@ -78,12 +78,26 @@
       "subjectId": "TASK-008",
       "action": "implement-task",
       "branch": "agent/task-008-wire-react-ui-supabase",
-      "agentId": "bc-f07f06b1-8246-4ce9-9ebe-33075643a0e8",
-      "runId": "run-1e10c4b0-4d77-4ab4-891c-01467557a0a9",
-      "agentUrl": "https://cursor.com/agents/bc-f07f06b1-8246-4ce9-9ebe-33075643a0e8",
+      "agentId": "bc-bd46d0a5-b9d6-484d-a90b-5b26f78dfcf5",
+      "runId": "run-07db1e1f-7286-49cf-89f9-e588fbaf2f2b",
+      "agentUrl": "https://cursor.com/agents/bc-bd46d0a5-b9d6-484d-a90b-5b26f78dfcf5",
       "status": "ACTIVE",
-      "createdAt": "2026-08-10T04:24:00.453Z",
-      "updatedAt": "2026-08-10T04:24:00.453Z"
+      "createdAt": "2026-08-10T04:33:59.757Z",
+      "updatedAt": "2026-08-10T04:33:59.757Z"
+    },
+    "researcher:property:17462-front-beach-rd-unit-31c-panama-city-beach-fl:build-evidence": {
+      "workKey": "researcher:property:17462-front-beach-rd-unit-31c-panama-city-beach-fl:build-evidence",
+      "role": "researcher",
+      "subjectType": "property",
+      "subjectId": "17462-front-beach-rd-unit-31c-panama-city-beach-fl",
+      "action": "build-evidence",
+      "branch": "agent/17462-front-beach-rd-unit-31c-panama-city-beach-fl-research",
+      "agentId": "bc-5571cf78-712e-4b6a-871e-e19ff6fea025",
+      "runId": "run-9834375a-463c-4d53-9c49-2dc91722aa50",
+      "agentUrl": "https://cursor.com/agents/bc-5571cf78-712e-4b6a-871e-e19ff6fea025",
+      "status": "ACTIVE",
+      "createdAt": "2026-08-10T04:34:02.328Z",
+      "updatedAt": "2026-08-10T04:34:02.328Z"
     }
   }
 }
