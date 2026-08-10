@@ -1,14 +1,20 @@
-"""Supabase client for RealEstateHunter."""
+"""Supabase client for RealEstateHunter — reads RealEstateTracker unit data."""
+
+from __future__ import annotations
 
 import os
 from typing import Optional, List
+
 from supabase import create_client, Client
 
 from .types import PropertyOpportunity, ListOpportunitiesOptions, SyncResult, PropertyStatus
 from .mapper import row_to_opportunity, opportunity_to_row
-
+from .tracker_mapper import tracker_row_to_opportunity
 
 PROPERTIES_TABLE = 'properties'
+UNIT_FINANCIALS_VIEW = 'unit_financials'
+CAP_RATE_RPC = 'get_cap_rate_summary'
+SOURCE_PRIORITY = ('scraper', 'zillow', 'agent', 'county_assessor', 'manual')
 
 
 class SupabaseClient:
@@ -18,15 +24,8 @@ class SupabaseClient:
         self,
         url: Optional[str] = None,
         anon_key: Optional[str] = None,
-        service_role_key: Optional[str] = None
+        service_role_key: Optional[str] = None,
     ):
-        """Initialize Supabase client.
-
-        Args:
-            url: Supabase project URL. Defaults to SUPABASE_URL env var.
-            anon_key: Anonymous key for client reads. Defaults to SUPABASE_ANON_KEY env var.
-            service_role_key: Service role key for server operations. Defaults to SUPABASE_SERVICE_ROLE_KEY env var.
-        """
         self.url = url or os.environ.get('SUPABASE_URL', '')
         self.anon_key = anon_key or os.environ.get('SUPABASE_ANON_KEY')
         self.service_role_key = service_role_key or os.environ.get('SUPABASE_SERVICE_ROLE_KEY')
@@ -42,92 +41,124 @@ class SupabaseClient:
 
     @property
     def client(self) -> Client:
-        """Get the underlying Supabase client."""
         return self._client
+
+    def _fetch_unit_financials(self, unit_ids: list[str]) -> dict[str, dict]:
+        if not unit_ids:
+            return {}
+        response = (
+            self._client.table(UNIT_FINANCIALS_VIEW)
+            .select('*')
+            .in_('unit_id', unit_ids)
+            .execute()
+        )
+        return {str(row['unit_id']): row for row in (response.data or [])}
+
+    def _fetch_primary_sources(self, unit_ids: list[str]) -> dict[str, dict]:
+        if not unit_ids:
+            return {}
+        response = (
+            self._client.table('data_sources')
+            .select('entity_id, source_url, source_type, confidence, created_at')
+            .eq('entity_type', 'unit')
+            .in_('entity_id', unit_ids)
+            .execute()
+        )
+        grouped: dict[str, list[dict]] = {}
+        for row in response.data or []:
+            grouped.setdefault(str(row['entity_id']), []).append(row)
+
+        selected: dict[str, dict] = {}
+        for unit_id, rows in grouped.items():
+            with_url = [row for row in rows if row.get('source_url')]
+            if not with_url:
+                continue
+            with_url.sort(
+                key=lambda row: (
+                    SOURCE_PRIORITY.index(row['source_type'])
+                    if row.get('source_type') in SOURCE_PRIORITY
+                    else len(SOURCE_PRIORITY),
+                    row.get('created_at') or '',
+                )
+            )
+            selected[unit_id] = with_url[0]
+        return selected
+
+    def list_tracker_opportunities(
+        self,
+        options: Optional[ListOpportunitiesOptions] = None,
+    ) -> List[PropertyOpportunity]:
+        """Load units from RealEstateTracker via get_cap_rate_summary."""
+        options = options or ListOpportunitiesOptions()
+        response = self._client.rpc(CAP_RATE_RPC, {}).execute()
+        rows = response.data or []
+
+        unit_ids = [str(row['unit_id']) for row in rows if row.get('unit_id')]
+        financials_by_id = self._fetch_unit_financials(unit_ids)
+        sources_by_id = self._fetch_primary_sources(unit_ids)
+
+        opportunities: list[PropertyOpportunity] = []
+        for row in rows:
+            unit_id = str(row.get('unit_id'))
+            source = sources_by_id.get(unit_id, {})
+            opportunity = tracker_row_to_opportunity(
+                row,
+                financials=financials_by_id.get(unit_id),
+                source_url=source.get('source_url'),
+                source_confidence=source.get('confidence'),
+            )
+            if options.status and opportunity.status not in options.status:
+                continue
+            if options.min_cap_rate is not None and opportunity.cap_rate < options.min_cap_rate:
+                continue
+            opportunities.append(opportunity)
+
+        opportunities.sort(key=lambda item: item.cap_rate, reverse=True)
+
+        if options.offset:
+            opportunities = opportunities[options.offset :]
+        if options.limit:
+            opportunities = opportunities[: options.limit]
+
+        return opportunities
 
     def list_opportunities(
         self,
-        options: Optional[ListOpportunitiesOptions] = None
+        options: Optional[ListOpportunitiesOptions] = None,
     ) -> List[PropertyOpportunity]:
-        """List property opportunities.
-
-        Args:
-            options: Query options for filtering and pagination.
-
-        Returns:
-            List of PropertyOpportunity objects.
-        """
-        options = options or ListOpportunitiesOptions()
-        query = self._client.table(PROPERTIES_TABLE).select('*')
-
-        if options.status:
-            query = query.in_('status', options.status)
-
-        if options.min_cap_rate is not None:
-            query = query.gte('cap_rate', options.min_cap_rate)
-
-        query = query.order('cap_rate', desc=True)
-
-        if options.limit:
-            query = query.limit(options.limit)
-
-        if options.offset:
-            query = query.range(options.offset, options.offset + (options.limit or 100) - 1)
-
-        response = query.execute()
-        return [row_to_opportunity(row) for row in response.data]
+        """List opportunities from the shared RealEstateTracker database."""
+        return self.list_tracker_opportunities(options)
 
     def get_property(self, property_id: str) -> Optional[PropertyOpportunity]:
-        """Get a single property by ID.
-
-        Args:
-            property_id: The property slug/ID.
-
-        Returns:
-            PropertyOpportunity if found, None otherwise.
-        """
-        response = (
-            self._client.table(PROPERTIES_TABLE)
-            .select('*')
-            .eq('id', property_id)
-            .execute()
-        )
-
-        if not response.data:
+        """Get a single unit opportunity by unit UUID."""
+        response = self._client.rpc(CAP_RATE_RPC, {}).execute()
+        rows = [row for row in (response.data or []) if str(row.get('unit_id')) == property_id]
+        if not rows:
             return None
 
-        return row_to_opportunity(response.data[0])
+        financials = self._fetch_unit_financials([property_id]).get(property_id)
+        source = self._fetch_primary_sources([property_id]).get(property_id, {})
+        return tracker_row_to_opportunity(
+            rows[0],
+            financials=financials,
+            source_url=source.get('source_url'),
+            source_confidence=source.get('confidence'),
+        )
 
     def upsert_property(
         self,
         opportunity: PropertyOpportunity,
-        workflow_state: str = 'PUBLISHED'
+        workflow_state: str = 'PUBLISHED',
     ) -> None:
-        """Upsert a single property.
-
-        Args:
-            opportunity: The property opportunity to upsert.
-            workflow_state: Workflow state to set. Defaults to 'PUBLISHED'.
-        """
         row = opportunity_to_row(opportunity, workflow_state)
         self._client.table(PROPERTIES_TABLE).upsert(row).execute()
 
     def upsert_properties(
         self,
         opportunities: List[PropertyOpportunity],
-        workflow_state: str = 'PUBLISHED'
+        workflow_state: str = 'PUBLISHED',
     ) -> SyncResult:
-        """Upsert multiple properties.
-
-        Args:
-            opportunities: List of property opportunities to upsert.
-            workflow_state: Workflow state to set. Defaults to 'PUBLISHED'.
-
-        Returns:
-            SyncResult with counts of inserted/updated records and any errors.
-        """
         result = SyncResult()
-
         if not opportunities:
             return result
 
@@ -141,7 +172,6 @@ class SupabaseClient:
         existing_ids = {row['id'] for row in existing_response.data}
 
         rows = [opportunity_to_row(o, workflow_state) for o in opportunities]
-
         try:
             self._client.table(PROPERTIES_TABLE).upsert(rows).execute()
             for row in rows:
@@ -149,20 +179,12 @@ class SupabaseClient:
                     result.updated += 1
                 else:
                     result.inserted += 1
-        except Exception as e:
-            result.errors.append({'id': 'batch', 'error': str(e)})
+        except Exception as exc:
+            result.errors.append({'id': 'batch', 'error': str(exc)})
 
         return result
 
     def delete_property(self, property_id: str) -> bool:
-        """Delete a property by ID.
-
-        Args:
-            property_id: The property slug/ID to delete.
-
-        Returns:
-            True if deleted, False if not found.
-        """
         response = (
             self._client.table(PROPERTIES_TABLE)
             .delete()
@@ -174,31 +196,13 @@ class SupabaseClient:
 
 def list_opportunities(
     client: SupabaseClient,
-    options: Optional[ListOpportunitiesOptions] = None
+    options: Optional[ListOpportunitiesOptions] = None,
 ) -> List[PropertyOpportunity]:
-    """List property opportunities using provided client.
-
-    Args:
-        client: SupabaseClient instance.
-        options: Query options for filtering and pagination.
-
-    Returns:
-        List of PropertyOpportunity objects.
-    """
     return client.list_opportunities(options)
 
 
 def get_property(
     client: SupabaseClient,
-    property_id: str
+    property_id: str,
 ) -> Optional[PropertyOpportunity]:
-    """Get a single property by ID using provided client.
-
-    Args:
-        client: SupabaseClient instance.
-        property_id: The property slug/ID.
-
-    Returns:
-        PropertyOpportunity if found, None otherwise.
-    """
     return client.get_property(property_id)

@@ -55,21 +55,14 @@ def load_opportunities(*, use_sample_data: bool = False) -> LoadResult:
         rows = list_opportunities(client, options)
         if not rows:
             return LoadResult(
-                opportunities=list(SAMPLE_OPPORTUNITIES),
-                source='sample',
-                error='No published opportunities in Supabase — showing sample data.',
+                opportunities=[],
+                source='supabase',
+                error='No units with financial data found in Supabase.',
             )
         return LoadResult(opportunities=rows, source='supabase')
     except Exception as exc:
-        message = str(exc)
-        if 'PGRST205' in message or "Could not find the table 'public.properties'" in message:
-            message = (
-                "Supabase table `public.properties` does not exist yet. "
-                'Run `python scripts/apply-supabase-migrations.py` from the repo root, '
-                'then `node scripts/sync-properties-to-supabase.mjs` to load ranked properties.'
-            )
         return LoadResult(
             opportunities=list(SAMPLE_OPPORTUNITIES),
             source='sample',
-            error=f'Failed to load from Supabase — showing sample data. ({message})',
+            error=f'Failed to load from Supabase — showing sample data. ({exc})',
         )

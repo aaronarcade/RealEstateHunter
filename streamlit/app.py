@@ -92,7 +92,9 @@ if result.error:
     st.warning(result.error)
 
 if result.source == 'sample' and not use_sample:
-    st.info('Showing sample data. Configure Supabase secrets for live data.')
+    st.info('Showing sample data. Configure Supabase secrets for live RealEstateTracker units.')
+elif result.source == 'supabase':
+    st.caption(f'Loaded {len(opportunities)} units from Supabase.')
 
 if not opportunities:
     st.info('No opportunities found')
