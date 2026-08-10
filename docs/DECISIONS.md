@@ -56,6 +56,29 @@ Log of significant technical and process decisions. Add a new entry when introdu
 
 ---
 
+## ADR-005: Supabase as UI data store, Git as agent artifacts
+
+**Date:** 2026-08-10  
+**Status:** Accepted
+
+**Context:** UIs need queryable, low-latency access to property data. Git JSON files are the source of truth for agent workflow but are unsuitable for direct UI queries. Aaron has an existing Supabase project at `https://quvfkegqgbrvtmufndpn.supabase.co`.
+
+**Decision:** Use a two-layer architecture:
+- **Git JSON** (`data/properties/`) remains the agent workflow artifact layer for handoffs, PR review, and audit trail
+- **Supabase** stores the queryable copy for UIs and dashboards
+- **One-way sync** (Git → Supabase) runs when properties reach `RANKED`/`PUBLISHED` or audit `PASS`
+
+Read clients in TypeScript (`lib/supabase/`) and Python (`lib/supabase_py/`) provide `listOpportunities()` and `getProperty(id)` functions mapping to the `PropertyOpportunity` schema.
+
+**Consequences:**
+- UIs get fast, filterable queries without parsing Git files
+- Agents continue using Git artifacts; no change to workflow
+- Sync script must run on publish (GitHub Action or manual)
+- Service role key must remain server-side only
+- Schema changes require both JSON schema and Supabase migration updates
+
+---
+
 ## Template
 
 ```markdown

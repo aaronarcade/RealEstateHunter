@@ -1,0 +1,16 @@
+{
+  "name": "@realestatehunter/scripts",
+  "version": "0.1.0",
+  "description": "Utility scripts for RealEstateHunter",
+  "type": "module",
+  "scripts": {
+    "sync": "node sync-properties-to-supabase.mjs",
+    "sync:dry": "node sync-properties-to-supabase.mjs --dry-run"
+  },
+  "dependencies": {
+    "@supabase/supabase-js": "^2.45.0"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}
