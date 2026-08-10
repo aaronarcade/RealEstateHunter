@@ -1,0 +1,75 @@
+{
+  "version": 1,
+  "entries": {
+    "builder:task:TASK-001:implement-task": {
+      "workKey": "builder:task:TASK-001:implement-task",
+      "role": "builder",
+      "subjectType": "task",
+      "subjectId": "TASK-001",
+      "action": "implement-task",
+      "branch": "agent/task-001-property-data-schema",
+      "agentId": "bc-0d38e568-de22-4677-a513-193bb4b57705",
+      "runId": "run-2240f48f-80b0-4447-8f36-1bd73b393ab4",
+      "agentUrl": "https://cursor.com/agents/bc-0d38e568-de22-4677-a513-193bb4b57705",
+      "status": "ERROR",
+      "createdAt": "2026-08-10T03:07:27.792Z",
+      "updatedAt": "2026-08-10T04:17:51.588Z"
+    },
+    "manager:system:pipeline:triage-pipeline": {
+      "workKey": "manager:system:pipeline:triage-pipeline",
+      "role": "manager",
+      "subjectType": "system",
+      "subjectId": "pipeline",
+      "action": "triage-pipeline",
+      "branch": "agent/manager-triage",
+      "agentId": "bc-9302d382-be15-48c1-93cf-69f14692e712",
+      "runId": "run-1e88eb05-f511-43d9-9b64-2a88e0250e0c",
+      "agentUrl": "https://cursor.com/agents/bc-9302d382-be15-48c1-93cf-69f14692e712",
+      "status": "ACTIVE",
+      "createdAt": "2026-08-10T04:18:01.078Z",
+      "updatedAt": "2026-08-10T04:18:01.078Z"
+    },
+    "builder:task:TASK-002:implement-task": {
+      "workKey": "builder:task:TASK-002:implement-task",
+      "role": "builder",
+      "subjectType": "task",
+      "subjectId": "TASK-002",
+      "action": "implement-task",
+      "branch": "agent/task-002-opportunity-comparison-ui",
+      "agentId": "bc-f76a1840-05e0-4a71-917c-5b17d2446020",
+      "runId": "run-6482c7ee-2c98-45ce-9daa-cd29f60863f7",
+      "agentUrl": "https://cursor.com/agents/bc-f76a1840-05e0-4a71-917c-5b17d2446020",
+      "status": "ERROR",
+      "createdAt": "2026-08-10T03:07:33.614Z",
+      "updatedAt": "2026-08-10T04:17:53.866Z"
+    },
+    "builder:task:TASK-007:implement-task": {
+      "workKey": "builder:task:TASK-007:implement-task",
+      "role": "builder",
+      "subjectType": "task",
+      "subjectId": "TASK-007",
+      "action": "implement-task",
+      "branch": "agent/task-007-supabase-data-layer",
+      "agentId": "bc-0575a884-3014-46b3-98f5-c6593ea38d5d",
+      "runId": "run-a67d0805-c760-48d8-91d7-a3298bd5afab",
+      "agentUrl": "https://cursor.com/agents/bc-0575a884-3014-46b3-98f5-c6593ea38d5d",
+      "status": "ACTIVE",
+      "createdAt": "2026-08-10T04:17:56.569Z",
+      "updatedAt": "2026-08-10T04:17:56.569Z"
+    },
+    "builder:task:TASK-005:implement-task": {
+      "workKey": "builder:task:TASK-005:implement-task",
+      "role": "builder",
+      "subjectType": "task",
+      "subjectId": "TASK-005",
+      "action": "implement-task",
+      "branch": "agent/task-005-pipeline-validation",
+      "agentId": "bc-7eddd2d9-92b2-4aeb-871b-00075542a5e8",
+      "runId": "run-75210d24-0cdc-4f36-9178-3ade2161bb4f",
+      "agentUrl": "https://cursor.com/agents/bc-7eddd2d9-92b2-4aeb-871b-00075542a5e8",
+      "status": "ACTIVE",
+      "createdAt": "2026-08-10T04:18:03.792Z",
+      "updatedAt": "2026-08-10T04:18:03.792Z"
+    }
+  }
+}

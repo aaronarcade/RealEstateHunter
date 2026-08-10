@@ -31,12 +31,65 @@
         "UNDERWRITTEN",
         "AUDIT",
         "RANKED",
-        "PUBLISHED"
+        "PUBLISHED",
+        "ARCHIVED"
       ]
     },
     "scout_decision": {
       "type": "string",
       "enum": ["REJECT", "RESEARCH"]
+    },
+    "property_type": {
+      "type": "string",
+      "description": "condo, townhouse, single_family, etc."
+    },
+    "building_name": {
+      "type": "string",
+      "description": "Condo association or building name when known"
+    },
+    "unit": {
+      "type": "string",
+      "description": "Unit number for condos"
+    },
+    "scout_notes": {
+      "type": "string",
+      "description": "Scout screening notes, reject rationale for borderline cases"
+    },
+    "archive_reason": {
+      "type": "string",
+      "enum": [
+        "scout_reject",
+        "underwrite_reject",
+        "audit_reject",
+        "watchlist",
+        "listing_inactive"
+      ],
+      "description": "Why the property left the active pipeline"
+    },
+    "rescreen_after": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Earliest time Scout should re-check this listing"
+    },
+    "last_screened_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "rescreen_count": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "Number of times this listing has been rescreened"
+    },
+    "screening_snapshot": {
+      "type": "object",
+      "description": "Last known screening inputs for change detection on rescreen",
+      "properties": {
+        "price": { "type": "number" },
+        "rough_monthly_rent": { "type": "number" },
+        "rough_gross_yield": { "type": "number" },
+        "advertised_hoa": { "type": ["number", "null"] },
+        "screened_at": { "type": "string", "format": "date-time" }
+      }
     },
     "created_at": {
       "type": "string",

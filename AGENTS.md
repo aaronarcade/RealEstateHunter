@@ -42,7 +42,7 @@ git worktree add ../RealEstateHunter-task-101 -b agent/task-101
 | **Auditor** | Evidence validation; can block or downgrade |
 | **Builder** | Software, data pipeline, UI |
 
-Role prompts live in `.agents/`. Read only the prompt for your assigned role plus `AGENTS.md`.
+Role prompts live in `.agents/`. Cursor-native subagents (for delegation via `/manager`, `/scout`, etc.) live in `.cursor/agents/`. Keep both in sync when role rules change. Read only the prompt for your assigned role plus `AGENTS.md`.
 
 ## Definition of Done
 
@@ -59,3 +59,77 @@ Role prompts live in `.agents/`. Read only the prompt for your assigned role plu
 - Architectural decisions: `docs/DECISIONS.md`
 - Tasks: `tasks/backlog/`, `tasks/active/`, `tasks/done/`
 - Property records: `data/properties/`
+- Scout search params: `data/search-criteria.json`
+
+## Cursor Cloud specific instructions
+
+These rules apply when running as a **Cursor Cloud Agent** against this repository.
+
+### Before you start
+
+1. Read `AGENTS.md` (this file) and **only** your role prompt in `.agents/<role>.md`.
+2. Confirm your assigned role (Manager, Scout, Researcher, Underwriter, Auditor, or Builder).
+3. Do not rely on conversation history from other agents — read current Git artifacts instead.
+
+### Branching and PRs
+
+- Never commit directly to `main`.
+- Use branch names: `agent/task-NNN-short-description` or `agent/<role>-<slug>`.
+- One task or property workflow per branch.
+- Open a PR when work is complete; include what changed, test/build results, and which artifacts were updated.
+- Cloud agents push to `cursor/...` branches by default — that is fine as long as the branch maps to one scoped task.
+
+### Role-specific cloud behavior
+
+| Role | Read | Write | Do not |
+|------|------|-------|--------|
+| **Manager** | `tasks/`, `data/properties/`, `docs/PRODUCT.md` | `tasks/backlog/`, property `meta.json` workflow state | Research listings, write application code |
+| **Scout** | `.agents/scout.md`, Manager search criteria | `data/properties/{id}/meta.json`, scout screening output | Classify VIABLE/WATCHLIST/REJECTED |
+| **Researcher** | Assigned property in `data/properties/` | `evidence.json`, update `meta.json` state | Calculate cap rate or final classification |
+| **Underwriter** | `evidence.json`, `docs/PRODUCT.md` | `underwriting.json`, update `meta.json` state | Web research unless routed back |
+| **Auditor** | Full property record + `docs/PRODUCT.md` | `audit.json`, final status in `meta.json` | Upgrade to VIABLE; rewrite implementation |
+| **Builder** | Assigned task in `tasks/active/` or `tasks/backlog/` | Application code, tests, schemas | Investment or classification decisions |
+
+### Artifacts and workflow
+
+- Property candidates follow the state machine in `docs/ARCHITECTURE.md`:
+
+  `CANDIDATE → SCREENED → RESEARCHING → READY_FOR_UNDERWRITING → UNDERWRITTEN → AUDIT → RANKED → PUBLISHED`
+
+  Infeasible listings go to `ARCHIVED` with `rescreen_after`; Scout rescreens when due.
+
+- Write structured JSON under `data/properties/{id}/` using schemas in `schemas/`.
+- Every material financial field must include `value`, `status` (`VERIFIED` | `ESTIMATED` | `UNKNOWN`), `confidence`, `source`, and `evidence`.
+- Move Builder tasks: `tasks/backlog/` → `tasks/active/` → `tasks/done/` as work progresses.
+
+### Validation
+
+- Run relevant tests and build commands before opening a PR.
+- If no test suite exists yet, state what you verified manually.
+- Builder changes that alter behavior must update docs and add tests when applicable.
+- Investment analysis is not done until **Auditor** approves any proposed **VIABLE** classification.
+
+### Secrets and external access
+
+- Use secrets configured in the Cursor Cloud environment dashboard — do not commit credentials.
+- Record external sources in artifact `source` and `evidence` fields, not in chat-only summaries.
+
+### Parallel work
+
+- Multiple cloud agents may run concurrently on different branches.
+- Coordinate only through Git artifacts and PRs — do not assume another agent's chat context.
+- Invoke role subagents explicitly: `/manager`, `/scout`, `/researcher`, `/underwriter`, `/auditor`, `/builder`
+- Example worktree (local or documented in PR): `git worktree add ../RealEstateHunter-task-101 -b agent/task-101`
+
+### First Builder task
+
+If no other task is assigned, start with `tasks/backlog/TASK-001-property-data-schema.md` on branch `agent/task-001`.
+
+### Orchestrator-spawned agents
+
+You may be created automatically by the pipeline orchestrator (`docs/ORCHESTRATOR.md`):
+
+- Read the role and target branch from your spawn prompt.
+- Your work item key is tracked in `data/orchestrator/registry.json`.
+- Complete your scoped artifact updates, then push and open a PR if `autoCreatePR` is enabled.
+- Do not start work outside your assigned role or property/task scope.

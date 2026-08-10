@@ -1,0 +1,61 @@
+name: Orchestrator
+
+on:
+  schedule:
+    # 07:00 UTC daily (~2am US Eastern during standard time)
+    - cron: "0 7 * * *"
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+    paths:
+      - "data/properties/**"
+      - "tasks/**"
+      - "data/search-criteria.json"
+
+concurrency:
+  group: orchestrator
+  cancel-in-progress: false
+
+jobs:
+  orchestrate:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+          cache-dependency-path: orchestrator/package-lock.json
+
+      - name: Install orchestrator
+        working-directory: orchestrator
+        run: npm ci
+
+      - name: Build and test
+        working-directory: orchestrator
+        run: npm run build && npm test
+
+      - name: Sync registry and spawn agents
+        working-directory: orchestrator
+        env:
+          CURSOR_API_KEY: ${{ secrets.CURSOR_API_KEY }}
+        run: node dist/cli.js run --repo-root ..
+
+      - name: Commit registry updates
+        if: always()
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add data/orchestrator/registry.json
+          if git diff --staged --quiet; then
+            echo "No registry changes to commit."
+          else
+            git commit -m "chore: update orchestrator registry [skip ci]"
+            git push
+          fi

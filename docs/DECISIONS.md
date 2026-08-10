@@ -56,6 +56,37 @@ Log of significant technical and process decisions. Add a new entry when introdu
 
 ---
 
+## ADR-005: Node + Ajv for schema validation tooling
+
+**Date:** 2026-08-10  
+**Status:** Accepted
+
+**Context:** The repository stores property artifacts as JSON that must conform to the draft-07 JSON Schemas in `schemas/`. `TASK-001` requires those schemas to actually validate the evidence, underwriting, audit, and meta files, plus tests for schema validation. Validating draft-07 with cross-schema `$ref`s (`field-value.json`) and `format` keywords by hand is error-prone, and the repo already targets a Node/TypeScript UI contract (`PropertyOpportunity`).
+
+**Decision:** Use Node.js (already provided by the Cloud Agent base image) with [`ajv`](https://ajv.js.org) and `ajv-formats` as the validation toolchain. A small harness under `scripts/` discovers every artifact under `data/properties/<id>/`, validates it against the matching schema, and is exercised by `node --test`. The Cloud Agent environment installs dependencies via `npm ci` (`.cursor/environment.json`).
+
+**Consequences:** `ajv` and `ajv-formats` are the first runtime dependencies; `node_modules/` is git-ignored and reproduced from `package-lock.json`. Future Builder work (comparison UI, orchestrator) can reuse this Node toolchain and the `PropertyOpportunity` schema.
+
+---
+
+## ADR-006: Supabase as UI runtime store; Git as agent artifacts
+
+**Date:** 2026-08-10  
+**Status:** Proposed
+
+**Context:** Property records currently live as JSON in Git (`data/properties/`). Agents and PR review work well with files, but UIs (React, Streamlit) need a queryable runtime store. Aaron already operates a Supabase project with similar property data.
+
+**Decision:** Use a **dual-layer** model:
+
+1. **Git JSON** — agent workflow, validation, audit trail, orchestrator input (unchanged).
+2. **Supabase (Postgres)** — runtime source for UIs; populated by sync when properties are ranked/published.
+
+Credentials via `SUPABASE_URL` + keys in environment/secrets only. Service role for server-side sync; anon key + RLS for browser reads where applicable.
+
+**Consequences:** Builder implements TASK-007 (mapping, read client, sync). Streamlit and React read Supabase, not repo files. Agents continue Git-based handoffs until a future task optionally writes directly to Supabase.
+
+---
+
 ## Template
 
 ```markdown

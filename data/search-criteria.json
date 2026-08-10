@@ -1,0 +1,119 @@
+{
+  "$schema": "../schemas/search-criteria.json",
+  "version": 1,
+  "updated_at": "2026-08-10T03:00:00Z",
+  "updated_by": "manager",
+  "target_cap_rate": 0.10,
+  "target_yield_minimum": 0.10,
+  "notes": "Condo buildings first. Scout scans high volume; only RESEARCH listings that pass yield screen. Underwriting target remains target_cap_rate after expenses.",
+  "asset_focus": {
+    "primary": "condo",
+    "prioritize_condo_buildings": true,
+    "rationale": "Multi-unit condo buildings offer repeatable comps, known HOA, and cluster opportunities; SFH/townhouse are secondary."
+  },
+  "markets": [
+    {
+      "id": "tampa-fl",
+      "name": "Tampa, FL",
+      "priority": 1,
+      "status": "ACTIVE",
+      "rationale": "Strong rental demand, no state income tax, diverse economy"
+    },
+    {
+      "id": "jacksonville-fl",
+      "name": "Jacksonville, FL",
+      "priority": 2,
+      "status": "ACTIVE",
+      "rationale": "Affordable price points, growing population, military presence"
+    },
+    {
+      "id": "birmingham-al",
+      "name": "Birmingham, AL",
+      "priority": 3,
+      "status": "ACTIVE",
+      "rationale": "Low entry prices, potential for higher yields"
+    },
+    {
+      "id": "memphis-tn",
+      "name": "Memphis, TN",
+      "priority": 4,
+      "status": "ACTIVE",
+      "rationale": "Strong rental market, affordable prices, no state income tax"
+    },
+    {
+      "id": "cleveland-oh",
+      "name": "Cleveland, OH",
+      "priority": 5,
+      "status": "ACTIVE",
+      "rationale": "Low prices relative to rent, diverse employment base"
+    }
+  ],
+  "property_filters": {
+    "type_priority": ["condo", "townhouse", "single_family"],
+    "types": ["condo", "townhouse", "single_family"],
+    "condo_only_first_pass": true,
+    "price_range": {
+      "min": 75000,
+      "max": 750000
+    },
+    "beds_min": 2,
+    "baths_min": 1,
+    "exclude": [
+      "land_only",
+      "commercial",
+      "mobile_home",
+      "55_plus_community"
+    ]
+  },
+  "scout_instructions": {
+    "sources": ["Zillow", "Realtor.com", "Redfin", "MLS listings"],
+    "screening_threshold": "Rough gross yield must be >= target_yield_minimum (10%) to pass to RESEARCH. Reject below 10%.",
+    "volume_targets": {
+      "listings_reviewed_per_market_min": 40,
+      "research_candidates_total_min": 10,
+      "research_candidates_per_market_min": 3,
+      "do_not_stop_early": true
+    },
+    "condo_building_search": {
+      "enabled": true,
+      "strategy": [
+        "Filter each market for Condo / Condominium only before SFH or townhouse.",
+        "Search by building name or street address when a condo complex has multiple active listings.",
+        "When one unit in a building passes yield screen, review other units in the same building.",
+        "Prefer established condo buildings (20+ units) with published HOA fees on the listing.",
+        "Record building_name and unit in meta.json when available."
+      ],
+      "building_signals": [
+        "Multiple units for sale in same building",
+        "HOA fee stated on listing",
+        "Rental history or 'investor-friendly' in remarks",
+        "Lower price per sqft vs neighborhood SFH"
+      ],
+      "hoa_screening": {
+        "flag_above_monthly": 500,
+        "quick_adjusted_yield": "For condos with stated HOA, also compute (monthly_rent - hoa_monthly) * 12 / price; flag if below 8% even when gross yield passes."
+      }
+    },
+    "flags": [
+      "HOA over $500/month requires extra scrutiny",
+      "Known special assessments are a yellow flag",
+      "STR restrictions may limit upside but do not disqualify for LTR strategy"
+    ]
+  },
+  "rescreen_policy": {
+    "enabled": true,
+    "intervals_days": {
+      "scout_reject": 30,
+      "watchlist": 45,
+      "diligence_reject": 60,
+      "listing_inactive": 90
+    },
+    "max_rescreens": 6,
+    "rescreen_triggers": [
+      "Price decrease of 5% or more vs screening_snapshot",
+      "Rent estimate increased vs screening_snapshot",
+      "Listing relisted after inactive or pending status change",
+      "HOA or special assessment change noted on listing"
+    ]
+  }
+}
