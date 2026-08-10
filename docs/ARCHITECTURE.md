@@ -13,7 +13,7 @@ Six roles with asymmetric authority. No agent has unilateral authority over ever
 | **Auditor** | Block merge; downgrade status | Upgrade to VIABLE |
 | **Builder** | Implementation | Investment decisions |
 
-Role prompts: `.agents/`
+Role prompts: `.agents/` (human-readable source of truth) and `.cursor/agents/` (Cursor subagent delegation)
 
 ## Property Workflow
 
