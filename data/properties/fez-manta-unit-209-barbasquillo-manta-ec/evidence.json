@@ -1,0 +1,88 @@
+{
+  "property_id": "fez-manta-unit-209-barbasquillo-manta-ec",
+  "researched_at": "2026-08-10T05:00:00Z",
+  "purchase_price": {
+    "value": 62150,
+    "status": "VERIFIED",
+    "confidence": "HIGH",
+    "source": "https://trivo.com.ec/propiedades/fez-manta/",
+    "evidence": "Trivo listing confirms Suite in piso 2, Unit 209: Precio $62,150, Área 32.29 m², 1 dormitorio, 1 parqueadero. Delivery H2 2026. Pre-sale pricing from developer."
+  },
+  "monthly_rent": {
+    "value": 500,
+    "status": "ESTIMATED",
+    "confidence": "MEDIUM",
+    "source": "Rent comps",
+    "evidence": "Long-term Barbasquillo 1BR comps: Riva Di Mare suite 68m² $700/mo (FazWaz); Barbasquillo PZP suite 70m² $550/mo (FazWaz); Lomas de Barbasquillo 75m² $450-600/mo (MantaHomes). Subject unit at 32.29m² is significantly smaller than comps (45-55% of comp sizes). Subject has premium amenities (pool, gym, coworking, fire pit, beach club, 24/7 security). Size-adjusted rent estimate: $450-550/mo. Mid-point $500/mo used. STR route yields lower return: Manta Airbnb avg $4,104/yr ($342/mo) at 21.7% occupancy (AirROI 2026). Long-term rental more attractive.",
+    "range_low": 450,
+    "range_high": 550
+  },
+  "hoa_monthly": {
+    "value": null,
+    "status": "UNKNOWN",
+    "confidence": "LOW",
+    "source": "Comparable buildings research",
+    "evidence": "No HOA fee disclosed for Fez Manta. Comparable Manta condo buildings with similar amenities: Las Olas (pool, gym, beach access) $238/mo incl insurance; Ibiza (heated pools, gym, tennis) $288/mo incl insurance; Busios (pool, gym) $270/mo incl insurance; Oceania (smaller building) $103/mo. Fez Manta amenities (pool, gym, coworking, fire pit, beach club, 24/7 security) suggest $150-250/mo range likely but cannot verify. Pre-sale building with no established HOA fee published. Must confirm with developer before underwriting."
+  },
+  "special_assessments": {
+    "value": null,
+    "status": "UNKNOWN",
+    "confidence": "LOW",
+    "source": "N/A - pre-sale property",
+    "evidence": "Pre-sale building with delivery H2 2026. No existing HOA or assessment history to review. No special assessments can be verified for a building not yet completed."
+  },
+  "property_taxes_annual": {
+    "value": 175,
+    "status": "ESTIMATED",
+    "confidence": "MEDIUM",
+    "source": "Ecuador property tax regulations and comparable properties",
+    "evidence": "Ecuador municipal property tax (impuesto predial) ranges 0.025%-0.5% of cadastral value per PWC Ecuador tax summary. Comparable Manta condos: Oceania loft ($194K) pays $136/yr; Las Olas 2BR ($279K) under $400/yr; Ibiza duplex under $400/yr. For $62,150 property at mid-range 0.28%: ~$175/yr. Range estimate $100-250/yr.",
+    "range_low": 100,
+    "range_high": 250
+  },
+  "insurance_annual": {
+    "value": 300,
+    "status": "ESTIMATED",
+    "confidence": "MEDIUM",
+    "source": "https://www.ecuadorinsurance.org/property, https://expatsecuador.com/living/homeowners-renters-insurance-ecuador/",
+    "evidence": "Building structure insurance is mandatory and included in HOA fees in Ecuador. Owner supplemental insurance (contents + building replacement) recommended. EcuadorInsurance.org: $75K condo costs $225-600/yr. Manta carries 15-20% premium over inland due to earthquake risk. For $62K condo in Manta: estimate $250-400/yr. Using $300/yr mid-point. This is optional but prudent coverage beyond HOA-included building policy.",
+    "range_low": 250,
+    "range_high": 400
+  },
+  "management_annual": {
+    "value": 600,
+    "status": "ESTIMATED",
+    "confidence": "MEDIUM",
+    "source": "https://www.expatfocus.com/ecuador/guide/ecuador-property-letting",
+    "evidence": "Ecuador property management fees for ongoing services (rent collection, maintenance coordination, tenant liaison) typically range 8-15% of monthly rent per Expat Focus. At $500/mo rent: 8% = $480/yr, 15% = $900/yr. Mid-point 10% = $600/yr used. Self-management would reduce this to $0 but requires local presence."
+  },
+  "utilities_annual": {
+    "value": null,
+    "status": "UNKNOWN",
+    "confidence": "LOW",
+    "source": "Market convention",
+    "evidence": "In Ecuador long-term rentals, utilities (electricity, water, internet) are typically paid by tenant. Owner-paid utilities would only apply if included in rent. Cannot determine without lease structure. If owner-paid, estimate $50-100/mo ($600-1,200/yr) for 1BR condo based on Ecuador cost of living data."
+  },
+  "other_expenses_annual": {
+    "value": null,
+    "status": "UNKNOWN",
+    "confidence": "LOW",
+    "source": "N/A",
+    "evidence": "No resort fees, club fees, or rental program fees identified in listing. Beach club access appears included with building amenities per listing. No other recurring owner costs found in research. May need to verify with developer if any additional fees apply."
+  },
+  "rental_restrictions": {
+    "value": null,
+    "status": "UNKNOWN",
+    "confidence": "LOW",
+    "source": "Building bylaws not available",
+    "evidence": "Building bylaws (reglamento interno) not publicly available for Fez Manta. Many Ecuador condo buildings allow rentals but may have restrictions. Pre-sale building may not have finalized bylaws. Must verify rental permission with developer before closing."
+  },
+  "str_restrictions": {
+    "value": null,
+    "status": "UNKNOWN",
+    "confidence": "LOW",
+    "source": "https://www.sri.gob.ec/web/intersri/alojamiento-anfitriones, Building bylaws not available",
+    "evidence": "No national STR ban in Ecuador. SRI (tax authority) requires registration (RUC code I55100904) for Airbnb/Booking hosts, 15% IVA unless registered as tourism operator with LUAF. Building-level STR restrictions may exist in bylaws but Fez Manta bylaws not publicly available. Must verify STR permission with developer. Note: Manta STR market shows avg 21.7% occupancy, $4,104/yr revenue (AirROI 2026) - lower yield than long-term rental."
+  },
+  "notes": "Pre-sale property in Fez Manta development, Barbasquillo, Manta, Ecuador. Unit 209 is a 32.29m² 1BR/1BA suite on floor 2 with 1 parking space. Delivery scheduled H2 2026. Developer: Artec Group. Key risks: (1) HOA fee unknown - must verify with developer, critical for cap rate calculation; (2) Pre-sale delivery risk; (3) Building bylaws not finalized - rental/STR permissions unconfirmed. Property is significantly smaller than comparable 1BR units (32m² vs 68-75m² comps) which affects rent potential. Premium amenities may partially offset size disadvantage. Long-term rental appears more attractive than STR based on Manta market data."
+}
