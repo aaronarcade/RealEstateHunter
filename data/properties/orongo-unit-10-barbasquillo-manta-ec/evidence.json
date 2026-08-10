@@ -1,0 +1,94 @@
+{
+  "property_id": "orongo-unit-10-barbasquillo-manta-ec",
+  "researched_at": "2026-08-10T06:45:00Z",
+  "purchase_price": {
+    "value": 49912,
+    "status": "VERIFIED",
+    "confidence": "HIGH",
+    "source": "https://trivo.com.ec/propiedades/orongo/",
+    "evidence": "Trivo Orongo unit list: Unit 10 estudio piso 1, Precio $49,912, Área 44.39 m², balcony 9.32m². Pre-sale / under construction (developer materials cite 2025 construction; scout notes H2 2026 delivery). Parking sold separately."
+  },
+  "monthly_rent": {
+    "value": 425,
+    "status": "ESTIMATED",
+    "confidence": "MEDIUM",
+    "source": "https://orongoconstructores.com/edificio-orongo/, FazWaz Manta 1BR median ~$419",
+    "evidence": "Largest screened Orongo studio (44.39m² piso 1 with 9.32m² balcony). Still inland student LTR product. FazWaz 1BR median ~$419; used $425 (range $375-500) vs smaller siblings at $400.",
+    "range_low": 375,
+    "range_high": 500
+  },
+  "hoa_monthly": {
+    "value": null,
+    "status": "UNKNOWN",
+    "confidence": "LOW",
+    "source": "https://orongoconstructores.com/edificio-orongo/, https://trivo.com.ec/propiedades/orongo/",
+    "evidence": "No alicuota published. Amenities are modest vs oceanfront towers: private urbanization, 24/7 security, access hall, green areas, TAG access — no pool/gym listed. Likely lower than amenity towers ($30-80/mo plausible) but unverified. Must obtain from developer."
+  },
+  "special_assessments": {
+    "value": null,
+    "status": "UNKNOWN",
+    "confidence": "LOW",
+    "source": "No source available",
+    "evidence": "Pre-sale/incomplete building — no HOA assessment history exists yet. Cannot verify future special assessments."
+  },
+  "property_taxes_annual": {
+    "value": 59,
+    "status": "ESTIMATED",
+    "confidence": "MEDIUM",
+    "source": "https://taxsummaries.pwc.com/ecuador/individual/other-taxes, https://www.expatfocus.com/ecuador/guide/ecuador-property-taxes",
+    "evidence": "Ecuador impuesto predial is 0.025%-0.5% of cadastral value (typically well below market). Comparable Manta condos often pay $100-400/yr. For ~$49,912 market price, estimated $40-149/yr; used $59. Exact bill depends on Manta municipal rate and cadastral assessment.",
+    "range_low": 40,
+    "range_high": 149
+  },
+  "insurance_annual": {
+    "value": 225,
+    "status": "ESTIMATED",
+    "confidence": "MEDIUM",
+    "source": "https://expatsecuador.com/living/homeowners-renters-insurance-ecuador/, https://ameliaandjp.com/insurances-in-ecuador/",
+    "evidence": "Building structure insurance is typically included in Ecuador alicuota. Owner contents/liability: ~$140-210/yr base; Manta coastal earthquake risk adds 15-20%. For ~$49,912 condo, estimated $200-400/yr supplemental owner policy; used $225.",
+    "range_low": 200,
+    "range_high": 400
+  },
+  "management_annual": {
+    "value": 510,
+    "status": "ESTIMATED",
+    "confidence": "MEDIUM",
+    "source": "https://www.expatfocus.com/ecuador/guide/ecuador-property-letting",
+    "evidence": "Ecuador long-term property management typically 8-15% of rent. At $425/mo, 10% = $510/yr. Self-management possible with local presence (would be $0).",
+    "range_low": 0,
+    "range_high": 765
+  },
+  "utilities_annual": {
+    "value": 0,
+    "status": "ESTIMATED",
+    "confidence": "MEDIUM",
+    "source": "https://www.numbeo.com/cost-of-living/in/Manta, Market lease convention",
+    "evidence": "For long-term Ecuador rentals, electricity/water/internet are typically tenant-paid. For STR, utilities are usually recovered in nightly rates or included in management fee. Owner direct cost assumed $0 under standard lease; if owner-paid budget $600-1,500/yr.",
+    "range_low": 0,
+    "range_high": 1500
+  },
+  "other_expenses_annual": {
+    "value": 150,
+    "status": "ESTIMATED",
+    "confidence": "LOW",
+    "source": "Developer/project materials",
+    "evidence": "Low-maintenance studio product per developer. Parking purchased separately (capital, not opex). Misc reserves ~$150/yr estimated.",
+    "range_low": 0,
+    "range_high": 400
+  },
+  "rental_restrictions": {
+    "value": null,
+    "status": "ESTIMATED",
+    "confidence": "MEDIUM",
+    "source": "https://orongoconstructores.com/edificio-orongo/",
+    "evidence": "Developer marketing explicitly targets rental income (student/professional demand near PUCE). Bylaws not published; rental use appears intended but not legally verified."
+  },
+  "str_restrictions": {
+    "value": null,
+    "status": "UNKNOWN",
+    "confidence": "LOW",
+    "source": "https://orongoconstructores.com/edificio-orongo/, https://www.sri.gob.ec/web/intersri/alojamiento-anfitriones",
+    "evidence": "Marketing mentions Airbnb as an option on some reseller pages, but building bylaws unavailable. Inland student-oriented product may face HOA/neighbor pushback on STR even if city regulation is Low. Confirm STR permission with developer. LTR is the underwriting base case."
+  },
+  "notes": "Orongo Unit 10: pre-sale cluster candidate. Delivery risk (construction ~2025 / H2 2026). HOA unknown. Parking not included. Rent path is student/professional LTR, not oceanfront STR. Sibling units share expense assumptions."
+}
