@@ -1,0 +1,104 @@
+{
+  "property_id": "225-celebration-pl-unit-526-celebration-fl",
+  "annual_gross_rent": 30984,
+  "annual_operating_expenses": 19204,
+  "operating_expense_breakdown": {
+    "hoa": 14904,
+    "special_assessments": 0,
+    "property_taxes": 2200,
+    "insurance": 600,
+    "management": 0,
+    "utilities": 0,
+    "other": 1500
+  },
+  "noi": 11780,
+  "cap_rate": 0.0785,
+  "proposed_status": "REJECTED",
+  "proposed_status_reason": "Base-case cap rate of 7.9% is below the 10% threshold. The $1,242/mo HOA consumes ~48% of gross rent and ~83% of estimated monthly revenue before other expenses. Special assessments remain UNKNOWN (LOW confidence), and the condo-hotel revenue model differs fundamentally from traditional STR—gross rent from a comparable unit may not reflect actual owner net income after hotel management revenue-sharing. Even the optimistic rent scenario ($3,000/mo) yields only ~11.2% cap rate with unresolved assessment and management-agreement uncertainty, insufficient for VIABLE classification.",
+  "input_summary": {
+    "purchase_price": {
+      "value": 149999,
+      "status": "VERIFIED",
+      "confidence": "HIGH"
+    },
+    "monthly_rent": {
+      "value": 2582,
+      "status": "ESTIMATED",
+      "confidence": "MEDIUM",
+      "range_low": 2000,
+      "range_high": 3000
+    },
+    "hoa_monthly": {
+      "value": 1242,
+      "status": "VERIFIED",
+      "confidence": "HIGH"
+    },
+    "special_assessments": {
+      "value": null,
+      "status": "UNKNOWN",
+      "confidence": "LOW"
+    },
+    "property_taxes_annual": {
+      "value": 2200,
+      "status": "ESTIMATED",
+      "confidence": "MEDIUM"
+    },
+    "insurance_annual": {
+      "value": 600,
+      "status": "ESTIMATED",
+      "confidence": "MEDIUM"
+    },
+    "management_annual": {
+      "value": 0,
+      "status": "ESTIMATED",
+      "confidence": "LOW"
+    },
+    "utilities_annual": {
+      "value": 0,
+      "status": "ESTIMATED",
+      "confidence": "LOW"
+    },
+    "other_expenses_annual": {
+      "value": 1500,
+      "status": "ESTIMATED",
+      "confidence": "LOW"
+    }
+  },
+  "sensitivity_analysis": {
+    "base_case": {
+      "rent_monthly": 2582,
+      "annual_operating_expenses": 19204,
+      "noi": 11780,
+      "cap_rate": 0.0785
+    },
+    "low_rent_case": {
+      "rent_monthly": 2000,
+      "annual_operating_expenses": 19204,
+      "noi": 4796,
+      "cap_rate": 0.032,
+      "notes": "Low end of estimated rent range"
+    },
+    "high_rent_case": {
+      "rent_monthly": 3000,
+      "annual_operating_expenses": 19204,
+      "noi": 16796,
+      "cap_rate": 0.112,
+      "notes": "High end of estimated rent range; still subject to UNKNOWN assessments and condo-hotel revenue-sharing uncertainty"
+    }
+  },
+  "breakeven_analysis": {
+    "target_cap_rate": 0.10,
+    "required_noi": 15000,
+    "required_monthly_rent": 2850,
+    "notes": "Breakeven monthly rent of ~$2,850 exceeds base estimate ($2,582) and is near the high end of the estimated range ($3,000). Does not account for potential special assessments or hotel management fee deductions from owner distributions."
+  },
+  "risk_factors": [
+    "Special assessments UNKNOWN — estoppel certificate and HOA financials required per Fla. Stat. §718.116",
+    "Condo-hotel revenue model: gross STR rent estimates may not reflect owner net income after hotel management revenue-sharing",
+    "Hotel management agreement terms UNKNOWN — controls rental pool participation, personal use limits, and owner distributions",
+    "HOA fee ($1,242/mo) is 83% of estimated gross rent and far exceeds the $500/mo scrutiny threshold",
+    "Comparable building listings note owners often break even after all-in HOA and hotel management fees",
+    "Cash-only purchase typical for condo-hotels, limiting financing options"
+  ],
+  "computed_at": "2026-08-11T08:10:00Z"
+}
