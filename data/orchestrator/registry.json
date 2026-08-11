@@ -305,9 +305,23 @@
       "agentId": "bc-c9367ad1-44ab-4539-a854-fcb8f2070bb6",
       "runId": "run-a3a7380a-3f56-440c-ba7b-eaa30b98c3a7",
       "agentUrl": "https://cursor.com/agents/bc-c9367ad1-44ab-4539-a854-fcb8f2070bb6",
-      "status": "ACTIVE",
+      "status": "ERROR",
       "createdAt": "2026-08-11T08:07:21.530Z",
-      "updatedAt": "2026-08-11T08:07:21.530Z"
+      "updatedAt": "2026-08-11T08:08:01.874Z"
+    },
+    "manager:property:225-celebration-pl-unit-526-celebration-fl:rank-or-close": {
+      "workKey": "manager:property:225-celebration-pl-unit-526-celebration-fl:rank-or-close",
+      "role": "manager",
+      "subjectType": "property",
+      "subjectId": "225-celebration-pl-unit-526-celebration-fl",
+      "action": "rank-or-close",
+      "branch": "main",
+      "agentId": "bc-bc6ca6e9-90a2-4107-9a5c-b2625fc7c216",
+      "runId": "run-b63eb3ba-a49b-4480-a1c2-c9dfd4e89e42",
+      "agentUrl": "https://cursor.com/agents/bc-bc6ca6e9-90a2-4107-9a5c-b2625fc7c216",
+      "status": "ACTIVE",
+      "createdAt": "2026-08-11T08:08:04.552Z",
+      "updatedAt": "2026-08-11T08:08:04.552Z"
     }
   }
 }
