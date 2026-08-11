@@ -86,7 +86,7 @@ Optional: `streamlit-authenticator` if multi-user needed later; single shared pa
 
 - TASK-001 (property schema) — merged
 - TASK-002 (React UI) — layout/sorting reference
-- **TASK-007 (Supabase data layer)** — **required** before Streamlit reads live data
+- **TASK-007 (Supabase data layer)** — **complete**
 
 ## Suggested layout
 

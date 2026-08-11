@@ -14,12 +14,12 @@ Build evidence files for properties currently in `SCREENED` state with `scout_de
 
 | Property ID | Evidence | Underwriting | Next Step |
 |-------------|----------|--------------|-----------|
-| `9860-s-thomas-dr-unit-917-panama-city-beach-fl` | ✅ Complete | ❌ Pending | → **TASK-012** (Underwriter) |
-| `225-celebration-pl-unit-526-celebration-fl` | ✅ Complete | ❌ Pending | → **TASK-012** (Underwriter) |
+| `9860-s-thomas-dr-unit-917-panama-city-beach-fl` | ✅ Complete | ❌ Pending | → **TASK-012** (Analyst) |
+| `225-celebration-pl-unit-526-celebration-fl` | ✅ Complete | ❌ Pending | → **TASK-012** (Analyst) |
 | `17462-front-beach-rd-unit-31c-panama-city-beach-fl` | ✅ Complete | ✅ REJECTED (6.0% cap rate) | → **TASK-011** (Auditor) |
 
 **Pipeline handoff:**
-- 2 properties with evidence → **TASK-012** for Underwriter
+- 2 properties with evidence → **TASK-012** for Analyst
 - 1 property UNDERWRITTEN/REJECTED → **TASK-011** for Auditor confirmation
 - New Scout candidates from **TASK-009** → Future Researcher batch
 

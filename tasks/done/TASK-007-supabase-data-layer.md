@@ -1,8 +1,9 @@
 # TASK-007: Supabase data layer (UI source of truth)
 
-**Status:** ACTIVE  
+**Status:** DONE  
 **Assignee:** Builder  
-**Priority:** P0
+**Priority:** P0  
+**Completed:** 2026-08-11 (Manager triage — core deliverables merged; GitHub Action in `.github/workflows/sync-properties.yml`)
 
 ## Description
 
@@ -57,7 +58,7 @@ Aaron to provide (via GitHub secrets / local `.env`, not chat):
   - Scan `data/properties/*/`
   - Upsert properties with `workflow_state` in `RANKED`, `PUBLISHED`, or audit `PASS`
   - Idempotent on `property_id` / slug
-- [ ] Optional GitHub Action: run sync on push to `main` when `data/properties/**` changes (after orchestrator merge)
+- [x] Optional GitHub Action: run sync on push to `main` when `data/properties/**` changes (`.github/workflows/sync-properties.yml`)
 - [x] Log sync results; fail CI on schema mismatch
 
 ## Acceptance criteria

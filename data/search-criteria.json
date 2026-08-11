@@ -1,11 +1,11 @@
 {
   "$schema": "../schemas/search-criteria.json",
-  "version": 2,
-  "updated_at": "2026-08-10T04:20:00Z",
+  "version": 3,
+  "updated_at": "2026-08-11T08:05:00Z",
   "updated_by": "manager",
   "target_cap_rate": 0.10,
   "target_yield_minimum": 0.10,
-  "notes": "Condo buildings first. Scout scans high volume; only RESEARCH listings that pass yield screen. Underwriting target remains target_cap_rate after expenses.",
+  "notes": "Condo buildings first in US ACTIVE markets. Scout scans high volume (40+ listings/market); only RESEARCH listings that pass yield screen. Defer new international scouting until Tampa, Jacksonville, Birmingham, Memphis, and Cleveland each have ≥3 RESEARCH candidates or documented dry-market rationale. See data/pipeline-status.json for current gap.",
   "asset_focus": {
     "primary": "condo",
     "prioritize_condo_buildings": true,
@@ -117,8 +117,19 @@
       "listings_reviewed_per_market_min": 40,
       "research_candidates_total_min": 10,
       "research_candidates_per_market_min": 3,
-      "do_not_stop_early": true
+      "do_not_stop_early": true,
+      "us_active_markets_first": true,
+      "defer_international_until_us_targets_met": true
     },
+    "market_sweep_order": [
+      "tampa-fl",
+      "jacksonville-fl",
+      "birmingham-al",
+      "memphis-tn",
+      "cleveland-oh",
+      "panama-city-beach-fl"
+    ],
+    "defer_non_us_markets": "Do not add new Manta/Cuenca/international RESEARCH candidates until all US ACTIVE markets in market_sweep_order have ≥3 RESEARCH candidates or a documented dry-market note in scout_notes.",
     "condo_building_search": {
       "enabled": true,
       "strategy": [
@@ -137,6 +148,54 @@
       "hoa_screening": {
         "flag_above_monthly": 500,
         "quick_adjusted_yield": "For condos with stated HOA, also compute (monthly_rent - hoa_monthly) * 12 / price; flag if below 8% even when gross yield passes."
+      },
+      "seed_buildings": {
+        "panama-city-beach-fl": [
+          {
+            "name": "Laketown Wharf",
+            "address_pattern": "9860 S Thomas Dr",
+            "notes": "Large STR tower; 1 RESEARCH unit screened — scan all active units"
+          },
+          {
+            "name": "Horizon South",
+            "address_pattern": "17462 Front Beach Rd",
+            "notes": "STR-friendly; 1 unit underwritten REJECTED — scan sibling units"
+          },
+          {
+            "name": "Shores of Panama",
+            "address_pattern": "9900 Thomas Dr",
+            "notes": "High-volume PCB condo building"
+          },
+          {
+            "name": "Grand Panama",
+            "address_pattern": "5323 Gulf Dr",
+            "notes": "Beachfront condo tower with multiple investor listings"
+          }
+        ],
+        "tampa-fl": [
+          {
+            "name": "SkyHouse Channelside",
+            "address_pattern": "1120 E Kennedy Blvd",
+            "notes": "Large downtown Tampa condo tower"
+          },
+          {
+            "name": "The Slade",
+            "address_pattern": "1001 Channelside Dr",
+            "notes": "Channelside high-rise with investor-friendly units"
+          }
+        ],
+        "jacksonville-fl": [
+          {
+            "name": "The Strand",
+            "address_pattern": "1401 Riverplace Blvd",
+            "notes": "Southbank high-rise condos"
+          },
+          {
+            "name": "San Marco Place",
+            "address_pattern": "San Marco Blvd",
+            "notes": "Established San Marco condo building"
+          }
+        ]
       }
     },
     "flags": [
