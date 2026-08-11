@@ -1,0 +1,59 @@
+{
+  "property_id": "225-celebration-pl-unit-526-celebration-fl",
+  "result": "PASS",
+  "final_status": "REJECTED",
+  "underwriter_proposed_status": "REJECTED",
+  "findings": [
+    {
+      "severity": "info",
+      "field": "cap_rate",
+      "message": "Base-case cap rate of 7.85% independently verified (NOI $11,780 / $149,999). Well below the 10% threshold; REJECTED classification is supported."
+    },
+    {
+      "severity": "info",
+      "field": "purchase_price",
+      "message": "Purchase price VERIFIED HIGH at $149,999 via MLS #S5143564 listing."
+    },
+    {
+      "severity": "warning",
+      "field": "monthly_rent",
+      "message": "Rent ESTIMATED MEDIUM at $2,582/mo from Mashvisor comp (#427), not unit-specific revenue. Evidence explicitly warns that condo-hotel gross rent may not reflect owner net income after hotel management revenue-sharing; actual owner distributions may be lower than modeled."
+    },
+    {
+      "severity": "info",
+      "field": "hoa_monthly",
+      "message": "HOA VERIFIED HIGH at $1,242/mo ($14,904/yr) via MLS listing. All-inclusive condo-hotel fee consumes ~48% of gross rent and ~83% of estimated monthly revenue before other expenses."
+    },
+    {
+      "severity": "warning",
+      "field": "special_assessments",
+      "message": "Evidence marks special assessments UNKNOWN (LOW confidence) and recommends estoppel certificate per Fla. Stat. §718.116, yet underwriting expense breakdown includes $0 for assessments. Any confirmed or scheduled assessment would further reduce an already sub-threshold cap rate; does not change REJECTED outcome."
+    },
+    {
+      "severity": "blocking",
+      "field": "str_restrictions",
+      "message": "Condo-hotel operates under hotel licensing and management agreement, not traditional STR. Rental pool participation, revenue-sharing terms, and owner use limits are UNKNOWN. Gross STR rent estimates assume traditional owner-operated rental economics that may not apply to Melia Orlando's hotel revenue model."
+    },
+    {
+      "severity": "warning",
+      "field": "management_annual",
+      "message": "Management shown as $0 to avoid double-counting with HOA, but hotel management agreement terms controlling owner distributions are UNKNOWN (LOW confidence). Revenue-sharing deductions not captured in operating expenses could reduce effective NOI below modeled base case."
+    },
+    {
+      "severity": "info",
+      "field": "property_taxes_annual",
+      "message": "Taxes ESTIMATED MEDIUM at $2,200/yr based on Osceola County millage and comparable Celebration condos. Should be verified via title search at purchase price."
+    },
+    {
+      "severity": "info",
+      "field": "sensitivity_analysis",
+      "message": "Low-rent case ($2,000/mo) yields 3.2% cap rate. High-rent case ($3,000/mo) yields 11.2% but remains subject to UNKNOWN assessments and condo-hotel revenue-sharing uncertainty—insufficient for VIABLE. Breakeven rent of ~$2,850/mo exceeds base estimate and approaches range high."
+    },
+    {
+      "severity": "info",
+      "field": "rental_restrictions",
+      "message": "Rental restrictions UNKNOWN (LOW confidence). Owner may be required to participate in hotel rental pool with limited personal-use days; cannot self-manage as traditional STR."
+    }
+  ],
+  "audited_at": "2026-08-11T08:15:00Z"
+}
