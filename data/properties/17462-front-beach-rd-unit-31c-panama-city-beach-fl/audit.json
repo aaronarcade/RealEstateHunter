@@ -1,0 +1,44 @@
+{
+  "property_id": "17462-front-beach-rd-unit-31c-panama-city-beach-fl",
+  "result": "PASS",
+  "final_status": "REJECTED",
+  "underwriter_proposed_status": "REJECTED",
+  "findings": [
+    {
+      "severity": "info",
+      "field": "cap_rate",
+      "message": "Base-case cap rate of 6.0% independently verified (NOI $14,996 / $249,900). Well below the 10% threshold; REJECTED classification is supported."
+    },
+    {
+      "severity": "info",
+      "field": "monthly_rent",
+      "message": "Rent ESTIMATED MEDIUM at $3,200/mo is appropriately conservative versus Mashvisor's $3,234/mo unit-specific projection and accounts for non-gulf-front location and seasonal occupancy swings (25–35% winter)."
+    },
+    {
+      "severity": "info",
+      "field": "hoa_monthly",
+      "message": "HOA VERIFIED HIGH at $630/mo via MLS listing; includes master insurance, water, sewer, trash, internet, and resort amenities. Fee exceeds Bay County median ($604/mo) and materially compresses NOI."
+    },
+    {
+      "severity": "warning",
+      "field": "special_assessments",
+      "message": "Evidence marks special assessments UNKNOWN (LOW confidence) and explicitly warns against assuming $0, yet underwriting expense breakdown includes $0 for assessments. Any confirmed or scheduled assessment would further reduce an already sub-threshold cap rate; does not change REJECTED outcome."
+    },
+    {
+      "severity": "warning",
+      "field": "property_taxes_annual",
+      "message": "Taxes VERIFIED at $3,064 (2025 tax year). Post-sale reassessment at the $249,900 purchase price may increase the annual tax burden beyond the current figure."
+    },
+    {
+      "severity": "info",
+      "field": "sensitivity_analysis",
+      "message": "Optimistic case ($4,000/mo rent, 20% management) yields ~9.1% cap rate—still below 10%. Self-managed scenario reaching ~11–13% requires eliminating professional management and achieving high-end rent; not representative of a hands-off rental investment."
+    },
+    {
+      "severity": "info",
+      "field": "str_restrictions",
+      "message": "STR restrictions VERIFIED HIGH; Panama City Beach permits STRs with required DBPR, city, and county licenses. No owner-occupancy or night-cap restrictions identified."
+    }
+  ],
+  "audited_at": "2026-08-11T08:10:00Z"
+}
