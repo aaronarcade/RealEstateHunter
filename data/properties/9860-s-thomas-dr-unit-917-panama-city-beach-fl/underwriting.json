@@ -1,0 +1,101 @@
+{
+  "property_id": "9860-s-thomas-dr-unit-917-panama-city-beach-fl",
+  "annual_gross_rent": 53004,
+  "annual_operating_expenses": 27920,
+  "operating_expense_breakdown": {
+    "hoa": 7920,
+    "special_assessments": 0,
+    "property_taxes": 3500,
+    "insurance": 900,
+    "management": 10600,
+    "utilities": 2000,
+    "other": 3000
+  },
+  "noi": 25084,
+  "cap_rate": 0.090,
+  "proposed_status": "WATCHLIST",
+  "proposed_status_reason": "Base cap rate of 9.0% is below the 10% threshold with standard 20% STR management on documented $53K gross income. Optimistic sensitivity (high-end rent $4,800/mo) reaches 10.3%, and self-managed scenario at documented income yields 12.8%. Special assessments are UNKNOWN with LOW confidence — per pipeline policy this limits maximum classification to WATCHLIST until estoppel certificate confirms no pending assessments. HOA ($660/mo) is ESTIMATED at MEDIUM confidence and requires verification. Strongest candidate in batch due to HIGH-confidence documented STR income, but VIABLE requires verified assessments and confirmed HOA.",
+  "input_summary": {
+    "purchase_price": {
+      "value": 279000,
+      "status": "VERIFIED",
+      "confidence": "HIGH"
+    },
+    "monthly_rent": {
+      "value": 4417,
+      "status": "VERIFIED",
+      "confidence": "HIGH",
+      "range_low": 4000,
+      "range_high": 4800
+    },
+    "hoa_monthly": {
+      "value": 660,
+      "status": "ESTIMATED",
+      "confidence": "MEDIUM"
+    },
+    "special_assessments": {
+      "value": null,
+      "status": "UNKNOWN",
+      "confidence": "LOW"
+    },
+    "property_taxes_annual": {
+      "value": 3500,
+      "status": "ESTIMATED",
+      "confidence": "MEDIUM"
+    },
+    "insurance_annual": {
+      "value": 900,
+      "status": "ESTIMATED",
+      "confidence": "MEDIUM"
+    },
+    "management_annual": {
+      "value": 10600,
+      "status": "ESTIMATED",
+      "confidence": "MEDIUM"
+    },
+    "utilities_annual": {
+      "value": 2000,
+      "status": "ESTIMATED",
+      "confidence": "MEDIUM"
+    },
+    "other_expenses_annual": {
+      "value": 3000,
+      "status": "ESTIMATED",
+      "confidence": "MEDIUM"
+    }
+  },
+  "sensitivity_analysis": {
+    "base_case": {
+      "rent_monthly": 4417,
+      "management_rate": 0.20,
+      "cap_rate": 0.090,
+      "notes": "Documented 2025 STR gross income with 20% professional management"
+    },
+    "optimistic_case": {
+      "rent_monthly": 4800,
+      "management_rate": 0.20,
+      "cap_rate": 0.103,
+      "notes": "High-end rent range with professional management; reaches 10% threshold"
+    },
+    "conservative_case": {
+      "rent_monthly": 4000,
+      "management_rate": 0.20,
+      "cap_rate": 0.077,
+      "notes": "Low-end rent range with professional management"
+    },
+    "self_managed_base": {
+      "rent_monthly": 4417,
+      "management_rate": 0,
+      "cap_rate": 0.128,
+      "notes": "Documented income without management fee; not representative of hands-off investment"
+    }
+  },
+  "risk_factors": [
+    "Special assessments UNKNOWN — 2008 building (18 years old) may have deferred capital needs; estoppel certificate required",
+    "HOA fee ($660/mo) is ESTIMATED at MEDIUM confidence — verify via estoppel certificate",
+    "Base cap rate 9.0% below 10% threshold with standard professional management",
+    "STR income is seasonal; documented $53K is actual 2025 gross but future performance may vary",
+    "Florida coastal insurance market volatility may increase HO-6 premiums"
+  ],
+  "computed_at": "2026-08-11T08:00:00Z"
+}
