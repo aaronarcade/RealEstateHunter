@@ -63,6 +63,168 @@
       "added_by": "manager"
     },
     {
+      "id": "tbilisi-ge",
+      "name": "Tbilisi, Georgia",
+      "priority": 11,
+      "status": "WATCH",
+      "rationale": "Documented 10-14% gross LTR condo yields; ss.ge USD flat inventory for market research baseline.",
+      "added": "2026-08-11",
+      "added_by": "builder"
+    },
+    {
+      "id": "budapest-hu",
+      "name": "Budapest, Hungary",
+      "priority": 12,
+      "status": "WATCH",
+      "rationale": "Central EU gross yields often 8-12%+; Realtor International GraphQL bulk scrape.",
+      "added": "2026-08-11",
+      "added_by": "builder"
+    },
+    {
+      "id": "bucharest-ro",
+      "name": "Bucharest, Romania",
+      "priority": 13,
+      "status": "WATCH",
+      "rationale": "High EU gross yields; Realtor International GraphQL bulk scrape.",
+      "added": "2026-08-11",
+      "added_by": "builder"
+    },
+    {
+      "id": "medellin-co",
+      "name": "Medellín, Colombia",
+      "priority": 14,
+      "status": "WATCH",
+      "rationale": "Expat STR/LTR market; 8-12% gross common in El Poblado/Laureles.",
+      "added": "2026-08-11",
+      "added_by": "builder"
+    },
+    {
+      "id": "panama-city-pa",
+      "name": "Panama City, Panama",
+      "priority": 15,
+      "status": "WATCH",
+      "rationale": "USD economy; condo gross yields 7-10%+ in Costa del Este/Punta Pacifica.",
+      "added": "2026-08-11",
+      "added_by": "builder"
+    },
+    {
+      "id": "manila-ph",
+      "name": "Manila (Metro), Philippines",
+      "priority": 16,
+      "status": "WATCH",
+      "rationale": "Condo rental gross yields often 10%+; limited Realtor intl inventory.",
+      "added": "2026-08-11",
+      "added_by": "builder"
+    },
+    {
+      "id": "chiang-mai-th",
+      "name": "Chiang Mai, Thailand",
+      "priority": 17,
+      "status": "WATCH",
+      "rationale": "Nomad/LTR hub; gross yields in viable range per market comps.",
+      "added": "2026-08-11",
+      "added_by": "builder"
+    },
+    {
+      "id": "bali-id",
+      "name": "Bali (Denpasar/Seminyak), Indonesia",
+      "priority": 18,
+      "status": "WATCH",
+      "rationale": "STR gross can exceed 10% on paper in Seminyak/Canggu corridor.",
+      "added": "2026-08-11",
+      "added_by": "builder"
+    },
+    {
+      "id": "krakow-pl",
+      "name": "Kraków, Poland",
+      "priority": 19,
+      "status": "WATCH",
+      "rationale": "EU yield play; gross 7-10%+ in Kraków proper (Małopolskie filtered).",
+      "added": "2026-08-11",
+      "added_by": "builder"
+    },
+    {
+      "id": "playa-del-carmen-mx",
+      "name": "Playa del Carmen, Mexico",
+      "priority": 20,
+      "status": "WATCH",
+      "rationale": "Riviera Maya STR tourism gross yields; complements blocked Mérida scrape.",
+      "added": "2026-08-11",
+      "added_by": "builder"
+    },
+    {
+      "id": "st-augustine-fl",
+      "name": "St Augustine, FL",
+      "priority": 11,
+      "status": "WATCH",
+      "rationale": "Historic/coastal FL market; Redfin bulk scrape adds ~2,200 active listings for condo/LTR yield screening.",
+      "added": "2026-08-10",
+      "added_by": "manager"
+    },
+    {
+      "id": "colmar-fr",
+      "name": "Colmar, France",
+      "priority": 12,
+      "status": "WATCH",
+      "rationale": "Alsace tourism/LTR market; Realtor International aggregator (SeLoger blocked) for EUR-priced inventory baseline.",
+      "added": "2026-08-10",
+      "added_by": "manager"
+    },
+    {
+      "id": "kyoto-jp",
+      "name": "Kyoto, Japan",
+      "priority": 13,
+      "status": "WATCH",
+      "rationale": "Cultural tourism + expat rental demand; JPY listings via Realtor International (Suumo/Homes blocked to bots).",
+      "added": "2026-08-10",
+      "added_by": "manager"
+    },
+    {
+      "id": "manta-ec",
+      "name": "Manta, Ecuador",
+      "priority": 14,
+      "status": "WATCH",
+      "rationale": "Existing pipeline market (Barbasquillo condos); Trivo developer inventory + Encuentra24 resale when accessible.",
+      "added": "2026-08-10",
+      "added_by": "manager"
+    },
+    {
+      "id": "lisbon-pt",
+      "name": "Lisbon, Portugal",
+      "priority": 15,
+      "status": "WATCH",
+      "rationale": "EU capital LTR/STR; Imovirtual bulk scrape ~7.7k EUR listings for yield research.",
+      "added": "2026-08-10",
+      "added_by": "manager"
+    },
+    {
+      "id": "porto-pt",
+      "name": "Porto, Portugal",
+      "priority": 16,
+      "status": "WATCH",
+      "rationale": "Lower entry than Lisbon; Imovirtual ~9k active listings; expat/digital-nomad rental demand.",
+      "added": "2026-08-10",
+      "added_by": "manager"
+    },
+    {
+      "id": "medellin-co",
+      "name": "Medellín, Colombia",
+      "priority": 17,
+      "status": "WATCH",
+      "rationale": "Expat LTR yield hub; FincaRaiz bulk scrape ~11k COP listings for market research baseline.",
+      "added": "2026-08-10",
+      "added_by": "manager"
+    },
+    {
+      "id": "chiang-mai-th",
+      "name": "Chiang Mai, Thailand",
+      "priority": 18,
+      "status": "WATCH",
+      "rationale": "Nomad rental hub; DotProperty JSON-LD scrape ~113 THB listings for LTR/STR research.",
+      "added": "2026-08-10",
+      "added_by": "manager"
+    },
+    {
       "id": "birmingham-al",
       "name": "Birmingham, AL",
       "priority": 4,

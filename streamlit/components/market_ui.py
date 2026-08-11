@@ -6,12 +6,20 @@ import pandas as pd
 import pydeck as pdk
 import streamlit as st
 
+from components.financial_metrics import (
+    CAP_RATE_COLUMN_FORMAT,
+    CURRENCY_COLUMN_FORMAT,
+    PERCENT_COLUMN_FORMAT,
+    format_currency,
+    format_pct,
+)
 from market_analytics import (
     GROSS_YIELD_TARGET,
     HOA_SCRUTINY_MONTHLY,
     MarketAnalytics,
     baselines_to_rows,
     compute_market_analytics,
+    prepare_city_baseline_rows,
     search_beds_min,
     search_price_range,
 )
@@ -33,12 +41,9 @@ def render_market_header(scraped_at: str | None = None) -> None:
     )
 
 
-def _fmt_currency(value: float | None) -> str:
-    return f'${value:,.0f}' if value is not None else '—'
-
-
 def _fmt_pct(value: float | None) -> str:
-    return f'{value:.1f}%' if value is not None else '—'
+    """Format a value already on a 0–100 percent scale."""
+    return format_pct(value) if value is not None else '—'
 
 
 def _hex_to_rgb(hex_color: str) -> list[int]:
@@ -49,9 +54,9 @@ def _hex_to_rgb(hex_color: str) -> list[int]:
 def render_baseline_cards(analytics: MarketAnalytics) -> None:
     cols = st.columns(5)
     cols[0].metric('Listings', analytics.count)
-    cols[1].metric('Median price', _fmt_currency(analytics.median_price))
-    cols[2].metric('Median $/sqft', _fmt_currency(analytics.median_price_per_sqft))
-    cols[3].metric('Median HOA', _fmt_currency(analytics.median_hoa))
+    cols[1].metric('Median price', format_currency(analytics.median_price))
+    cols[2].metric('Median $/sqft', format_currency(analytics.median_price_per_sqft))
+    cols[3].metric('Median HOA', format_currency(analytics.median_hoa))
     cols[4].metric(
         f'HOA > ${HOA_SCRUTINY_MONTHLY}',
         _fmt_pct(analytics.pct_hoa_over_500),
@@ -68,16 +73,16 @@ def render_city_baselines(analytics: MarketAnalytics) -> None:
         'Empirical medians from the current filter set, grouped by city. '
         'Cap rate medians use verified pipeline matches where available, otherwise estimated proxies.'
     )
-    df = pd.DataFrame(analytics.baselines_by_city)
+    df = pd.DataFrame(prepare_city_baseline_rows(analytics.baselines_by_city))
     st.dataframe(
         df,
         use_container_width=True,
         hide_index=True,
         column_config={
-            'Median price': st.column_config.NumberColumn(format='$%d'),
-            'Median $/sqft': st.column_config.NumberColumn(format='$%.0f'),
-            'Median HOA': st.column_config.NumberColumn(format='$%d'),
-            'Median cap rate': st.column_config.NumberColumn(format='%.2%%'),
+            'Median price': st.column_config.NumberColumn(format=CURRENCY_COLUMN_FORMAT),
+            'Median $/sqft': st.column_config.NumberColumn(format=CURRENCY_COLUMN_FORMAT),
+            'Median HOA': st.column_config.NumberColumn(format=CURRENCY_COLUMN_FORMAT),
+            'Median cap rate': st.column_config.NumberColumn(format=CAP_RATE_COLUMN_FORMAT),
             'Median NOI/sqft': st.column_config.NumberColumn(format='$%.2f'),
         },
     )
@@ -123,13 +128,13 @@ def render_area_comparison(analytics: MarketAnalytics) -> None:
         use_container_width=True,
         hide_index=True,
         column_config={
-            'Median price': st.column_config.NumberColumn(format='$%d'),
-            'Median $/sqft': st.column_config.NumberColumn(format='$%.0f'),
-            'Median HOA': st.column_config.NumberColumn(format='$%d'),
-            'HOA > $500': st.column_config.NumberColumn(format='%.1f%%'),
+            'Median price': st.column_config.NumberColumn(format=CURRENCY_COLUMN_FORMAT),
+            'Median $/sqft': st.column_config.NumberColumn(format=CURRENCY_COLUMN_FORMAT),
+            'Median HOA': st.column_config.NumberColumn(format=CURRENCY_COLUMN_FORMAT),
+            'HOA > $500': st.column_config.NumberColumn(format=PERCENT_COLUMN_FORMAT),
             'Median DOM': st.column_config.NumberColumn(format='%.0f'),
-            '% Condo': st.column_config.NumberColumn(format='%.1f%%'),
-            'In scout price range': st.column_config.NumberColumn(format='%.1f%%'),
+            '% Condo': st.column_config.NumberColumn(format=PERCENT_COLUMN_FORMAT),
+            'In scout price range': st.column_config.NumberColumn(format=PERCENT_COLUMN_FORMAT),
         },
     )
 
@@ -199,9 +204,9 @@ def render_yield_proxy(analytics: MarketAnalytics) -> None:
         use_container_width=True,
         hide_index=True,
         column_config={
-            'Median price': st.column_config.NumberColumn(format='$%d'),
-            'Rent needed (10% gross)': st.column_config.NumberColumn(format='$%d'),
-            'Rent + HOA (10% gross)': st.column_config.NumberColumn(format='$%d'),
+            'Median price': st.column_config.NumberColumn(format=CURRENCY_COLUMN_FORMAT),
+            'Rent needed (10% gross)': st.column_config.NumberColumn(format=CURRENCY_COLUMN_FORMAT),
+            'Rent + HOA (10% gross)': st.column_config.NumberColumn(format=CURRENCY_COLUMN_FORMAT),
         },
     )
 
@@ -239,13 +244,13 @@ def render_market_dataframe(df: pd.DataFrame) -> pd.DataFrame:
             'state': st.column_config.TextColumn('State'),
             'zip': st.column_config.TextColumn('ZIP'),
             'market_area': st.column_config.TextColumn('Market area'),
-            'asking_price': st.column_config.NumberColumn('Price', format='$%d'),
-            'hoa_monthly': st.column_config.NumberColumn('HOA/mo', format='$%d'),
+            'asking_price': st.column_config.NumberColumn('Price', format=CURRENCY_COLUMN_FORMAT),
+            'hoa_monthly': st.column_config.NumberColumn('HOA/mo', format=CURRENCY_COLUMN_FORMAT),
             'sqft': st.column_config.NumberColumn('Sqft', format='%d'),
-            'price_per_sqft': st.column_config.NumberColumn('$/sqft', format='$%.0f'),
+            'price_per_sqft': st.column_config.NumberColumn('$/sqft', format=CURRENCY_COLUMN_FORMAT),
             'cap_rate_pct': st.column_config.NumberColumn(
                 'Cap rate',
-                format='%.2f%%',
+                format=CAP_RATE_COLUMN_FORMAT,
                 help='Verified from pipeline match (reviewed/properties) or ESTIMATED proxy (10% gross yield minus HOA)',
             ),
             'cap_rate_source': st.column_config.TextColumn(
@@ -259,12 +264,12 @@ def render_market_dataframe(df: pd.DataFrame) -> pd.DataFrame:
             ),
             'price_vs_city_median_pct': st.column_config.NumberColumn(
                 'Price vs city',
-                format='%.1f%%',
+                format=PERCENT_COLUMN_FORMAT,
                 help='Percent above/below city median asking price',
             ),
             'sqft_price_vs_city_median_pct': st.column_config.NumberColumn(
                 '$/sqft vs city',
-                format='%.1f%%',
+                format=PERCENT_COLUMN_FORMAT,
                 help='Percent above/below city median $/sqft',
             ),
             'cap_rate_vs_city_median_bps': st.column_config.NumberColumn(
@@ -274,7 +279,7 @@ def render_market_dataframe(df: pd.DataFrame) -> pd.DataFrame:
             ),
             'noi_per_sqft_vs_city_median_pct': st.column_config.NumberColumn(
                 'NOI/sqft vs city',
-                format='%.1f%%',
+                format=PERCENT_COLUMN_FORMAT,
             ),
             'beds': st.column_config.NumberColumn('Beds', format='%d'),
             'baths': st.column_config.NumberColumn('Baths', format='%.1f'),
@@ -377,13 +382,13 @@ def render_market_map(df: pd.DataFrame) -> None:
 
     map_df['color_rgb'] = map_df['map_color'].fillna('#94a3b8').apply(_hex_to_rgb)
     map_df['cap_display'] = map_df['cap_rate_pct'].apply(
-        lambda value: f'{value:.1f}%' if pd.notna(value) else '—'
+        lambda value: format_pct(value) if pd.notna(value) else '—'
     )
     map_df['price_display'] = map_df['asking_price'].apply(
-        lambda value: f'${value:,.0f}' if pd.notna(value) else '—'
+        lambda value: format_currency(value) if pd.notna(value) else '—'
     )
     map_df['ppsf_display'] = map_df['price_per_sqft'].apply(
-        lambda value: f'${value:,.0f}' if pd.notna(value) else '—'
+        lambda value: format_currency(value) if pd.notna(value) else '—'
     )
 
     center_lat = float(map_df['latitude'].median())

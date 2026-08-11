@@ -36,6 +36,22 @@ const MARKET_ID_BY_AREA = {
   'fort-walton-beach': 'fort-walton-beach-fl',
   'merida-centro': 'merida-centro-mx',
   cuenca: 'cuenca-ecuador',
+  'st-augustine': 'st-augustine-fl',
+  colmar: 'colmar-fr',
+  kyoto: 'kyoto-jp',
+  manta: 'manta-ec',
+  lisbon: 'lisbon-pt',
+  porto: 'porto-pt',
+  medellin: 'medellin-co',
+  'chiang-mai': 'chiang-mai-th',
+  tbilisi: 'tbilisi-ge',
+  budapest: 'budapest-hu',
+  bucharest: 'bucharest-ro',
+  'panama-city-pa': 'panama-city-pa',
+  manila: 'manila-ph',
+  bali: 'bali-id',
+  krakow: 'krakow-pl',
+  'playa-del-carmen': 'playa-del-carmen-mx',
 };
 
 const { validate } = buildValidator();
@@ -72,18 +88,42 @@ function coerceNumber(value) {
   return Number.isFinite(n) ? n : undefined;
 }
 
+function normalizeListingUrl(raw) {
+  if (!raw) return raw;
+  if (raw.startsWith('http')) {
+    try {
+      const url = new URL(raw);
+      url.pathname = url.pathname
+        .split('/')
+        .map((seg) => (seg ? encodeURIComponent(decodeURIComponent(seg)) : seg))
+        .join('/');
+      return url.toString();
+    } catch {
+      return raw;
+    }
+  }
+  const path = raw.startsWith('/') ? raw : `/${raw}`;
+  const encoded = path
+    .split('/')
+    .map((seg, i) => (i === 0 || !seg ? seg : encodeURIComponent(decodeURIComponent(seg))))
+    .join('/');
+  return `https://www.realtor.com${encoded}`;
+}
+
 function toMarketListing(listing, scrapeBatch, scrapedAt, source) {
   const marketArea = listing.market_area || 'other';
   const row = {
     id: listingId(listing),
     address: listing.address || 'Unknown address',
     city: listing.city || 'Unknown',
-    state: listing.state || 'FL',
+    state: listing.state || (listing.country && listing.country !== 'US' ? listing.country : 'FL'),
     zip: listing.zip ?? null,
     market_area: marketArea,
     market_id: MARKET_ID_BY_AREA[marketArea] ?? null,
     asking_price: coerceNumber(listing.asking_price),
-    beds: listing.beds != null && Number.isFinite(Number(listing.beds)) ? Math.trunc(Number(listing.beds)) : undefined,
+    beds: listing.beds != null && Number.isFinite(Number(listing.beds)) && Number(listing.beds) >= 0
+      ? Math.trunc(Number(listing.beds))
+      : undefined,
     baths: coerceNumber(listing.baths),
     sqft: coerceNumber(listing.sqft),
     hoa_monthly: coerceNumber(listing.hoa_monthly),
@@ -97,12 +137,15 @@ function toMarketListing(listing, scrapeBatch, scrapedAt, source) {
         ? Math.trunc(Number(listing.days_on_market))
         : undefined,
     mls_id: listing.mls_id || undefined,
-    listing_url: listing.listing_url,
+    listing_url: normalizeListingUrl(listing.listing_url),
     lat: coerceNumber(listing.lat),
     lng: coerceNumber(listing.lng),
     source,
     scrape_batch: scrapeBatch,
     scraped_at: scrapedAt,
+    country: listing.country || undefined,
+    currency: listing.currency || undefined,
+    source_portal: listing.source_portal || undefined,
   };
 
   for (const key of Object.keys(row)) {
@@ -151,8 +194,12 @@ async function loadScrape(filePath, { usOnly = false } = {}) {
 
 function toDbRow(entry) {
   return {
-    ...entry,
+    id: entry.id,
+    address: entry.address,
+    city: entry.city,
+    state: entry.state,
     zip: entry.zip ?? null,
+    market_area: entry.market_area,
     market_id: entry.market_id ?? null,
     asking_price: entry.asking_price ?? null,
     beds: entry.beds ?? null,
@@ -163,8 +210,12 @@ function toDbRow(entry) {
     year_built: entry.year_built ?? null,
     days_on_market: entry.days_on_market ?? null,
     mls_id: entry.mls_id ?? null,
+    listing_url: entry.listing_url,
     lat: entry.lat ?? null,
     lng: entry.lng ?? null,
+    source: entry.source,
+    scrape_batch: entry.scrape_batch,
+    scraped_at: entry.scraped_at,
   };
 }
 

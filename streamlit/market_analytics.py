@@ -313,3 +313,16 @@ def baselines_to_rows(baselines: list[MarketBaseline]) -> list[dict]:
             }
         )
     return rows
+
+
+def prepare_city_baseline_rows(rows: list[dict]) -> list[dict]:
+    """Copy city baseline rows with cap rate on a 0–100 display scale."""
+    from components.financial_metrics import cap_rate_decimal_to_pct
+
+    prepared: list[dict] = []
+    for row in rows:
+        item = dict(row)
+        if 'Median cap rate' in item:
+            item['Median cap rate'] = cap_rate_decimal_to_pct(item.get('Median cap rate'))
+        prepared.append(item)
+    return prepared

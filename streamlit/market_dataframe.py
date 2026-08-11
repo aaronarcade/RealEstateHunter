@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import pandas as pd
 
+from components.financial_metrics import cap_rate_decimal_to_pct
 from market_enrichment import EnrichedMarketListing
 from market_types import MarketListing
 
@@ -26,7 +27,7 @@ def enriched_listings_to_dataframe(enriched: list[EnrichedMarketListing]) -> pd.
     for entry in enriched:
         row = _listing_row(entry.listing)
         row['cap_rate'] = entry.cap_rate
-        row['cap_rate_pct'] = entry.cap_rate * 100 if entry.cap_rate is not None else None
+        row['cap_rate_pct'] = cap_rate_decimal_to_pct(entry.cap_rate)
         row['cap_rate_source'] = entry.cap_rate_source
         row['noi_per_sqft'] = entry.noi_per_sqft
         row['price_vs_city_median_pct'] = entry.price_vs_city_median_pct
