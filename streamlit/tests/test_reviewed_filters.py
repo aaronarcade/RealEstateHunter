@@ -7,7 +7,7 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 
-from db_client.types import ReviewedListing
+from reviewed_types import ReviewedListing
 from reviewed_filters import apply_reviewed_filters, reviewed_countries, reviewed_cities
 from components.reviewed_ui import compute_reviewed_analytics
 

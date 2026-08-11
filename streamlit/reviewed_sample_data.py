@@ -1,6 +1,6 @@
 """Sample reviewed listings for offline development."""
 
-from db_client.types import ReviewedListing
+from reviewed_types import ReviewedListing
 
 SAMPLE_REVIEWED_LISTINGS: list[ReviewedListing] = [
     ReviewedListing(

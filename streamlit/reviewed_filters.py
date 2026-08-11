@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from db_client.types import ReviewedListing
+from reviewed_types import ReviewedListing
 
 
 def reviewed_countries(listings: list[ReviewedListing]) -> list[str]:

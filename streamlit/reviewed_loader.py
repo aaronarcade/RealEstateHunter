@@ -12,7 +12,7 @@ import streamlit as st
 
 from compat import secrets_get as _secrets_get
 from db_client import SupabaseClient, list_reviewed_listings
-from db_client.types import ReviewedListing
+from reviewed_types import ReviewedListing
 from reviewed_sample_data import SAMPLE_REVIEWED_LISTINGS
 
 REVIEWED_NDJSON = Path(__file__).resolve().parent.parent / 'data' / 'reviewed' / 'listings.ndjson'

@@ -8,7 +8,8 @@ from .tracker_mapper import (
     derive_tracker_status,
     derive_tracker_confidence,
 )
-from .types import PropertyRow, ListOpportunitiesOptions, ListReviewedOptions, SyncResult, FieldValue, PropertyOpportunity, ReviewedListing
+from .types import PropertyRow, ListOpportunitiesOptions, SyncResult, FieldValue, PropertyOpportunity
+from reviewed_types import ListReviewedOptions, ReviewedListing
 
 __all__ = [
     'SupabaseClient',

@@ -9,7 +9,7 @@ from typing import Optional
 import streamlit as st
 
 from compat import link_button
-from db_client.types import ReviewedListing
+from reviewed_types import ReviewedListing
 
 
 def render_reviewed_header() -> None:

@@ -7,13 +7,8 @@ from typing import Optional, List
 
 from supabase import create_client, Client
 
-from .types import (
-    PropertyOpportunity,
-    ListOpportunitiesOptions,
-    ListReviewedOptions,
-    SyncResult,
-    ReviewedListing,
-)
+from .types import PropertyOpportunity, ListOpportunitiesOptions, SyncResult
+from reviewed_types import ListReviewedOptions, ReviewedListing
 from .mapper import row_to_opportunity, opportunity_to_row
 from .reviewed_mapper import row_to_reviewed
 from .tracker_mapper import tracker_financials_to_opportunity, tracker_row_to_opportunity

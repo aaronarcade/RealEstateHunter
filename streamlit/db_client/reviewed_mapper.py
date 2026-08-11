@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from .types import ReviewedListing
+from reviewed_types import ReviewedListing
 
 
 def row_to_reviewed(row: dict) -> ReviewedListing:
