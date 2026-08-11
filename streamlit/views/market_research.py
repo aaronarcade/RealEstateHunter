@@ -17,6 +17,7 @@ from components.market_ui import (
     render_market_header,
     render_market_map,
 )
+from market_analytics import compute_market_analytics
 from components.ui import inject_global_styles
 from market_dataframe import listings_to_dataframe
 from market_filters import apply_market_filters, market_areas, market_cities, property_types
@@ -83,13 +84,14 @@ if not listings:
     st.info('No listings match the current filters.')
 else:
     df = listings_to_dataframe(listings)
+    analytics = compute_market_analytics(listings)
     table_tab, charts_tab, map_tab = st.tabs(['Table', 'Charts', 'Map'])
 
     active_df = df
     with table_tab:
         active_df = render_market_dataframe(df)
     with charts_tab:
-        render_market_charts(active_df)
+        render_market_charts(active_df, analytics)
     with map_tab:
         render_market_map(active_df)
 

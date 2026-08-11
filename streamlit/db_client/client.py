@@ -12,12 +12,11 @@ from reviewed_types import ListReviewedOptions, ReviewedListing
 from market_types import ListMarketOptions, MarketListing
 from .mapper import row_to_opportunity, opportunity_to_row
 from .reviewed_mapper import row_to_reviewed
-from .market_mapper import row_to_market
+from .market_client import list_market_listings as _list_market_listings_impl
 from .tracker_mapper import tracker_financials_to_opportunity, tracker_row_to_opportunity
 
 PROPERTIES_TABLE = 'properties'
 REVIEWED_LISTINGS_TABLE = 'reviewed_listings'
-MARKET_LISTINGS_TABLE = 'market_listings'
 UNIT_FINANCIALS_VIEW = 'unit_financials'
 CAP_RATE_RPC = 'get_cap_rate_summary'
 SOURCE_PRIORITY = ('scraper', 'zillow', 'agent', 'county_assessor', 'manual')
@@ -388,56 +387,7 @@ class SupabaseClient:
         self,
         options: Optional[ListMarketOptions] = None,
     ) -> List[MarketListing]:
-        options = options or ListMarketOptions()
-        try:
-            response = (
-                self._client.table(MARKET_LISTINGS_TABLE)
-                .select('*')
-                .order('scraped_at', desc=True)
-                .execute()
-            )
-        except Exception:
-            return []
-
-        listings = [row_to_market(row) for row in (response.data or [])]
-        return self._filter_market_listings(listings, options)
-
-    def _filter_market_listings(
-        self,
-        listings: list[MarketListing],
-        options: ListMarketOptions,
-    ) -> list[MarketListing]:
-        filtered = listings
-        if options.market_area:
-            filtered = [item for item in filtered if item.market_area == options.market_area]
-        if options.city:
-            filtered = [item for item in filtered if item.city == options.city]
-        if options.scrape_batch:
-            filtered = [item for item in filtered if item.scrape_batch == options.scrape_batch]
-        if options.min_price is not None:
-            filtered = [
-                item
-                for item in filtered
-                if item.asking_price is not None and item.asking_price >= options.min_price
-            ]
-        if options.max_price is not None:
-            filtered = [
-                item
-                for item in filtered
-                if item.asking_price is not None and item.asking_price <= options.max_price
-            ]
-        if options.offset:
-            filtered = filtered[options.offset :]
-        if options.limit:
-            filtered = filtered[: options.limit]
-        return filtered
-
-
-def list_market_listings(
-    client: SupabaseClient,
-    options: Optional[ListMarketOptions] = None,
-) -> List[MarketListing]:
-    return client.list_market_listings(options)
+        return _list_market_listings_impl(self, options)
 
 
 def list_reviewed_listings(
