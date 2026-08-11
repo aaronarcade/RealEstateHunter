@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import pandas as pd
+import pydeck as pdk
 import streamlit as st
 
 from market_analytics import (
@@ -40,6 +41,11 @@ def _fmt_pct(value: float | None) -> str:
     return f'{value:.1f}%' if value is not None else '—'
 
 
+def _hex_to_rgb(hex_color: str) -> list[int]:
+    color = hex_color.lstrip('#')
+    return [int(color[i : i + 2], 16) for i in (0, 2, 4)]
+
+
 def render_baseline_cards(analytics: MarketAnalytics) -> None:
     cols = st.columns(5)
     cols[0].metric('Listings', analytics.count)
@@ -50,6 +56,58 @@ def render_baseline_cards(analytics: MarketAnalytics) -> None:
         f'HOA > ${HOA_SCRUTINY_MONTHLY}',
         _fmt_pct(analytics.pct_hoa_over_500),
         help='Share of listings with HOA above scout scrutiny threshold',
+    )
+
+
+def render_city_baselines(analytics: MarketAnalytics) -> None:
+    if not analytics.baselines_by_city:
+        return
+
+    st.subheader('City baselines')
+    st.caption(
+        'Empirical medians from the current filter set, grouped by city. '
+        'Cap rate medians use verified pipeline matches where available, otherwise estimated proxies.'
+    )
+    df = pd.DataFrame(analytics.baselines_by_city)
+    st.dataframe(
+        df,
+        use_container_width=True,
+        hide_index=True,
+        column_config={
+            'Median price': st.column_config.NumberColumn(format='$%d'),
+            'Median $/sqft': st.column_config.NumberColumn(format='$%.0f'),
+            'Median HOA': st.column_config.NumberColumn(format='$%d'),
+            'Median cap rate': st.column_config.NumberColumn(format='%.2%%'),
+            'Median NOI/sqft': st.column_config.NumberColumn(format='$%.2f'),
+        },
+    )
+
+
+def render_deals_vs_baseline(analytics: MarketAnalytics) -> None:
+    deals = analytics.deals_vs_baseline
+    if not deals:
+        return
+
+    st.subheader('Deals vs city baseline')
+    st.caption(
+        'Counts relative to each listing\'s city median in the current filter set. '
+        'Green map points: cap rate above city median or $/sqft below city median.'
+    )
+    cols = st.columns(3)
+    cols[0].metric(
+        'Below city median $/sqft',
+        deals.get('below_median_ppsf', 0),
+        help='Listings priced under their city\'s median $/sqft',
+    )
+    cols[1].metric(
+        'Above city median cap rate',
+        deals.get('above_median_cap_rate', 0),
+        help='Cap rate above city median (verified or estimated)',
+    )
+    cols[2].metric(
+        'Above city median NOI/sqft',
+        deals.get('above_median_noi_sqft', 0),
+        help='Annual NOI per sqft above city median',
     )
 
 
@@ -148,13 +206,16 @@ def render_yield_proxy(analytics: MarketAnalytics) -> None:
     )
 
 
-def render_market_analytics(listings: list[MarketListing]) -> None:
+def render_market_analytics(listings: list[MarketListing], analytics: MarketAnalytics | None = None) -> None:
     if not listings:
         st.info('No listings match the current filters.')
         return
 
-    analytics = compute_market_analytics(listings)
+    if analytics is None:
+        analytics = compute_market_analytics(listings)
     render_baseline_cards(analytics)
+    render_deals_vs_baseline(analytics)
+    render_city_baselines(analytics)
     render_investment_signals(analytics)
     render_area_comparison(analytics)
     render_yield_proxy(analytics)
@@ -165,7 +226,7 @@ def render_market_dataframe(df: pd.DataFrame) -> pd.DataFrame:
         st.info('No rows to display.')
         return df
 
-    display_df = df.drop(columns=['id'], errors='ignore')
+    display_df = df.drop(columns=['id', 'map_color'], errors='ignore')
     event = st.dataframe(
         display_df,
         use_container_width=True,
@@ -182,6 +243,39 @@ def render_market_dataframe(df: pd.DataFrame) -> pd.DataFrame:
             'hoa_monthly': st.column_config.NumberColumn('HOA/mo', format='$%d'),
             'sqft': st.column_config.NumberColumn('Sqft', format='%d'),
             'price_per_sqft': st.column_config.NumberColumn('$/sqft', format='$%.0f'),
+            'cap_rate_pct': st.column_config.NumberColumn(
+                'Cap rate',
+                format='%.2f%%',
+                help='Verified from pipeline match (reviewed/properties) or ESTIMATED proxy (10% gross yield minus HOA)',
+            ),
+            'cap_rate_source': st.column_config.TextColumn(
+                'Cap source',
+                help='VERIFIED_REVIEWED, VERIFIED_PROPERTY, or ESTIMATED (scout-style proxy)',
+            ),
+            'noi_per_sqft': st.column_config.NumberColumn(
+                'NOI/sqft',
+                format='$%.2f',
+                help='Annual NOI per sqft: (cap rate × price) / sqft, or verified NOI / sqft',
+            ),
+            'price_vs_city_median_pct': st.column_config.NumberColumn(
+                'Price vs city',
+                format='%.1f%%',
+                help='Percent above/below city median asking price',
+            ),
+            'sqft_price_vs_city_median_pct': st.column_config.NumberColumn(
+                '$/sqft vs city',
+                format='%.1f%%',
+                help='Percent above/below city median $/sqft',
+            ),
+            'cap_rate_vs_city_median_bps': st.column_config.NumberColumn(
+                'Cap vs city (bps)',
+                format='%.0f',
+                help='Cap rate delta vs city median in basis points',
+            ),
+            'noi_per_sqft_vs_city_median_pct': st.column_config.NumberColumn(
+                'NOI/sqft vs city',
+                format='%.1f%%',
+            ),
             'beds': st.column_config.NumberColumn('Beds', format='%d'),
             'baths': st.column_config.NumberColumn('Baths', format='%.1f'),
             'property_type': st.column_config.TextColumn('Type'),
@@ -191,6 +285,7 @@ def render_market_dataframe(df: pd.DataFrame) -> pd.DataFrame:
             'latitude': None,
             'longitude': None,
             'scraped_at': None,
+            'cap_rate': None,
         },
     )
 
@@ -253,13 +348,18 @@ def render_market_charts(df: pd.DataFrame, analytics: MarketAnalytics | None = N
             )
 
     with scatter_right:
-        st.subheader('Days on market by area')
-        dom_df = df.dropna(subset=['days_on_market', 'market_area'])
-        if dom_df.empty:
-            st.caption('No DOM data.')
+        st.subheader('Cap rate vs $/sqft')
+        cap_df = df.dropna(subset=['cap_rate_pct', 'price_per_sqft']).copy()
+        if cap_df.empty:
+            st.caption('No cap rate and $/sqft data.')
         else:
-            dom_medians = dom_df.groupby('market_area')['days_on_market'].median().sort_values(ascending=False)
-            st.bar_chart(dom_medians, height=320)
+            st.scatter_chart(
+                cap_df,
+                x='price_per_sqft',
+                y='cap_rate_pct',
+                color='cap_rate_source',
+                height=320,
+            )
 
 
 def render_market_map(df: pd.DataFrame) -> None:
@@ -269,5 +369,56 @@ def render_market_map(df: pd.DataFrame) -> None:
         st.info('No coordinates in this dataset. Re-sync after a scrape that includes lat/lng.')
         return
 
-    st.caption(f'Showing {len(map_df)} of {len(df)} listings with coordinates.')
-    st.map(map_df, latitude='latitude', longitude='longitude', size=20, zoom=9)
+    st.caption(
+        'Interactive map — hover for details. '
+        'Green: cap rate above city median or $/sqft below city median. '
+        'Amber: near baseline. Red: below cap median or above $/sqft median.'
+    )
+
+    map_df['color_rgb'] = map_df['map_color'].fillna('#94a3b8').apply(_hex_to_rgb)
+    map_df['cap_display'] = map_df['cap_rate_pct'].apply(
+        lambda value: f'{value:.1f}%' if pd.notna(value) else '—'
+    )
+    map_df['price_display'] = map_df['asking_price'].apply(
+        lambda value: f'${value:,.0f}' if pd.notna(value) else '—'
+    )
+    map_df['ppsf_display'] = map_df['price_per_sqft'].apply(
+        lambda value: f'${value:,.0f}' if pd.notna(value) else '—'
+    )
+
+    center_lat = float(map_df['latitude'].median())
+    center_lng = float(map_df['longitude'].median())
+
+    layer = pdk.Layer(
+        'ScatterplotLayer',
+        data=map_df,
+        get_position='[longitude, latitude]',
+        get_fill_color='color_rgb',
+        get_radius=120,
+        pickable=True,
+        opacity=0.85,
+    )
+
+    view_state = pdk.ViewState(
+        latitude=center_lat,
+        longitude=center_lng,
+        zoom=10,
+        pitch=0,
+    )
+
+    tooltip = {
+        'html': (
+            '<b>{address}</b><br/>'
+            '{city}, {state}<br/>'
+            'Price: {price_display}<br/>'
+            '$/sqft: {ppsf_display}<br/>'
+            'Cap rate: {cap_display} ({cap_rate_source})<br/>'
+            '<a href="{listing_url}" target="_blank">Open listing</a>'
+        ),
+        'style': {'backgroundColor': '#1e293b', 'color': '#f8fafc', 'fontSize': '12px'},
+    }
+
+    st.pydeck_chart(
+        pdk.Deck(layers=[layer], initial_view_state=view_state, tooltip=tooltip),
+        use_container_width=True,
+    )

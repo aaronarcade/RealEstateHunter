@@ -63,6 +63,8 @@ class MarketAnalytics:
     pct_hoa_over_500: Optional[float] = None
     median_dom: Optional[float] = None
     baselines_by_area: list[MarketBaseline] = field(default_factory=list)
+    baselines_by_city: list[dict] = field(default_factory=list)
+    deals_vs_baseline: dict[str, int] = field(default_factory=dict)
     signals: InvestmentSignals = field(default_factory=InvestmentSignals)
     yield_bands: list[YieldProxyBand] = field(default_factory=list)
     property_type_counts: dict[str, int] = field(default_factory=dict)
@@ -249,7 +251,11 @@ def compute_yield_proxy_bands(listings: list[MarketListing]) -> list[YieldProxyB
     return results
 
 
-def compute_market_analytics(listings: list[MarketListing]) -> MarketAnalytics:
+def compute_market_analytics(
+    listings: list[MarketListing],
+    *,
+    enriched: list | None = None,
+) -> MarketAnalytics:
     prices = [item.asking_price for item in listings if item.asking_price is not None]
     ppsf = [_price_per_sqft(item) for item in listings]
     ppsf = [value for value in ppsf if value is not None]
@@ -265,6 +271,15 @@ def compute_market_analytics(listings: list[MarketListing]) -> MarketAnalytics:
     areas = sorted({item.market_area for item in listings if item.market_area})
     baselines = [compute_area_baseline(listings, area) for area in areas]
 
+    city_rows: list[dict] = []
+    deals_vs_baseline: dict[str, int] = {}
+    if enriched:
+        from market_enrichment import city_baselines_to_rows, compute_city_baselines, deals_vs_baseline_counts
+
+        city_baselines = compute_city_baselines(enriched)
+        city_rows = city_baselines_to_rows(city_baselines)
+        deals_vs_baseline = deals_vs_baseline_counts(enriched)
+
     return MarketAnalytics(
         count=len(listings),
         median_price=_median(prices),
@@ -273,6 +288,8 @@ def compute_market_analytics(listings: list[MarketListing]) -> MarketAnalytics:
         pct_hoa_over_500=_pct(hoa_over, len(listings)),
         median_dom=_median([float(value) for value in doms]),
         baselines_by_area=baselines,
+        baselines_by_city=city_rows,
+        deals_vs_baseline=deals_vs_baseline,
         signals=compute_investment_signals(listings),
         yield_bands=compute_yield_proxy_bands(listings),
         property_type_counts=type_counts,

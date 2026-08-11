@@ -12,8 +12,19 @@ from typing import Optional
 import streamlit as st
 
 from compat import secrets_get as _secrets_get
-from db_client import SupabaseClient, count_market_listings, list_market_filter_facets, list_market_listings
+from db_client import (
+    SupabaseClient,
+    count_market_listings,
+    list_market_filter_facets,
+    list_market_listings,
+    list_opportunities,
+    list_reviewed_listings,
+)
+from db_client.types import PropertyOpportunity
+from market_enrichment import CapRateIndex, build_cap_rate_index
 from market_types import ListMarketOptions, MarketFilterFacets, MarketListing
+from reviewed_loader import load_reviewed_listings
+from reviewed_types import ReviewedListing
 
 SCRAPES_DIR = Path(__file__).resolve().parent.parent / 'data/scrapes'
 
@@ -306,3 +317,32 @@ def load_market_listings(
         source='empty',
         error='Configure Supabase or add a scrape file under data/scrapes/.',
     )
+
+
+def _fetch_pipeline_properties(client: SupabaseClient) -> list[PropertyOpportunity]:
+    try:
+        return list_opportunities(client)
+    except Exception:
+        return []
+
+
+def _fetch_reviewed_for_enrichment(client: SupabaseClient | None) -> list[ReviewedListing]:
+    if client:
+        try:
+            rows = list_reviewed_listings(client)
+            if rows:
+                return rows
+        except Exception:
+            pass
+    result = load_reviewed_listings()
+    return result.listings
+
+
+@st.cache_data(show_spinner=False)
+def load_cap_rate_index() -> CapRateIndex:
+    client = _resolve_client()
+    reviewed = _fetch_reviewed_for_enrichment(client)
+    properties: list[PropertyOpportunity] = []
+    if client:
+        properties = _fetch_pipeline_properties(client)
+    return build_cap_rate_index(reviewed, properties)

@@ -19,9 +19,10 @@ from components.market_ui import (
 )
 from market_analytics import compute_market_analytics
 from components.ui import inject_global_styles
-from market_dataframe import listings_to_dataframe
+from market_dataframe import enriched_listings_to_dataframe
+from market_enrichment import enrich_market_listings
 from market_filters import market_cities_from_facets
-from market_loader import load_market_filter_facets, load_market_listings
+from market_loader import load_cap_rate_index, load_market_filter_facets, load_market_listings
 
 require_auth()
 inject_global_styles()
@@ -40,7 +41,6 @@ with st.spinner('Loading market filters...'):
     facets_result = cached_facets()
 
 facets = facets_result.facets
-total_inventory = facets_result.total_count
 load_source = facets_result.source
 load_error = facets_result.error
 
@@ -80,6 +80,11 @@ def cached_filtered_listings(
     )
 
 
+@st.cache_data(show_spinner=False)
+def cached_cap_rate_index():
+    return load_cap_rate_index()
+
+
 with st.spinner('Loading market listings...'):
     load_result = cached_filtered_listings(
         selected_area,
@@ -90,37 +95,23 @@ with st.spinner('Loading market listings...'):
     )
 
 listings = load_result.listings
-if load_result.total_count is not None:
-    total_inventory = load_result.total_count
-
 scraped_at = listings[0].scraped_at if listings else None
 render_market_header(scraped_at)
-
-header_cols = st.columns([3, 1])
-with header_cols[1]:
-    st.metric('Showing', len(listings))
 
 if load_error:
     st.info(load_error)
 elif load_source == 'scrape':
     st.caption('Showing local scrape file. Run sync script to load Supabase.')
-elif load_source == 'supabase':
-    if total_inventory is not None and len(listings) != total_inventory:
-        st.caption(
-            f'{len(listings)} matching filters ({total_inventory:,} total in database)'
-        )
-    elif total_inventory is not None:
-        st.caption(f'{total_inventory:,} market listings from Supabase')
-    else:
-        st.caption(f'{len(listings):,} market listings from Supabase')
 
-render_market_analytics(listings)
+cap_index = cached_cap_rate_index()
+enriched = enrich_market_listings(listings, cap_index)
+analytics = compute_market_analytics(listings, enriched=enriched)
+render_market_analytics(listings, analytics=analytics)
 
 if not listings:
     st.info('No listings match the current filters.')
 else:
-    df = listings_to_dataframe(listings)
-    analytics = compute_market_analytics(listings)
+    df = enriched_listings_to_dataframe(enriched)
     table_tab, charts_tab, map_tab = st.tabs(['Table', 'Charts', 'Map'])
 
     active_df = df
