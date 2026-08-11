@@ -1,7 +1,7 @@
 # TASK-012: Underwriter batch — properties with evidence
 
-**Status:** BACKLOG  
-**Assignee:** Underwriter  
+**Status:** ACTIVE  
+**Assignee:** Builder  
 **Priority:** P0
 
 ## Description
@@ -106,13 +106,13 @@ Unlevered Cap Rate    = Annual NOI / Purchase Price
 
 ## Acceptance Criteria
 
-- [ ] Both properties have complete `underwriting.json`
-- [ ] Calculations follow `docs/PRODUCT.md` formulas
-- [ ] Proposed status justified with documented rationale
-- [ ] Sensitivity analysis included
-- [ ] Risk factors documented
-- [ ] `meta.json` updated to `UNDERWRITTEN`
-- [ ] Commit properties individually or in logical batch
+- [x] Both properties have complete `underwriting.json`
+- [x] Calculations follow `docs/PRODUCT.md` formulas
+- [x] Proposed status justified with documented rationale
+- [x] Sensitivity analysis included
+- [x] Risk factors documented
+- [x] `meta.json` updated to `UNDERWRITTEN`
+- [x] Commit properties individually or in logical batch
 
 ## Depends on
 

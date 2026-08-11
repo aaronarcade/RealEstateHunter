@@ -660,7 +660,7 @@ describe('SchemaValidator', () => {
 
       const result = validator.validateMeta(meta);
       expect(result.valid).toBe(true);
-      expect(meta.workflow_state).toBe('READY_FOR_UNDERWRITING');
+      expect(meta.workflow_state).toBe('UNDERWRITTEN');
     });
 
     it('validates 225-celebration-pl evidence.json', async () => {
@@ -685,7 +685,70 @@ describe('SchemaValidator', () => {
 
       const result = validator.validateMeta(meta);
       expect(result.valid).toBe(true);
-      expect(meta.workflow_state).toBe('READY_FOR_UNDERWRITING');
+      expect(meta.workflow_state).toBe('UNDERWRITTEN');
+    });
+
+    it('validates 9860-s-thomas-dr underwriting.json (TASK-012)', async () => {
+      const { readFileSync } = await import('node:fs');
+      const underwritingPath = resolve(
+        __dirname,
+        '../../../data/properties/9860-s-thomas-dr-unit-917-panama-city-beach-fl/underwriting.json'
+      );
+      const underwriting = JSON.parse(readFileSync(underwritingPath, 'utf-8'));
+
+      const result = validator.validateUnderwriting(underwriting);
+      expect(result.valid).toBe(true);
+
+      expect(underwriting.property_id).toBe('9860-s-thomas-dr-unit-917-panama-city-beach-fl');
+      expect(underwriting.annual_gross_rent).toBe(53004);
+      expect(underwriting.noi).toBe(25084);
+      expect(underwriting.cap_rate).toBeCloseTo(0.09, 2);
+      expect(underwriting.proposed_status).toBe('WATCHLIST');
+      expect(underwriting.sensitivity_analysis).toBeDefined();
+      expect(underwriting.risk_factors.length).toBeGreaterThan(0);
+    });
+
+    it('validates 225-celebration-pl underwriting.json (TASK-012)', async () => {
+      const { readFileSync } = await import('node:fs');
+      const underwritingPath = resolve(
+        __dirname,
+        '../../../data/properties/225-celebration-pl-unit-526-celebration-fl/underwriting.json'
+      );
+      const underwriting = JSON.parse(readFileSync(underwritingPath, 'utf-8'));
+
+      const result = validator.validateUnderwriting(underwriting);
+      expect(result.valid).toBe(true);
+
+      expect(underwriting.property_id).toBe('225-celebration-pl-unit-526-celebration-fl');
+      expect(underwriting.annual_gross_rent).toBe(30984);
+      expect(underwriting.noi).toBe(11780);
+      expect(underwriting.cap_rate).toBeCloseTo(0.079, 2);
+      expect(underwriting.proposed_status).toBe('WATCHLIST');
+      expect(underwriting.sensitivity_analysis).toBeDefined();
+      expect(underwriting.risk_factors.length).toBeGreaterThan(0);
+    });
+
+    it('verifies TASK-012 properties have UNDERWRITTEN workflow state', async () => {
+      const { readFileSync } = await import('node:fs');
+      const propertyIds = [
+        '9860-s-thomas-dr-unit-917-panama-city-beach-fl',
+        '225-celebration-pl-unit-526-celebration-fl',
+      ];
+
+      for (const id of propertyIds) {
+        const metaPath = resolve(__dirname, `../../../data/properties/${id}/meta.json`);
+        const meta = JSON.parse(readFileSync(metaPath, 'utf-8'));
+        expect(meta.workflow_state, `${id} should be UNDERWRITTEN`).toBe('UNDERWRITTEN');
+
+        const underwritingPath = resolve(
+          __dirname,
+          `../../../data/properties/${id}/underwriting.json`
+        );
+        expect(
+          readFileSync(underwritingPath, 'utf-8'),
+          `${id} should have underwriting.json`
+        ).toBeDefined();
+      }
     });
 
     it('verifies all TASK-010 properties have required evidence fields', async () => {
