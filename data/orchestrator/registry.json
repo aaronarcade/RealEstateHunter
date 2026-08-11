@@ -123,9 +123,9 @@
       "agentId": "bc-598679ad-bb0d-41fd-bad0-a0731206e518",
       "runId": "run-7f24a810-ec13-40e3-91f8-02a7080a4d6b",
       "agentUrl": "https://cursor.com/agents/bc-598679ad-bb0d-41fd-bad0-a0731206e518",
-      "status": "ACTIVE",
+      "status": "ERROR",
       "createdAt": "2026-08-11T08:05:50.057Z",
-      "updatedAt": "2026-08-11T08:05:50.057Z"
+      "updatedAt": "2026-08-11T08:07:18.143Z"
     },
     "researcher:property:fez-manta-unit-209-barbasquillo-manta-ec:build-evidence": {
       "workKey": "researcher:property:fez-manta-unit-209-barbasquillo-manta-ec:build-evidence",
@@ -277,9 +277,9 @@
       "agentId": "bc-e9880917-d016-4366-856e-1acee81e7bb6",
       "runId": "run-888c610f-35de-4019-99f9-ea854b0b1d25",
       "agentUrl": "https://cursor.com/agents/bc-e9880917-d016-4366-856e-1acee81e7bb6",
-      "status": "ACTIVE",
+      "status": "ERROR",
       "createdAt": "2026-08-11T08:05:45.064Z",
-      "updatedAt": "2026-08-11T08:05:45.064Z"
+      "updatedAt": "2026-08-11T08:07:18.512Z"
     },
     "analyst:property:9860-s-thomas-dr-unit-917-panama-city-beach-fl:complete-underwriting": {
       "workKey": "analyst:property:9860-s-thomas-dr-unit-917-panama-city-beach-fl:complete-underwriting",
@@ -291,9 +291,23 @@
       "agentId": "bc-3ae1935e-e528-4638-a638-891fd87b0d49",
       "runId": "run-c58a913b-f01d-43cf-b836-d6ce38809ae0",
       "agentUrl": "https://cursor.com/agents/bc-3ae1935e-e528-4638-a638-891fd87b0d49",
-      "status": "ACTIVE",
+      "status": "ERROR",
       "createdAt": "2026-08-11T08:05:47.541Z",
-      "updatedAt": "2026-08-11T08:05:47.541Z"
+      "updatedAt": "2026-08-11T08:07:18.822Z"
+    },
+    "manager:property:17462-front-beach-rd-unit-31c-panama-city-beach-fl:rank-or-close": {
+      "workKey": "manager:property:17462-front-beach-rd-unit-31c-panama-city-beach-fl:rank-or-close",
+      "role": "manager",
+      "subjectType": "property",
+      "subjectId": "17462-front-beach-rd-unit-31c-panama-city-beach-fl",
+      "action": "rank-or-close",
+      "branch": "main",
+      "agentId": "bc-c9367ad1-44ab-4539-a854-fcb8f2070bb6",
+      "runId": "run-a3a7380a-3f56-440c-ba7b-eaa30b98c3a7",
+      "agentUrl": "https://cursor.com/agents/bc-c9367ad1-44ab-4539-a854-fcb8f2070bb6",
+      "status": "ACTIVE",
+      "createdAt": "2026-08-11T08:07:21.530Z",
+      "updatedAt": "2026-08-11T08:07:21.530Z"
     }
   }
 }
