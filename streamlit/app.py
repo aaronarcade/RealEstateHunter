@@ -32,12 +32,13 @@ logout_button()
 
 browse_page = st.Page('views/browse.py', title='Opportunities', icon='🏠', default=True)
 reviewed_page = st.Page('views/reviewed.py', title='Reviewed', icon='📋')
+market_page = st.Page('views/market_research.py', title='Market Research', icon='📊')
 building_page = st.Page('views/building.py', title='Building', icon='🏢')
 unit_page = st.Page('views/unit.py', title='Unit', icon='🔑')
 
 pg = st.navigation(
     {
-        'Browse': [browse_page, reviewed_page],
+        'Browse': [browse_page, reviewed_page, market_page],
         'Property': [building_page, unit_page],
     }
 )

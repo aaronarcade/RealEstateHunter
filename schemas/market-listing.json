@@ -1,0 +1,96 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "market-listing.json",
+  "title": "MarketListing",
+  "description": "Raw active listing from a bulk market scrape (market research tier)",
+  "type": "object",
+  "required": [
+    "id",
+    "address",
+    "city",
+    "state",
+    "listing_url",
+    "market_area",
+    "source",
+    "scrape_batch",
+    "scraped_at"
+  ],
+  "properties": {
+    "id": {
+      "type": "string"
+    },
+    "address": {
+      "type": "string"
+    },
+    "city": {
+      "type": "string"
+    },
+    "state": {
+      "type": "string"
+    },
+    "zip": {
+      "type": "string"
+    },
+    "market_area": {
+      "type": "string",
+      "enum": ["celebration", "kissimmee", "poinciana", "other"]
+    },
+    "market_id": {
+      "type": "string"
+    },
+    "asking_price": {
+      "type": "number",
+      "minimum": 0
+    },
+    "beds": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "baths": {
+      "type": "number",
+      "minimum": 0
+    },
+    "sqft": {
+      "type": "number",
+      "minimum": 0
+    },
+    "hoa_monthly": {
+      "type": "number",
+      "minimum": 0
+    },
+    "property_type": {
+      "type": "string"
+    },
+    "year_built": {
+      "type": "integer"
+    },
+    "days_on_market": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "mls_id": {
+      "type": "string"
+    },
+    "listing_url": {
+      "type": "string",
+      "format": "uri"
+    },
+    "lat": {
+      "type": "number"
+    },
+    "lng": {
+      "type": "number"
+    },
+    "source": {
+      "type": "string"
+    },
+    "scrape_batch": {
+      "type": "string"
+    },
+    "scraped_at": {
+      "type": "string",
+      "format": "date-time"
+    }
+  },
+  "additionalProperties": false
+}

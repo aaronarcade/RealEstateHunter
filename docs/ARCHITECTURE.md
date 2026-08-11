@@ -88,14 +88,15 @@ data/reviewed/listings.ndjson      # Lightweight scout-reviewed listings (REJECT
 
 Property IDs should be stable slugs (e.g., `123-main-st-tampa-fl`).
 
-### Two-tier property data
+### Three-tier property data
 
-| Tier | Storage | When | UI table |
-|------|---------|------|----------|
-| **Reviewed** | `data/reviewed/listings.ndjson` | Scout REJECT / SKIPPED | `reviewed_listings` |
-| **Pipeline** | `data/properties/{id}/` | Scout RESEARCH → audit | `properties` |
+| Tier | Storage | When | UI table | Page |
+|------|---------|------|----------|------|
+| **Reviewed** | `data/reviewed/listings.ndjson` | Scout REJECT / SKIPPED | `reviewed_listings` | Reviewed |
+| **Market research** | `data/scrapes/*.json` | Bulk scrape (raw inventory) | `market_listings` | Market Research |
+| **Pipeline** | `data/properties/{id}/` | Scout RESEARCH → audit | `properties` | Opportunities |
 
-Scout **REJECT** decisions append to the reviewed log only — they do not create `data/properties/` directories. This keeps high-volume screening from bloating the full pipeline artifact tree or the `properties` Supabase table.
+Scout **REJECT** decisions append to the reviewed log only — they do not create `data/properties/` directories. Bulk market scrapes (e.g. Redfin zip/city pulls) sync to `market_listings` for browse-only market research; they are not scout decisions and are not underwritten opportunities.
 
 Reviewed listings use flat fields (price, est. cap rate, city, country, HOA, sqft) validated by `schemas/reviewed-listing.json`. Estimated cap rate is a scout first-pass metric (HOA-adjusted when HOA is known), not the underwritten cap rate on published opportunities.
 
