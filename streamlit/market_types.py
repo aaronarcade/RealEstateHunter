@@ -36,8 +36,17 @@ class MarketListing:
 class ListMarketOptions:
     market_area: Optional[str] = None
     city: Optional[str] = None
+    property_type: Optional[str] = None
     scrape_batch: Optional[str] = None
     min_price: Optional[float] = None
     max_price: Optional[float] = None
     limit: Optional[int] = None
     offset: Optional[int] = None
+    columns: Optional[str] = None
+
+
+@dataclass
+class MarketFilterFacets:
+    areas: list[str]
+    property_types: list[str]
+    city_rows: list[tuple[str, str]]

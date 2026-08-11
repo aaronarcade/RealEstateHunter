@@ -16,6 +16,13 @@ def market_cities(listings: list[MarketListing], market_area: str | None = None)
     return sorted({item.city for item in filtered if item.city})
 
 
+def market_cities_from_facets(facets, market_area: str | None = None) -> list[str]:
+    rows = facets.city_rows
+    if market_area and market_area != 'All':
+        rows = [(area, city) for area, city in rows if area == market_area]
+    return sorted({city for _area, city in rows if city})
+
+
 def property_types(listings: list[MarketListing]) -> list[str]:
     return sorted({item.property_type for item in listings if item.property_type})
 

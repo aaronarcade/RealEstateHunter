@@ -20,8 +20,8 @@ from components.market_ui import (
 from market_analytics import compute_market_analytics
 from components.ui import inject_global_styles
 from market_dataframe import listings_to_dataframe
-from market_filters import apply_market_filters, market_areas, market_cities, property_types
-from market_loader import load_market_listings
+from market_filters import market_cities_from_facets
+from market_loader import load_market_filter_facets, load_market_listings
 
 require_auth()
 inject_global_styles()
@@ -32,40 +32,69 @@ if st.sidebar.button('Refresh market data', use_container_width=True):
 
 
 @st.cache_data(show_spinner=False)
-def cached_load() -> tuple[list, str, str | None]:
-    result = load_market_listings()
-    return result.listings, result.source, result.error
+def cached_facets():
+    return load_market_filter_facets()
 
 
-with st.spinner('Loading market listings...'):
-    listings_list, load_source, load_error = cached_load()
+with st.spinner('Loading market filters...'):
+    facets_result = cached_facets()
 
-scraped_at = listings_list[0].scraped_at if listings_list else None
-render_market_header(scraped_at)
+facets = facets_result.facets
+total_inventory = facets_result.total_count
+load_source = facets_result.source
+load_error = facets_result.error
 
 st.sidebar.markdown('---')
 st.sidebar.subheader('Filters')
 
-area_options = ['All'] + market_areas(listings_list)
+area_options = ['All'] + facets.areas
 selected_area = st.sidebar.selectbox('Market area', area_options, index=0)
 
-city_options = ['All'] + market_cities(listings_list, selected_area)
+city_options = ['All'] + market_cities_from_facets(facets, selected_area)
 selected_city = st.sidebar.selectbox('City', city_options, index=0)
 
-type_options = ['All'] + property_types(listings_list)
+type_options = ['All'] + facets.property_types
 selected_type = st.sidebar.selectbox('Property type', type_options, index=0)
 
 price_min = st.sidebar.number_input('Min price ($)', min_value=0, value=0, step=25000)
 price_max = st.sidebar.number_input('Max price ($)', min_value=0, value=0, step=25000)
 
-listings = apply_market_filters(
-    listings_list,
-    market_area=selected_area,
-    city=selected_city,
-    property_type=selected_type,
-    min_price=price_min if price_min > 0 else None,
-    max_price=price_max if price_max > 0 else None,
-)
+min_price = price_min if price_min > 0 else None
+max_price = price_max if price_max > 0 else None
+
+
+@st.cache_data(show_spinner=False)
+def cached_filtered_listings(
+    market_area: str,
+    city: str,
+    property_type: str,
+    min_price: float | None,
+    max_price: float | None,
+):
+    return load_market_listings(
+        market_area=market_area,
+        city=city,
+        property_type=property_type,
+        min_price=min_price,
+        max_price=max_price,
+    )
+
+
+with st.spinner('Loading market listings...'):
+    load_result = cached_filtered_listings(
+        selected_area,
+        selected_city,
+        selected_type,
+        min_price,
+        max_price,
+    )
+
+listings = load_result.listings
+if load_result.total_count is not None:
+    total_inventory = load_result.total_count
+
+scraped_at = listings[0].scraped_at if listings else None
+render_market_header(scraped_at)
 
 header_cols = st.columns([3, 1])
 with header_cols[1]:
@@ -76,7 +105,14 @@ if load_error:
 elif load_source == 'scrape':
     st.caption('Showing local scrape file. Run sync script to load Supabase.')
 elif load_source == 'supabase':
-    st.caption(f'{len(listings)} of {len(listings_list)} market listings from Supabase')
+    if total_inventory is not None and len(listings) != total_inventory:
+        st.caption(
+            f'{len(listings)} matching filters ({total_inventory:,} total in database)'
+        )
+    elif total_inventory is not None:
+        st.caption(f'{total_inventory:,} market listings from Supabase')
+    else:
+        st.caption(f'{len(listings):,} market listings from Supabase')
 
 render_market_analytics(listings)
 

@@ -8,6 +8,9 @@
     "sync:supabase:dry-run": "node sync-properties-to-supabase.mjs --dry-run",
     "sync:reviewed": "node sync-reviewed-to-supabase.mjs",
     "sync:reviewed:dry-run": "node sync-reviewed-to-supabase.mjs --dry-run",
+    "sync:market": "node sync-market-listings-to-supabase.mjs --all",
+    "sync:market:dry-run": "node sync-market-listings-to-supabase.mjs --all --dry-run",
+    "verify:market": "node verify-market-listings.mjs",
     "backfill:reviewed": "node backfill-reviewed-from-meta.mjs"
   },
   "dependencies": {

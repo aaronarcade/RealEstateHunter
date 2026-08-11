@@ -33,7 +33,16 @@
     },
     "market_area": {
       "type": "string",
-      "enum": ["celebration", "kissimmee", "poinciana", "other"]
+      "enum": [
+      "celebration",
+      "kissimmee",
+      "poinciana",
+      "panama-city-beach",
+      "fort-walton-beach",
+      "merida-centro",
+      "cuenca",
+      "other"
+    ]
     },
     "market_id": {
       "type": "string"
@@ -90,6 +99,15 @@
     "scraped_at": {
       "type": "string",
       "format": "date-time"
+    },
+    "country": {
+      "type": "string"
+    },
+    "currency": {
+      "type": "string"
+    },
+    "source_portal": {
+      "type": "string"
     }
   },
   "additionalProperties": false

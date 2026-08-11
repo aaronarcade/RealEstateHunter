@@ -36,6 +36,33 @@
       "added_by": "manager"
     },
     {
+      "id": "fort-walton-beach-fl",
+      "name": "Fort Walton Beach / Destin, FL",
+      "priority": 8,
+      "status": "WATCH",
+      "rationale": "Emerald Coast STR/LTR market; bulk scrape added 1,151 active listings (FWB + Destin) for market research baseline.",
+      "added": "2026-08-10",
+      "added_by": "manager"
+    },
+    {
+      "id": "merida-centro-mx",
+      "name": "Centro Mérida, Mexico",
+      "priority": 9,
+      "status": "WATCH",
+      "rationale": "Historic center MXN market; international portals blocked in automated scrape — monitor manually or via browser session.",
+      "added": "2026-08-10",
+      "added_by": "manager"
+    },
+    {
+      "id": "cuenca-ecuador",
+      "name": "Cuenca, Ecuador",
+      "priority": 10,
+      "status": "WATCH",
+      "rationale": "Expat rental market; YapaTree scrape yields 71 active for-sale listings in USD for market research.",
+      "added": "2026-08-10",
+      "added_by": "manager"
+    },
+    {
       "id": "birmingham-al",
       "name": "Birmingham, AL",
       "priority": 4,

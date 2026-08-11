@@ -1,0 +1,10 @@
+{
+  "source": "blocked",
+  "market": "merida-centro-mx",
+  "scraped_at": "2026-08-11T03:30:00Z",
+  "status_filter": "active_for_sale",
+  "currency": "MXN",
+  "notes": "Redfin has no Mexico coverage. Inmuebles24, Lamudi, Plusvalia, and Properati returned 403/blocked from this environment. Nestoria/Realtor International pages are client-rendered without listing payload in HTML. Manual browser scrape or authenticated API access required for Centro Merida inventory.",
+  "count": 0,
+  "listings": []
+}

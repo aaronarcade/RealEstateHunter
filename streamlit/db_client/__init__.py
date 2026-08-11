@@ -1,7 +1,7 @@
 """Supabase data layer for RealEstateHunter Streamlit app."""
 
 from .client import SupabaseClient, list_opportunities, get_property, list_reviewed_listings
-from .market_client import list_market_listings
+from .market_client import count_market_listings, list_market_filter_facets, list_market_listings
 from .mapper import row_to_opportunity, opportunity_to_row, derive_confidence, derive_sources
 from .tracker_mapper import (
     tracker_row_to_opportunity,
@@ -11,7 +11,7 @@ from .tracker_mapper import (
 )
 from .types import PropertyRow, ListOpportunitiesOptions, SyncResult, FieldValue, PropertyOpportunity
 from reviewed_types import ListReviewedOptions, ReviewedListing
-from market_types import ListMarketOptions, MarketListing
+from market_types import ListMarketOptions, MarketFilterFacets, MarketListing
 
 __all__ = [
     'SupabaseClient',
@@ -19,6 +19,8 @@ __all__ = [
     'get_property',
     'list_reviewed_listings',
     'list_market_listings',
+    'count_market_listings',
+    'list_market_filter_facets',
     'row_to_opportunity',
     'opportunity_to_row',
     'tracker_row_to_opportunity',
@@ -35,5 +37,6 @@ __all__ = [
     'PropertyOpportunity',
     'ReviewedListing',
     'ListMarketOptions',
+    'MarketFilterFacets',
     'MarketListing',
 ]

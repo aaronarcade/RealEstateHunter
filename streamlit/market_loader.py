@@ -12,18 +12,19 @@ from typing import Optional
 import streamlit as st
 
 from compat import secrets_get as _secrets_get
-from db_client import SupabaseClient, list_market_listings
-from market_types import MarketListing
+from db_client import SupabaseClient, count_market_listings, list_market_filter_facets, list_market_listings
+from market_types import ListMarketOptions, MarketFilterFacets, MarketListing
 
-DEFAULT_SCRAPE = (
-    Path(__file__).resolve().parent.parent
-    / 'data/scrapes/celebration-kissimmee-poinciana-fl-active-listings-2026-08-10.json'
-)
+SCRAPES_DIR = Path(__file__).resolve().parent.parent / 'data/scrapes'
 
 MARKET_ID_BY_AREA = {
     'celebration': 'celebration-fl',
     'kissimmee': 'kissimmee-fl',
     'poinciana': 'poinciana-fl',
+    'panama-city-beach': 'panama-city-beach-fl',
+    'fort-walton-beach': 'fort-walton-beach-fl',
+    'merida-centro': 'merida-centro-mx',
+    'cuenca': 'cuenca-ecuador',
 }
 
 
@@ -32,6 +33,15 @@ class MarketLoadResult:
     listings: list[MarketListing]
     source: str
     error: Optional[str] = None
+    total_count: Optional[int] = None
+
+
+@dataclass
+class MarketFacetsResult:
+    facets: MarketFilterFacets
+    source: str
+    error: Optional[str] = None
+    total_count: Optional[int] = None
 
 
 def _load_dotenv() -> None:
@@ -93,57 +103,202 @@ def _raw_to_market(raw: dict, scrape_batch: str, scraped_at: str, source: str) -
     )
 
 
-def _load_from_scrape(path: Path = DEFAULT_SCRAPE) -> list[MarketListing]:
+def _load_from_scrape_file(path: Path, by_id: dict[str, MarketListing]) -> None:
     if not path.exists():
-        return []
+        return
 
     payload = json.loads(path.read_text())
     scrape_batch = payload.get('scrape_batch') or path.stem.replace('-active-listings', '')
     scraped_at = payload.get('scraped_at') or ''
     source = payload.get('source') or 'redfin'
 
-    by_id: dict[str, MarketListing] = {}
     for raw in payload.get('listings', []):
         if not raw.get('listing_url'):
             continue
-        if (raw.get('state') or 'FL') != 'FL':
-            continue
         listing = _raw_to_market(raw, scrape_batch, scraped_at, source)
         by_id[listing.id] = listing
+
+
+def _load_from_scrapes() -> list[MarketListing]:
+    by_id: dict[str, MarketListing] = {}
+    if not SCRAPES_DIR.exists():
+        return []
+
+    for path in sorted(SCRAPES_DIR.glob('*-active-listings*.json')):
+        _load_from_scrape_file(path, by_id)
     return list(by_id.values())
 
 
-@st.cache_data(show_spinner=False)
-def load_market_listings(use_sample_data: bool = False) -> MarketLoadResult:
-    if use_sample_data:
-        listings = _load_from_scrape()
-        if listings:
-            return MarketLoadResult(listings=listings, source='scrape')
-        return MarketLoadResult(listings=[], source='empty', error='No local scrape file found.')
+def _facets_from_listings(listings: list[MarketListing]) -> MarketFilterFacets:
+    areas = sorted({item.market_area for item in listings if item.market_area})
+    property_types = sorted({item.property_type for item in listings if item.property_type})
+    city_rows = [
+        (item.market_area, item.city)
+        for item in listings
+        if item.market_area and item.city
+    ]
+    return MarketFilterFacets(
+        areas=areas,
+        property_types=property_types,
+        city_rows=city_rows,
+    )
 
+
+def _resolve_client() -> SupabaseClient | None:
     url, service_key, anon_key = _resolve_supabase_config()
     if url and (service_key or anon_key):
+        return SupabaseClient(url=url, service_role_key=service_key, anon_key=anon_key)
+    return None
+
+
+def _filter_options(options: ListMarketOptions | None) -> ListMarketOptions:
+    return options or ListMarketOptions()
+
+
+@st.cache_data(show_spinner=False)
+def load_market_filter_facets(use_sample_data: bool = False) -> MarketFacetsResult:
+    if use_sample_data:
+        listings = _load_from_scrapes()
+        if listings:
+            return MarketFacetsResult(
+                facets=_facets_from_listings(listings),
+                source='scrape',
+                total_count=len(listings),
+            )
+        return MarketFacetsResult(
+            facets=MarketFilterFacets(areas=[], property_types=[], city_rows=[]),
+            source='empty',
+            error='No local scrape files found.',
+        )
+
+    client = _resolve_client()
+    if client:
         try:
-            client = SupabaseClient(url=url, service_role_key=service_key, anon_key=anon_key)
-            listings = list_market_listings(client)
-            if listings:
-                return MarketLoadResult(listings=listings, source='supabase')
+            facets = list_market_filter_facets(client)
+            total_count = count_market_listings(client)
+            if facets.areas or facets.property_types or facets.city_rows:
+                return MarketFacetsResult(
+                    facets=facets,
+                    source='supabase',
+                    total_count=total_count,
+                )
         except Exception as exc:
-            fallback = _load_from_scrape()
+            fallback = _load_from_scrapes()
             if fallback:
-                return MarketLoadResult(
-                    listings=fallback,
+                return MarketFacetsResult(
+                    facets=_facets_from_listings(fallback),
                     source='scrape',
-                    error=f'Supabase unavailable ({exc}); showing local scrape file.',
+                    error=f'Supabase unavailable ({exc}); using local scrape files.',
+                    total_count=len(fallback),
+                )
+            return MarketFacetsResult(
+                facets=MarketFilterFacets(areas=[], property_types=[], city_rows=[]),
+                source='error',
+                error=str(exc),
+            )
+
+    fallback = _load_from_scrapes()
+    if fallback:
+        return MarketFacetsResult(
+            facets=_facets_from_listings(fallback),
+            source='scrape',
+            error='Supabase not configured; using local scrape files.',
+            total_count=len(fallback),
+        )
+
+    return MarketFacetsResult(
+        facets=MarketFilterFacets(areas=[], property_types=[], city_rows=[]),
+        source='empty',
+        error='Configure Supabase or add a scrape file under data/scrapes/.',
+    )
+
+
+@st.cache_data(show_spinner=False)
+def load_market_listings(
+    use_sample_data: bool = False,
+    market_area: str = 'All',
+    city: str = 'All',
+    property_type: str = 'All',
+    min_price: float | None = None,
+    max_price: float | None = None,
+) -> MarketLoadResult:
+    options = ListMarketOptions(
+        market_area=market_area if market_area != 'All' else None,
+        city=city if city != 'All' else None,
+        property_type=property_type if property_type != 'All' else None,
+        min_price=min_price,
+        max_price=max_price,
+    )
+
+    if use_sample_data:
+        listings = _load_from_scrapes()
+        if listings:
+            from market_filters import apply_market_filters
+
+            filtered = apply_market_filters(
+                listings,
+                market_area=market_area,
+                city=city,
+                property_type=property_type,
+                min_price=min_price,
+                max_price=max_price,
+            )
+            return MarketLoadResult(
+                listings=filtered,
+                source='scrape',
+                total_count=len(listings),
+            )
+        return MarketLoadResult(listings=[], source='empty', error='No local scrape files found.')
+
+    client = _resolve_client()
+    if client:
+        try:
+            listings = list_market_listings(client, options)
+            total_count = count_market_listings(client)
+            if listings or total_count:
+                return MarketLoadResult(
+                    listings=listings,
+                    source='supabase',
+                    total_count=total_count,
+                )
+        except Exception as exc:
+            fallback = _load_from_scrapes()
+            if fallback:
+                from market_filters import apply_market_filters
+
+                filtered = apply_market_filters(
+                    fallback,
+                    market_area=market_area,
+                    city=city,
+                    property_type=property_type,
+                    min_price=min_price,
+                    max_price=max_price,
+                )
+                return MarketLoadResult(
+                    listings=filtered,
+                    source='scrape',
+                    error=f'Supabase unavailable ({exc}); showing local scrape files.',
+                    total_count=len(fallback),
                 )
             return MarketLoadResult(listings=[], source='error', error=str(exc))
 
-    fallback = _load_from_scrape()
+    fallback = _load_from_scrapes()
     if fallback:
+        from market_filters import apply_market_filters
+
+        filtered = apply_market_filters(
+            fallback,
+            market_area=market_area,
+            city=city,
+            property_type=property_type,
+            min_price=min_price,
+            max_price=max_price,
+        )
         return MarketLoadResult(
-            listings=fallback,
+            listings=filtered,
             source='scrape',
-            error='Supabase not configured; showing local scrape file.',
+            error='Supabase not configured; showing local scrape files.',
+            total_count=len(fallback),
         )
 
     return MarketLoadResult(

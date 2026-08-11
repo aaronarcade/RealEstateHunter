@@ -4,7 +4,7 @@
  * Sync bulk market scrape JSON to Supabase market_listings table.
  *
  * Usage:
- *   node scripts/sync-market-listings-to-supabase.mjs [--file path] [--dry-run]
+ *   node scripts/sync-market-listings-to-supabase.mjs [--file path] [--all] [--dry-run]
  *
  * Default file: data/scrapes/celebration-kissimmee-poinciana-fl-active-listings-2026-08-10.json
  *
@@ -13,7 +13,7 @@
  *   SUPABASE_SERVICE_ROLE_KEY
  */
 
-import { readFile } from 'node:fs/promises';
+import { readFile, readdir } from 'node:fs/promises';
 import { existsSync } from 'node:fs';
 import { join, dirname, basename } from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -32,6 +32,10 @@ const MARKET_ID_BY_AREA = {
   celebration: 'celebration-fl',
   kissimmee: 'kissimmee-fl',
   poinciana: 'poinciana-fl',
+  'panama-city-beach': 'panama-city-beach-fl',
+  'fort-walton-beach': 'fort-walton-beach-fl',
+  'merida-centro': 'merida-centro-mx',
+  cuenca: 'cuenca-ecuador',
 };
 
 const { validate } = buildValidator();
@@ -110,7 +114,11 @@ function toMarketListing(listing, scrapeBatch, scrapedAt, source) {
   return row;
 }
 
-async function loadScrape(filePath) {
+function isUsFlListing(listing) {
+  return (listing.state || 'FL') === 'FL' && (listing.country == null || listing.country === 'US');
+}
+
+async function loadScrape(filePath, { usOnly = false } = {}) {
   if (!existsSync(filePath)) {
     throw new Error(`Scrape file not found: ${filePath}`);
   }
@@ -124,7 +132,7 @@ async function loadScrape(filePath) {
   const byId = new Map();
   for (const listing of listings) {
     if (!listing.listing_url) continue;
-    if ((listing.state || 'FL') !== 'FL') continue;
+    if (usOnly && !isUsFlListing(listing)) continue;
     const row = toMarketListing(listing, scrapeBatch, scrapedAt, source);
     const { valid, errors } = validate('market-listing.json', row);
     if (!valid) {
@@ -160,13 +168,79 @@ function toDbRow(entry) {
   };
 }
 
+async function resolveScrapeFiles() {
+  const syncAll = process.argv.includes('--all');
+  const fileArgIndex = process.argv.indexOf('--file');
+
+  if (fileArgIndex >= 0 && process.argv[fileArgIndex + 1]) {
+    return [join(REPO_ROOT, process.argv[fileArgIndex + 1])];
+  }
+
+  if (syncAll) {
+    const scrapesDir = join(REPO_ROOT, 'data/scrapes');
+    const names = await readdir(scrapesDir);
+    return names
+      .filter((name) => name.endsWith('.json') && name.includes('-active-listings'))
+      .sort()
+      .map((name) => join(scrapesDir, name));
+  }
+
+  return [DEFAULT_SCRAPE];
+}
+
+async function syncFile(filePath, supabase, { dryRun = false, usOnly = false } = {}) {
+  log(`Reading ${filePath}`);
+
+  const { listings, scrapeBatch, scrapedAt } = await loadScrape(filePath, { usOnly });
+  log(
+    `Loaded ${listings.length} listings (batch: ${scrapeBatch}, scraped: ${scrapedAt}${usOnly ? ', US-FL only' : ''})`,
+  );
+
+  const byArea = listings.reduce((acc, row) => {
+    acc[row.market_area] = (acc[row.market_area] || 0) + 1;
+    return acc;
+  }, {});
+  log(`By market area: ${JSON.stringify(byArea)}`);
+
+  if (listings.length === 0) {
+    log('No listings to sync for this file');
+    return 0;
+  }
+
+  if (dryRun) {
+    for (const entry of listings.slice(0, 5)) {
+      log(
+        `  ${entry.id}: ${entry.address}, ${entry.city} — $${entry.asking_price ?? 'n/a'} (${entry.market_area})`,
+      );
+    }
+    if (listings.length > 5) {
+      log(`  ... and ${listings.length - 5} more`);
+    }
+    return listings.length;
+  }
+
+  const rows = listings.map(toDbRow);
+  const chunkSize = 500;
+  for (let i = 0; i < rows.length; i += chunkSize) {
+    const chunk = rows.slice(i, i + chunkSize);
+    const { error: upsertError } = await supabase
+      .from(MARKET_TABLE)
+      .upsert(chunk, { onConflict: 'id' });
+
+    if (upsertError) {
+      throw new Error(`Upsert failed at offset ${i}: ${upsertError.message}`);
+    }
+    log(`Upserted ${Math.min(i + chunkSize, rows.length)} / ${rows.length}`);
+  }
+
+  log(`Sync complete for ${basename(filePath)}: ${rows.length} rows upserted`);
+  return rows.length;
+}
+
 async function main() {
   const dryRun = process.argv.includes('--dry-run');
-  const fileArgIndex = process.argv.indexOf('--file');
-  const filePath =
-    fileArgIndex >= 0 && process.argv[fileArgIndex + 1]
-      ? join(REPO_ROOT, process.argv[fileArgIndex + 1])
-      : DEFAULT_SCRAPE;
+  const usOnly = process.argv.includes('--us-only');
+  const filePaths = await resolveScrapeFiles();
 
   const supabaseUrl = process.env.SUPABASE_URL;
   const supabaseKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
@@ -182,55 +256,19 @@ async function main() {
   }
 
   log(`Starting market listings sync ${dryRun ? '(DRY RUN)' : ''}`);
-  log(`Reading ${filePath}`);
 
-  const { listings, scrapeBatch, scrapedAt } = await loadScrape(filePath);
-  log(`Loaded ${listings.length} FL listings (batch: ${scrapeBatch}, scraped: ${scrapedAt})`);
+  const supabase = dryRun
+    ? null
+    : createClient(supabaseUrl, supabaseKey, {
+        auth: { autoRefreshToken: false, persistSession: false },
+      });
 
-  const byArea = listings.reduce((acc, row) => {
-    acc[row.market_area] = (acc[row.market_area] || 0) + 1;
-    return acc;
-  }, {});
-  log(`By market area: ${JSON.stringify(byArea)}`);
-
-  if (listings.length === 0) {
-    log('No listings to sync');
-    process.exit(0);
+  let totalRows = 0;
+  for (const filePath of filePaths) {
+    totalRows += await syncFile(filePath, supabase, { dryRun, usOnly });
   }
 
-  if (dryRun) {
-    for (const entry of listings.slice(0, 5)) {
-      log(
-        `  ${entry.id}: ${entry.address}, ${entry.city} — $${entry.asking_price ?? 'n/a'} (${entry.market_area})`,
-      );
-    }
-    if (listings.length > 5) {
-      log(`  ... and ${listings.length - 5} more`);
-    }
-    process.exit(0);
-  }
-
-  const supabase = createClient(supabaseUrl, supabaseKey, {
-    auth: { autoRefreshToken: false, persistSession: false },
-  });
-
-  const rows = listings.map(toDbRow);
-
-  const chunkSize = 500;
-  for (let i = 0; i < rows.length; i += chunkSize) {
-    const chunk = rows.slice(i, i + chunkSize);
-    const { error: upsertError } = await supabase
-      .from(MARKET_TABLE)
-      .upsert(chunk, { onConflict: 'id' });
-
-    if (upsertError) {
-      log(`Upsert failed at offset ${i}: ${upsertError.message}`, 'error');
-      process.exit(1);
-    }
-    log(`Upserted ${Math.min(i + chunkSize, rows.length)} / ${rows.length}`);
-  }
-
-  log(`Sync complete: ${rows.length} rows upserted`);
+  log(`Finished: ${totalRows} rows across ${filePaths.length} file(s)`);
 }
 
 main().catch((error) => {
