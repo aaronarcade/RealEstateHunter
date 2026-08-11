@@ -77,14 +77,27 @@ The orchestrator reads property workflow state and `tasks/backlog/`, then calls 
 ## Data Layout
 
 ```
-data/properties/{property-id}/
-├── meta.json           # Address, listing URL, workflow state
-├── evidence.json       # Analyst output (structured fields)
-├── underwriting.json   # Analyst output (NOI, cap rate, proposed status)
-└── audit.json          # Auditor output
+data/properties/{property-id}/     # Full pipeline (RESEARCH+ candidates)
+├── meta.json
+├── evidence.json
+├── underwriting.json
+└── audit.json
+
+data/reviewed/listings.ndjson      # Lightweight scout-reviewed listings (REJECT/SKIPPED)
 ```
 
 Property IDs should be stable slugs (e.g., `123-main-st-tampa-fl`).
+
+### Two-tier property data
+
+| Tier | Storage | When | UI table |
+|------|---------|------|----------|
+| **Reviewed** | `data/reviewed/listings.ndjson` | Scout REJECT / SKIPPED | `reviewed_listings` |
+| **Pipeline** | `data/properties/{id}/` | Scout RESEARCH → audit | `properties` |
+
+Scout **REJECT** decisions append to the reviewed log only — they do not create `data/properties/` directories. This keeps high-volume screening from bloating the full pipeline artifact tree or the `properties` Supabase table.
+
+Reviewed listings use flat fields (price, est. cap rate, city, country, HOA, sqft) validated by `schemas/reviewed-listing.json`. Estimated cap rate is a scout first-pass metric (HOA-adjusted when HOA is known), not the underwritten cap rate on published opportunities.
 
 ## Data Schema
 

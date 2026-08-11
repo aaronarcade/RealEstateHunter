@@ -6,6 +6,7 @@ import { relative } from "node:path";
 import {
   buildValidator,
   discoverArtifacts,
+  discoverReviewedListingLines,
   formatErrors,
   readJson,
   repoRoot,
@@ -44,8 +45,34 @@ function main() {
   }
 
   console.log(
-    `\n${artifacts.length - failures}/${artifacts.length} artifact(s) valid.`,
+    `\n${artifacts.length - failures}/${artifacts.length} property artifact(s) valid.`,
   );
+
+  const reviewedLines = discoverReviewedListingLines();
+  if (reviewedLines.length > 0) {
+    console.log(`\nValidating ${reviewedLines.length} reviewed listing line(s):\n`);
+    for (const { line, lineNumber } of reviewedLines) {
+      const rel = `data/reviewed/listings.ndjson:${lineNumber}`;
+      let entry;
+      try {
+        entry = JSON.parse(line);
+      } catch (err) {
+        failures += 1;
+        console.log(`  FAIL  ${rel}\n        could not parse: ${err.message}`);
+        continue;
+      }
+
+      const result = validate("reviewed-listing.json", entry);
+      if (result.valid) {
+        console.log(`  PASS  ${rel}  (reviewed-listing.json)`);
+      } else {
+        failures += 1;
+        console.log(`  FAIL  ${rel}  (reviewed-listing.json)`);
+        console.log(`        ${formatErrors(result.errors)}`);
+      }
+    }
+  }
+
   return failures === 0 ? 0 : 1;
 }
 

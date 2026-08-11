@@ -1,4 +1,4 @@
-import { readFileSync, readdirSync } from "node:fs";
+import { readFileSync, readdirSync, existsSync } from "node:fs";
 import { fileURLToPath } from "node:url";
 import { dirname, join } from "node:path";
 
@@ -9,6 +9,7 @@ const here = dirname(fileURLToPath(import.meta.url));
 export const repoRoot = join(here, "..", "..");
 export const schemasDir = join(repoRoot, "schemas");
 export const propertiesDir = join(repoRoot, "data", "properties");
+export const reviewedListingsFile = join(repoRoot, "data", "reviewed", "listings.ndjson");
 
 // Maps each per-property artifact filename to the schema ($id) that validates it.
 export const ARTIFACT_SCHEMAS = {
@@ -73,6 +74,22 @@ export function discoverArtifacts() {
   }
 
   return artifacts;
+}
+
+export function discoverReviewedListingLines() {
+  if (!existsSync(reviewedListingsFile)) {
+    return [];
+  }
+
+  const content = readFileSync(reviewedListingsFile, "utf8").trim();
+  if (!content) {
+    return [];
+  }
+
+  return content
+    .split("\n")
+    .map((line, index) => ({ line: line.trim(), lineNumber: index + 1 }))
+    .filter(({ line }) => line.length > 0);
 }
 
 export function formatErrors(errors) {

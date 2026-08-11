@@ -33,13 +33,14 @@ Rough Gross Yield = (Monthly Rent × 12) / Price
 
 Reject if below `target_yield_minimum` (10%). For condos with HOA on listing, also reject if `(rent − HOA) × 12 / price` < 8% unless rent is clearly understated.
 
-**On REJECT:** persist as `ARCHIVED` with `rescreen_after` (30 days default) and `screening_snapshot` — never discard.
+**On REJECT:** append to `data/reviewed/listings.ndjson` only — do **not** create `data/properties/` directories.
 
-**Rescreen:** when `ARCHIVED` and `rescreen_after` is due, re-check listing vs snapshot; promote to RESEARCH or extend archive.
+**Rescreen:** when an existing pipeline property is `ARCHIVED` and `rescreen_after` is due, re-check listing vs snapshot; promote to RESEARCH or extend archive.
 
 ## Output
 
-Create `data/properties/{id}/meta.json` with `workflow_state: SCREENED`, `scout_decision: RESEARCH` or document REJECT.
+- **REJECT** → append to `data/reviewed/listings.ndjson` (lightweight reviewed log)
+- **RESEARCH** → create `data/properties/{id}/meta.json` with `workflow_state: SCREENED`, `scout_decision: RESEARCH`
 
 ## You do not
 

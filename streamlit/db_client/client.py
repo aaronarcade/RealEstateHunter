@@ -7,11 +7,19 @@ from typing import Optional, List
 
 from supabase import create_client, Client
 
-from .types import PropertyOpportunity, ListOpportunitiesOptions, SyncResult
+from .types import (
+    PropertyOpportunity,
+    ListOpportunitiesOptions,
+    ListReviewedOptions,
+    SyncResult,
+    ReviewedListing,
+)
 from .mapper import row_to_opportunity, opportunity_to_row
+from .reviewed_mapper import row_to_reviewed
 from .tracker_mapper import tracker_financials_to_opportunity, tracker_row_to_opportunity
 
 PROPERTIES_TABLE = 'properties'
+REVIEWED_LISTINGS_TABLE = 'reviewed_listings'
 UNIT_FINANCIALS_VIEW = 'unit_financials'
 CAP_RATE_RPC = 'get_cap_rate_summary'
 SOURCE_PRIORITY = ('scraper', 'zillow', 'agent', 'county_assessor', 'manual')
@@ -327,6 +335,63 @@ class SupabaseClient:
             .execute()
         )
         return len(response.data) > 0
+
+    def list_reviewed_listings(
+        self,
+        options: Optional[ListReviewedOptions] = None,
+    ) -> List[ReviewedListing]:
+        options = options or ListReviewedOptions()
+        try:
+            response = (
+                self._client.table(REVIEWED_LISTINGS_TABLE)
+                .select('*')
+                .order('reviewed_at', desc=True)
+                .execute()
+            )
+        except Exception:
+            return []
+
+        listings = [row_to_reviewed(row) for row in (response.data or [])]
+        return self._filter_reviewed_listings(listings, options)
+
+    def _filter_reviewed_listings(
+        self,
+        listings: list[ReviewedListing],
+        options: ListReviewedOptions,
+    ) -> list[ReviewedListing]:
+        filtered = listings
+        if options.country:
+            filtered = [item for item in filtered if item.country == options.country]
+        if options.city:
+            filtered = [item for item in filtered if item.city == options.city]
+        if options.market_id:
+            filtered = [item for item in filtered if item.market_id == options.market_id]
+        if options.min_cap_rate is not None:
+            filtered = [
+                item
+                for item in filtered
+                if item.estimated_cap_rate is not None
+                and item.estimated_cap_rate >= options.min_cap_rate
+            ]
+        if options.max_cap_rate is not None:
+            filtered = [
+                item
+                for item in filtered
+                if item.estimated_cap_rate is not None
+                and item.estimated_cap_rate <= options.max_cap_rate
+            ]
+        if options.offset:
+            filtered = filtered[options.offset :]
+        if options.limit:
+            filtered = filtered[: options.limit]
+        return filtered
+
+
+def list_reviewed_listings(
+    client: SupabaseClient,
+    options: Optional[ListReviewedOptions] = None,
+) -> List[ReviewedListing]:
+    return client.list_reviewed_listings(options)
 
 
 def list_opportunities(

@@ -15,7 +15,8 @@ export type SchemaType =
   | 'underwriting'
   | 'audit'
   | 'opportunity'
-  | 'field-value';
+  | 'field-value'
+  | 'reviewed-listing';
 
 /**
  * Result of a validation operation
@@ -52,6 +53,7 @@ export class SchemaValidator {
       { type: 'underwriting', file: 'property-underwriting.json' },
       { type: 'audit', file: 'property-audit.json' },
       { type: 'opportunity', file: 'property-opportunity.json' },
+      { type: 'reviewed-listing', file: 'reviewed-listing.json' },
     ];
 
     // Load field-value schema first as it's referenced by others
@@ -135,6 +137,13 @@ export class SchemaValidator {
    */
   validateFieldValue(data: unknown): ValidationResult {
     return this.validate('field-value', data);
+  }
+
+  /**
+   * Validate a ReviewedListing object
+   */
+  validateReviewedListing(data: unknown): ValidationResult {
+    return this.validate('reviewed-listing', data);
   }
 
   /**

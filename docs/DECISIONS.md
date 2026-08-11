@@ -129,6 +129,24 @@ Credentials via `SUPABASE_URL` + keys in environment/secrets only. Service role 
 
 ---
 
+## ADR-010: Lightweight reviewed listings tier for scout volume
+
+**Date:** 2026-08-10  
+**Status:** Accepted
+
+**Context:** Scout volume targets (40+ listings per market) require persisting many REJECT decisions for baseline analytics (cap rates, HOA, sqft) without creating full `data/properties/{id}/` artifact trees or syncing incomplete records into the heavy `properties` Supabase table (JSONB `FieldValue` blobs, underwritten fields).
+
+**Decision:** Add a **reviewed listings** tier:
+
+1. **Git:** `data/reviewed/listings.ndjson` — one flat `ReviewedListing` object per line, schema `schemas/reviewed-listing.json`.
+2. **Supabase:** `reviewed_listings` table with flat columns (~10× smaller rows than `properties`).
+3. **Scout workflow:** REJECT → append to NDJSON only; RESEARCH → full pipeline dir unchanged.
+4. **UI:** Streamlit Browse → Reviewed page; sync via `scripts/sync-reviewed-to-supabase.mjs`.
+
+**Consequences:** High-volume scout screening no longer creates ARCHIVED property dirs for rejects. Existing ARCHIVED meta records can be backfilled once via `scripts/backfill-reviewed-from-meta.mjs`. Estimated cap rate on reviewed listings is explicitly labeled as scout first-pass, distinct from underwritten cap rate on Opportunities.
+
+---
+
 ## Template
 
 ```markdown

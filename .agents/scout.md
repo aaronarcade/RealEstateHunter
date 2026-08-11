@@ -93,15 +93,19 @@ reason: <brief explanation>
 listing_url: <url>
 ```
 
-**Always persist rejects** — do not discard. Create `data/properties/{id}/meta.json` with:
+**Persist rejects in the lightweight reviewed log** — do not create `data/properties/` directories for REJECT decisions.
 
-- `workflow_state`: `ARCHIVED`
-- `scout_decision`: `REJECT`
-- `archive_reason`: `scout_reject`
-- `rescreen_after`: now + `rescreen_policy.intervals_days.scout_reject` (default 30 days)
-- `last_screened_at`: now
-- `screening_snapshot`: `{ price, rough_monthly_rent, rough_gross_yield, advertised_hoa, screened_at }`
-- `scout_notes`: reject reason
+Append one line to `data/reviewed/listings.ndjson` (use `@realestatehunter/property` `ReviewedListingStore.appendReviewedListing` or validate against `schemas/reviewed-listing.json`) with:
+
+- `id`: stable slug from address (include unit for condos)
+- `address`, `listing_url`, `asking_price`
+- `city`, `country`, `region` (parse from location / `market_id`)
+- `estimated_monthly_rent`, `hoa_monthly`, `rough_gross_yield`, `estimated_cap_rate` (HOA-adjusted when HOA known)
+- `beds`, `baths`, `property_type`, `sqft` when on listing
+- `market_id`, `scout_decision`: `REJECT`, `reviewed_at`: now
+- `notes`: reject reason
+
+Do **not** set `workflow_state: ARCHIVED` or create `data/properties/{id}/meta.json` for scout rejects.
 
 ### RESEARCH
 
@@ -127,6 +131,7 @@ notes: <anything worth flagging>
 
 ## Artifacts
 
-- Create `data/properties/{id}/meta.json` with state `SCREENED` (RESEARCH) or `ARCHIVED` (REJECT)
+- **REJECT:** append to `data/reviewed/listings.ndjson` only (see REJECT section). Do not create `data/properties/` dirs.
+- **RESEARCH:** create `data/properties/{id}/meta.json` with state `SCREENED`
 - Property ID: stable slug from address (include unit for condos, e.g. `550-shore-dr-unit-304-st-pete-fl`)
-- Optional meta fields: `property_type`, `building_name`, `unit`, `scout_notes`, `screening_snapshot`, `rescreen_after`
+- Optional meta fields for RESEARCH: `property_type`, `building_name`, `unit`, `scout_notes`

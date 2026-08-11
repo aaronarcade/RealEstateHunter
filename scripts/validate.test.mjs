@@ -4,6 +4,7 @@ import assert from "node:assert/strict";
 import {
   buildValidator,
   discoverArtifacts,
+  discoverReviewedListingLines,
   readJson,
 } from "./lib/validator.mjs";
 
@@ -127,6 +128,31 @@ test("meta rejects rough_gross_yield above 1.0", () => {
     rough_gross_yield: 1.5,
     created_at: "2026-08-09T12:00:00Z",
     updated_at: "2026-08-09T18:00:00Z",
+  });
+  assert.equal(valid, false);
+});
+
+test("every reviewed listing line in listings.ndjson validates", () => {
+  const lines = discoverReviewedListingLines();
+  assert.ok(lines.length > 0, "expected backfilled reviewed listings");
+
+  for (const { line, lineNumber } of lines) {
+    const entry = JSON.parse(line);
+    const { valid, errors } = validate("reviewed-listing.json", entry);
+    assert.ok(valid, `line ${lineNumber} failed: ${JSON.stringify(errors)}`);
+  }
+});
+
+test("reviewed-listing rejects RESEARCH scout_decision", () => {
+  const { valid } = validate("reviewed-listing.json", {
+    id: "x",
+    address: "1 Test St",
+    city: "Tampa",
+    country: "United States",
+    listing_url: "https://example.com/1",
+    asking_price: 100000,
+    scout_decision: "RESEARCH",
+    reviewed_at: "2026-08-10T12:00:00Z",
   });
   assert.equal(valid, false);
 });

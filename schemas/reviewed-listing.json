@@ -1,0 +1,92 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "reviewed-listing.json",
+  "title": "ReviewedListing",
+  "description": "Lightweight scout first-pass record for baseline analytics",
+  "type": "object",
+  "required": [
+    "id",
+    "address",
+    "city",
+    "country",
+    "listing_url",
+    "asking_price",
+    "scout_decision",
+    "reviewed_at"
+  ],
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Stable slug identifier"
+    },
+    "address": {
+      "type": "string"
+    },
+    "city": {
+      "type": "string"
+    },
+    "country": {
+      "type": "string"
+    },
+    "region": {
+      "type": "string",
+      "description": "State or province"
+    },
+    "listing_url": {
+      "type": "string",
+      "format": "uri"
+    },
+    "asking_price": {
+      "type": "number",
+      "minimum": 0
+    },
+    "estimated_cap_rate": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 1
+    },
+    "rough_gross_yield": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 1
+    },
+    "estimated_monthly_rent": {
+      "type": "number",
+      "minimum": 0
+    },
+    "hoa_monthly": {
+      "type": "number",
+      "minimum": 0
+    },
+    "sqft": {
+      "type": "number",
+      "minimum": 0
+    },
+    "beds": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "baths": {
+      "type": "number",
+      "minimum": 0
+    },
+    "property_type": {
+      "type": "string"
+    },
+    "market_id": {
+      "type": "string"
+    },
+    "scout_decision": {
+      "type": "string",
+      "enum": ["REJECT", "SKIPPED"]
+    },
+    "reviewed_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "notes": {
+      "type": "string"
+    }
+  },
+  "additionalProperties": false
+}

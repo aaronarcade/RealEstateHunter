@@ -235,6 +235,38 @@ The sync script:
 4. Upserts to Supabase
 5. Logs results and fails on schema mismatch
 
+### Reviewed listings table: `reviewed_listings`
+
+Lightweight scout first-pass records for baseline analytics. Separate from the full `properties` pipeline table.
+
+| Column | Type | Notes |
+|--------|------|-------|
+| `id` | `text` PRIMARY KEY | Stable slug |
+| `address` | `text` NOT NULL | |
+| `city` | `text` NOT NULL | |
+| `country` | `text` NOT NULL | |
+| `region` | `text` | State/province |
+| `listing_url` | `text` NOT NULL | Source link |
+| `asking_price` | `numeric` NOT NULL | |
+| `estimated_cap_rate` | `numeric` | Scout first-pass (HOA-adjusted when known) |
+| `rough_gross_yield` | `numeric` | |
+| `estimated_monthly_rent` | `numeric` | |
+| `hoa_monthly` | `numeric` | |
+| `sqft` | `numeric` | |
+| `beds` | `integer` | |
+| `baths` | `numeric` | |
+| `property_type` | `text` | |
+| `market_id` | `text` | |
+| `scout_decision` | `text` NOT NULL | `REJECT` or `SKIPPED` |
+| `notes` | `text` | Reject reason |
+| `reviewed_at` | `timestamptz` NOT NULL | |
+
+**Git source:** `data/reviewed/listings.ndjson` (one JSON object per line)
+
+**Sync script:** `scripts/sync-reviewed-to-supabase.mjs` (`npm run sync:reviewed` from `scripts/`)
+
+**Streamlit:** Browse → Reviewed page reads `reviewed_listings`; falls back to Git NDJSON when Supabase is empty or unavailable.
+
 ## Future Considerations
 
 1. **Bidirectional Sync:** Currently one-way (Git → Supabase). Future task may add Supabase → Git for non-agent edits.

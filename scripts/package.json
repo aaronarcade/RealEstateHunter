@@ -5,7 +5,10 @@
   "type": "module",
   "scripts": {
     "sync:supabase": "node sync-properties-to-supabase.mjs",
-    "sync:supabase:dry-run": "node sync-properties-to-supabase.mjs --dry-run"
+    "sync:supabase:dry-run": "node sync-properties-to-supabase.mjs --dry-run",
+    "sync:reviewed": "node sync-reviewed-to-supabase.mjs",
+    "sync:reviewed:dry-run": "node sync-reviewed-to-supabase.mjs --dry-run",
+    "backfill:reviewed": "node backfill-reviewed-from-meta.mjs"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.45.0"
