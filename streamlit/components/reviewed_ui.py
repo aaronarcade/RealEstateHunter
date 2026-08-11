@@ -2,13 +2,12 @@
 
 from __future__ import annotations
 
-import html
 import statistics
 from typing import Optional
 
+import pandas as pd
 import streamlit as st
 
-from compat import link_button
 from reviewed_types import ReviewedListing
 
 
@@ -24,35 +23,10 @@ def render_reviewed_header() -> None:
     )
 
 
-def _format_currency(value: float) -> str:
-    return f'${value:,.0f}'
-
-
 def _format_percent(value: Optional[float]) -> str:
     if value is None:
         return '—'
     return f'{value * 100:.1f}%'
-
-
-def _cap_class(value: Optional[float]) -> str:
-    if value is None:
-        return ''
-    return 'cap-good' if value >= 0.10 else 'cap-bad'
-
-
-def _location_tags(listing: ReviewedListing) -> str:
-    city = html.escape(listing.city)
-    country = html.escape(listing.country)
-    region = html.escape(listing.region) if listing.region else None
-    tags = [
-        f'<span class="confidence-pill" style="background:#eff6ff;color:#1d4ed8;border-color:#bfdbfe;">{city}</span>',
-        f'<span class="confidence-pill" style="background:#f0fdf4;color:#166534;border-color:#bbf7d0;">{country}</span>',
-    ]
-    if region:
-        tags.append(
-            f'<span class="confidence-pill" style="background:#faf5ff;color:#6b21a8;border-color:#e9d5ff;">{region}</span>'
-        )
-    return ' '.join(tags)
 
 
 def compute_reviewed_analytics(listings: list[ReviewedListing]) -> dict[str, Optional[float | int]]:
@@ -87,84 +61,147 @@ def render_reviewed_analytics(listings: list[ReviewedListing]) -> None:
     )
     cols[2].metric(
         'Avg HOA',
-        _format_currency(stats['avg_hoa']) if stats['avg_hoa'] is not None else '—',
+        f"${stats['avg_hoa']:,.0f}" if stats['avg_hoa'] is not None else '—',
         help=f"Based on {stats['with_hoa']} listings with HOA",
     )
     cols[3].metric(
         'Avg $/sqft',
-        _format_currency(stats['avg_price_per_sqft']) if stats['avg_price_per_sqft'] is not None else '—',
+        f"${stats['avg_price_per_sqft']:,.0f}" if stats['avg_price_per_sqft'] is not None else '—',
         help=f"Based on {stats['with_sqft']} listings with sqft",
     )
 
 
-def render_reviewed_table(listings: list[ReviewedListing]) -> None:
-    rows_html = []
-    for listing in listings:
-        cap_class = _cap_class(listing.estimated_cap_rate)
-        cap_value = _format_percent(listing.estimated_cap_rate)
-        hoa_value = _format_currency(listing.hoa_monthly) if listing.hoa_monthly is not None else '—'
-        sqft_value = f'{listing.sqft:,.0f}' if listing.sqft is not None else '—'
-        beds_value = str(listing.beds) if listing.beds is not None else '—'
-        address = html.escape(listing.address)
-        listing_url = html.escape(listing.listing_url, quote=True)
+def render_reviewed_dataframe(df: pd.DataFrame) -> pd.DataFrame:
+    """Interactive sortable/filterable table. Returns filtered view from widget state when supported."""
+    if df.empty:
+        st.info('No rows to display.')
+        return df
 
-        rows_html.append(
-            f"""
-<tr>
-  <td>{address}</td>
-  <td>{_location_tags(listing)}</td>
-  <td class="num">{_format_currency(listing.asking_price)}</td>
-  <td class="num {cap_class}">{cap_value}</td>
-  <td class="num">{hoa_value}</td>
-  <td class="num">{sqft_value}</td>
-  <td class="center">{beds_value}</td>
-  <td class="center"><a href="{listing_url}" target="_blank" rel="noopener noreferrer">Source</a></td>
-</tr>
-            """
+    display_df = df.drop(columns=['id'], errors='ignore')
+
+    event = st.dataframe(
+        display_df,
+        use_container_width=True,
+        hide_index=True,
+        on_select='rerun',
+        selection_mode='multi-row',
+        column_config={
+            'address': st.column_config.TextColumn('Property', width='large'),
+            'city': st.column_config.TextColumn('City'),
+            'region': st.column_config.TextColumn('Region'),
+            'country': st.column_config.TextColumn('Country'),
+            'asking_price': st.column_config.NumberColumn('Price', format='$%d'),
+            'est_cap_pct': st.column_config.NumberColumn(
+                'Est. cap %',
+                help='Scout first-pass estimate (HOA-adjusted when HOA known)',
+                format='%.1f%%',
+            ),
+            'gross_yield_pct': st.column_config.NumberColumn('Gross yield %', format='%.1f%%'),
+            'hoa_monthly': st.column_config.NumberColumn('HOA/mo', format='$%d'),
+            'sqft': st.column_config.NumberColumn('Sqft', format='%d'),
+            'price_per_sqft': st.column_config.NumberColumn('$/sqft', format='$%.0f'),
+            'beds': st.column_config.NumberColumn('Beds', format='%d'),
+            'baths': st.column_config.NumberColumn('Baths', format='%.1f'),
+            'property_type': st.column_config.TextColumn('Type'),
+            'market_id': st.column_config.TextColumn('Market'),
+            'listing_url': st.column_config.LinkColumn('Source', display_text='Open listing'),
+            'reviewed_at': st.column_config.DatetimeColumn('Reviewed', format='MMM D, YYYY'),
+            'notes': st.column_config.TextColumn('Notes', width='large'),
+            'latitude': None,
+            'longitude': None,
+        },
+    )
+
+    st.caption(
+        'Click column headers to sort. Use the column menu (⋮) to filter. '
+        'Select rows to highlight them in charts and map.'
+    )
+
+    if event.selection.rows:
+        selected = df.iloc[event.selection.rows]
+        st.caption(f'{len(selected)} row(s) selected for charts/map below.')
+        return selected
+
+    return df
+
+
+def render_reviewed_charts(df: pd.DataFrame) -> None:
+    if df.empty:
+        st.info('No data for charts.')
+        return
+
+    chart_df = df.dropna(subset=['est_cap_pct'], how='all')
+    if chart_df.empty:
+        st.info('No listings with estimated cap rate for charts.')
+        return
+
+    left, right = st.columns(2)
+
+    with left:
+        st.subheader('Est. cap rate by city')
+        by_city = (
+            chart_df.groupby(['country', 'city'], as_index=False)['est_cap_pct']
+            .median()
+            .sort_values('est_cap_pct', ascending=False)
+        )
+        by_city['label'] = by_city['city'] + ' (' + by_city['country'] + ')'
+        st.bar_chart(by_city.set_index('label')['est_cap_pct'], height=320)
+
+    with right:
+        st.subheader('Price vs est. cap rate')
+        scatter = chart_df.dropna(subset=['est_cap_pct']).copy()
+        scatter['size'] = scatter['hoa_monthly'].fillna(0).clip(lower=0) + 50
+        st.scatter_chart(
+            scatter,
+            x='asking_price',
+            y='est_cap_pct',
+            color='country',
+            size='size',
+            height=320,
         )
 
-    table = f"""
-<div class="opp-table-wrap">
-  <table class="opp-table">
-    <thead>
-      <tr>
-        <th>Property</th>
-        <th>Location</th>
-        <th class="num">Price</th>
-        <th class="num">Est. Cap</th>
-        <th class="num">HOA</th>
-        <th class="num">Sqft</th>
-        <th class="center">Beds</th>
-        <th class="center">Source</th>
-      </tr>
-    </thead>
-    <tbody>
-      {''.join(rows_html)}
-    </tbody>
-  </table>
-</div>
-    """
-    st.markdown(table, unsafe_allow_html=True)
+    st.subheader('HOA distribution')
+    hoa_df = df.dropna(subset=['hoa_monthly'])
+    if hoa_df.empty:
+        st.caption('No HOA values in the current filter set.')
+    else:
+        st.bar_chart(
+            hoa_df.groupby('city')['hoa_monthly'].median().sort_values(ascending=False),
+            height=260,
+        )
 
 
-def render_reviewed_cards(listings: list[ReviewedListing]) -> None:
-    cols = st.columns(3)
-    for index, listing in enumerate(listings):
-        with cols[index % 3]:
-            cap_class = _cap_class(listing.estimated_cap_rate)
-            st.markdown(
-                f"""
-<div data-testid="stVerticalBlockBorderWrapper">
-  <div class="opp-card-marker"></div>
-  <div style="padding:0.25rem 0;">
-    <strong>{html.escape(listing.address)}</strong>
-    <div style="margin:0.35rem 0;">{_location_tags(listing)}</div>
-    <div>{_format_currency(listing.asking_price)} · <span class="{cap_class}">Est. cap {_format_percent(listing.estimated_cap_rate)}</span></div>
-  </div>
-</div>
-                """,
-                unsafe_allow_html=True,
-            )
-            link_button('View listing', listing.listing_url, use_container_width=True)
-            if listing.notes:
-                st.caption(listing.notes)
+def render_reviewed_map(df: pd.DataFrame) -> None:
+    st.subheader('Map')
+    map_df = df.dropna(subset=['latitude', 'longitude']).copy()
+
+    if map_df.empty:
+        st.info(
+            'No mappable coordinates for the current filter set. '
+            'Known cities: Panama City Beach, Celebration, Manta, Cuenca, Quito.'
+        )
+        return
+
+    st.caption(
+        f'Showing {len(map_df)} of {len(df)} listings. '
+        'Points use city centroids with slight jitter — not exact addresses.'
+    )
+
+    tooltip_cols = ['address', 'city', 'country', 'asking_price', 'est_cap_pct']
+    st.map(
+        map_df[['latitude', 'longitude'] + [c for c in tooltip_cols if c in map_df.columns]],
+        latitude='latitude',
+        longitude='longitude',
+        size=20,
+        color='est_cap_pct',
+        zoom=3 if map_df['country'].nunique() > 1 else 10,
+    )
+
+    with st.expander('Map data table'):
+        st.dataframe(
+            map_df[
+                ['address', 'city', 'country', 'asking_price', 'est_cap_pct', 'latitude', 'longitude']
+            ],
+            use_container_width=True,
+            hide_index=True,
+        )

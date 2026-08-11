@@ -12,12 +12,14 @@ import streamlit as st
 from auth import require_auth
 from components.reviewed_ui import (
     render_reviewed_analytics,
-    render_reviewed_cards,
+    render_reviewed_charts,
+    render_reviewed_dataframe,
     render_reviewed_header,
-    render_reviewed_table,
+    render_reviewed_map,
 )
 from components.ui import inject_global_styles
 from compat import sidebar_toggle
+from reviewed_dataframe import listings_to_dataframe
 from reviewed_filters import (
     apply_reviewed_filters,
     reviewed_cities,
@@ -36,8 +38,6 @@ use_sample = sidebar_toggle(
     help='Offline dev without Supabase credentials',
 )
 
-view_mode = st.sidebar.radio('View', ['Table', 'Cards'], horizontal=True)
-
 if st.sidebar.button('Refresh data', use_container_width=True):
     st.cache_data.clear()
     st.rerun()
@@ -55,6 +55,7 @@ with st.spinner('Loading reviewed listings...'):
 
 st.sidebar.markdown('---')
 st.sidebar.subheader('Filters')
+st.sidebar.caption('Sidebar filters apply to all tabs. Use column menus in the table for more.')
 
 country_options = ['All'] + reviewed_countries(result.listings)
 selected_country = st.sidebar.selectbox('Country', country_options, index=0)
@@ -106,10 +107,18 @@ render_reviewed_analytics(listings)
 if not listings:
     st.info('No reviewed listings match the current filters.')
 else:
-    if view_mode == 'Table':
-        render_reviewed_table(listings)
-    else:
-        render_reviewed_cards(listings)
+    df = listings_to_dataframe(listings)
+    table_tab, charts_tab, map_tab = st.tabs(['Table', 'Charts', 'Map'])
+
+    active_df = df
+    with table_tab:
+        active_df = render_reviewed_dataframe(df)
+
+    with charts_tab:
+        render_reviewed_charts(active_df)
+
+    with map_tab:
+        render_reviewed_map(active_df)
 
 st.markdown(
     """
