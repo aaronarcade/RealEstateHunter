@@ -171,9 +171,20 @@ def render_reviewed_charts(df: pd.DataFrame) -> None:
         )
 
 
+def _cap_rate_color(cap_pct: float | None) -> str:
+    if cap_pct is None:
+        return '#94a3b8'
+    if cap_pct >= 10:
+        return '#059669'
+    if cap_pct >= 8:
+        return '#d97706'
+    return '#dc2626'
+
+
 def render_reviewed_map(df: pd.DataFrame) -> None:
     st.subheader('Map')
     map_df = df.dropna(subset=['latitude', 'longitude']).copy()
+    map_df['map_color'] = map_df['est_cap_pct'].apply(_cap_rate_color)
 
     if map_df.empty:
         st.info(
@@ -184,16 +195,16 @@ def render_reviewed_map(df: pd.DataFrame) -> None:
 
     st.caption(
         f'Showing {len(map_df)} of {len(df)} listings. '
-        'Points use city centroids with slight jitter — not exact addresses.'
+        'Points use city centroids with slight jitter — not exact addresses. '
+        'Green ≥10% est. cap, amber ≥8%, red below 8%.'
     )
 
-    tooltip_cols = ['address', 'city', 'country', 'asking_price', 'est_cap_pct']
     st.map(
-        map_df[['latitude', 'longitude'] + [c for c in tooltip_cols if c in map_df.columns]],
+        map_df,
         latitude='latitude',
         longitude='longitude',
         size=20,
-        color='est_cap_pct',
+        color='map_color',
         zoom=3 if map_df['country'].nunique() > 1 else 10,
     )
 
