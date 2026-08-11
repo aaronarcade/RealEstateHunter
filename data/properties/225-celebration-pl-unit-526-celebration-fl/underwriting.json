@@ -1,0 +1,103 @@
+{
+  "property_id": "225-celebration-pl-unit-526-celebration-fl",
+  "annual_gross_rent": 30984,
+  "annual_operating_expenses": 19204,
+  "operating_expense_breakdown": {
+    "hoa": 14904,
+    "special_assessments": 0,
+    "property_taxes": 2200,
+    "insurance": 600,
+    "management": 0,
+    "utilities": 0,
+    "other": 1500
+  },
+  "noi": 11780,
+  "cap_rate": 0.079,
+  "proposed_status": "WATCHLIST",
+  "proposed_status_reason": "Base cap rate of 7.9% is below the 10% threshold. Condo-hotel operating model differs fundamentally from traditional STR — gross rent estimate from Mashvisor comp may not reflect actual owner net income after hotel management revenue sharing. HOA of $1,242/mo (VERIFIED, HIGH confidence) consumes 83% of estimated gross rent; comparable owners reportedly break even. Management fee shown as $0 to avoid double-counting with HOA, but actual owner economics depend on UNKNOWN hotel management agreement terms. Special assessments UNKNOWN. Automatic WATCHLIST per condo-hotel complexity until management agreement and owner P&L statements are verified.",
+  "input_summary": {
+    "purchase_price": {
+      "value": 149999,
+      "status": "VERIFIED",
+      "confidence": "HIGH"
+    },
+    "monthly_rent": {
+      "value": 2582,
+      "status": "ESTIMATED",
+      "confidence": "MEDIUM",
+      "range_low": 2000,
+      "range_high": 3000
+    },
+    "hoa_monthly": {
+      "value": 1242,
+      "status": "VERIFIED",
+      "confidence": "HIGH"
+    },
+    "special_assessments": {
+      "value": null,
+      "status": "UNKNOWN",
+      "confidence": "LOW"
+    },
+    "property_taxes_annual": {
+      "value": 2200,
+      "status": "ESTIMATED",
+      "confidence": "MEDIUM"
+    },
+    "insurance_annual": {
+      "value": 600,
+      "status": "ESTIMATED",
+      "confidence": "MEDIUM"
+    },
+    "management_annual": {
+      "value": 0,
+      "status": "ESTIMATED",
+      "confidence": "LOW"
+    },
+    "utilities_annual": {
+      "value": 0,
+      "status": "ESTIMATED",
+      "confidence": "LOW"
+    },
+    "other_expenses_annual": {
+      "value": 1500,
+      "status": "ESTIMATED",
+      "confidence": "LOW"
+    }
+  },
+  "sensitivity_analysis": {
+    "base_case": {
+      "rent_monthly": 2582,
+      "management_rate": 0,
+      "cap_rate": 0.079,
+      "notes": "Mashvisor comp estimate; management embedded in condo-hotel HOA structure"
+    },
+    "optimistic_case": {
+      "rent_monthly": 3000,
+      "management_rate": 0,
+      "cap_rate": 0.112,
+      "notes": "High-end rent range; assumes gross rent translates to owner income which is unverified for condo-hotel model"
+    },
+    "conservative_case": {
+      "rent_monthly": 2000,
+      "management_rate": 0,
+      "cap_rate": 0.032,
+      "notes": "Low-end rent range; HOA alone exceeds 62% of gross rent"
+    },
+    "break_even_scenario": {
+      "rent_monthly": 1499,
+      "management_rate": 0,
+      "cap_rate": 0.0,
+      "notes": "Approximate break-even where annual gross rent equals annual operating expenses ($17,988); owners reportedly operate near this level"
+    }
+  },
+  "risk_factors": [
+    "Condo-hotel revenue model — gross STR rent estimates may not reflect actual owner net after hotel management revenue sharing",
+    "Hotel management agreement terms are UNKNOWN and control actual owner economics",
+    "HOA ($1,242/mo) is 83% of estimated gross rent — owners reportedly often break even",
+    "Special assessments UNKNOWN — estoppel certificate and HOA financials required",
+    "Cash-only purchase typical for condo-hotels limits financing options",
+    "Rental restrictions and STR licensing operate under hotel commercial license, not owner-controlled STR",
+    "Management fee excluded from expenses to avoid double-counting with HOA, but actual fee structure is unverified"
+  ],
+  "computed_at": "2026-08-11T08:00:00Z"
+}
