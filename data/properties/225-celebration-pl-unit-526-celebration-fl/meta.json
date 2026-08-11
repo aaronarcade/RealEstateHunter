@@ -3,10 +3,10 @@
   "address": "225 Celebration Pl Unit 526, Celebration, FL 34747",
   "location": "Celebration, FL",
   "listing_url": "https://www.coldwellbanker.com/fl/kissimmee/225-celebration-pl-unit-526/lid-P00800000H68IsbpAzsHuszTV1FfOZ93Ds7BvArR",
-  "workflow_state": "AUDIT",
+  "workflow_state": "ARCHIVED",
   "scout_decision": "RESEARCH",
   "created_at": "2026-08-10T04:00:00Z",
-  "updated_at": "2026-08-11T08:15:00Z",
+  "updated_at": "2026-08-11T08:20:00Z",
   "property_type": "condo",
   "building_name": "Melia Orlando",
   "unit": "526",
@@ -21,5 +21,23 @@
   "market_id": "celebration-fl",
   "mls_id": "S5143564",
   "rent_source": "Mashvisor STR estimate for comparable Melia unit #427",
-  "rent_confidence": "MEDIUM"
+  "rent_confidence": "MEDIUM",
+  "archive_reason": "audit_reject",
+  "rescreen_after": "2026-10-10T08:20:00Z",
+  "rescreen_count": 0,
+  "last_screened_at": "2026-08-11T08:20:00Z",
+  "screening_snapshot": {
+    "price": 149999,
+    "rough_monthly_rent": 2582,
+    "rough_gross_yield": 0.207,
+    "advertised_hoa": 1242,
+    "screened_at": "2026-08-11T08:20:00Z"
+  },
+  "audit_summary": {
+    "final_status": "REJECTED",
+    "cap_rate": 0.0785,
+    "noi": 11780,
+    "audited_at": "2026-08-11T08:15:00Z"
+  },
+  "manager_notes": "Auditor PASS on REJECTED. Base-case cap rate 7.85% well below 10% threshold; condo-hotel revenue model and $1,242/mo HOA limit upside. Archived for 60-day rescreen per diligence_reject policy — monitor for price drop or improved rent evidence."
 }
