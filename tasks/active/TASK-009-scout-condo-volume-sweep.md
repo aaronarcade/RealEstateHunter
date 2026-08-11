@@ -4,35 +4,43 @@
 **Assignee:** Scout  
 **Priority:** P0
 
+## Manager triage (2026-08-11)
+
+**Critical gap:** US ACTIVE markets have almost no scout coverage. Only Panama City Beach has RESEARCH candidates (2). Tampa, Jacksonville, Birmingham, Memphis, and Cleveland have **zero** listings reviewed.
+
+| Market | Priority | Listings Reviewed | RESEARCH | Target |
+|--------|----------|-------------------|----------|--------|
+| Tampa, FL | 1 | 0 | 0 | 40 / 3 |
+| Jacksonville, FL | 2 | 0 | 0 | 40 / 3 |
+| Panama City Beach, FL | 3 | 5 | 2 | 40 / 3 |
+| Birmingham, AL | 4 | 0 | 0 | 40 / 3 |
+| Memphis, TN | 5 | 0 | 0 | 40 / 3 |
+| Cleveland, OH | 6 | 0 | 0 | 40 / 3 |
+
+**Total reviewed (NDJSON):** 47 — but 39 are Manta EC rejects. US reviewed = 6.
+
+**Do not expand international** (Manta/Cuenca) until US ACTIVE markets meet volume targets per `data/search-criteria.json` → `defer_non_us_markets`.
+
+## Phased sweep order
+
+1. **Phase A (P0):** Tampa + Jacksonville — condo-only, building-cluster search using `seed_buildings` in search-criteria
+2. **Phase B (P1):** Birmingham, Memphis, Cleveland — condo-only sweeps
+3. **Phase C:** Continue PCB building clusters (Laketown Wharf, Horizon South, Shores of Panama, Grand Panama)
+
 ## Description
 
-Execute a high-volume condo-focused search sweep across all 5 active markets defined in `data/search-criteria.json`. The goal is to identify enough candidates to meet volume targets before funneling survivors into Researcher.
-
-**Current gap:** Only 3 properties screened to date, all outside the 5 defined markets. Volume targets (40 listings/market, 10 research candidates total, 3+ per market) are not met.
-
-## Markets (priority order per search-criteria.json v2)
-
-| Priority | Market | Status | Notes |
-|----------|--------|--------|-------|
-| 1 | Tampa, FL | ACTIVE | Primary target |
-| 2 | Jacksonville, FL | ACTIVE | Primary target |
-| 3 | Panama City Beach, FL | ACTIVE | Added 2026-08-10; 2 candidates passed screen |
-| 4 | Birmingham, AL | ACTIVE | |
-| 5 | Memphis, TN | ACTIVE | |
-| 6 | Cleveland, OH | ACTIVE | |
-| 7 | Celebration, FL (Orlando metro) | WATCH | High HOA condo-hotel; monitor only |
-
-**Volume gap:** Only 3 candidates screened across all markets (2 in PCB, 1 in Celebration). Target markets 1-2, 4-6 have 0 candidates — prioritize Tampa, Jacksonville, Birmingham, Memphis, Cleveland.
+Execute a high-volume condo-focused search sweep across all 6 US ACTIVE markets defined in `data/search-criteria.json`. The goal is to identify enough candidates to meet volume targets before funneling survivors into Analyst.
 
 ## Instructions
 
-Follow `data/search-criteria.json` → `scout_instructions` and `condo_building_search` strategy:
+Follow `data/search-criteria.json` → `scout_instructions`, `market_sweep_order`, and `condo_building_search` strategy:
 
 1. **Filter each market for Condo / Condominium only first** (before SFH or townhouse).
-2. **Search by building name or street address** when a condo complex has multiple active listings.
-3. When one unit in a building passes yield screen, review other units in same building.
-4. Prefer established condo buildings (20+ units) with published HOA fees on listing.
-5. Record `building_name` and `unit` in `meta.json` when available.
+2. **Start with seed buildings** when listed for a market; then broaden to full market scan.
+3. **Search by building name or street address** when a condo complex has multiple active listings.
+4. When one unit in a building passes yield screen, review other units in same building.
+5. Prefer established condo buildings (20+ units) with published HOA fees on listing.
+6. Record `building_name` and `unit` in `meta.json` when available.
 
 ### Yield screening
 
@@ -45,10 +53,15 @@ Follow `data/search-criteria.json` → `scout_instructions` and `condo_building_
 | Metric | Target |
 |--------|--------|
 | Listings reviewed per market | ≥ 40 |
-| Research candidates total | ≥ 10 |
+| Research candidates total (US ACTIVE) | ≥ 10 |
 | Research candidates per market | ≥ 3 |
 
-**Do not stop early.** Continue scanning until targets are met or no more listings match filters.
+**Do not stop early.** Continue scanning until targets are met or document dry-market rationale in PR description.
+
+### Reject handling
+
+- REJECT → write to `data/reviewed/listings.ndjson` only (no full property dir)
+- RESEARCH → create full `data/properties/{id}/` with `workflow_state: "SCREENED"`
 
 ## Output
 
@@ -56,33 +69,33 @@ For each candidate passing screen:
 
 1. Create `data/properties/{id}/meta.json` with:
    - `workflow_state: "SCREENED"`
-   - `scout_decision: "RESEARCH"` or `"REJECT"`
-   - `property_type`, `beds`, `baths`
+   - `scout_decision: "RESEARCH"`
+   - `property_type`, `building_name`, `unit`, `beds`, `baths`
    - `asking_price`, `rough_monthly_rent`, `rough_gross_yield`
    - `advertised_hoa` (if stated)
    - `market_id` matching `search-criteria.json`
    - `scout_notes` with MLS ID, building name, rent source, flags
 
-2. For rejects with gross yield < 10%, archive with `rescreen_after` per policy (30 days).
+2. For rejects, append to `data/reviewed/listings.ndjson` with `scout_decision: "REJECT"`.
 
-3. Commit properties in logical batches (per market or per ~10 candidates).
+3. Commit in logical batches (per market or per ~10 candidates).
 
 ## Acceptance criteria
 
-- [ ] All 5 active markets searched with condo filter first
-- [ ] Volume targets met or documented shortfall with explanation
-- [ ] Each candidate has complete `meta.json` per schema
+- [ ] All 6 US ACTIVE markets searched with condo filter first
+- [ ] Volume targets met or documented shortfall with dry-market rationale per market
+- [ ] Each RESEARCH candidate has complete `meta.json` per schema
 - [ ] Building name and unit recorded when available
 - [ ] HOA > $500/month flagged in `scout_notes`
-- [ ] Rejects have `rescreen_after` set per `rescreen_policy`
+- [ ] Rejects logged to `data/reviewed/listings.ndjson`
+- [ ] No new international RESEARCH until US targets met
 
 ## Depends on
 
-- `data/search-criteria.json` — current version
-- `schemas/property-meta.json` — for meta.json structure
+- `data/search-criteria.json` v3
+- `data/pipeline-status.json` — current gap snapshot
+- `schemas/property-meta.json`, `schemas/reviewed-listing.json`
 
 ## Notes
 
-Panama City Beach added to active markets (2026-08-10) based on early Scout results. Celebration FL set to WATCH status due to condo-hotel complexity and high HOA.
-
-Focus on defined ACTIVE markets; skip WATCH markets unless price drops make them compelling.
+Panama City Beach has early success (2 RESEARCH, 19%+ gross yields). Use PCB seed buildings as a model for Tampa/Jacksonville cluster searches. Celebration FL remains WATCH — do not prioritize over ACTIVE markets. Use `data/scrapes/panama-city-beach-fl-active-listings-2026-08-10.json` as reference for bulk condo inventory in PCB.

@@ -1,0 +1,116 @@
+{
+  "property_id": "9860-s-thomas-dr-unit-917-panama-city-beach-fl",
+  "annual_gross_rent": 53000,
+  "annual_operating_expenses": 27920,
+  "operating_expense_breakdown": {
+    "hoa": 7920,
+    "special_assessments": 0,
+    "property_taxes": 3500,
+    "insurance": 900,
+    "management": 10600,
+    "utilities": 2000,
+    "other": 3000
+  },
+  "noi": 25080,
+  "cap_rate": 0.0899,
+  "cap_rate_percent": "9.0%",
+  "proposed_status": "REJECTED",
+  "proposed_status_reason": "Base-case unlevered cap rate of 9.0% is below the 10% threshold using documented 2025 STR gross revenue ($53,000) and estimated operating expenses. Special assessments remain UNKNOWN (cannot assume $0 per Fla. Stat. §718.116 estoppel requirement). HOA is ESTIMATED at $660/mo from a comparable unit and requires estoppel verification. Even with optimistic rent ($4,800/mo) and 15% management fee, cap rate reaches only ~10.6%; base case with verified income and standard 20% STR management falls short. Any confirmed special assessment or higher HOA would further reduce returns.",
+  "input_summary": {
+    "purchase_price": {
+      "value": 279000,
+      "status": "VERIFIED",
+      "confidence": "HIGH"
+    },
+    "monthly_rent": {
+      "value": 4417,
+      "status": "VERIFIED",
+      "confidence": "HIGH",
+      "range_low": 4000,
+      "range_high": 4800
+    },
+    "hoa_monthly": {
+      "value": 660,
+      "status": "ESTIMATED",
+      "confidence": "MEDIUM"
+    },
+    "special_assessments": {
+      "value": null,
+      "status": "UNKNOWN",
+      "confidence": "LOW"
+    },
+    "property_taxes_annual": {
+      "value": 3500,
+      "status": "ESTIMATED",
+      "confidence": "MEDIUM"
+    },
+    "insurance_annual": {
+      "value": 900,
+      "status": "ESTIMATED",
+      "confidence": "MEDIUM"
+    },
+    "management_annual": {
+      "value": 10600,
+      "status": "ESTIMATED",
+      "confidence": "MEDIUM"
+    },
+    "utilities_annual": {
+      "value": 2000,
+      "status": "ESTIMATED",
+      "confidence": "MEDIUM"
+    },
+    "other_expenses_annual": {
+      "value": 3000,
+      "status": "ESTIMATED",
+      "confidence": "MEDIUM"
+    }
+  },
+  "sensitivity_analysis": {
+    "base_case": {
+      "rent_annual": 53000,
+      "management_annual": 10600,
+      "hoa_annual": 7920,
+      "cap_rate": 0.0899,
+      "notes": "Documented 2025 STR gross revenue with 20% management and estimated HOA"
+    },
+    "optimistic_rent": {
+      "rent_annual": 57600,
+      "management_annual": 11520,
+      "cap_rate": 0.1031,
+      "notes": "High-end rent ($4,800/mo) with 20% management; marginal 10% threshold"
+    },
+    "low_management": {
+      "rent_annual": 53000,
+      "management_annual": 7950,
+      "cap_rate": 0.0994,
+      "notes": "15% management fee with documented rent; still below 10%"
+    },
+    "self_managed": {
+      "rent_annual": 53000,
+      "management_annual": 0,
+      "cap_rate": 0.1279,
+      "notes": "Eliminates professional management; not representative of hands-off STR investment at Laketown Wharf"
+    },
+    "pessimistic_rent": {
+      "rent_annual": 48000,
+      "management_annual": 9600,
+      "cap_rate": 0.0756,
+      "notes": "Low-end rent ($4,000/mo) with 20% management"
+    }
+  },
+  "breakeven_analysis": {
+    "target_cap_rate": 0.10,
+    "required_noi": 27900,
+    "current_noi": 25080,
+    "noi_gap": 2820,
+    "notes": "Need $2,820 additional annual NOI (5.3% expense reduction or 5.3% rent increase) to reach 10% cap rate at $279,000 purchase price"
+  },
+  "risk_factors": [
+    "Special assessments UNKNOWN — 2008 building may have deferred capital needs; estoppel certificate required",
+    "HOA fee ESTIMATED from comparable unit 913; actual amount may differ",
+    "STR management fee (20% of gross) is a major expense driver at $10,600/year",
+    "Documented $53,000 gross is actual 2025 performance but STR income is inherently variable year-to-year",
+    "Property taxes and insurance are estimated pending title search and HO-6 quote verification"
+  ],
+  "computed_at": "2026-08-11T08:10:00Z"
+}
