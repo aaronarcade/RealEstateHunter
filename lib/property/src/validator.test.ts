@@ -626,8 +626,8 @@ describe('SchemaValidator', () => {
       expect(meta.beds).toBe(2);
       expect(meta.baths).toBe(2);
       expect(meta.asking_price).toBe(249900);
-      expect(meta.rough_monthly_rent).toBe(3234);
-      expect(meta.rough_gross_yield).toBe(0.155);
+      expect(meta.rough_monthly_rent).toBe(3200);
+      expect(meta.rough_gross_yield).toBe(0.154);
       expect(meta.advertised_hoa).toBe(630);
       expect(meta.market_id).toBe('panama-city-beach-fl');
       expect(meta.mls_id).toBe('1005938');
@@ -660,7 +660,7 @@ describe('SchemaValidator', () => {
 
       const result = validator.validateMeta(meta);
       expect(result.valid).toBe(true);
-      expect(meta.workflow_state).toBe('READY_FOR_UNDERWRITING');
+      expect(meta.workflow_state).toBe('UNDERWRITTEN');
     });
 
     it('validates 225-celebration-pl evidence.json', async () => {
@@ -685,7 +685,33 @@ describe('SchemaValidator', () => {
 
       const result = validator.validateMeta(meta);
       expect(result.valid).toBe(true);
-      expect(meta.workflow_state).toBe('READY_FOR_UNDERWRITING');
+      expect(meta.workflow_state).toBe('ARCHIVED');
+    });
+
+    it('validates 17462-front-beach-rd evidence.json', async () => {
+      const { readFileSync } = await import('node:fs');
+      const evidencePath = resolve(
+        __dirname,
+        '../../../data/properties/17462-front-beach-rd-unit-31c-panama-city-beach-fl/evidence.json'
+      );
+      const evidence = JSON.parse(readFileSync(evidencePath, 'utf-8'));
+
+      const result = validator.validateEvidence(evidence);
+      expect(result.valid).toBe(true);
+    });
+
+    it('validates 17462-front-beach-rd underwriting.json', async () => {
+      const { readFileSync } = await import('node:fs');
+      const underwritingPath = resolve(
+        __dirname,
+        '../../../data/properties/17462-front-beach-rd-unit-31c-panama-city-beach-fl/underwriting.json'
+      );
+      const underwriting = JSON.parse(readFileSync(underwritingPath, 'utf-8'));
+
+      const result = validator.validateUnderwriting(underwriting);
+      expect(result.valid).toBe(true);
+      expect(underwriting.proposed_status).toBe('REJECTED');
+      expect(underwriting.cap_rate).toBe(0.06);
     });
 
     it('verifies all TASK-010 properties have required evidence fields', async () => {
@@ -713,6 +739,49 @@ describe('SchemaValidator', () => {
         expect(evidence.rental_restrictions, `${id} should have rental_restrictions`).toBeDefined();
         expect(evidence.str_restrictions, `${id} should have str_restrictions`).toBeDefined();
       }
+    });
+  });
+
+  describe('TASK-011 auditor review — 17462 Front Beach Rd', () => {
+    const propertyId = '17462-front-beach-rd-unit-31c-panama-city-beach-fl';
+    const propertyDir = resolve(__dirname, `../../../data/properties/${propertyId}`);
+
+    it('validates audit.json with PASS/REJECTED', async () => {
+      const { readFileSync } = await import('node:fs');
+      const audit = JSON.parse(readFileSync(`${propertyDir}/audit.json`, 'utf-8'));
+
+      const result = validator.validateAudit(audit);
+      expect(result.valid).toBe(true);
+      expect(audit.result).toBe('PASS');
+      expect(audit.final_status).toBe('REJECTED');
+      expect(audit.underwriter_proposed_status).toBe('REJECTED');
+      expect(audit.findings.length).toBeGreaterThanOrEqual(3);
+    });
+
+    it('validates meta.json archived with diligence rescreen policy', async () => {
+      const { readFileSync } = await import('node:fs');
+      const meta = JSON.parse(readFileSync(`${propertyDir}/meta.json`, 'utf-8'));
+
+      const result = validator.validateMeta(meta);
+      expect(result.valid).toBe(true);
+      expect(meta.workflow_state).toBe('ARCHIVED');
+      expect(meta.archive_reason).toBe('audit_reject');
+      expect(meta.rescreen_after).toBeDefined();
+      expect(meta.screening_snapshot).toBeDefined();
+      expect(meta.screening_snapshot.price).toBe(249900);
+    });
+
+    it('verifies underwriting cap rate math matches audit findings', async () => {
+      const { readFileSync } = await import('node:fs');
+      const underwriting = JSON.parse(readFileSync(`${propertyDir}/underwriting.json`, 'utf-8'));
+
+      const expectedNoi =
+        underwriting.annual_gross_rent - underwriting.annual_operating_expenses;
+      expect(underwriting.noi).toBe(expectedNoi);
+
+      const expectedCapRate = underwriting.noi / underwriting.input_summary.purchase_price.value;
+      expect(underwriting.cap_rate).toBeCloseTo(expectedCapRate, 3);
+      expect(underwriting.cap_rate).toBeLessThan(0.1);
     });
   });
 });

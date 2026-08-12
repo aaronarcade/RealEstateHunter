@@ -1,7 +1,7 @@
 # TASK-011: Auditor review — REJECTED Panama City Beach property
 
-**Status:** BACKLOG  
-**Assignee:** Auditor  
+**Status:** ACTIVE  
+**Assignee:** Builder  
 **Priority:** P1
 
 ## Description
@@ -88,11 +88,12 @@ Then update `meta.json`:
 
 ## Acceptance Criteria
 
-- [ ] Evidence file reviewed and validated
-- [ ] Underwriting calculations verified
-- [ ] `audit.json` created with result and findings
-- [ ] `meta.json` updated to ARCHIVED with rescreen policy
-- [ ] Commit and push
+- [x] Evidence file reviewed and validated
+- [x] Underwriting calculations verified
+- [x] `audit.json` created with result and findings
+- [x] `meta.json` updated to ARCHIVED with rescreen policy
+- [x] Validation tests added and passing
+- [x] Commit and push
 
 ## Depends on
 
