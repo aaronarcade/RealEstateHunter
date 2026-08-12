@@ -1,4 +1,5 @@
 import { describe, it, expect, beforeAll } from 'vitest';
+import { readFileSync } from 'node:fs';
 import { resolve, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { SchemaValidator } from './validator.js';
@@ -626,8 +627,8 @@ describe('SchemaValidator', () => {
       expect(meta.beds).toBe(2);
       expect(meta.baths).toBe(2);
       expect(meta.asking_price).toBe(249900);
-      expect(meta.rough_monthly_rent).toBe(3234);
-      expect(meta.rough_gross_yield).toBe(0.155);
+      expect(meta.rough_monthly_rent).toBe(3200);
+      expect(meta.rough_gross_yield).toBe(0.154);
       expect(meta.advertised_hoa).toBe(630);
       expect(meta.market_id).toBe('panama-city-beach-fl');
       expect(meta.mls_id).toBe('1005938');
@@ -660,7 +661,7 @@ describe('SchemaValidator', () => {
 
       const result = validator.validateMeta(meta);
       expect(result.valid).toBe(true);
-      expect(meta.workflow_state).toBe('READY_FOR_UNDERWRITING');
+      expect(meta.workflow_state).toBe('UNDERWRITTEN');
     });
 
     it('validates 225-celebration-pl evidence.json', async () => {
@@ -685,7 +686,7 @@ describe('SchemaValidator', () => {
 
       const result = validator.validateMeta(meta);
       expect(result.valid).toBe(true);
-      expect(meta.workflow_state).toBe('READY_FOR_UNDERWRITING');
+      expect(meta.workflow_state).toBe('ARCHIVED');
     });
 
     it('verifies all TASK-010 properties have required evidence fields', async () => {
@@ -714,5 +715,83 @@ describe('SchemaValidator', () => {
         expect(evidence.str_restrictions, `${id} should have str_restrictions`).toBeDefined();
       }
     });
+  });
+
+  describe('TASK-012 analyst US pipeline batch validation', () => {
+    const TASK_012_PROPERTIES = [
+      {
+        id: '9860-s-thomas-dr-unit-917-panama-city-beach-fl',
+        purchasePrice: 279000,
+        expectedWorkflowState: 'UNDERWRITTEN',
+        annualGrossRent: 53000,
+        annualOperatingExpenses: 27920,
+        noi: 25080,
+        capRate: 0.0899,
+        proposedStatus: 'REJECTED',
+      },
+      {
+        id: '225-celebration-pl-unit-526-celebration-fl',
+        purchasePrice: 149999,
+        expectedWorkflowState: 'ARCHIVED',
+        annualGrossRent: 30984,
+        annualOperatingExpenses: 19204,
+        noi: 11780,
+        capRate: 0.0785,
+        proposedStatus: 'REJECTED',
+      },
+    ] as const;
+
+    function readPropertyFile(id: string, file: string) {
+      const filePath = resolve(__dirname, `../../../data/properties/${id}/${file}`);
+      return JSON.parse(readFileSync(filePath, 'utf-8'));
+    }
+
+    it.each(TASK_012_PROPERTIES)(
+      'validates $id underwriting.json schema',
+      async ({ id }) => {
+        const underwriting = readPropertyFile(id, 'underwriting.json');
+        const result = validator.validateUnderwriting(underwriting);
+        expect(result.valid).toBe(true);
+      }
+    );
+
+    it.each(TASK_012_PROPERTIES)(
+      'verifies $id underwriting calculations per PRODUCT.md',
+      ({ id, purchasePrice, annualGrossRent, annualOperatingExpenses, noi, capRate }) => {
+        const underwriting = readPropertyFile(id, 'underwriting.json');
+
+        expect(underwriting.property_id).toBe(id);
+        expect(underwriting.annual_gross_rent).toBe(annualGrossRent);
+        expect(underwriting.annual_operating_expenses).toBe(annualOperatingExpenses);
+        expect(underwriting.noi).toBe(noi);
+        expect(underwriting.noi).toBe(
+          underwriting.annual_gross_rent - underwriting.annual_operating_expenses
+        );
+        expect(underwriting.cap_rate).toBeCloseTo(noi / purchasePrice, 4);
+        expect(underwriting.cap_rate).toBeCloseTo(capRate, 4);
+      }
+    );
+
+    it.each(TASK_012_PROPERTIES)(
+      'verifies $id proposed status and sensitivity analysis',
+      ({ id, proposedStatus }) => {
+        const underwriting = readPropertyFile(id, 'underwriting.json');
+
+        expect(underwriting.proposed_status).toBe(proposedStatus);
+        expect(underwriting.proposed_status_reason).toBeDefined();
+        expect(underwriting.sensitivity_analysis).toBeDefined();
+        expect(Object.keys(underwriting.sensitivity_analysis).length).toBeGreaterThan(0);
+        expect(underwriting.risk_factors?.length).toBeGreaterThan(0);
+        expect(underwriting.computed_at).toBeDefined();
+      }
+    );
+
+    it.each(TASK_012_PROPERTIES)(
+      'verifies $id workflow state after underwriting',
+      ({ id, expectedWorkflowState }) => {
+        const meta = readPropertyFile(id, 'meta.json');
+        expect(meta.workflow_state).toBe(expectedWorkflowState);
+      }
+    );
   });
 });
