@@ -21,5 +21,6 @@
   "market_id": "panama-city-beach-fl",
   "mls_id": "783147",
   "rent_source": "listing documented 2025 STR gross revenue",
-  "rent_confidence": "HIGH"
+  "rent_confidence": "HIGH",
+  "manager_notes": "Analyst complete (TASK-012): proposed REJECTED at 9.0% cap rate despite documented $53K STR gross. Routed to Auditor (TASK-014). Continue Laketown Wharf sibling-unit scan in TASK-009."
 }

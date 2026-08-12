@@ -4,22 +4,24 @@
 **Assignee:** Scout  
 **Priority:** P0
 
-## Manager triage (2026-08-11)
+## Manager triage (2026-08-12)
 
-**Critical gap:** US ACTIVE markets have almost no scout coverage. Only Panama City Beach has RESEARCH candidates (2). Tampa, Jacksonville, Birmingham, Memphis, and Cleveland have **zero** listings reviewed.
+**Critical gap unchanged:** 5 of 6 US ACTIVE markets have zero scout coverage. US pipeline batch complete (2 audited REJECTED, 1 awaiting audit at 9.0%). Scout volume is now the top priority.
 
-| Market | Priority | Listings Reviewed | RESEARCH | Target |
-|--------|----------|-------------------|----------|--------|
-| Tampa, FL | 1 | 0 | 0 | 40 / 3 |
-| Jacksonville, FL | 2 | 0 | 0 | 40 / 3 |
-| Panama City Beach, FL | 3 | 5 | 2 | 40 / 3 |
-| Birmingham, AL | 4 | 0 | 0 | 40 / 3 |
-| Memphis, TN | 5 | 0 | 0 | 40 / 3 |
-| Cleveland, OH | 6 | 0 | 0 | 40 / 3 |
+| Market | Priority | Listings Reviewed | RESEARCH | Target | Bulk Scrape |
+|--------|----------|-------------------|----------|--------|-------------|
+| Tampa, FL | 1 | 0 | 0 | 40 / 3 | ❌ TASK-015 |
+| Jacksonville, FL | 2 | 0 | 0 | 40 / 3 | ❌ TASK-015 |
+| Panama City Beach, FL | 3 | 5 | 2 | 40 / 3 | ✅ available |
+| Birmingham, AL | 4 | 0 | 0 | 40 / 3 | ❌ TASK-015 |
+| Memphis, TN | 5 | 0 | 0 | 40 / 3 | ❌ TASK-015 |
+| Cleveland, OH | 6 | 0 | 0 | 40 / 3 | ❌ TASK-015 |
 
-**Total reviewed (NDJSON):** 47 — but 39 are Manta EC rejects. US reviewed = 6.
+**Total reviewed (NDJSON):** 47 — 39 Manta EC rejects, 6 US (5 PCB + 1 Celebration). US ACTIVE RESEARCH = 2.
 
-**Do not expand international** (Manta/Cuenca) until US ACTIVE markets meet volume targets per `data/search-criteria.json` → `defer_non_us_markets`.
+**Use bulk scrapes when available.** For PCB, filter `data/scrapes/panama-city-beach-fl-active-listings-2026-08-10.json` for `property_type: "condo"` and seed building addresses. For Tampa/Jacksonville/Birmingham/Memphis/Cleveland, wait for TASK-015 or manually search seed_buildings.
+
+**Do not expand international** until US ACTIVE markets meet volume targets.
 
 ## Phased sweep order
 
@@ -92,10 +94,10 @@ For each candidate passing screen:
 
 ## Depends on
 
-- `data/search-criteria.json` v3
+- `data/search-criteria.json` v4
 - `data/pipeline-status.json` — current gap snapshot
 - `schemas/property-meta.json`, `schemas/reviewed-listing.json`
 
 ## Notes
 
-Panama City Beach has early success (2 RESEARCH, 19%+ gross yields). Use PCB seed buildings as a model for Tampa/Jacksonville cluster searches. Celebration FL remains WATCH — do not prioritize over ACTIVE markets. Use `data/scrapes/panama-city-beach-fl-active-listings-2026-08-10.json` as reference for bulk condo inventory in PCB.
+Panama City Beach has early success (2 RESEARCH, 19%+ gross yields). Use PCB seed buildings as a model for Tampa/Jacksonville cluster searches. Celebration FL remains WATCH — do not prioritize over ACTIVE markets. Use `data/scrapes/panama-city-beach-fl-active-listings-2026-08-10.json` as reference for bulk condo inventory in PCB. TASK-015 will add bulk scrapes for the five zero-coverage US ACTIVE markets.

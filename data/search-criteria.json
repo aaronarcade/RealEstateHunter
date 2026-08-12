@@ -1,11 +1,11 @@
 {
   "$schema": "../schemas/search-criteria.json",
-  "version": 3,
-  "updated_at": "2026-08-11T08:05:00Z",
+  "version": 4,
+  "updated_at": "2026-08-12T08:10:00Z",
   "updated_by": "manager",
   "target_cap_rate": 0.10,
   "target_yield_minimum": 0.10,
-  "notes": "Condo buildings first in US ACTIVE markets. Scout scans high volume (40+ listings/market); only RESEARCH listings that pass yield screen. Defer new international scouting until Tampa, Jacksonville, Birmingham, Memphis, and Cleveland each have ≥3 RESEARCH candidates or documented dry-market rationale. See data/pipeline-status.json for current gap.",
+  "notes": "Condo buildings first in US ACTIVE markets. Scout scans high volume (40+ listings/market); only RESEARCH listings that pass yield screen. Five US ACTIVE markets have zero scout coverage — TASK-015 bulk scrape is P1 Builder work to unblock volume. Defer new international scouting until Tampa, Jacksonville, Birmingham, Memphis, and Cleveland each have ≥3 RESEARCH candidates or documented dry-market rationale. See data/pipeline-status.json for current gap.",
   "asset_focus": {
     "primary": "condo",
     "prioritize_condo_buildings": true,
@@ -90,15 +90,6 @@
       "added_by": "builder"
     },
     {
-      "id": "medellin-co",
-      "name": "Medellín, Colombia",
-      "priority": 14,
-      "status": "WATCH",
-      "rationale": "Expat STR/LTR market; 8-12% gross common in El Poblado/Laureles.",
-      "added": "2026-08-11",
-      "added_by": "builder"
-    },
-    {
       "id": "panama-city-pa",
       "name": "Panama City, Panama",
       "priority": 15,
@@ -113,15 +104,6 @@
       "priority": 16,
       "status": "WATCH",
       "rationale": "Condo rental gross yields often 10%+; limited Realtor intl inventory.",
-      "added": "2026-08-11",
-      "added_by": "builder"
-    },
-    {
-      "id": "chiang-mai-th",
-      "name": "Chiang Mai, Thailand",
-      "priority": 17,
-      "status": "WATCH",
-      "rationale": "Nomad/LTR hub; gross yields in viable range per market comps.",
       "added": "2026-08-11",
       "added_by": "builder"
     },
@@ -356,6 +338,42 @@
             "name": "San Marco Place",
             "address_pattern": "San Marco Blvd",
             "notes": "Established San Marco condo building"
+          }
+        ],
+        "birmingham-al": [
+          {
+            "name": "Park Place Tower",
+            "address_pattern": "2001 Park Pl S",
+            "notes": "Downtown Birmingham high-rise condos; investor-friendly price points"
+          },
+          {
+            "name": "The Phoenix Building",
+            "address_pattern": "301 20th St N",
+            "notes": "Historic loft/condo conversion in downtown core"
+          }
+        ],
+        "memphis-tn": [
+          {
+            "name": "Harbor Town",
+            "address_pattern": "Harbor Town",
+            "notes": "Master-planned riverfront community with condo inventory"
+          },
+          {
+            "name": "Peabody Place",
+            "address_pattern": "Peabody Pl",
+            "notes": "Downtown Memphis condo building near entertainment district"
+          }
+        ],
+        "cleveland-oh": [
+          {
+            "name": "The Avenue District",
+            "address_pattern": "Euclid Ave",
+            "notes": "Downtown Cleveland condo towers with rental demand"
+          },
+          {
+            "name": "Flats East Bank",
+            "address_pattern": "Flats East Bank",
+            "notes": "Riverfront condo community; scan all active units"
           }
         ]
       }

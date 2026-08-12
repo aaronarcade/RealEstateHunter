@@ -1,6 +1,6 @@
 {
-  "version": 1,
-  "as_of": "2026-08-11T08:15:00Z",
+  "version": 2,
+  "as_of": "2026-08-12T08:10:00Z",
   "updated_by": "manager",
   "goal": "≥10% unlevered cap rate rental investments with high confidence",
   "volume_targets": {
@@ -12,9 +12,10 @@
     "reviewed_listings_ndjson": 47,
     "research_candidates_total": 18,
     "research_candidates_us_active_markets": 2,
-    "underwritten": 3,
-    "audited": 1,
-    "viable": 0
+    "underwritten": 5,
+    "audited": 2,
+    "viable": 0,
+    "archived_us": 2
   },
   "market_coverage": [
     {
@@ -23,7 +24,8 @@
       "priority": 1,
       "listings_reviewed": 0,
       "research_candidates": 0,
-      "gap": "ZERO coverage — P0 Scout sweep"
+      "bulk_scrape_available": false,
+      "gap": "ZERO coverage — P0 Scout sweep; blocked on TASK-015 bulk scrape"
     },
     {
       "market_id": "jacksonville-fl",
@@ -31,7 +33,8 @@
       "priority": 2,
       "listings_reviewed": 0,
       "research_candidates": 0,
-      "gap": "ZERO coverage — P0 Scout sweep"
+      "bulk_scrape_available": false,
+      "gap": "ZERO coverage — P0 Scout sweep; blocked on TASK-015 bulk scrape"
     },
     {
       "market_id": "panama-city-beach-fl",
@@ -39,7 +42,8 @@
       "priority": 3,
       "listings_reviewed": 5,
       "research_candidates": 2,
-      "gap": "Below 40 listings/market and 3 RESEARCH/market; continue condo building clusters"
+      "bulk_scrape_available": true,
+      "gap": "Below 40 listings/market and 3 RESEARCH/market; continue condo building clusters (Laketown Wharf siblings)"
     },
     {
       "market_id": "birmingham-al",
@@ -47,7 +51,8 @@
       "priority": 4,
       "listings_reviewed": 0,
       "research_candidates": 0,
-      "gap": "ZERO coverage — P1 Scout sweep"
+      "bulk_scrape_available": false,
+      "gap": "ZERO coverage — P1 Scout sweep; blocked on TASK-015 bulk scrape"
     },
     {
       "market_id": "memphis-tn",
@@ -55,7 +60,8 @@
       "priority": 5,
       "listings_reviewed": 0,
       "research_candidates": 0,
-      "gap": "ZERO coverage — P1 Scout sweep"
+      "bulk_scrape_available": false,
+      "gap": "ZERO coverage — P1 Scout sweep; blocked on TASK-015 bulk scrape"
     },
     {
       "market_id": "cleveland-oh",
@@ -63,36 +69,33 @@
       "priority": 6,
       "listings_reviewed": 0,
       "research_candidates": 0,
-      "gap": "ZERO coverage — P1 Scout sweep"
+      "bulk_scrape_available": false,
+      "gap": "ZERO coverage — P1 Scout sweep; blocked on TASK-015 bulk scrape"
     }
   ],
-  "analyst_queue": [
+  "analyst_queue": [],
+  "auditor_queue": [
     {
       "property_id": "9860-s-thomas-dr-unit-917-panama-city-beach-fl",
       "priority": 1,
       "market_id": "panama-city-beach-fl",
-      "workflow_state": "READY_FOR_UNDERWRITING",
-      "rationale": "Documented $53K STR gross; highest rent confidence; Laketown Wharf cluster"
-    },
-    {
-      "property_id": "225-celebration-pl-unit-526-celebration-fl",
-      "priority": 2,
-      "market_id": "celebration-fl",
-      "workflow_state": "READY_FOR_UNDERWRITING",
-      "rationale": "Condo-hotel complexity; WATCH market; max WATCHLIST likely"
+      "workflow_state": "UNDERWRITTEN",
+      "proposed_status": "REJECTED",
+      "proposed_cap_rate": 0.0899,
+      "rationale": "Base-case 9.0% cap rate below 10% threshold despite documented $53K STR gross; see TASK-014"
     }
   ],
-  "auditor_queue": [],
   "scout_next_actions": [
-    "Condo-only sweep: Tampa FL (P0) — target 40+ listings, 3+ RESEARCH",
-    "Condo-only sweep: Jacksonville FL (P0) — target 40+ listings, 3+ RESEARCH",
-    "Continue PCB condo building clusters (Laketown Wharf, Horizon South, Shores of Panama, Grand Panama)",
-    "Then Birmingham, Memphis, Cleveland condo sweeps",
-    "Defer new international (Manta/Cuenca) until US ACTIVE markets meet volume targets"
+    "P0: Tampa FL condo-only sweep — 40+ listings reviewed, 3+ RESEARCH (use TASK-015 scrape when ready)",
+    "P0: Jacksonville FL condo-only sweep — same targets; start seed_buildings (The Strand, San Marco Place)",
+    "P1: Continue PCB condo building clusters — Laketown Wharf sibling units, Shores of Panama, Grand Panama",
+    "P1: Birmingham, Memphis, Cleveland condo sweeps after Phase A",
+    "Defer new international RESEARCH until all US ACTIVE markets have ≥3 RESEARCH or dry-market note"
   ],
   "builder_priorities": [
-    "TASK-006 Streamlit UI parity (P2 — partial Streamlit app exists; complete React parity)",
+    "TASK-015 US ACTIVE market bulk scrape (P1 — unblocks Scout volume on 5 zero-coverage markets)",
+    "TASK-006 Streamlit UI parity (P3 — app largely built; remaining React parity gaps)",
     "TASK-001 helper scripts (P3, deprioritized — agents write JSON directly)"
   ],
-  "notes": "International pipeline (Manta/Cuenca) has 15 READY_FOR_UNDERWRITING properties but is deprioritized until US ACTIVE markets meet scout volume targets. Total RESEARCH count (18) is inflated by international; US ACTIVE RESEARCH=2."
+  "notes": "US pipeline batch complete: 2 properties underwritten and audited REJECTED (Horizon South 6.0%, Melia Celebration 7.85%). Laketown Wharf (9860) underwritten REJECTED at 9.0% — Auditor review pending (TASK-014). Scout volume remains the critical gap: 5 of 6 US ACTIVE markets have zero listings reviewed. International READY_FOR_UNDERWRITING (15) remains deprioritized."
 }
