@@ -1,7 +1,7 @@
 # TASK-012: Analyst batch — US pipeline properties
 
-**Status:** BACKLOG  
-**Assignee:** Analyst  
+**Status:** ACTIVE  
+**Assignee:** Builder (validation tests) / Analyst (underwriting artifacts)  
 **Priority:** P0
 
 ## Description
@@ -14,10 +14,10 @@ Complete diligence and underwriting for US pipeline properties that have evidenc
 
 ## Candidates
 
-| Property ID | Location | Gross Yield | HOA | Rent Confidence | Priority |
-|-------------|----------|-------------|-----|-----------------|----------|
-| `9860-s-thomas-dr-unit-917-panama-city-beach-fl` | Panama City Beach, FL | 19% | $660/mo | **HIGH** (documented $53K STR) | **1** |
-| `225-celebration-pl-unit-526-celebration-fl` | Celebration, FL | 20.7% | $1,242/mo | MEDIUM (condo-hotel) | 2 |
+| Property ID | Location | Gross Yield | HOA | Rent Confidence | Priority | Status |
+|-------------|----------|-------------|-----|-----------------|----------|--------|
+| `9860-s-thomas-dr-unit-917-panama-city-beach-fl` | Panama City Beach, FL | 19% | $660/mo | **HIGH** (documented $53K STR) | **1** | UNDERWRITTEN (9.0% cap, REJECTED) |
+| `225-celebration-pl-unit-526-celebration-fl` | Celebration, FL | 20.7% | $1,242/mo | MEDIUM (condo-hotel) | 2 | ARCHIVED (7.85% cap, audit REJECTED) |
 
 ### Priority Rationale
 
@@ -61,11 +61,12 @@ For each property:
 
 ## Acceptance Criteria
 
-- [ ] Both US properties have complete `underwriting.json`
-- [ ] Calculations follow `docs/PRODUCT.md` formulas
-- [ ] Proposed status justified with documented rationale
-- [ ] Sensitivity analysis included
-- [ ] `meta.json` updated to `UNDERWRITTEN`
+- [x] Both US properties have complete `underwriting.json`
+- [x] Calculations follow `docs/PRODUCT.md` formulas
+- [x] Proposed status justified with documented rationale
+- [x] Sensitivity analysis included
+- [x] `meta.json` updated to `UNDERWRITTEN` (225 subsequently archived after audit)
+- [x] Builder validation tests in `lib/property/src/validator.test.ts`
 
 ## Depends on
 
@@ -79,3 +80,5 @@ For each property:
 ## Notes
 
 **Pipeline goal:** Move at least one US property to UNDERWRITTEN with potential VIABLE or WATCHLIST status.
+
+**Builder scope (2026-08-12):** Analyst underwriting artifacts landed on `main`. Builder adds TASK-012 validation tests confirming schema compliance, PRODUCT.md formula consistency, and workflow state.
