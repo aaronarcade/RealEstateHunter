@@ -3,10 +3,10 @@
   "address": "9860 S Thomas Dr Unit 917, Panama City Beach, FL 32408",
   "location": "Panama City Beach, FL",
   "listing_url": "https://www.remax.com/fl/panama-city-beach/home-details/9860-s-thomas-dr-unit-917-panama-city-beach-fl-32408/10503354300708520223/M00000159/783147",
-  "workflow_state": "UNDERWRITTEN",
+  "workflow_state": "AUDIT",
   "scout_decision": "RESEARCH",
   "created_at": "2026-08-10T04:00:00Z",
-  "updated_at": "2026-08-11T08:10:00Z",
+  "updated_at": "2026-08-12T08:15:00Z",
   "property_type": "condo",
   "building_name": "Laketown Wharf",
   "unit": "917",
@@ -22,5 +22,11 @@
   "mls_id": "783147",
   "rent_source": "listing documented 2025 STR gross revenue",
   "rent_confidence": "HIGH",
-  "manager_notes": "Analyst complete (TASK-012): proposed REJECTED at 9.0% cap rate despite documented $53K STR gross. Routed to Auditor (TASK-014). Continue Laketown Wharf sibling-unit scan in TASK-009."
+  "audit_summary": {
+    "final_status": "REJECTED",
+    "cap_rate": 0.0899,
+    "noi": 25080,
+    "audited_at": "2026-08-12T08:15:00Z"
+  },
+  "manager_notes": "Auditor PASS on REJECTED (TASK-014). Base-case cap rate 9.0% verified below 10% threshold despite documented $53K STR gross. HOA + 20% STR management compress returns. Estoppel unlikely to improve outcome—UNKNOWN assessments and ESTIMATED HOA create downside risk only. Manager to archive with rescreen_after per diligence_reject policy."
 }

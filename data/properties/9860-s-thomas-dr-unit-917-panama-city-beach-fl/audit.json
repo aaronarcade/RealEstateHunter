@@ -1,0 +1,54 @@
+{
+  "property_id": "9860-s-thomas-dr-unit-917-panama-city-beach-fl",
+  "result": "PASS",
+  "final_status": "REJECTED",
+  "underwriter_proposed_status": "REJECTED",
+  "findings": [
+    {
+      "severity": "info",
+      "field": "cap_rate",
+      "message": "Base-case cap rate of 9.0% independently verified (NOI $25,080 / $279,000). Below the 10% threshold; REJECTED classification is supported."
+    },
+    {
+      "severity": "info",
+      "field": "monthly_rent",
+      "message": "Rent VERIFIED HIGH at $4,417/mo ($53,000/yr) from listing-documented 2025 STR gross revenue. This is actual performance, not a comp estimate—the strongest rent evidence in the US pipeline. Not overly optimistic for the base case."
+    },
+    {
+      "severity": "warning",
+      "field": "hoa_monthly",
+      "message": "HOA ESTIMATED MEDIUM at $660/mo from comparable unit 913; estoppel certificate not obtained. If actual HOA exceeds the estimate (e.g., $700/mo adds $480/yr expense), cap rate falls further to ~8.8%. Estoppel is unlikely to improve returns."
+    },
+    {
+      "severity": "warning",
+      "field": "special_assessments",
+      "message": "Evidence marks special assessments UNKNOWN (LOW confidence) and explicitly warns against assuming $0 per Fla. Stat. §718.116, yet underwriting expense breakdown includes $0 for assessments. Laketown Wharf (2008, 18-year-old high-rise) may have deferred capital needs. Any confirmed assessment would further reduce an already sub-threshold cap rate; does not change REJECTED outcome."
+    },
+    {
+      "severity": "info",
+      "field": "management_annual",
+      "message": "STR management at 20% of gross ($10,600/yr) is the largest controllable expense and a primary driver of the sub-10% cap rate. At 15% management with documented rent, cap rate reaches only 9.9%—still below threshold."
+    },
+    {
+      "severity": "info",
+      "field": "sensitivity_analysis",
+      "message": "Optimistic rent case ($4,800/mo, 20% management) yields ~10.3% cap rate but requires exceeding documented 2025 performance and ignores UNKNOWN assessment risk. Self-managed scenario (~12.8%) is not representative of a hands-off STR investment at an established resort. Breakeven requires $2,820 additional annual NOI (5.3% improvement)."
+    },
+    {
+      "severity": "warning",
+      "field": "property_taxes_annual",
+      "message": "Taxes ESTIMATED MEDIUM at $3,500/yr based on Bay County millage and comparable PCB condos. Post-sale reassessment at the $279,000 purchase price may increase the annual tax burden beyond the current estimate."
+    },
+    {
+      "severity": "info",
+      "field": "insurance_annual",
+      "message": "HO-6 insurance ESTIMATED MEDIUM at $900/yr (range $700–$1,100). Coastal Florida wind exposure may push toward range high; at $1,100/yr cap rate drops to ~8.9%, still below 10%."
+    },
+    {
+      "severity": "info",
+      "field": "str_restrictions",
+      "message": "STR restrictions VERIFIED HIGH. Panama City Beach permits STRs with required DBPR, city Vacation Rental Certificate, and county registrations. Laketown Wharf is an established STR resort with no identified rental caps or owner-occupancy requirements."
+    }
+  ],
+  "audited_at": "2026-08-12T08:15:00Z"
+}
