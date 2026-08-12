@@ -333,9 +333,23 @@
       "agentId": "bc-38bab3cd-8ff0-45c4-a5cc-a7ce5ddd0b57",
       "runId": "run-c1279f76-d464-49d8-ac55-8662f004f76f",
       "agentUrl": "https://cursor.com/agents/bc-38bab3cd-8ff0-45c4-a5cc-a7ce5ddd0b57",
-      "status": "ACTIVE",
+      "status": "ERROR",
       "createdAt": "2026-08-12T08:13:47.368Z",
-      "updatedAt": "2026-08-12T08:13:47.368Z"
+      "updatedAt": "2026-08-12T08:18:50.407Z"
+    },
+    "manager:property:9860-s-thomas-dr-unit-917-panama-city-beach-fl:rank-or-close": {
+      "workKey": "manager:property:9860-s-thomas-dr-unit-917-panama-city-beach-fl:rank-or-close",
+      "role": "manager",
+      "subjectType": "property",
+      "subjectId": "9860-s-thomas-dr-unit-917-panama-city-beach-fl",
+      "action": "rank-or-close",
+      "branch": "main",
+      "agentId": "bc-d75aeb21-2fb0-46b4-8de7-3ac02765ccca",
+      "runId": "run-1fc31cae-e73b-4177-85c2-3fd58050fa8f",
+      "agentUrl": "https://cursor.com/agents/bc-d75aeb21-2fb0-46b4-8de7-3ac02765ccca",
+      "status": "ACTIVE",
+      "createdAt": "2026-08-12T08:18:53.402Z",
+      "updatedAt": "2026-08-12T08:18:53.402Z"
     }
   }
 }
