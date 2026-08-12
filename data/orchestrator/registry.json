@@ -25,9 +25,9 @@
       "agentId": "bc-15ccdcbc-bcfa-4394-9633-61f8a9fa3330",
       "runId": "run-d0a05607-f799-4c73-9a7c-ae62428e832c",
       "agentUrl": "https://cursor.com/agents/bc-15ccdcbc-bcfa-4394-9633-61f8a9fa3330",
-      "status": "ACTIVE",
+      "status": "ERROR",
       "createdAt": "2026-08-12T08:08:53.352Z",
-      "updatedAt": "2026-08-12T08:08:53.352Z"
+      "updatedAt": "2026-08-12T08:13:43.093Z"
     },
     "builder:task:TASK-002:implement-task": {
       "workKey": "builder:task:TASK-002:implement-task",
@@ -249,9 +249,9 @@
       "agentId": "bc-b1ba6b57-2cb9-4160-b361-f473744ce94c",
       "runId": "run-e22dbf1b-bb87-457b-8bc4-8b7fe6b824a5",
       "agentUrl": "https://cursor.com/agents/bc-b1ba6b57-2cb9-4160-b361-f473744ce94c",
-      "status": "ACTIVE",
+      "status": "ERROR",
       "createdAt": "2026-08-12T08:08:51.036Z",
-      "updatedAt": "2026-08-12T08:08:51.036Z"
+      "updatedAt": "2026-08-12T08:13:43.478Z"
     },
     "builder:task:TASK-011:implement-task": {
       "workKey": "builder:task:TASK-011:implement-task",
@@ -263,9 +263,9 @@
       "agentId": "bc-6bf20022-faf8-4d99-b142-af52a4c0f117",
       "runId": "run-fca71079-7703-4b69-a7d1-191250e35db6",
       "agentUrl": "https://cursor.com/agents/bc-6bf20022-faf8-4d99-b142-af52a4c0f117",
-      "status": "ACTIVE",
+      "status": "ERROR",
       "createdAt": "2026-08-12T08:08:55.917Z",
-      "updatedAt": "2026-08-12T08:08:55.917Z"
+      "updatedAt": "2026-08-12T08:13:43.810Z"
     },
     "analyst:property:225-celebration-pl-unit-526-celebration-fl:complete-underwriting": {
       "workKey": "analyst:property:225-celebration-pl-unit-526-celebration-fl:complete-underwriting",
@@ -322,6 +322,20 @@
       "status": "ERROR",
       "createdAt": "2026-08-11T08:08:04.552Z",
       "updatedAt": "2026-08-11T08:08:28.006Z"
+    },
+    "auditor:property:9860-s-thomas-dr-unit-917-panama-city-beach-fl:audit": {
+      "workKey": "auditor:property:9860-s-thomas-dr-unit-917-panama-city-beach-fl:audit",
+      "role": "auditor",
+      "subjectType": "property",
+      "subjectId": "9860-s-thomas-dr-unit-917-panama-city-beach-fl",
+      "action": "audit",
+      "branch": "main",
+      "agentId": "bc-38bab3cd-8ff0-45c4-a5cc-a7ce5ddd0b57",
+      "runId": "run-c1279f76-d464-49d8-ac55-8662f004f76f",
+      "agentUrl": "https://cursor.com/agents/bc-38bab3cd-8ff0-45c4-a5cc-a7ce5ddd0b57",
+      "status": "ACTIVE",
+      "createdAt": "2026-08-12T08:13:47.368Z",
+      "updatedAt": "2026-08-12T08:13:47.368Z"
     }
   }
 }
