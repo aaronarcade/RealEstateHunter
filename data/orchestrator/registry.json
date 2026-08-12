@@ -347,9 +347,9 @@
       "agentId": "bc-d75aeb21-2fb0-46b4-8de7-3ac02765ccca",
       "runId": "run-1fc31cae-e73b-4177-85c2-3fd58050fa8f",
       "agentUrl": "https://cursor.com/agents/bc-d75aeb21-2fb0-46b4-8de7-3ac02765ccca",
-      "status": "ACTIVE",
+      "status": "ERROR",
       "createdAt": "2026-08-12T08:18:53.402Z",
-      "updatedAt": "2026-08-12T08:18:53.402Z"
+      "updatedAt": "2026-08-12T08:20:27.086Z"
     }
   }
 }
