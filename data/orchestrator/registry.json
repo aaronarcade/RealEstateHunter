@@ -22,12 +22,12 @@
       "subjectId": "pipeline",
       "action": "triage-pipeline",
       "branch": "main",
-      "agentId": "bc-8286ee56-c801-4516-a580-afac8342e2a7",
-      "runId": "run-f713e5c5-76ee-444f-8914-7da296fe08f8",
-      "agentUrl": "https://cursor.com/agents/bc-8286ee56-c801-4516-a580-afac8342e2a7",
-      "status": "ERROR",
-      "createdAt": "2026-08-11T08:02:50.528Z",
-      "updatedAt": "2026-08-11T08:05:41.598Z"
+      "agentId": "bc-15ccdcbc-bcfa-4394-9633-61f8a9fa3330",
+      "runId": "run-d0a05607-f799-4c73-9a7c-ae62428e832c",
+      "agentUrl": "https://cursor.com/agents/bc-15ccdcbc-bcfa-4394-9633-61f8a9fa3330",
+      "status": "ACTIVE",
+      "createdAt": "2026-08-12T08:08:53.352Z",
+      "updatedAt": "2026-08-12T08:08:53.352Z"
     },
     "builder:task:TASK-002:implement-task": {
       "workKey": "builder:task:TASK-002:implement-task",
@@ -245,13 +245,13 @@
       "subjectType": "task",
       "subjectId": "TASK-012",
       "action": "implement-task",
-      "branch": "agent/task-012-underwriter-evidence-batch",
-      "agentId": "bc-7c4ecf7f-9d1c-4190-8f8e-4c3b2767272c",
-      "runId": "run-e5253958-b174-49e8-a948-9e346e7cfc2b",
-      "agentUrl": "https://cursor.com/agents/bc-7c4ecf7f-9d1c-4190-8f8e-4c3b2767272c",
-      "status": "ERROR",
-      "createdAt": "2026-08-11T08:02:47.987Z",
-      "updatedAt": "2026-08-11T08:05:41.902Z"
+      "branch": "agent/task-012-analyst-us-pipeline-batch",
+      "agentId": "bc-b1ba6b57-2cb9-4160-b361-f473744ce94c",
+      "runId": "run-e22dbf1b-bb87-457b-8bc4-8b7fe6b824a5",
+      "agentUrl": "https://cursor.com/agents/bc-b1ba6b57-2cb9-4160-b361-f473744ce94c",
+      "status": "ACTIVE",
+      "createdAt": "2026-08-12T08:08:51.036Z",
+      "updatedAt": "2026-08-12T08:08:51.036Z"
     },
     "builder:task:TASK-011:implement-task": {
       "workKey": "builder:task:TASK-011:implement-task",
@@ -260,12 +260,12 @@
       "subjectId": "TASK-011",
       "action": "implement-task",
       "branch": "agent/task-011-auditor-review-rejected-pcb",
-      "agentId": "bc-1e97dba3-e1b9-43df-9cb4-59661a35bd0b",
-      "runId": "run-65872563-bf4a-4b0d-a871-513fe4e3960e",
-      "agentUrl": "https://cursor.com/agents/bc-1e97dba3-e1b9-43df-9cb4-59661a35bd0b",
-      "status": "ERROR",
-      "createdAt": "2026-08-11T08:02:54.516Z",
-      "updatedAt": "2026-08-11T08:05:42.258Z"
+      "agentId": "bc-6bf20022-faf8-4d99-b142-af52a4c0f117",
+      "runId": "run-fca71079-7703-4b69-a7d1-191250e35db6",
+      "agentUrl": "https://cursor.com/agents/bc-6bf20022-faf8-4d99-b142-af52a4c0f117",
+      "status": "ACTIVE",
+      "createdAt": "2026-08-12T08:08:55.917Z",
+      "updatedAt": "2026-08-12T08:08:55.917Z"
     },
     "analyst:property:225-celebration-pl-unit-526-celebration-fl:complete-underwriting": {
       "workKey": "analyst:property:225-celebration-pl-unit-526-celebration-fl:complete-underwriting",
