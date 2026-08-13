@@ -1,7 +1,7 @@
 # TASK-014: Auditor review — REJECTED Laketown Wharf (9860 S Thomas Dr)
 
-**Status:** BACKLOG  
-**Assignee:** Auditor  
+**Status:** ACTIVE  
+**Assignee:** Builder (validation / task closeout; Auditor artifacts already on `main`)  
 **Priority:** P1
 
 ## Description
@@ -16,7 +16,7 @@ Review the underwriting analysis for `9860-s-thomas-dr-unit-917-panama-city-beac
 | Market | Panama City Beach, FL (ACTIVE) |
 | Building | Laketown Wharf |
 | Property ID | `9860-s-thomas-dr-unit-917-panama-city-beach-fl` |
-| Workflow State | UNDERWRITTEN |
+| Workflow State | UNDERWRITTEN → AUDIT → ARCHIVED |
 | Proposed Status | **REJECTED** |
 | Cap Rate | 9.0% (base case) |
 
@@ -79,11 +79,12 @@ Create `data/properties/9860-s-thomas-dr-unit-917-panama-city-beach-fl/audit.jso
 
 ## Acceptance Criteria
 
-- [ ] Evidence file reviewed and validated
-- [ ] Underwriting calculations verified
-- [ ] `audit.json` created with result and findings
-- [ ] `meta.json` updated per audit outcome
-- [ ] Commit and push to `main`
+- [x] Evidence file reviewed and validated
+- [x] Underwriting calculations verified
+- [x] `audit.json` created with result and findings
+- [x] `meta.json` updated per audit outcome (ARCHIVED, 60-day rescreen)
+- [ ] Schema validation tests for Laketown Wharf audit artifacts
+- [ ] Commit and open PR on Builder branch
 
 ## Depends on
 
@@ -92,3 +93,5 @@ Create `data/properties/9860-s-thomas-dr-unit-917-panama-city-beach-fl/audit.jso
 ## Notes
 
 This is the highest-confidence rent estimate in the US pipeline (documented actual STR gross). Rejection at 9.0% confirms that gross yield screening alone is insufficient — operating expenses (HOA + management) compress returns below threshold. Scout should continue scanning Laketown Wharf sibling units for better price points.
+
+Auditor PASS and Manager archive landed on `main` (commits `567625b`, `919b276`). Builder closeout adds regression tests and moves this task to done.
