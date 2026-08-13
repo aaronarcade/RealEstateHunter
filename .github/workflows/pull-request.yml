@@ -55,6 +55,7 @@ jobs:
       - name: Squash-merge agent PR
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GH_REPO: ${{ github.repository }}
         run: |
           set -euo pipefail
           PR="${{ github.event.pull_request.number }}"
