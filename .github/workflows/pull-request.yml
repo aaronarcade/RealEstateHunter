@@ -21,12 +21,26 @@ jobs:
           node-version: "22"
           cache: npm
 
-      - name: Root validate and test
-        run: npm ci && npm test && npm run validate
+      - name: Root install
+        run: npm ci
 
-      - name: Orchestrator build and test
+      - name: Root test
+        run: npm test
+
+      - name: Root validate
+        run: npm run validate
+
+      - name: Orchestrator install
         working-directory: orchestrator
-        run: npm ci && npm run build && npm test
+        run: npm ci
+
+      - name: Orchestrator build
+        working-directory: orchestrator
+        run: npm run build
+
+      - name: Orchestrator test
+        working-directory: orchestrator
+        run: npm test
 
   agent-auto-merge:
     needs: ci
@@ -38,7 +52,21 @@ jobs:
       contents: write
       pull-requests: write
     steps:
-      - name: Enable auto-merge (squash)
+      - name: Squash-merge agent PR
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: gh pr merge --auto --squash "${{ github.event.pull_request.number }}"
+          GH_REPO: ${{ github.repository }}
+        run: |
+          set -euo pipefail
+          PR="${{ github.event.pull_request.number }}"
+          gh pr view "$PR" --json number,state,mergeable,mergeStateStatus,url
+          if gh pr merge "$PR" --squash; then
+            echo "Merged PR #$PR via gh pr merge --squash"
+            exit 0
+          fi
+          echo "gh pr merge failed; trying REST merge API"
+          gh api \
+            --method PUT \
+            "repos/${{ github.repository }}/pulls/${PR}/merge" \
+            -f merge_method=squash \
+            -f commit_title="${{ github.event.pull_request.title }}"

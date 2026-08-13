@@ -156,3 +156,78 @@ test("reviewed-listing rejects RESEARCH scout_decision", () => {
   });
   assert.equal(valid, false);
 });
+
+const laketownId = "9860-s-thomas-dr-unit-917-panama-city-beach-fl";
+const laketownDir = new URL(
+  `../data/properties/${laketownId}/`,
+  import.meta.url,
+);
+
+test("TASK-014: Laketown Wharf evidence validates with verified rent", () => {
+  const evidence = readJson(new URL("evidence.json", laketownDir));
+  const { valid, errors } = validate("property-evidence.json", evidence);
+  assert.ok(valid, JSON.stringify(errors));
+  assert.equal(evidence.property_id, laketownId);
+  assert.equal(evidence.purchase_price.value, 279000);
+  assert.equal(evidence.purchase_price.status, "VERIFIED");
+  assert.equal(evidence.monthly_rent.value, 4417);
+  assert.equal(evidence.monthly_rent.status, "VERIFIED");
+  assert.equal(evidence.monthly_rent.confidence, "HIGH");
+  assert.equal(evidence.hoa_monthly.status, "ESTIMATED");
+  assert.equal(evidence.special_assessments.status, "UNKNOWN");
+});
+
+test("TASK-014: Laketown Wharf underwriting NOI and sub-10% cap rate", () => {
+  const underwriting = readJson(new URL("underwriting.json", laketownDir));
+  const { valid, errors } = validate("property-underwriting.json", underwriting);
+  assert.ok(valid, JSON.stringify(errors));
+  assert.equal(underwriting.proposed_status, "REJECTED");
+
+  const expenseSum = Object.values(underwriting.operating_expense_breakdown).reduce(
+    (sum, value) => sum + value,
+    0,
+  );
+  assert.equal(expenseSum, underwriting.annual_operating_expenses);
+
+  const expectedNoi =
+    underwriting.annual_gross_rent - underwriting.annual_operating_expenses;
+  assert.equal(underwriting.noi, expectedNoi);
+  assert.equal(underwriting.noi, 25080);
+
+  const purchasePrice = underwriting.input_summary.purchase_price.value;
+  assert.equal(purchasePrice, 279000);
+  const expectedCapRate = underwriting.noi / purchasePrice;
+  assert.ok(Math.abs(underwriting.cap_rate - expectedCapRate) < 1e-4);
+  assert.ok(Math.abs(underwriting.cap_rate - 0.0899) < 1e-4);
+  assert.ok(underwriting.cap_rate < 0.1);
+});
+
+test("TASK-014: Laketown Wharf audit PASS on REJECTED", () => {
+  const audit = readJson(new URL("audit.json", laketownDir));
+  const { valid, errors } = validate("property-audit.json", audit);
+  assert.ok(valid, JSON.stringify(errors));
+  assert.equal(audit.result, "PASS");
+  assert.equal(audit.final_status, "REJECTED");
+  assert.equal(audit.underwriter_proposed_status, "REJECTED");
+  assert.ok(Array.isArray(audit.findings) && audit.findings.length >= 3);
+  assert.ok(audit.findings.some((finding) => finding.field === "cap_rate"));
+});
+
+test("TASK-014: Laketown Wharf meta archived with 60-day diligence rescreen", () => {
+  const meta = readJson(new URL("meta.json", laketownDir));
+  const { valid, errors } = validate("property-meta.json", meta);
+  assert.ok(valid, JSON.stringify(errors));
+  assert.equal(meta.workflow_state, "ARCHIVED");
+  assert.equal(meta.archive_reason, "audit_reject");
+  assert.ok(meta.rescreen_after);
+  assert.equal(meta.screening_snapshot.price, 279000);
+  assert.equal(meta.screening_snapshot.rough_monthly_rent, 4417);
+  assert.equal(meta.audit_summary.final_status, "REJECTED");
+  assert.equal(meta.audit_summary.noi, 25080);
+  assert.ok(Math.abs(meta.audit_summary.cap_rate - 0.0899) < 1e-4);
+
+  const auditedAt = Date.parse(meta.audit_summary.audited_at);
+  const rescreenAfter = Date.parse(meta.rescreen_after);
+  const days = (rescreenAfter - auditedAt) / (1000 * 60 * 60 * 24);
+  assert.ok(days >= 59 && days <= 61, `expected ~60 day rescreen, got ${days}`);
+});

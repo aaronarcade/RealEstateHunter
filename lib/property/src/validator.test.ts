@@ -660,7 +660,8 @@ describe('SchemaValidator', () => {
 
       const result = validator.validateMeta(meta);
       expect(result.valid).toBe(true);
-      expect(meta.workflow_state).toBe('READY_FOR_UNDERWRITING');
+      // Advanced past READY_FOR_UNDERWRITING after TASK-012 / TASK-014 audit archive
+      expect(meta.workflow_state).toBe('ARCHIVED');
     });
 
     it('validates 225-celebration-pl evidence.json', async () => {
@@ -685,7 +686,8 @@ describe('SchemaValidator', () => {
 
       const result = validator.validateMeta(meta);
       expect(result.valid).toBe(true);
-      expect(meta.workflow_state).toBe('READY_FOR_UNDERWRITING');
+      // Advanced past READY_FOR_UNDERWRITING after underwriting / audit archive
+      expect(meta.workflow_state).toBe('ARCHIVED');
     });
 
     it('verifies all TASK-010 properties have required evidence fields', async () => {
@@ -713,6 +715,93 @@ describe('SchemaValidator', () => {
         expect(evidence.rental_restrictions, `${id} should have rental_restrictions`).toBeDefined();
         expect(evidence.str_restrictions, `${id} should have str_restrictions`).toBeDefined();
       }
+    });
+  });
+
+  describe('TASK-014 auditor review — Laketown Wharf Unit 917', () => {
+    const propertyId = '9860-s-thomas-dr-unit-917-panama-city-beach-fl';
+    const propertyDir = resolve(__dirname, `../../../data/properties/${propertyId}`);
+
+    it('validates evidence.json schema and key fields', async () => {
+      const { readFileSync } = await import('node:fs');
+      const evidence = JSON.parse(readFileSync(`${propertyDir}/evidence.json`, 'utf-8'));
+
+      const result = validator.validateEvidence(evidence);
+      expect(result.valid).toBe(true);
+      expect(evidence.property_id).toBe(propertyId);
+      expect(evidence.purchase_price.value).toBe(279000);
+      expect(evidence.purchase_price.status).toBe('VERIFIED');
+      expect(evidence.monthly_rent.value).toBe(4417);
+      expect(evidence.monthly_rent.status).toBe('VERIFIED');
+      expect(evidence.monthly_rent.confidence).toBe('HIGH');
+      expect(evidence.hoa_monthly.status).toBe('ESTIMATED');
+      expect(evidence.special_assessments.status).toBe('UNKNOWN');
+    });
+
+    it('validates underwriting.json and verifies NOI / cap rate math', async () => {
+      const { readFileSync } = await import('node:fs');
+      const underwriting = JSON.parse(readFileSync(`${propertyDir}/underwriting.json`, 'utf-8'));
+
+      const result = validator.validateUnderwriting(underwriting);
+      expect(result.valid).toBe(true);
+      expect(underwriting.proposed_status).toBe('REJECTED');
+
+      const expenseSum = Object.values(
+        underwriting.operating_expense_breakdown as Record<string, number>
+      ).reduce((sum, value) => sum + value, 0);
+      expect(expenseSum).toBe(underwriting.annual_operating_expenses);
+
+      const expectedNoi =
+        underwriting.annual_gross_rent - underwriting.annual_operating_expenses;
+      expect(underwriting.noi).toBe(expectedNoi);
+      expect(underwriting.noi).toBe(25080);
+
+      const purchasePrice = (
+        underwriting.input_summary?.purchase_price as { value?: number } | undefined
+      )?.value;
+      expect(purchasePrice).toBe(279000);
+      expect(purchasePrice).toBeDefined();
+      const expectedCapRate = underwriting.noi / (purchasePrice as number);
+      expect(underwriting.cap_rate).toBeCloseTo(expectedCapRate, 4);
+      expect(underwriting.cap_rate).toBeCloseTo(0.0899, 4);
+      expect(underwriting.cap_rate).toBeLessThan(0.1);
+    });
+
+    it('validates audit.json with PASS/REJECTED', async () => {
+      const { readFileSync } = await import('node:fs');
+      const audit = JSON.parse(readFileSync(`${propertyDir}/audit.json`, 'utf-8'));
+
+      const result = validator.validateAudit(audit);
+      expect(result.valid).toBe(true);
+      expect(audit.result).toBe('PASS');
+      expect(audit.final_status).toBe('REJECTED');
+      expect(audit.underwriter_proposed_status).toBe('REJECTED');
+      expect(audit.findings.length).toBeGreaterThanOrEqual(3);
+      expect(audit.findings.some((f: { field?: string }) => f.field === 'cap_rate')).toBe(true);
+    });
+
+    it('validates meta.json archived with diligence rescreen policy', async () => {
+      const { readFileSync } = await import('node:fs');
+      const meta = JSON.parse(readFileSync(`${propertyDir}/meta.json`, 'utf-8'));
+
+      const result = validator.validateMeta(meta);
+      expect(result.valid).toBe(true);
+      expect(meta.workflow_state).toBe('ARCHIVED');
+      expect(meta.archive_reason).toBe('audit_reject');
+      expect(meta.rescreen_after).toBeDefined();
+      expect(meta.screening_snapshot).toBeDefined();
+      expect(meta.screening_snapshot.price).toBe(279000);
+      expect(meta.screening_snapshot.rough_monthly_rent).toBe(4417);
+      expect(meta.audit_summary.final_status).toBe('REJECTED');
+      expect(meta.audit_summary.cap_rate).toBeCloseTo(0.0899, 4);
+      expect(meta.audit_summary.noi).toBe(25080);
+
+      const auditedAt = new Date(meta.audit_summary.audited_at);
+      const rescreenAfter = new Date(meta.rescreen_after);
+      const days =
+        (rescreenAfter.getTime() - auditedAt.getTime()) / (1000 * 60 * 60 * 24);
+      expect(days).toBeGreaterThanOrEqual(59);
+      expect(days).toBeLessThanOrEqual(61);
     });
   });
 });
