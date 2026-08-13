@@ -4,30 +4,45 @@
 **Assignee:** Scout  
 **Priority:** P0
 
-## Manager triage (2026-08-12)
+## Manager triage (2026-08-13)
 
-**Critical gap unchanged:** 5 of 6 US ACTIVE markets have zero scout coverage. US pipeline batch complete (2 audited REJECTED, 1 awaiting audit at 9.0%). Scout volume is now the top priority.
+**Critical gap unchanged for 5 markets; PCB inventory is ready now.**
 
-| Market | Priority | Listings Reviewed | RESEARCH | Target | Bulk Scrape |
-|--------|----------|-------------------|----------|--------|-------------|
+US pipeline fully audited: all 3 US RESEARCH properties ARCHIVED REJECTED (Horizon South 6.0%, Melia Celebration 7.85%, Laketown Wharf 9.0%). **Auditor queue empty. Analyst queue empty.** Scout volume is the only path to new VIABLE candidates.
+
+| Market | Priority | Listings Reviewed | RESEARCH open | Target | Bulk Scrape |
+|--------|----------|-------------------|---------------|--------|-------------|
+| Panama City Beach, FL | 3 | 5 | 0 (2 archived) | 40 / 3 | ✅ **1,074 condos** in scrape |
 | Tampa, FL | 1 | 0 | 0 | 40 / 3 | ❌ TASK-015 |
 | Jacksonville, FL | 2 | 0 | 0 | 40 / 3 | ❌ TASK-015 |
-| Panama City Beach, FL | 3 | 5 | 2 | 40 / 3 | ✅ available |
 | Birmingham, AL | 4 | 0 | 0 | 40 / 3 | ❌ TASK-015 |
 | Memphis, TN | 5 | 0 | 0 | 40 / 3 | ❌ TASK-015 |
 | Cleveland, OH | 6 | 0 | 0 | 40 / 3 | ❌ TASK-015 |
 
-**Total reviewed (NDJSON):** 47 — 39 Manta EC rejects, 6 US (5 PCB + 1 Celebration). US ACTIVE RESEARCH = 2.
+**Total reviewed (NDJSON):** 47 — 39 Manta EC rejects, 6 US (5 PCB + 1 Celebration), 2 Cuenca. **Open US ACTIVE RESEARCH = 0.**
 
-**Use bulk scrapes when available.** For PCB, filter `data/scrapes/panama-city-beach-fl-active-listings-2026-08-10.json` for `property_type: "condo"` and seed building addresses. For Tampa/Jacksonville/Birmingham/Memphis/Cleveland, wait for TASK-015 or manually search seed_buildings.
+### Execute immediately (do not wait for TASK-015)
 
-**Do not expand international** until US ACTIVE markets meet volume targets.
+**Phase A — Panama City Beach scrape (P0, unblocked):**
 
-## Phased sweep order
+1. Filter `data/scrapes/panama-city-beach-fl-active-listings-2026-08-10.json` for `property_type: "condo"` (~1,074 listings).
+2. Building clusters first (counts from scrape):
+   - Laketown Wharf — `9860 S Thomas` (**52 units**) — prior unit rejected at 9.0% cap; seek lower price / better HOA
+   - Horizon South — `17462 Front Beach` (**32 units**) — prior unit rejected at 6.0%
+   - Shores of Panama — `9900 Thomas Dr`
+   - Grand Panama — Gulf Dr / Thomas Dr corridor
+3. Review ≥40 condo listings; aim for ≥3 new RESEARCH (SCREENED) candidates.
+4. Log rejects to `data/reviewed/listings.ndjson`.
 
-1. **Phase A (P0):** Tampa + Jacksonville — condo-only, building-cluster search using `seed_buildings` in search-criteria
-2. **Phase B (P1):** Birmingham, Memphis, Cleveland — condo-only sweeps
-3. **Phase C:** Continue PCB building clusters (Laketown Wharf, Horizon South, Shores of Panama, Grand Panama)
+**Phase B — Tampa + Jacksonville seed buildings (P0, parallel):**
+
+Manual condo-building search using `seed_buildings` in `data/search-criteria.json` until TASK-015 lands. Do not stop at seed list — broaden to market condo filter.
+
+**Phase C — Birmingham, Memphis, Cleveland (P1):**
+
+Condo-only sweeps after Phase A/B progress, or immediately when TASK-015 scrapes arrive. Use new `seed_buildings` for these markets.
+
+**Do not expand international** until US ACTIVE markets meet volume targets or dry-market notes exist for each.
 
 ## Description
 
@@ -43,12 +58,14 @@ Follow `data/search-criteria.json` → `scout_instructions`, `market_sweep_order
 4. When one unit in a building passes yield screen, review other units in same building.
 5. Prefer established condo buildings (20+ units) with published HOA fees on listing.
 6. Record `building_name` and `unit` in `meta.json` when available.
+7. **Prefer markets with bulk scrapes** — PCB first in `market_sweep_order` until inventory is exhausted or targets met.
 
 ### Yield screening
 
 - Gross yield must be ≥ 10% to pass to RESEARCH.
 - For condos with stated HOA, also compute quick adjusted yield: `(monthly_rent - hoa_monthly) * 12 / price`. Flag if below 8% even when gross yield passes.
 - HOA over $500/month requires extra scrutiny (do not auto-reject, but note risk).
+- **Lesson from Laketown Wharf:** 19% gross can still fail underwriting after HOA + STR management — prefer units with lower HOA or stronger LTR comps when choosing among sibling units.
 
 ### Volume targets
 
@@ -58,7 +75,7 @@ Follow `data/search-criteria.json` → `scout_instructions`, `market_sweep_order
 | Research candidates total (US ACTIVE) | ≥ 10 |
 | Research candidates per market | ≥ 3 |
 
-**Do not stop early.** Continue scanning until targets are met or document dry-market rationale in PR description.
+**Do not stop early.** Continue scanning until targets are met or document dry-market rationale in scout_notes / commit message.
 
 ### Reject handling
 
@@ -84,7 +101,8 @@ For each candidate passing screen:
 
 ## Acceptance criteria
 
-- [ ] All 6 US ACTIVE markets searched with condo filter first
+- [ ] All 6 US ACTIVE markets searched with condo filter first (or dry-market note per market)
+- [ ] PCB: ≥40 condo listings reviewed from existing scrape; ≥3 new RESEARCH or documented shortfall
 - [ ] Volume targets met or documented shortfall with dry-market rationale per market
 - [ ] Each RESEARCH candidate has complete `meta.json` per schema
 - [ ] Building name and unit recorded when available
@@ -97,7 +115,8 @@ For each candidate passing screen:
 - `data/search-criteria.json` v4
 - `data/pipeline-status.json` — current gap snapshot
 - `schemas/property-meta.json`, `schemas/reviewed-listing.json`
+- PCB scrape available now; other markets accelerated by TASK-015
 
 ## Notes
 
-Panama City Beach has early success (2 RESEARCH, 19%+ gross yields). Use PCB seed buildings as a model for Tampa/Jacksonville cluster searches. Celebration FL remains WATCH — do not prioritize over ACTIVE markets. Use `data/scrapes/panama-city-beach-fl-active-listings-2026-08-10.json` as reference for bulk condo inventory in PCB. TASK-015 will add bulk scrapes for the five zero-coverage US ACTIVE markets.
+Prior PCB RESEARCH units underwrote below 10% after expenses — keep scanning sibling units at better price/HOA points. Celebration FL remains WATCH — do not prioritize over ACTIVE markets. TASK-015 (Builder P0) adds bulk scrapes for the five zero-coverage US ACTIVE markets.

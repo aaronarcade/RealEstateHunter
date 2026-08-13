@@ -1,11 +1,11 @@
 {
   "$schema": "../schemas/search-criteria.json",
   "version": 4,
-  "updated_at": "2026-08-12T08:10:00Z",
+  "updated_at": "2026-08-13T08:15:00Z",
   "updated_by": "manager",
   "target_cap_rate": 0.10,
   "target_yield_minimum": 0.10,
-  "notes": "Condo buildings first in US ACTIVE markets. Scout scans high volume (40+ listings/market); only RESEARCH listings that pass yield screen. Five US ACTIVE markets have zero scout coverage — TASK-015 bulk scrape is P1 Builder work to unblock volume. Defer new international scouting until Tampa, Jacksonville, Birmingham, Memphis, and Cleveland each have ≥3 RESEARCH candidates or documented dry-market rationale. See data/pipeline-status.json for current gap.",
+  "notes": "P0: Scout condo volume on US ACTIVE markets. PCB scrape has ~1,074 condos — sweep that inventory first (market_sweep_order). Five other ACTIVE markets need TASK-015 scrapes for scale; use seed_buildings manually until then. Prior US RESEARCH all archived REJECTED after underwriting (gross yield ≠ cap rate). Defer new international RESEARCH until each US ACTIVE market has ≥3 RESEARCH candidates or a dry-market note. See data/pipeline-status.json.",
   "asset_focus": {
     "primary": "condo",
     "prioritize_condo_buildings": true,
@@ -17,192 +17,21 @@
       "name": "Tampa, FL",
       "priority": 1,
       "status": "ACTIVE",
-      "rationale": "Strong rental demand, no state income tax, diverse economy"
+      "rationale": "Strong rental demand, no state income tax, diverse economy — zero scout coverage; seed buildings + TASK-015"
     },
     {
       "id": "jacksonville-fl",
       "name": "Jacksonville, FL",
       "priority": 2,
       "status": "ACTIVE",
-      "rationale": "Affordable price points, growing population, military presence"
+      "rationale": "Affordable price points, growing population, military presence — zero scout coverage; seed buildings + TASK-015"
     },
     {
       "id": "panama-city-beach-fl",
       "name": "Panama City Beach, FL",
       "priority": 3,
       "status": "ACTIVE",
-      "rationale": "Strong STR market, 2 candidates passed yield screen (19%+), established condo buildings with documented rental history",
-      "added": "2026-08-10",
-      "added_by": "manager"
-    },
-    {
-      "id": "fort-walton-beach-fl",
-      "name": "Fort Walton Beach / Destin, FL",
-      "priority": 8,
-      "status": "WATCH",
-      "rationale": "Emerald Coast STR/LTR market; bulk scrape added 1,151 active listings (FWB + Destin) for market research baseline.",
-      "added": "2026-08-10",
-      "added_by": "manager"
-    },
-    {
-      "id": "merida-centro-mx",
-      "name": "Centro Mérida, Mexico",
-      "priority": 9,
-      "status": "WATCH",
-      "rationale": "Historic center MXN market; international portals blocked in automated scrape — monitor manually or via browser session.",
-      "added": "2026-08-10",
-      "added_by": "manager"
-    },
-    {
-      "id": "cuenca-ecuador",
-      "name": "Cuenca, Ecuador",
-      "priority": 10,
-      "status": "WATCH",
-      "rationale": "Expat rental market; YapaTree scrape yields 71 active for-sale listings in USD for market research.",
-      "added": "2026-08-10",
-      "added_by": "manager"
-    },
-    {
-      "id": "tbilisi-ge",
-      "name": "Tbilisi, Georgia",
-      "priority": 11,
-      "status": "WATCH",
-      "rationale": "Documented 10-14% gross LTR condo yields; ss.ge USD flat inventory for market research baseline.",
-      "added": "2026-08-11",
-      "added_by": "builder"
-    },
-    {
-      "id": "budapest-hu",
-      "name": "Budapest, Hungary",
-      "priority": 12,
-      "status": "WATCH",
-      "rationale": "Central EU gross yields often 8-12%+; Realtor International GraphQL bulk scrape.",
-      "added": "2026-08-11",
-      "added_by": "builder"
-    },
-    {
-      "id": "bucharest-ro",
-      "name": "Bucharest, Romania",
-      "priority": 13,
-      "status": "WATCH",
-      "rationale": "High EU gross yields; Realtor International GraphQL bulk scrape.",
-      "added": "2026-08-11",
-      "added_by": "builder"
-    },
-    {
-      "id": "panama-city-pa",
-      "name": "Panama City, Panama",
-      "priority": 15,
-      "status": "WATCH",
-      "rationale": "USD economy; condo gross yields 7-10%+ in Costa del Este/Punta Pacifica.",
-      "added": "2026-08-11",
-      "added_by": "builder"
-    },
-    {
-      "id": "manila-ph",
-      "name": "Manila (Metro), Philippines",
-      "priority": 16,
-      "status": "WATCH",
-      "rationale": "Condo rental gross yields often 10%+; limited Realtor intl inventory.",
-      "added": "2026-08-11",
-      "added_by": "builder"
-    },
-    {
-      "id": "bali-id",
-      "name": "Bali (Denpasar/Seminyak), Indonesia",
-      "priority": 18,
-      "status": "WATCH",
-      "rationale": "STR gross can exceed 10% on paper in Seminyak/Canggu corridor.",
-      "added": "2026-08-11",
-      "added_by": "builder"
-    },
-    {
-      "id": "krakow-pl",
-      "name": "Kraków, Poland",
-      "priority": 19,
-      "status": "WATCH",
-      "rationale": "EU yield play; gross 7-10%+ in Kraków proper (Małopolskie filtered).",
-      "added": "2026-08-11",
-      "added_by": "builder"
-    },
-    {
-      "id": "playa-del-carmen-mx",
-      "name": "Playa del Carmen, Mexico",
-      "priority": 20,
-      "status": "WATCH",
-      "rationale": "Riviera Maya STR tourism gross yields; complements blocked Mérida scrape.",
-      "added": "2026-08-11",
-      "added_by": "builder"
-    },
-    {
-      "id": "st-augustine-fl",
-      "name": "St Augustine, FL",
-      "priority": 11,
-      "status": "WATCH",
-      "rationale": "Historic/coastal FL market; Redfin bulk scrape adds ~2,200 active listings for condo/LTR yield screening.",
-      "added": "2026-08-10",
-      "added_by": "manager"
-    },
-    {
-      "id": "colmar-fr",
-      "name": "Colmar, France",
-      "priority": 12,
-      "status": "WATCH",
-      "rationale": "Alsace tourism/LTR market; Realtor International aggregator (SeLoger blocked) for EUR-priced inventory baseline.",
-      "added": "2026-08-10",
-      "added_by": "manager"
-    },
-    {
-      "id": "kyoto-jp",
-      "name": "Kyoto, Japan",
-      "priority": 13,
-      "status": "WATCH",
-      "rationale": "Cultural tourism + expat rental demand; JPY listings via Realtor International (Suumo/Homes blocked to bots).",
-      "added": "2026-08-10",
-      "added_by": "manager"
-    },
-    {
-      "id": "manta-ec",
-      "name": "Manta, Ecuador",
-      "priority": 14,
-      "status": "WATCH",
-      "rationale": "Existing pipeline market (Barbasquillo condos); Trivo developer inventory + Encuentra24 resale when accessible.",
-      "added": "2026-08-10",
-      "added_by": "manager"
-    },
-    {
-      "id": "lisbon-pt",
-      "name": "Lisbon, Portugal",
-      "priority": 15,
-      "status": "WATCH",
-      "rationale": "EU capital LTR/STR; Imovirtual bulk scrape ~7.7k EUR listings for yield research.",
-      "added": "2026-08-10",
-      "added_by": "manager"
-    },
-    {
-      "id": "porto-pt",
-      "name": "Porto, Portugal",
-      "priority": 16,
-      "status": "WATCH",
-      "rationale": "Lower entry than Lisbon; Imovirtual ~9k active listings; expat/digital-nomad rental demand.",
-      "added": "2026-08-10",
-      "added_by": "manager"
-    },
-    {
-      "id": "medellin-co",
-      "name": "Medellín, Colombia",
-      "priority": 17,
-      "status": "WATCH",
-      "rationale": "Expat LTR yield hub; FincaRaiz bulk scrape ~11k COP listings for market research baseline.",
-      "added": "2026-08-10",
-      "added_by": "manager"
-    },
-    {
-      "id": "chiang-mai-th",
-      "name": "Chiang Mai, Thailand",
-      "priority": 18,
-      "status": "WATCH",
-      "rationale": "Nomad rental hub; DotProperty JSON-LD scrape ~113 THB listings for LTR/STR research.",
+      "rationale": "Only US ACTIVE market with bulk scrape (~1,074 condos). Prior RESEARCH underwrote below 10% after HOA/management — continue building clusters for better entry points.",
       "added": "2026-08-10",
       "added_by": "manager"
     },
@@ -211,28 +40,199 @@
       "name": "Birmingham, AL",
       "priority": 4,
       "status": "ACTIVE",
-      "rationale": "Low entry prices, potential for higher yields"
+      "rationale": "Low entry prices, potential for higher yields — zero coverage; condo seed buildings + TASK-015"
     },
     {
       "id": "memphis-tn",
       "name": "Memphis, TN",
       "priority": 5,
       "status": "ACTIVE",
-      "rationale": "Strong rental market, affordable prices, no state income tax"
+      "rationale": "Strong rental market, affordable prices, no state income tax — zero coverage; condo seed buildings + TASK-015"
     },
     {
       "id": "cleveland-oh",
       "name": "Cleveland, OH",
       "priority": 6,
       "status": "ACTIVE",
-      "rationale": "Low prices relative to rent, diverse employment base"
+      "rationale": "Low prices relative to rent, diverse employment base — zero coverage; condo seed buildings + TASK-015"
     },
     {
       "id": "celebration-fl",
       "name": "Celebration, FL (Orlando metro)",
       "priority": 7,
       "status": "WATCH",
-      "rationale": "Condo-hotel model found (Melia); high HOA ($1,242/mo) but 20%+ gross yield. Monitor for price drops.",
+      "rationale": "Condo-hotel model found (Melia); audited REJECTED at 7.85% cap. Monitor for price drops only — do not prioritize over ACTIVE.",
+      "added": "2026-08-10",
+      "added_by": "manager"
+    },
+    {
+      "id": "fort-walton-beach-fl",
+      "name": "Fort Walton Beach / Destin, FL",
+      "priority": 8,
+      "status": "WATCH",
+      "rationale": "Emerald Coast STR/LTR market; bulk scrape baseline exists. Activate only after US ACTIVE volume targets met.",
+      "added": "2026-08-10",
+      "added_by": "manager"
+    },
+    {
+      "id": "st-augustine-fl",
+      "name": "St Augustine, FL",
+      "priority": 9,
+      "status": "WATCH",
+      "rationale": "Historic/coastal FL market; Redfin bulk scrape baseline. Defer until ACTIVE markets saturated.",
+      "added": "2026-08-10",
+      "added_by": "manager"
+    },
+    {
+      "id": "manta-ec",
+      "name": "Manta, Ecuador",
+      "priority": 10,
+      "status": "WATCH",
+      "rationale": "Large international backlog (READY_FOR_UNDERWRITING / ARCHIVED). Defer new RESEARCH until US ACTIVE targets met.",
+      "added": "2026-08-10",
+      "added_by": "manager"
+    },
+    {
+      "id": "cuenca-ecuador",
+      "name": "Cuenca, Ecuador",
+      "priority": 11,
+      "status": "WATCH",
+      "rationale": "Expat rental market; YapaTree scrape baseline. Defer until US ACTIVE targets met.",
+      "added": "2026-08-10",
+      "added_by": "manager"
+    },
+    {
+      "id": "merida-centro-mx",
+      "name": "Centro Mérida, Mexico",
+      "priority": 12,
+      "status": "WATCH",
+      "rationale": "Historic center MXN market; international portals often blocked — monitor only.",
+      "added": "2026-08-10",
+      "added_by": "manager"
+    },
+    {
+      "id": "playa-del-carmen-mx",
+      "name": "Playa del Carmen, Mexico",
+      "priority": 13,
+      "status": "WATCH",
+      "rationale": "Riviera Maya STR tourism gross yields; complements Mérida. Defer.",
+      "added": "2026-08-11",
+      "added_by": "builder"
+    },
+    {
+      "id": "medellin-co",
+      "name": "Medellín, Colombia",
+      "priority": 14,
+      "status": "WATCH",
+      "rationale": "Expat LTR yield hub; FincaRaiz / intl scrape baselines. Defer.",
+      "added": "2026-08-10",
+      "added_by": "manager"
+    },
+    {
+      "id": "panama-city-pa",
+      "name": "Panama City, Panama",
+      "priority": 15,
+      "status": "WATCH",
+      "rationale": "USD economy; condo gross yields 7-10%+ in Costa del Este/Punta Pacifica. Defer.",
+      "added": "2026-08-11",
+      "added_by": "builder"
+    },
+    {
+      "id": "lisbon-pt",
+      "name": "Lisbon, Portugal",
+      "priority": 16,
+      "status": "WATCH",
+      "rationale": "EU capital LTR/STR; Imovirtual scrape baseline. Defer.",
+      "added": "2026-08-10",
+      "added_by": "manager"
+    },
+    {
+      "id": "porto-pt",
+      "name": "Porto, Portugal",
+      "priority": 17,
+      "status": "WATCH",
+      "rationale": "Lower entry than Lisbon; Imovirtual scrape baseline. Defer.",
+      "added": "2026-08-10",
+      "added_by": "manager"
+    },
+    {
+      "id": "tbilisi-ge",
+      "name": "Tbilisi, Georgia",
+      "priority": 18,
+      "status": "WATCH",
+      "rationale": "Documented 10-14% gross LTR condo yields; ss.ge baseline. Defer.",
+      "added": "2026-08-11",
+      "added_by": "builder"
+    },
+    {
+      "id": "budapest-hu",
+      "name": "Budapest, Hungary",
+      "priority": 19,
+      "status": "WATCH",
+      "rationale": "Central EU gross yields often 8-12%+; Realtor International baseline. Defer.",
+      "added": "2026-08-11",
+      "added_by": "builder"
+    },
+    {
+      "id": "bucharest-ro",
+      "name": "Bucharest, Romania",
+      "priority": 20,
+      "status": "WATCH",
+      "rationale": "High EU gross yields; Realtor International baseline. Defer.",
+      "added": "2026-08-11",
+      "added_by": "builder"
+    },
+    {
+      "id": "krakow-pl",
+      "name": "Kraków, Poland",
+      "priority": 21,
+      "status": "WATCH",
+      "rationale": "EU yield play; gross 7-10%+ in Kraków proper. Defer.",
+      "added": "2026-08-11",
+      "added_by": "builder"
+    },
+    {
+      "id": "chiang-mai-th",
+      "name": "Chiang Mai, Thailand",
+      "priority": 22,
+      "status": "WATCH",
+      "rationale": "Nomad/LTR hub; DotProperty scrape baseline. Defer.",
+      "added": "2026-08-10",
+      "added_by": "manager"
+    },
+    {
+      "id": "manila-ph",
+      "name": "Manila (Metro), Philippines",
+      "priority": 23,
+      "status": "WATCH",
+      "rationale": "Condo rental gross yields often 10%+; limited Realtor intl inventory. Defer.",
+      "added": "2026-08-11",
+      "added_by": "builder"
+    },
+    {
+      "id": "bali-id",
+      "name": "Bali (Denpasar/Seminyak), Indonesia",
+      "priority": 24,
+      "status": "WATCH",
+      "rationale": "STR gross can exceed 10% on paper in Seminyak/Canggu corridor. Defer.",
+      "added": "2026-08-11",
+      "added_by": "builder"
+    },
+    {
+      "id": "colmar-fr",
+      "name": "Colmar, France",
+      "priority": 25,
+      "status": "WATCH",
+      "rationale": "Alsace tourism/LTR market; Realtor International baseline. Defer.",
+      "added": "2026-08-10",
+      "added_by": "manager"
+    },
+    {
+      "id": "kyoto-jp",
+      "name": "Kyoto, Japan",
+      "priority": 26,
+      "status": "WATCH",
+      "rationale": "Cultural tourism + expat rental demand; JPY listings via Realtor International. Defer.",
       "added": "2026-08-10",
       "added_by": "manager"
     }
@@ -255,32 +255,35 @@
     ]
   },
   "scout_instructions": {
-    "sources": ["Zillow", "Realtor.com", "Redfin", "MLS listings"],
-    "screening_threshold": "Rough gross yield must be >= target_yield_minimum (10%) to pass to RESEARCH. Reject below 10%.",
+    "sources": ["Zillow", "Realtor.com", "Redfin", "MLS listings", "data/scrapes bulk JSON when available"],
+    "screening_threshold": "Rough gross yield must be >= target_yield_minimum (10%) to pass to RESEARCH. Reject below 10%. Note: prior PCB units with 19%+ gross still failed underwriting after HOA + STR management — prefer lower HOA / stronger LTR when choosing among siblings.",
     "volume_targets": {
       "listings_reviewed_per_market_min": 40,
       "research_candidates_total_min": 10,
       "research_candidates_per_market_min": 3,
       "do_not_stop_early": true,
       "us_active_markets_first": true,
-      "defer_international_until_us_targets_met": true
+      "defer_international_until_us_targets_met": true,
+      "prefer_markets_with_bulk_scrapes": true
     },
     "market_sweep_order": [
+      "panama-city-beach-fl",
       "tampa-fl",
       "jacksonville-fl",
       "birmingham-al",
       "memphis-tn",
-      "cleveland-oh",
-      "panama-city-beach-fl"
+      "cleveland-oh"
     ],
-    "defer_non_us_markets": "Do not add new Manta/Cuenca/international RESEARCH candidates until all US ACTIVE markets in market_sweep_order have ≥3 RESEARCH candidates or a documented dry-market note in scout_notes.",
+    "defer_non_us_markets": "Do not add new Manta/Cuenca/international RESEARCH candidates until all US ACTIVE markets in market_sweep_order have ≥3 RESEARCH candidates or a documented dry-market note in scout_notes. International READY_FOR_UNDERWRITING backlog stays parked.",
     "condo_building_search": {
       "enabled": true,
       "strategy": [
         "Filter each market for Condo / Condominium only before SFH or townhouse.",
+        "When a bulk scrape exists, filter property_type=condo and sort/group by address pattern before open-web search.",
         "Search by building name or street address when a condo complex has multiple active listings.",
         "When one unit in a building passes yield screen, review other units in the same building.",
         "Prefer established condo buildings (20+ units) with published HOA fees on the listing.",
+        "Among sibling units, prefer lower advertised HOA and clearer LTR rent support (lesson from Laketown Wharf 9.0% reject).",
         "Record building_name and unit in meta.json when available."
       ],
       "building_signals": [
@@ -298,22 +301,22 @@
           {
             "name": "Laketown Wharf",
             "address_pattern": "9860 S Thomas Dr",
-            "notes": "Large STR tower; 1 RESEARCH unit screened — scan all active units"
+            "notes": "52 active scrape listings. Unit 917 archived REJECTED at 9.0% cap — scan siblings for lower price or lower HOA"
           },
           {
             "name": "Horizon South",
             "address_pattern": "17462 Front Beach Rd",
-            "notes": "STR-friendly; 1 unit underwritten REJECTED — scan sibling units"
+            "notes": "32 active scrape listings. Unit 31C archived REJECTED at 6.0% — scan siblings only if price/HOA materially better"
           },
           {
             "name": "Shores of Panama",
             "address_pattern": "9900 Thomas Dr",
-            "notes": "High-volume PCB condo building"
+            "notes": "High-volume PCB condo building — prioritize unscreened inventory"
           },
           {
             "name": "Grand Panama",
             "address_pattern": "5323 Gulf Dr",
-            "notes": "Beachfront condo tower with multiple investor listings"
+            "notes": "Beachfront condo tower; also search Thomas Dr / Front Beach corridor aliases"
           }
         ],
         "tampa-fl": [
@@ -326,6 +329,16 @@
             "name": "The Slade",
             "address_pattern": "1001 Channelside Dr",
             "notes": "Channelside high-rise with investor-friendly units"
+          },
+          {
+            "name": "The Place at Channelside",
+            "address_pattern": "Channelside Dr",
+            "notes": "Additional Channelside condo inventory cluster"
+          },
+          {
+            "name": "Grand Central at Kennedy",
+            "address_pattern": "Grand Central",
+            "notes": "West Tampa / Grand Central condo corridor"
           }
         ],
         "jacksonville-fl": [
@@ -338,42 +351,67 @@
             "name": "San Marco Place",
             "address_pattern": "San Marco Blvd",
             "notes": "Established San Marco condo building"
+          },
+          {
+            "name": "Berkman Plaza",
+            "address_pattern": "Berkman Plaza",
+            "notes": "Downtown Northbank condo towers"
+          },
+          {
+            "name": "Brooklyn Riverside",
+            "address_pattern": "Brooklyn",
+            "notes": "Brooklyn neighborhood condo buildings near riverside"
           }
         ],
         "birmingham-al": [
           {
-            "name": "Park Place Tower",
-            "address_pattern": "2001 Park Pl S",
-            "notes": "Downtown Birmingham high-rise condos; investor-friendly price points"
+            "name": "The Zinszer",
+            "address_pattern": "2025 2nd Ave N",
+            "notes": "Downtown Birmingham loft/condo conversion — start here"
           },
           {
-            "name": "The Phoenix Building",
-            "address_pattern": "301 20th St N",
-            "notes": "Historic loft/condo conversion in downtown core"
+            "name": "Parkside",
+            "address_pattern": "Parkside",
+            "notes": "Railroad Park / Parkside condo corridor"
+          },
+          {
+            "name": "The Tower at City Federal",
+            "address_pattern": "2026 1st Ave N",
+            "notes": "Downtown adaptive-reuse condo tower"
           }
         ],
         "memphis-tn": [
           {
             "name": "Harbor Town",
             "address_pattern": "Harbor Town",
-            "notes": "Master-planned riverfront community with condo inventory"
+            "notes": "Mud Island Harbor Town condo/townhome inventory"
           },
           {
-            "name": "Peabody Place",
-            "address_pattern": "Peabody Pl",
-            "notes": "Downtown Memphis condo building near entertainment district"
+            "name": "South Bluffs",
+            "address_pattern": "South Bluffs",
+            "notes": "Downtown South Bluffs condo buildings"
+          },
+          {
+            "name": "The Sterling",
+            "address_pattern": "92 S Front St",
+            "notes": "Downtown Front Street condo building"
           }
         ],
         "cleveland-oh": [
           {
-            "name": "The Avenue District",
-            "address_pattern": "Euclid Ave",
-            "notes": "Downtown Cleveland condo towers with rental demand"
+            "name": "Stonebridge Condominiums",
+            "address_pattern": "Stonebridge",
+            "notes": "Flats / Warehouse District condo cluster"
           },
           {
-            "name": "Flats East Bank",
-            "address_pattern": "Flats East Bank",
-            "notes": "Riverfront condo community; scan all active units"
+            "name": "The Avenue District",
+            "address_pattern": "Avenue District",
+            "notes": "Near West Side condo buildings"
+          },
+          {
+            "name": "Residences at 668",
+            "address_pattern": "668 Euclid",
+            "notes": "Downtown Euclid Avenue condo residences"
           }
         ]
       }
@@ -381,7 +419,8 @@
     "flags": [
       "HOA over $500/month requires extra scrutiny",
       "Known special assessments are a yellow flag",
-      "STR restrictions may limit upside but do not disqualify for LTR strategy"
+      "STR restrictions may limit upside but do not disqualify for LTR strategy",
+      "High gross yield with HOA >$500 and STR management assumptions often fails 10% cap — prefer LTR comps when available"
     ]
   },
   "rescreen_policy": {

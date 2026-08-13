@@ -2,13 +2,21 @@
 
 **Status:** BACKLOG  
 **Assignee:** Builder  
-**Priority:** P1
+**Priority:** P0
+
+## Manager triage (2026-08-13)
+
+**Elevated to P0.** Scout (TASK-009) can execute PCB immediately from the existing scrape, but Tampa, Jacksonville, Birmingham, Memphis, and Cleveland still have **zero** bulk inventory. Without this task, Scout cannot hit 40 listings/market on five of six US ACTIVE markets at scale.
+
+Ship Phase A (Tampa + Jacksonville) first if sequencing is required; then Birmingham, Memphis, Cleveland.
+
+Do **not** scrape new international markets until these five US files exist.
 
 ## Description
 
 Bulk-scrape active for-sale listings for the five US ACTIVE markets with **zero scout coverage** so Scout can meet volume targets (40+ listings reviewed per market) without manual one-by-one search.
 
-Only Panama City Beach currently has a bulk scrape (`data/scrapes/panama-city-beach-fl-active-listings-2026-08-10.json`, 2,700 listings). Tampa, Jacksonville, Birmingham, Memphis, and Cleveland have none.
+Only Panama City Beach currently has a bulk scrape (`data/scrapes/panama-city-beach-fl-active-listings-2026-08-10.json`, 2,700 listings / ~1,074 condos). Tampa, Jacksonville, Birmingham, Memphis, and Cleveland have none.
 
 ## Markets to scrape
 
@@ -47,8 +55,8 @@ After scrape, Scout (TASK-009) filters `property_type: "condo"`, applies yield s
 
 ## Blocks
 
-- TASK-009 Scout volume sweep (Phase A Tampa/Jacksonville, Phase B Birmingham/Memphis/Cleveland)
+- TASK-009 Scout volume sweep Phases B–C at full volume (Tampa/Jacksonville/Birmingham/Memphis/Cleveland)
 
 ## Notes
 
-Manager triage (2026-08-12): This is the top Builder priority. Scout cannot meet 40 listings/market targets on five zero-coverage markets without bulk inventory. Do not scrape new international markets until US ACTIVE targets are met.
+PCB is **not** blocked — Scout should process the existing PCB scrape in parallel. This task unblocks the other five ACTIVE markets only.
