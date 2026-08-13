@@ -147,6 +147,23 @@ Credentials via `SUPABASE_URL` + keys in environment/secrets only. Service role 
 
 ---
 
+## ADR-011: Multi-state Redfin GIS scrapes for US ACTIVE markets
+
+**Date:** 2026-08-13  
+**Status:** Accepted
+
+**Context:** Scout volume targets for Tampa, Jacksonville, Birmingham, Memphis, and Cleveland were blocked because only Florida markets could be scraped (`mapHome` hard-coded `state === 'FL'`). PCB already had a Redfin bulk dump; the other five ACTIVE markets had none.
+
+**Decision:**
+
+1. Extend `scripts/scrape-redfin-market.mjs` with `--state`, `--condo-only`, and parameterized allowed-state filtering (still Redfin GIS; no new dependencies).
+2. Add `scripts/scrape-us-active-markets.mjs` with documented city `region_id`s (type 6) for the five markets.
+3. Expand `schemas/market-listing.json` `market_area` enum and sync/`MARKET_ID_BY_AREA` maps so Supabase + Streamlit accept the new areas.
+
+**Consequences:** Builder can produce `data/scrapes/{market-id}-active-listings-YYYY-MM-DD.json` for multi-state US markets. Live GIS calls require egress to `www.redfin.com`. Scout (TASK-009) consumes condo-filtered inventory without one-by-one search.
+
+---
+
 ## Template
 
 ```markdown

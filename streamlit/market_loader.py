@@ -34,8 +34,14 @@ MARKET_ID_BY_AREA = {
     'poinciana': 'poinciana-fl',
     'panama-city-beach': 'panama-city-beach-fl',
     'fort-walton-beach': 'fort-walton-beach-fl',
+    'tampa': 'tampa-fl',
+    'jacksonville': 'jacksonville-fl',
+    'birmingham': 'birmingham-al',
+    'memphis': 'memphis-tn',
+    'cleveland': 'cleveland-oh',
     'merida-centro': 'merida-centro-mx',
     'cuenca': 'cuenca-ecuador',
+    'st-augustine': 'st-augustine-fl',
 }
 
 

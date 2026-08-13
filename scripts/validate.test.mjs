@@ -119,6 +119,36 @@ test("meta rejects rent_confidence outside enum", () => {
   assert.equal(valid, false);
 });
 
+test("market-listing accepts new US ACTIVE market_area values", () => {
+  for (const [marketArea, marketId, state] of [
+    ["tampa", "tampa-fl", "FL"],
+    ["jacksonville", "jacksonville-fl", "FL"],
+    ["birmingham", "birmingham-al", "AL"],
+    ["memphis", "memphis-tn", "TN"],
+    ["cleveland", "cleveland-oh", "OH"],
+  ]) {
+    const { valid, errors } = validate("market-listing.json", {
+      id: `sample-${marketId}`,
+      address: "100 Main St Unit 1",
+      city: "Sample",
+      state,
+      market_area: marketArea,
+      market_id: marketId,
+      listing_url: "https://www.redfin.com/example/home/1",
+      source: "redfin",
+      scrape_batch: `${marketId}-active-listings`,
+      scraped_at: "2026-08-13T12:00:00Z",
+      asking_price: 200000,
+      beds: 2,
+      baths: 2,
+      property_type: "condo",
+      hoa_monthly: 350,
+      mls_id: "MLS1",
+    });
+    assert.equal(valid, true, `${marketArea}: ${JSON.stringify(errors)}`);
+  }
+});
+
 test("meta rejects rough_gross_yield above 1.0", () => {
   const { valid } = validate("property-meta.json", {
     id: "x",
