@@ -1,9 +1,9 @@
 # TASK-014: Auditor review — REJECTED Laketown Wharf (9860 S Thomas Dr)
 
 **Status:** DONE  
-**Assignee:** Auditor  
+**Assignee:** Auditor (+ Builder validation closeout)  
 **Priority:** P1  
-**Completed:** 2026-08-12
+**Completed:** 2026-08-12 (audit) / 2026-08-13 (Builder tests, PR #33)
 
 ## Outcome
 
@@ -20,7 +20,14 @@ Auditor **PASS** on REJECTED classification for `9860-s-thomas-dr-unit-917-panam
 - [x] Underwriting calculations verified
 - [x] `audit.json` created with result and findings
 - [x] `meta.json` updated to ARCHIVED with rescreen policy
-- [x] Commit and push to `main`
+- [x] Commit and push to `main` (Auditor/Manager)
+- [x] Schema / math regression tests (Builder PR #33)
+
+## Builder closeout (PR #33)
+
+- Added TASK-014 coverage in `scripts/validate.test.mjs` and `lib/property/src/validator.test.ts`
+- Fixed stale TASK-010 workflow_state expectations (ARCHIVED)
+- Hardened PR CI (split steps, pin test entrypoint, GH_REPO for agent merge)
 
 ## Follow-up (Manager 2026-08-13)
 
