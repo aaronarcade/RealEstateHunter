@@ -55,4 +55,17 @@ jobs:
       - name: Squash-merge agent PR
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: gh pr merge --squash --delete-branch "${{ github.event.pull_request.number }}"
+        run: |
+          set -euo pipefail
+          PR="${{ github.event.pull_request.number }}"
+          gh pr view "$PR" --json number,state,mergeable,mergeStateStatus,url
+          if gh pr merge "$PR" --squash; then
+            echo "Merged PR #$PR via gh pr merge --squash"
+            exit 0
+          fi
+          echo "gh pr merge failed; trying REST merge API"
+          gh api \
+            --method PUT \
+            "repos/${{ github.repository }}/pulls/${PR}/merge" \
+            -f merge_method=squash \
+            -f commit_title="${{ github.event.pull_request.title }}"
