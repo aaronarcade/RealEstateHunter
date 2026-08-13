@@ -21,12 +21,26 @@ jobs:
           node-version: "22"
           cache: npm
 
-      - name: Root validate and test
-        run: npm ci && npm test && npm run validate
+      - name: Root install
+        run: npm ci
 
-      - name: Orchestrator build and test
+      - name: Root test
+        run: npm test
+
+      - name: Root validate
+        run: npm run validate
+
+      - name: Orchestrator install
         working-directory: orchestrator
-        run: npm ci && npm run build && npm test
+        run: npm ci
+
+      - name: Orchestrator build
+        working-directory: orchestrator
+        run: npm run build
+
+      - name: Orchestrator test
+        working-directory: orchestrator
+        run: npm test
 
   agent-auto-merge:
     needs: ci
