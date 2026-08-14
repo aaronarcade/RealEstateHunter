@@ -25,9 +25,9 @@
       "agentId": "bc-9743b922-4287-47a3-97e4-9beb6c5d9205",
       "runId": "run-01c49309-a947-4209-91c7-44a27da626da",
       "agentUrl": "https://cursor.com/agents/bc-9743b922-4287-47a3-97e4-9beb6c5d9205",
-      "status": "ACTIVE",
+      "status": "ERROR",
       "createdAt": "2026-08-13T08:10:52.462Z",
-      "updatedAt": "2026-08-13T08:10:52.462Z"
+      "updatedAt": "2026-08-14T08:06:59.740Z"
     },
     "builder:task:TASK-002:implement-task": {
       "workKey": "builder:task:TASK-002:implement-task",
@@ -361,9 +361,9 @@
       "agentId": "bc-5366b6f2-38bc-4531-a4db-a8623f9487f5",
       "runId": "run-479b0b05-950e-4ba8-968b-fee4adf234df",
       "agentUrl": "https://cursor.com/agents/bc-5366b6f2-38bc-4531-a4db-a8623f9487f5",
-      "status": "ACTIVE",
+      "status": "ERROR",
       "createdAt": "2026-08-13T08:10:55.417Z",
-      "updatedAt": "2026-08-13T08:10:55.417Z"
+      "updatedAt": "2026-08-14T08:07:00.116Z"
     },
     "builder:task:TASK-015:implement-task": {
       "workKey": "builder:task:TASK-015:implement-task",
@@ -375,9 +375,9 @@
       "agentId": "bc-f39efa42-05d6-472e-a41e-be830d57a7fd",
       "runId": "run-3ed6a6ee-7d28-47ba-a0f7-1bf92b40633f",
       "agentUrl": "https://cursor.com/agents/bc-f39efa42-05d6-472e-a41e-be830d57a7fd",
-      "status": "ACTIVE",
+      "status": "ERROR",
       "createdAt": "2026-08-13T08:10:58.057Z",
-      "updatedAt": "2026-08-13T08:10:58.057Z"
+      "updatedAt": "2026-08-14T08:07:00.476Z"
     }
   }
 }
