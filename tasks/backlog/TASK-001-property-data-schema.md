@@ -21,11 +21,11 @@ Implement the property evidence and workflow file structure defined in `docs/ARC
 2. **`property-status`** — show workflow state for one or all properties
 3. **`create-property`** — initialize meta.json (lowest priority; Scout creates directly)
 
-## Manager triage (2026-08-13)
+## Manager triage (2026-08-15)
 
 **Remains P3.** Scout (TASK-009) and Analyst create/update property JSON directly. `scripts/validate.mjs` and `lib/property` cover schema validation in CI.
 
-Complete helper scripts only if orchestrator or agents report friction at volume. Behind TASK-015.
+Complete helper scripts only if orchestrator or agents report friction at volume. Behind TASK-015 (P0 Scout volume unblock).
 
 ## Notes
 

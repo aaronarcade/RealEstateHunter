@@ -1,6 +1,6 @@
 {
-  "version": 3,
-  "as_of": "2026-08-13T08:15:00Z",
+  "version": 4,
+  "as_of": "2026-08-15T07:25:00Z",
   "updated_by": "manager",
   "goal": "≥10% unlevered cap rate rental investments with high confidence",
   "volume_targets": {
@@ -30,7 +30,8 @@
       "research_candidates_archived": 2,
       "bulk_scrape_available": true,
       "bulk_scrape_condo_count": 1074,
-      "gap": "Below 40 listings reviewed; scrape ready — P0 Scout Phase A (Laketown 52 units, Horizon South 32, Shores/Grand Panama)"
+      "bulk_scrape_condo_beds2_in_band": 574,
+      "gap": "Still only 5 reviewed vs 40 target. Scrape ready — P0 Scout Phase A: start 15100 Front Beach (lower HOA ~$441), then Shores 9900/9902 S Thomas, then Laketown/Horizon siblings only if price/HOA better"
     },
     {
       "market_id": "tampa-fl",
@@ -39,7 +40,7 @@
       "listings_reviewed": 0,
       "research_candidates_open": 0,
       "bulk_scrape_available": false,
-      "gap": "ZERO coverage — P0 seed-building search now; full volume blocked on TASK-015"
+      "gap": "ZERO coverage — P0 seed-building search (SkyHouse, Slade, Place at Channelside, Grand Central) while awaiting TASK-015"
     },
     {
       "market_id": "jacksonville-fl",
@@ -48,7 +49,7 @@
       "listings_reviewed": 0,
       "research_candidates_open": 0,
       "bulk_scrape_available": false,
-      "gap": "ZERO coverage — P0 seed-building search now; full volume blocked on TASK-015"
+      "gap": "ZERO coverage — P0 seed-building search (Strand, San Marco Place, Berkman, Brooklyn) while awaiting TASK-015"
     },
     {
       "market_id": "birmingham-al",
@@ -57,7 +58,7 @@
       "listings_reviewed": 0,
       "research_candidates_open": 0,
       "bulk_scrape_available": false,
-      "gap": "ZERO coverage — P1 after PCB/Tampa/Jax progress; TASK-015"
+      "gap": "ZERO coverage — P1 after PCB/Tampa/Jax progress; TASK-015 Phase B"
     },
     {
       "market_id": "memphis-tn",
@@ -66,7 +67,7 @@
       "listings_reviewed": 0,
       "research_candidates_open": 0,
       "bulk_scrape_available": false,
-      "gap": "ZERO coverage — P1 after PCB/Tampa/Jax progress; TASK-015"
+      "gap": "ZERO coverage — P1 after PCB/Tampa/Jax progress; TASK-015 Phase B"
     },
     {
       "market_id": "cleveland-oh",
@@ -75,22 +76,23 @@
       "listings_reviewed": 0,
       "research_candidates_open": 0,
       "bulk_scrape_available": false,
-      "gap": "ZERO coverage — P1 after PCB/Tampa/Jax progress; TASK-015"
+      "gap": "ZERO coverage — P1 after PCB/Tampa/Jax progress; TASK-015 Phase B"
     }
   ],
   "analyst_queue": [],
   "auditor_queue": [],
   "scout_next_actions": [
-    "P0: PCB condo scrape sweep — filter property_type=condo (~1,074); ≥40 reviewed; ≥3 new RESEARCH; start Laketown Wharf / Horizon South / Shores / Grand Panama clusters",
-    "P0: Tampa FL condo seed-building search (SkyHouse, Slade, Channelside, Grand Central) while awaiting TASK-015",
-    "P0: Jacksonville FL condo seed-building search (Strand, San Marco Place, Berkman, Brooklyn)",
-    "P1: Birmingham, Memphis, Cleveland condo sweeps (new seed_buildings) after Phase A/B or when TASK-015 lands",
-    "Defer new international RESEARCH; park existing Manta/Cuenca READY_FOR_UNDERWRITING / UNDERWRITTEN backlog"
+    "P0: PCB Phase A — filter scrape property_type=condo, beds≥2, price $75k–$750k; review ≥40; aim ≥3 RESEARCH. Start 15100 Front Beach Rd (~37, HOA ~$441), then Shores (9900/9902 S Thomas), then other seed_buildings",
+    "P0: Do not re-prioritize Laketown/Horizon high-HOA siblings unless asking price or HOA is materially better than archived rejects",
+    "P0: Tampa + Jacksonville condo seed-building search in parallel (manual until TASK-015)",
+    "P1: Birmingham, Memphis, Cleveland condo sweeps after Phase A/B or when TASK-015 scrapes arrive",
+    "Defer new international RESEARCH; keep Manta/Cuenca/Quito READY_FOR_UNDERWRITING and UNDERWRITTEN backlog parked"
   ],
   "builder_priorities": [
     "TASK-015 US ACTIVE market bulk scrape (P0 — unblocks Scout volume on 5 zero-coverage markets; ship Tampa+Jax first)",
+    "Do not divert Builder to new international scrapes or FWB/St Augustine expansion — WATCH scrapes already exist",
     "TASK-006 Streamlit UI parity (P3 — do not start before TASK-015)",
     "TASK-001 helper scripts (P3 — agents write JSON directly)"
   ],
-  "notes": "Manager refresh 2026-08-13: TASK-014 complete (Laketown Wharf archived REJECTED 9.0%). All 3 US underwritten properties audited REJECTED — open RESEARCH = 0. Scout volume is the bottleneck. PCB scrape inventory is the immediate unblock; TASK-015 elevated to P0 for the other five ACTIVE markets. search-criteria.json bumped to v4 (PCB-first sweep order, expanded seed_buildings, deduped WATCH markets)."
+  "notes": "Manager refresh 2026-08-15: No Scout progress since 2026-08-13 triage (open US RESEARCH still 0; NDJSON still 47). Bottleneck unchanged — execute TASK-009 Phase A against PCB scrape now. search-criteria.json bumped to v5: corrected Shores/Grand Panama address patterns, added lower-HOA PCB seed cluster (15100 Front Beach), expanded Thomas/Front Beach seeds. US archived rescreens not due until Oct 2026. No VIABLE candidates; Analyst/Auditor queues empty."
 }
