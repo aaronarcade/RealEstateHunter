@@ -8,12 +8,12 @@
       "subjectId": "TASK-001",
       "action": "implement-task",
       "branch": "agent/task-001-property-data-schema",
-      "agentId": "bc-0d38e568-de22-4677-a513-193bb4b57705",
-      "runId": "run-2240f48f-80b0-4447-8f36-1bd73b393ab4",
-      "agentUrl": "https://cursor.com/agents/bc-0d38e568-de22-4677-a513-193bb4b57705",
-      "status": "ERROR",
-      "createdAt": "2026-08-10T03:07:27.792Z",
-      "updatedAt": "2026-08-10T04:17:51.588Z"
+      "agentId": "bc-51c98de1-95ac-42e7-97fe-2a92d194a469",
+      "runId": "run-34464280-103a-4f8a-ad96-bae7dac96083",
+      "agentUrl": "https://cursor.com/agents/bc-51c98de1-95ac-42e7-97fe-2a92d194a469",
+      "status": "ACTIVE",
+      "createdAt": "2026-08-15T07:21:47.228Z",
+      "updatedAt": "2026-08-15T07:21:47.228Z"
     },
     "manager:system:pipeline:triage-pipeline": {
       "workKey": "manager:system:pipeline:triage-pipeline",
@@ -22,12 +22,12 @@
       "subjectId": "pipeline",
       "action": "triage-pipeline",
       "branch": "main",
-      "agentId": "bc-9743b922-4287-47a3-97e4-9beb6c5d9205",
-      "runId": "run-01c49309-a947-4209-91c7-44a27da626da",
-      "agentUrl": "https://cursor.com/agents/bc-9743b922-4287-47a3-97e4-9beb6c5d9205",
-      "status": "ERROR",
-      "createdAt": "2026-08-13T08:10:52.462Z",
-      "updatedAt": "2026-08-14T08:06:59.740Z"
+      "agentId": "bc-aa9d87b5-b21a-4b7b-a523-15f0eac509fe",
+      "runId": "run-d37bbd93-c12c-45f7-beed-ba111881053a",
+      "agentUrl": "https://cursor.com/agents/bc-aa9d87b5-b21a-4b7b-a523-15f0eac509fe",
+      "status": "ACTIVE",
+      "createdAt": "2026-08-15T07:21:44.030Z",
+      "updatedAt": "2026-08-15T07:21:44.030Z"
     },
     "builder:task:TASK-002:implement-task": {
       "workKey": "builder:task:TASK-002:implement-task",
@@ -372,12 +372,12 @@
       "subjectId": "TASK-015",
       "action": "implement-task",
       "branch": "agent/task-015-us-active-market-bulk-scrape",
-      "agentId": "bc-f39efa42-05d6-472e-a41e-be830d57a7fd",
-      "runId": "run-3ed6a6ee-7d28-47ba-a0f7-1bf92b40633f",
-      "agentUrl": "https://cursor.com/agents/bc-f39efa42-05d6-472e-a41e-be830d57a7fd",
-      "status": "ERROR",
-      "createdAt": "2026-08-13T08:10:58.057Z",
-      "updatedAt": "2026-08-14T08:07:00.476Z"
+      "agentId": "bc-fcb2dbb1-7262-4143-99c1-741fdfc2356d",
+      "runId": "run-e8e484ef-d2a4-436f-aaa2-aab102a41c61",
+      "agentUrl": "https://cursor.com/agents/bc-fcb2dbb1-7262-4143-99c1-741fdfc2356d",
+      "status": "ACTIVE",
+      "createdAt": "2026-08-15T07:21:41.050Z",
+      "updatedAt": "2026-08-15T07:21:41.050Z"
     }
   }
 }
