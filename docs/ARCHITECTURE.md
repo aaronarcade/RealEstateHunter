@@ -88,6 +88,16 @@ data/reviewed/listings.ndjson      # Lightweight scout-reviewed listings (REJECT
 
 Property IDs should be stable slugs (e.g., `123-main-st-tampa-fl`).
 
+### Property CLI helpers
+
+| Command | Purpose |
+|---------|---------|
+| `npm run validate` / `npm run validate-property` | Validate all (or one) property JSON files against `schemas/` |
+| `npm run property-status` | Print workflow state (+ evidence/underwriting/audit flags) for one or all properties |
+| `npm run create-property` | Initialize `data/properties/{id}/meta.json` (`CANDIDATE`) |
+
+Library API (TypeScript): `lib/property` (`PropertyRecordManager`, `SchemaValidator`). Example record: `data/properties/_example/`.
+
 ### Three-tier property data
 
 | Tier | Storage | When | UI table | Page |

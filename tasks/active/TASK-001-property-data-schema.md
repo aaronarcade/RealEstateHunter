@@ -1,6 +1,6 @@
 # TASK-001: Property data schema and storage
 
-**Status:** BACKLOG  
+**Status:** ACTIVE  
 **Assignee:** Builder  
 **Priority:** P3
 
@@ -11,21 +11,23 @@ Implement the property evidence and workflow file structure defined in `docs/ARC
 ## Acceptance criteria
 
 - [x] JSON schemas in `schemas/` validate evidence, underwriting, audit, and meta files
-- [ ] Helper scripts or library to create/read/update property records
+- [x] Helper scripts or library to create/read/update property records
 - [x] Example property record in `data/properties/_example/` demonstrating all file types
-- [ ] Tests for schema validation
+- [x] Tests for schema validation
 
-## Remaining work
+## Delivered
 
-1. **`validate-property`** — validate all JSON files against schemas (useful for CI)
-2. **`property-status`** — show workflow state for one or all properties
-3. **`create-property`** — initialize meta.json (lowest priority; Scout creates directly)
+1. **Schemas** — `schemas/property-{meta,evidence,underwriting,audit}.json` (+ shared `field-value.json`)
+2. **Library** — `lib/property` (`PropertyRecordManager`, `SchemaValidator`) with Vitest coverage
+3. **CLI** — `scripts/validate-property.mjs`, `scripts/property-status.mjs`, `scripts/create-property.mjs` (+ `scripts/validate.mjs` for CI)
+4. **Example** — `data/properties/_example/`
+5. **Tests** — root `npm test` (`scripts/validate.test.mjs`, `scripts/property-cli.test.mjs`) and `lib/property` Vitest suite
 
 ## Manager triage (2026-08-13)
 
 **Remains P3.** Scout (TASK-009) and Analyst create/update property JSON directly. `scripts/validate.mjs` and `lib/property` cover schema validation in CI.
 
-Complete helper scripts only if orchestrator or agents report friction at volume. Behind TASK-015.
+CLI helpers completed 2026-08-15 to close remaining TASK-001 acceptance criteria.
 
 ## Notes
 
