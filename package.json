@@ -9,7 +9,7 @@
   },
   "scripts": {
     "validate": "node scripts/validate.mjs",
-    "test": "node --test scripts/validate.test.mjs"
+    "test": "node --test scripts/validate.test.mjs scripts/scrape-us-active-markets.test.mjs"
   },
   "dependencies": {
     "ajv": "^8.17.1",

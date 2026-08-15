@@ -147,6 +147,24 @@ Credentials via `SUPABASE_URL` + keys in environment/secrets only. Service role 
 
 ---
 
+## ADR-011: Multi-state Redfin bulk scrape for US ACTIVE markets
+
+**Date:** 2026-08-15  
+**Status:** Accepted
+
+**Context:** Only Panama City Beach had a Redfin bulk scrape. Tampa, Jacksonville, Birmingham, Memphis, and Cleveland (US ACTIVE) had zero scout inventory at volume. The existing `scrape-redfin-market.mjs` hard-filtered `state === 'FL'`, blocking AL/TN/OH pulls.
+
+**Decision:**
+
+1. Extend `scripts/scrape-redfin-market.mjs` with `--states` (multi-state allowlist), `--condo-only` (GIS `uipt=2` + mapped condo filter), and exportable helpers for tests.
+2. Add `scripts/scrape-us-active-markets.mjs` with documented Redfin city `region_id`s for the five gap markets (Phase A: Tampa/Jacksonville; Phase B: Birmingham/Memphis/Cleveland).
+3. Expand `schemas/market-listing.json` `market_area` enum and sync/`MARKET_ID_BY_AREA` maps so Supabase sync accepts the new files.
+4. Document region IDs in `data/scrapes/README.md`.
+
+**Consequences:** Scout (TASK-009 Phases B–C) can filter condo inventory from Git scrapes without one-by-one search. Live scrapes require egress to `www.redfin.com`. No new npm dependencies.
+
+---
+
 ## Template
 
 ```markdown

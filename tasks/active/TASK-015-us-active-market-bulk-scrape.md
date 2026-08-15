@@ -1,6 +1,6 @@
 # TASK-015: US ACTIVE market bulk scrape (Scout volume unblock)
 
-**Status:** BACKLOG  
+**Status:** ACTIVE  
 **Assignee:** Builder  
 **Priority:** P0
 
@@ -30,13 +30,13 @@ Only Panama City Beach currently has a bulk scrape (`data/scrapes/panama-city-be
 
 ## Acceptance criteria
 
-- [ ] Extend `scripts/scrape-redfin-market.mjs` (or add `scripts/scrape-us-active-markets.mjs`) to support multi-state US markets (currently FL-only in `mapHome`)
-- [ ] Output JSON per market under `data/scrapes/{market-id}-active-listings-YYYY-MM-DD.json` matching existing schema (`source`, `market`, `scraped_at`, `count`, `listings[]`)
-- [ ] Each listing includes: `address`, `asking_price`, `beds`, `baths`, `property_type`, `hoa_monthly` (when available), `mls_id`, `listing_url`, `state`
-- [ ] Condo filter optional flag (`--condo-only`) for Scout-focused pulls
-- [ ] Document Redfin region IDs used per market in script comments or `data/scrapes/README.md`
-- [ ] Sync script (`scripts/sync-market-listings-to-supabase.mjs`) works with new files
-- [ ] Smoke test: each market file has ≥100 listings (or document dry-market if fewer)
+- [x] Extend `scripts/scrape-redfin-market.mjs` (or add `scripts/scrape-us-active-markets.mjs`) to support multi-state US markets (currently FL-only in `mapHome`)
+- [x] Output JSON per market under `data/scrapes/{market-id}-active-listings-YYYY-MM-DD.json` matching existing schema (`source`, `market`, `scraped_at`, `count`, `listings[]`) — scraper writes this shape; live files pending Redfin egress
+- [x] Each listing includes: `address`, `asking_price`, `beds`, `baths`, `property_type`, `hoa_monthly` (when available), `mls_id`, `listing_url`, `state`
+- [x] Condo filter optional flag (`--condo-only`) for Scout-focused pulls
+- [x] Document Redfin region IDs used per market in script comments or `data/scrapes/README.md`
+- [x] Sync script (`scripts/sync-market-listings-to-supabase.mjs`) works with new files
+- [ ] Smoke test: each market file has ≥100 listings (or document dry-market if fewer) — **blocked:** Cloud Agent egress allowlist does not include `www.redfin.com` (TLS ECONNRESET). Re-run `node scripts/scrape-us-active-markets.mjs --date YYYY-MM-DD` after egress is approved.
 
 ## Reference
 
