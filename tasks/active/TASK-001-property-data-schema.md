@@ -23,11 +23,11 @@ Implement the property evidence and workflow file structure defined in `docs/ARC
 4. **Example** — `data/properties/_example/`
 5. **Tests** — root `npm test` (`scripts/validate.test.mjs`, `scripts/property-cli.test.mjs`) and `lib/property` Vitest suite
 
-## Manager triage (2026-08-13)
+## Manager triage (2026-08-15)
 
 **Remains P3.** Scout (TASK-009) and Analyst create/update property JSON directly. `scripts/validate.mjs` and `lib/property` cover schema validation in CI.
 
-CLI helpers completed 2026-08-15 to close remaining TASK-001 acceptance criteria.
+CLI helpers completed 2026-08-15 to close remaining TASK-001 acceptance criteria (supersedes earlier deferral behind TASK-015).
 
 ## Notes
 

@@ -4,15 +4,15 @@
 **Assignee:** Scout  
 **Priority:** P0
 
-## Manager triage (2026-08-13)
+## Manager triage (2026-08-15)
 
-**Critical gap unchanged for 5 markets; PCB inventory is ready now.**
+**Still the critical path. No Scout volume progress since 2026-08-13.**
 
 US pipeline fully audited: all 3 US RESEARCH properties ARCHIVED REJECTED (Horizon South 6.0%, Melia Celebration 7.85%, Laketown Wharf 9.0%). **Auditor queue empty. Analyst queue empty.** Scout volume is the only path to new VIABLE candidates.
 
 | Market | Priority | Listings Reviewed | RESEARCH open | Target | Bulk Scrape |
 |--------|----------|-------------------|---------------|--------|-------------|
-| Panama City Beach, FL | 3 | 5 | 0 (2 archived) | 40 / 3 | ✅ **1,074 condos** in scrape |
+| Panama City Beach, FL | 3 | 5 | 0 (2 archived) | 40 / 3 | ✅ **1,074 condos** (~574 beds≥2 in band) |
 | Tampa, FL | 1 | 0 | 0 | 40 / 3 | ❌ TASK-015 |
 | Jacksonville, FL | 2 | 0 | 0 | 40 / 3 | ❌ TASK-015 |
 | Birmingham, AL | 4 | 0 | 0 | 40 / 3 | ❌ TASK-015 |
@@ -25,12 +25,14 @@ US pipeline fully audited: all 3 US RESEARCH properties ARCHIVED REJECTED (Horiz
 
 **Phase A — Panama City Beach scrape (P0, unblocked):**
 
-1. Filter `data/scrapes/panama-city-beach-fl-active-listings-2026-08-10.json` for `property_type: "condo"` (~1,074 listings).
-2. Building clusters first (counts from scrape):
-   - Laketown Wharf — `9860 S Thomas` (**52 units**) — prior unit rejected at 9.0% cap; seek lower price / better HOA
-   - Horizon South — `17462 Front Beach` (**32 units**) — prior unit rejected at 6.0%
-   - Shores of Panama — `9900 Thomas Dr`
-   - Grand Panama — Gulf Dr / Thomas Dr corridor
+1. Filter `data/scrapes/panama-city-beach-fl-active-listings-2026-08-10.json` for `property_type: "condo"`, prefer `beds >= 2`, price `$75k–$750k`.
+2. Building clusters in this order (counts from scrape; see `search-criteria.json` v5 `seed_buildings`):
+   - **15100 Front Beach Rd** (~37) — sample HOA ~$441/mo (**start here**; below $500 flag)
+   - **Shores of Panama** — `9900 S Thomas Dr` (~58–60) + adjacent `9902 S Thomas Dr` (~27)
+   - **Laketown Wharf** — `9860 S Thomas Dr` (~52) — prior unit rejected at 9.0%; siblings only if lower price/HOA
+   - **Horizon South** — `17462 Front Beach Rd` (~25–29) — prior unit rejected at 6.0%; siblings only if materially better
+   - **9850 S Thomas Dr** (~29), **8700 Front Beach Rd** (~22)
+   - **Grand Panama / Gulf Dr** — `5115 Gulf Dr` (~8) — low priority (high ask/HOA); address is **not** 5323
 3. Review ≥40 condo listings; aim for ≥3 new RESEARCH (SCREENED) candidates.
 4. Log rejects to `data/reviewed/listings.ndjson`.
 
@@ -40,7 +42,7 @@ Manual condo-building search using `seed_buildings` in `data/search-criteria.jso
 
 **Phase C — Birmingham, Memphis, Cleveland (P1):**
 
-Condo-only sweeps after Phase A/B progress, or immediately when TASK-015 scrapes arrive. Use new `seed_buildings` for these markets.
+Condo-only sweeps after Phase A/B progress, or immediately when TASK-015 scrapes arrive. Use `seed_buildings` for these markets.
 
 **Do not expand international** until US ACTIVE markets meet volume targets or dry-market notes exist for each.
 
@@ -112,11 +114,11 @@ For each candidate passing screen:
 
 ## Depends on
 
-- `data/search-criteria.json` v4
+- `data/search-criteria.json` v5
 - `data/pipeline-status.json` — current gap snapshot
 - `schemas/property-meta.json`, `schemas/reviewed-listing.json`
 - PCB scrape available now; other markets accelerated by TASK-015
 
 ## Notes
 
-Prior PCB RESEARCH units underwrote below 10% after expenses — keep scanning sibling units at better price/HOA points. Celebration FL remains WATCH — do not prioritize over ACTIVE markets. TASK-015 (Builder P0) adds bulk scrapes for the five zero-coverage US ACTIVE markets.
+Prior PCB RESEARCH units underwrote below 10% after expenses — keep scanning sibling units at better price/HOA points; prefer lower-HOA clusters first. Celebration FL remains WATCH — do not prioritize over ACTIVE markets. Fort Walton Beach / St Augustine scrapes exist but stay WATCH until ACTIVE volume targets are met. TASK-015 (Builder P0) adds bulk scrapes for the five zero-coverage US ACTIVE markets.

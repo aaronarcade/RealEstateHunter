@@ -4,19 +4,21 @@
 **Assignee:** Builder  
 **Priority:** P0
 
-## Manager triage (2026-08-13)
+## Manager triage (2026-08-15)
 
-**Elevated to P0.** Scout (TASK-009) can execute PCB immediately from the existing scrape, but Tampa, Jacksonville, Birmingham, Memphis, and Cleveland still have **zero** bulk inventory. Without this task, Scout cannot hit 40 listings/market on five of six US ACTIVE markets at scale.
+**Remains P0 — still the Builder unblock for five zero-coverage ACTIVE markets.**
+
+Scout (TASK-009) can execute PCB immediately from the existing scrape, but Tampa, Jacksonville, Birmingham, Memphis, and Cleveland still have **zero** bulk inventory. Without this task, Scout cannot hit 40 listings/market on five of six US ACTIVE markets at scale.
 
 Ship Phase A (Tampa + Jacksonville) first if sequencing is required; then Birmingham, Memphis, Cleveland.
 
-Do **not** scrape new international markets until these five US files exist.
+Do **not** scrape new international markets. Do **not** expand Fort Walton Beach or St Augustine (WATCH scrapes already exist) until ACTIVE US targets are met.
 
 ## Description
 
 Bulk-scrape active for-sale listings for the five US ACTIVE markets with **zero scout coverage** so Scout can meet volume targets (40+ listings reviewed per market) without manual one-by-one search.
 
-Only Panama City Beach currently has a bulk scrape (`data/scrapes/panama-city-beach-fl-active-listings-2026-08-10.json`, 2,700 listings / ~1,074 condos). Tampa, Jacksonville, Birmingham, Memphis, and Cleveland have none.
+Only Panama City Beach currently has a bulk scrape among ACTIVE markets (`data/scrapes/panama-city-beach-fl-active-listings-2026-08-10.json`, 2,700 listings / ~1,074 condos / ~574 beds≥2 in price band). Tampa, Jacksonville, Birmingham, Memphis, and Cleveland have none.
 
 ## Markets to scrape
 
@@ -59,4 +61,4 @@ After scrape, Scout (TASK-009) filters `property_type: "condo"`, applies yield s
 
 ## Notes
 
-PCB is **not** blocked — Scout should process the existing PCB scrape in parallel. This task unblocks the other five ACTIVE markets only.
+PCB is **not** blocked — Scout should process the existing PCB scrape in parallel. This task unblocks the other five ACTIVE markets only. WATCH-market scrapes (FWB, St Augustine, international) are out of scope.
