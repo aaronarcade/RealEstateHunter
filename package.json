@@ -9,7 +9,10 @@
   },
   "scripts": {
     "validate": "node scripts/validate.mjs",
-    "test": "node --test scripts/validate.test.mjs"
+    "validate-property": "node scripts/validate-property.mjs",
+    "property-status": "node scripts/property-status.mjs",
+    "create-property": "node scripts/create-property.mjs",
+    "test": "node --test scripts/validate.test.mjs scripts/property-cli.test.mjs"
   },
   "dependencies": {
     "ajv": "^8.17.1",
