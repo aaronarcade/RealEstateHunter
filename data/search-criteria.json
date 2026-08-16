@@ -1,11 +1,11 @@
 {
   "$schema": "../schemas/search-criteria.json",
-  "version": 5,
-  "updated_at": "2026-08-15T07:25:00Z",
+  "version": 6,
+  "updated_at": "2026-08-16T07:30:00Z",
   "updated_by": "manager",
   "target_cap_rate": 0.10,
   "target_yield_minimum": 0.10,
-  "notes": "P0 unchanged: Scout condo volume on US ACTIVE markets. PCB scrape still the only ready inventory (~1,074 condos / ~574 beds≥2 in price band) — execute Phase A building clusters before open-web. Tampa/Jax/BHM/MEM/CLE remain zero coverage pending TASK-015; seed_buildings only until scrapes land. Open US RESEARCH = 0 after all prior underwrites REJECTED. Prefer lower-HOA PCB clusters (e.g. 15100 Front Beach ~$441/mo) over high-HOA STR towers when sibling choice exists. Defer new international RESEARCH. See data/pipeline-status.json.",
+  "notes": "P0 unchanged: Scout condo volume on US ACTIVE markets. PCB scrape still the only ready inventory (~1,074 condos / ~574 beds≥2 in price band) — execute Phase A NOW. Corrected beds≥2 HOA ranking (v6): start 8700 Front Beach (~$672 med HOA), then Horizon South siblings (17462, ~$633) only if better entry than archived reject, then mid-HOA Front Beach clusters; demote 15100 for 2BR+ (med HOA ~$1,261 — low-$400 samples are mostly 0–1BR). Tampa/Jax/BHM/MEM/CLE still zero coverage pending TASK-015. Open US RESEARCH = 0. Defer new international RESEARCH. See data/pipeline-status.json.",
   "asset_focus": {
     "primary": "condo",
     "prioritize_condo_buildings": true,
@@ -281,7 +281,9 @@
         "Filter each market for Condo / Condominium only before SFH or townhouse.",
         "When a bulk scrape exists, filter property_type=condo and sort/group by address pattern before open-web search.",
         "Prefer beds≥2 and price_range from property_filters when scoring scrape inventory.",
-        "Among PCB scrape clusters, prefer lower advertised HOA first (start 15100 Front Beach) before high-HOA STR towers.",
+        "Among PCB scrape clusters, rank by median advertised HOA on beds≥2 in price band (not all-condo samples — studios/1BR skew HOA low).",
+        "PCB beds≥2 start order: 8700 Front Beach Rd → 17462 Front Beach (Horizon South siblings) → other Front Beach mid-HOA clusters → Shores/Laketown last.",
+        "Do not prioritize 15100 Front Beach for beds≥2 — median HOA ~$1,261 on 2BR+; sub-$500 HOA rows are mostly 0–1BR (outside beds_min).",
         "Search by building name or street address when a condo complex has multiple active listings.",
         "When one unit in a building passes yield screen, review other units in the same building.",
         "Prefer established condo buildings (20+ units) with published HOA fees on the listing.",
@@ -301,39 +303,49 @@
       "seed_buildings": {
         "panama-city-beach-fl": [
           {
-            "name": "15100 Front Beach (lower-HOA cluster)",
-            "address_pattern": "15100 Front Beach Rd",
-            "notes": "~37 condo listings; sample HOA ~$441/mo (below $500 flag) — START HERE for better adjusted-yield odds"
-          },
-          {
-            "name": "Shores of Panama",
-            "address_pattern": "9900 S Thomas Dr",
-            "notes": "~58–60 condo listings (largest PCB cluster). Also scan 9902 S Thomas Dr (~27 units)"
-          },
-          {
-            "name": "Laketown Wharf",
-            "address_pattern": "9860 S Thomas Dr",
-            "notes": "~52 condo listings. Unit 917 archived REJECTED at 9.0% cap — siblings only if lower price/HOA; sample HOA often $800+"
+            "name": "8700 Front Beach Rd cluster",
+            "address_pattern": "8700 Front Beach Rd",
+            "notes": "START HERE for beds≥2: ~16 in-band 2BR+; median HOA ~$672 (best new cluster without a prior REJECT). ~22 total condo listings."
           },
           {
             "name": "Horizon South",
             "address_pattern": "17462 Front Beach Rd",
-            "notes": "~25–29 condo listings. Unit 31C archived REJECTED at 6.0% — siblings only if price/HOA materially better"
+            "notes": "~12–16 beds≥2 in band; median HOA ~$633 (lowest large cluster) but Unit 31C archived REJECTED at 6.0% — siblings only if lower ask or stronger LTR rent"
+          },
+          {
+            "name": "16819 Front Beach Rd cluster",
+            "address_pattern": "16819 Front Beach Rd",
+            "notes": "~17 beds≥2 in band; median HOA ~$978 — mid-tier Front Beach volume after 8700/17462"
+          },
+          {
+            "name": "Shores of Panama",
+            "address_pattern": "9900 S Thomas Dr",
+            "notes": "Largest PCB cluster (~39 beds≥2 at 9900 + ~21 at 9902) but median HOA ~$1,065–$1,327 — scan after lower-HOA Front Beach"
+          },
+          {
+            "name": "Laketown Wharf",
+            "address_pattern": "9860 S Thomas Dr",
+            "notes": "~32 beds≥2; median HOA ~$1,065. Unit 917 archived REJECTED at 9.0% — siblings only if lower price/HOA"
+          },
+          {
+            "name": "520 N Richard Jackson Blvd cluster",
+            "address_pattern": "520 N Richard Jackson Blvd",
+            "notes": "~26 beds≥2; high volume but median HOA ~$1,231 — volume filler after Front Beach/Shores"
+          },
+          {
+            "name": "15100 Front Beach Rd cluster",
+            "address_pattern": "15100 Front Beach Rd",
+            "notes": "DEMOTÉ for beds≥2: ~13 in-band 2BR+ with median HOA ~$1,261. Sub-$500 HOA samples are mostly 0–1BR (outside beds_min). Do not start here."
           },
           {
             "name": "9850 S Thomas Dr cluster",
             "address_pattern": "9850 S Thomas Dr",
-            "notes": "~29 condo listings; Thomas Dr corridor near Laketown/Shores"
-          },
-          {
-            "name": "8700 Front Beach Rd cluster",
-            "address_pattern": "8700 Front Beach Rd",
-            "notes": "~22 condo listings; sample HOA ~$654 — review after lower-HOA clusters"
+            "notes": "~29 condo listings but ALL 1BR in scrape — skip under beds_min=2 unless Manager relaxes filter"
           },
           {
             "name": "Grand Panama / Gulf Dr",
             "address_pattern": "5115 Gulf Dr",
-            "notes": "~8 listings at 5115 Gulf Dr (not 5323). High asking/HOA — low priority vs Thomas/Front Beach clusters"
+            "notes": "~8 listings at 5115 Gulf Dr (not 5323). High asking/HOA — lowest priority"
           }
         ],
         "tampa-fl": [
