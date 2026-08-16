@@ -57,8 +57,6 @@ else:
         direction='desc' if sort_direction_label == 'Descending' else 'asc',
     )
 
-view_mode = st.sidebar.radio('View', ['Cards', 'Table'], horizontal=True)
-
 if st.sidebar.button('Refresh data', use_container_width=True):
     st.cache_data.clear()
     st.rerun()
@@ -102,18 +100,27 @@ opportunities = apply_filters(
     status=selected_status,
 )
 
+# Header table/card toggle (React App.tsx parity — default Table)
+header_cols = st.columns([3, 2, 1])
+with header_cols[0]:
+    render_app_header()
+with header_cols[1]:
+    view_mode = st.radio(
+        'View',
+        ['Table', 'Cards'],
+        horizontal=True,
+        key='opp_view_mode',
+        help='Toggle table and card layouts (React parity)',
+    )
+with header_cols[2]:
+    st.metric('Showing', len(opportunities))
+
 use_country_accordion = (
     view_mode == 'Cards'
     and selected_country == 'All'
     and selected_region == 'All'
     and selected_neighborhood == 'All'
 )
-
-header_cols = st.columns([3, 1])
-with header_cols[0]:
-    render_app_header()
-with header_cols[1]:
-    st.metric('Showing', len(opportunities))
 
 if result.error:
     if result.opportunities:

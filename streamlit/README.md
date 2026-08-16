@@ -40,10 +40,11 @@ Without Supabase credentials the app falls back to sample data after login.
 ## Features
 
 - Password gate before any listing data or links render
-- Table and card views (React parity)
+- **Table / Cards** toggle in the Opportunities header (defaults to Table, React parity)
 - Sorting: default ranking (status → confidence → cap rate → NOI) or column sort
-- Field provenance indicators (VERIFIED / ESTIMATED / UNKNOWN)
-- Status badges: VIABLE / WATCHLIST / REJECTED
+- Field provenance on price, rent, HOA, and assessments: VERIFIED / ESTIMATED / UNKNOWN + confidence
+- Status badges: VIABLE / WATCHLIST / REJECTED (row and card styling)
+- Confidence badges match React colors (HIGH / MEDIUM / LOW)
 
 ## Streamlit Cloud
 
@@ -59,7 +60,9 @@ cd streamlit
 pytest
 ```
 
-Sorting tests mirror `ui/src/data/sorting.test.ts`.
+- Sorting tests mirror `ui/src/data/sorting.test.ts`
+- `tests/test_field_display.py` covers provenance HTML/plain formatting
+- `tests/test_data_loader.py` covers sample fallback and publishable-status loading
 
 ## Data source
 

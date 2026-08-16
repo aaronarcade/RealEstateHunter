@@ -7,8 +7,6 @@ from dataclasses import dataclass
 from pathlib import Path
 from typing import Optional
 
-import streamlit as st
-
 from db_client import SupabaseClient, list_opportunities
 from db_client.types import ListOpportunitiesOptions, PropertyOpportunity, PropertyStatus
 from sample_data import SAMPLE_OPPORTUNITIES
