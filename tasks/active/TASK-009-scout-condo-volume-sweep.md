@@ -4,9 +4,9 @@
 **Assignee:** Scout  
 **Priority:** P0
 
-## Manager triage (2026-08-15)
+## Manager triage (2026-08-16)
 
-**Still the critical path. No Scout volume progress since 2026-08-13.**
+**Still the critical path. No Scout volume progress since 2026-08-13 (NDJSON still 47; open US RESEARCH = 0).**
 
 US pipeline fully audited: all 3 US RESEARCH properties ARCHIVED REJECTED (Horizon South 6.0%, Melia Celebration 7.85%, Laketown Wharf 9.0%). **Auditor queue empty. Analyst queue empty.** Scout volume is the only path to new VIABLE candidates.
 
@@ -25,14 +25,15 @@ US pipeline fully audited: all 3 US RESEARCH properties ARCHIVED REJECTED (Horiz
 
 **Phase A — Panama City Beach scrape (P0, unblocked):**
 
-1. Filter `data/scrapes/panama-city-beach-fl-active-listings-2026-08-10.json` for `property_type: "condo"`, prefer `beds >= 2`, price `$75k–$750k`.
-2. Building clusters in this order (counts from scrape; see `search-criteria.json` v5 `seed_buildings`):
-   - **15100 Front Beach Rd** (~37) — sample HOA ~$441/mo (**start here**; below $500 flag)
-   - **Shores of Panama** — `9900 S Thomas Dr` (~58–60) + adjacent `9902 S Thomas Dr` (~27)
-   - **Laketown Wharf** — `9860 S Thomas Dr` (~52) — prior unit rejected at 9.0%; siblings only if lower price/HOA
-   - **Horizon South** — `17462 Front Beach Rd` (~25–29) — prior unit rejected at 6.0%; siblings only if materially better
-   - **9850 S Thomas Dr** (~29), **8700 Front Beach Rd** (~22)
-   - **Grand Panama / Gulf Dr** — `5115 Gulf Dr` (~8) — low priority (high ask/HOA); address is **not** 5323
+1. Filter `data/scrapes/panama-city-beach-fl-active-listings-2026-08-10.json` for `property_type: "condo"`, **`beds >= 2`**, price `$75k–$750k`.
+2. Building clusters in **beds≥2 median-HOA order** (see `search-criteria.json` v6 `seed_buildings` — corrects v5 15100 bias):
+   - **8700 Front Beach Rd** (~16 beds≥2) — median HOA ~$672 (**START HERE**; best new cluster)
+   - **Horizon South** — `17462 Front Beach Rd` (~12–16 beds≥2) — lowest med HOA (~$633) but Unit 31C REJECTED 6.0%; siblings only if better ask/rent
+   - **16819 Front Beach Rd** (~17) — mid-tier Front Beach volume
+   - **Shores of Panama** — `9900` + `9902 S Thomas Dr` (large volume, high HOA ~$1k+)
+   - **Laketown Wharf** — `9860 S Thomas Dr` — prior 9.0% reject; siblings only if lower price/HOA
+   - **520 N Richard Jackson Blvd** (~26) — volume filler, high HOA
+   - **Skip / demote:** `15100 Front Beach` for beds≥2 (med HOA ~$1,261; sub-$500 rows are 0–1BR); `9850 S Thomas` (all 1BR); Grand Panama `5115 Gulf Dr` last
 3. Review ≥40 condo listings; aim for ≥3 new RESEARCH (SCREENED) candidates.
 4. Log rejects to `data/reviewed/listings.ndjson`.
 
@@ -114,11 +115,11 @@ For each candidate passing screen:
 
 ## Depends on
 
-- `data/search-criteria.json` v5
+- `data/search-criteria.json` v6
 - `data/pipeline-status.json` — current gap snapshot
 - `schemas/property-meta.json`, `schemas/reviewed-listing.json`
 - PCB scrape available now; other markets accelerated by TASK-015
 
 ## Notes
 
-Prior PCB RESEARCH units underwrote below 10% after expenses — keep scanning sibling units at better price/HOA points; prefer lower-HOA clusters first. Celebration FL remains WATCH — do not prioritize over ACTIVE markets. Fort Walton Beach / St Augustine scrapes exist but stay WATCH until ACTIVE volume targets are met. TASK-015 (Builder P0) adds bulk scrapes for the five zero-coverage US ACTIVE markets.
+Prior PCB RESEARCH units underwrote below 10% after expenses — keep scanning sibling units at better price/HOA points; prefer lower-HOA **beds≥2** clusters first (8700 Front Beach, then careful Horizon South siblings). Celebration FL remains WATCH — do not prioritize over ACTIVE markets. Fort Walton Beach / St Augustine scrapes exist but stay WATCH until ACTIVE volume targets are met. TASK-015 (Builder P0) adds bulk scrapes for the five zero-coverage US ACTIVE markets.

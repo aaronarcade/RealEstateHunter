@@ -4,7 +4,7 @@
 **Assignee:** Builder  
 **Priority:** P3
 
-## Manager triage (2026-08-15)
+## Manager triage (2026-08-16)
 
 **Remains P3.** Streamlit app is largely built (`streamlit/app.py` with auth, Opportunities, Reviewed, Market Research, Building, and Unit pages). Remaining work is React parity gaps (table/card toggle, field provenance display). Do not start until TASK-015 (P0) ships — Scout volume unblock is still the Builder priority.
 
