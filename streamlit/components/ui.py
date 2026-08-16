@@ -9,7 +9,15 @@ from typing import Optional
 import streamlit as st
 
 from compat import link_button
-from db_client.types import ConfidenceLevel, FieldValue, PropertyOpportunity, PropertyStatus
+from db_client.types import PropertyOpportunity
+from field_display import (
+    STATUS_ROW_BG,
+    confidence_badge_html,
+    field_value_html,
+    format_currency,
+    format_percent,
+    status_badge_html,
+)
 from sorting import SortConfig, SortField
 
 CARD_COLUMNS = 3
@@ -21,24 +29,6 @@ _PROPERTY_EMOJI = {
     'townhouse': '🏘️',
     'commercial': '🏭',
     'other': '📍',
-}
-
-_STATUS_ROW_BG = {
-    'VIABLE': '#f0fdf4',
-    'WATCHLIST': '#fffbeb',
-    'REJECTED': '#fef2f2',
-}
-
-_STATUS_PILL = {
-    'VIABLE': 'success',
-    'WATCHLIST': 'warning',
-    'REJECTED': 'danger',
-}
-
-_CONFIDENCE_PILL = {
-    'HIGH': 'success',
-    'MEDIUM': 'muted',
-    'LOW': 'warning',
 }
 
 
@@ -232,6 +222,9 @@ def inject_global_styles() -> None:
     font-weight: 500;
   }
   .field-status { margin-left: 0.2rem; font-size: 0.75em; font-weight: 600; }
+  .field-status-label { letter-spacing: 0.02em; }
+  .field-confidence { letter-spacing: 0.02em; }
+  .view-toggle-row { display: flex; justify-content: flex-end; align-items: center; gap: 0.5rem; }
   .opp-table-wrap { overflow-x: auto; background: #fff; border: 1px solid #e5e7eb; border-radius: 8px; }
   table.opp-table {
     width: 100%;
@@ -272,43 +265,6 @@ def inject_global_styles() -> None:
         """,
         unsafe_allow_html=True,
     )
-
-
-def format_currency(value: float) -> str:
-    return f'${value:,.0f}'
-
-
-def format_percent(value: float) -> str:
-    return f'{value * 100:.1f}%'
-
-
-def _pill(text: str, tone: str = 'muted') -> str:
-    return f'<span class="pill pill-{tone}">{html.escape(text)}</span>'
-
-
-def _field_value_html(field: FieldValue, *, show_status: bool = True, suffix: str = '') -> str:
-    if field.value is None:
-        return '<span style="color:#94a3b8">—</span>'
-
-    formatted = format_currency(field.value)
-    if not show_status:
-        return html.escape(formatted) + suffix
-
-    indicator = {'VERIFIED': '✓', 'ESTIMATED': '~', 'UNKNOWN': '?'}[field.status]
-    color = {'VERIFIED': '#16a34a', 'ESTIMATED': '#d97706', 'UNKNOWN': '#94a3b8'}[field.status]
-    title = html.escape(field.evidence or f'Status: {field.status}, Confidence: {field.confidence}')
-    return (
-        f'<span title="{title}">{html.escape(formatted)}{suffix}'
-        f'<span class="field-status" style="color:{color}">{indicator}</span></span>'
-    )
-
-
-def _status_badge(status: PropertyStatus) -> str:
-    return _pill(status, _STATUS_PILL[status])
-
-
-def _confidence_badge(confidence: ConfidenceLevel) -> str:
-    return _pill(confidence, _CONFIDENCE_PILL[confidence])
 
 
 def render_card_header(title: str, subtitle: str | None = None) -> None:
@@ -408,24 +364,28 @@ def _metric_chip(label: str, value_html: str, *, kind: str = '', missing: bool =
 
 def render_opportunity_financial_tags(opp: PropertyOpportunity) -> None:
     parts: list[str] = []
-    parts.append(f'<span class="card-price">{_field_value_html(opp.purchase_price)}</span>')
+    parts.append(f'<span class="card-price">{field_value_html(opp.purchase_price)}</span>')
     if opp.monthly_rent.value is not None:
-        rent_html = _field_value_html(opp.monthly_rent, suffix='/mo')
+        rent_html = field_value_html(opp.monthly_rent, suffix='/mo')
         parts.append(f'<span class="pill pill-rent">Rent {rent_html}</span>')
-    parts.append(_status_badge(opp.status))
-    parts.append(_confidence_badge(opp.confidence))
+    parts.append(status_badge_html(opp.status))
+    parts.append(confidence_badge_html(opp.confidence))
     st.markdown(f'<div class="financial-tags">{"".join(parts)}</div>', unsafe_allow_html=True)
 
 
 def render_opportunity_metric_grid(opp: PropertyOpportunity) -> None:
     cap_kind = 'cap' if opp.cap_rate >= 0.1 else 'cap-bad'
-    hoa_html = _field_value_html(opp.hoa, suffix='/mo') if opp.hoa.value is not None else _field_value_html(opp.hoa)
+    hoa_html = (
+        field_value_html(opp.hoa, suffix='/mo')
+        if opp.hoa.value is not None
+        else field_value_html(opp.hoa)
+    )
 
     chips = [
         _metric_chip('NOI', html.escape(format_currency(opp.noi)), kind='noi'),
         _metric_chip('Cap Rate', html.escape(format_percent(opp.cap_rate)), kind=cap_kind),
         _metric_chip('HOA', hoa_html, missing=opp.hoa.value is None),
-        _metric_chip('Assessments', _field_value_html(opp.assessment), missing=opp.assessment.value is None),
+        _metric_chip('Assessments', field_value_html(opp.assessment), missing=opp.assessment.value is None),
     ]
     st.markdown(f'<div class="metric-grid">{"".join(chips)}</div>', unsafe_allow_html=True)
 
@@ -471,20 +431,20 @@ def render_opportunity_table(
     rows_html = []
     for opp in opportunities:
         cap_class = 'cap-good' if opp.cap_rate >= 0.1 else 'cap-bad'
-        bg = _STATUS_ROW_BG[opp.status]
+        bg = STATUS_ROW_BG[opp.status]
         listing = html.escape(opp.listing_url, quote=True)
         rows_html.append(
             f'<tr style="background:{bg}">'
             f'<td><strong>{html.escape(opp.address)}</strong></td>'
             f'<td style="color:#6b7280">{html.escape(opp.location)}</td>'
-            f'<td class="num">{_field_value_html(opp.purchase_price)}</td>'
-            f'<td class="num">{_field_value_html(opp.monthly_rent)}</td>'
+            f'<td class="num">{field_value_html(opp.purchase_price)}</td>'
+            f'<td class="num">{field_value_html(opp.monthly_rent)}</td>'
             f'<td class="num noi-value">{html.escape(format_currency(opp.noi))}</td>'
             f'<td class="num {cap_class}">{html.escape(format_percent(opp.cap_rate))}</td>'
-            f'<td class="num">{_field_value_html(opp.hoa)}</td>'
-            f'<td class="num">{_field_value_html(opp.assessment)}</td>'
-            f'<td class="center">{_confidence_badge(opp.confidence)}</td>'
-            f'<td class="center">{_status_badge(opp.status)}</td>'
+            f'<td class="num">{field_value_html(opp.hoa)}</td>'
+            f'<td class="num">{field_value_html(opp.assessment)}</td>'
+            f'<td class="center">{confidence_badge_html(opp.confidence)}</td>'
+            f'<td class="center">{status_badge_html(opp.status)}</td>'
             f'<td class="center"><a href="{listing}" target="_blank" rel="noopener noreferrer">🔗</a></td>'
             f'</tr>'
         )

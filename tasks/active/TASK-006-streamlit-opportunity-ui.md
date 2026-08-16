@@ -1,6 +1,6 @@
 # TASK-006: Streamlit opportunity comparison UI (React parity)
 
-**Status:** BACKLOG  
+**Status:** ACTIVE  
 **Assignee:** Builder  
 **Priority:** P3
 
@@ -46,29 +46,29 @@ Mirror behavior from:
 
 ### UI parity
 
-- [ ] New app directory: `streamlit/` with `app.py`, `requirements.txt`, and README
-- [ ] **Table view** with columns: property, location, price, rent, NOI, cap rate, HOA, assessments, confidence, status, listing link
-- [ ] **Card view** toggle (Streamlit tabs, radio, or sidebar) equivalent to React table/card switch
-- [ ] **Sorting** matches `ui/src/data/sorting.ts`:
+- [x] New app directory: `streamlit/` with `app.py`, `requirements.txt`, and README
+- [x] **Table view** with columns: property, location, price, rent, NOI, cap rate, HOA, assessments, confidence, status, listing link
+- [x] **Card view** toggle (Streamlit tabs, radio, or sidebar) equivalent to React table/card switch
+- [x] **Sorting** matches `ui/src/data/sorting.ts`:
   - Default: status → confidence → cap rate (desc) → NOI (desc)
   - User-selectable column sort with direction toggle where applicable
-- [ ] **Visual distinction** for VIABLE / WATCHLIST / REJECTED (color or badge)
-- [ ] **Field provenance**: show VERIFIED / ESTIMATED / UNKNOWN and confidence on price, rent, HOA, assessment where present
-- [ ] **Data source**: load opportunities from **Supabase** (TASK-007 client); filter to publishable statuses; sample-data fallback only for local dev without credentials
-- [ ] **No investment logic in UI** — display pipeline output only
-- [ ] Tests for sorting/loader parity (pytest or shared test vectors from `ui/src/data/sorting.test.ts`)
-- [ ] Document run command: `streamlit run streamlit/app.py`
+- [x] **Visual distinction** for VIABLE / WATCHLIST / REJECTED (color or badge)
+- [x] **Field provenance**: show VERIFIED / ESTIMATED / UNKNOWN and confidence on price, rent, HOA, assessment where present
+- [x] **Data source**: load opportunities from **Supabase** (TASK-007 client); filter to publishable statuses; sample-data fallback only for local dev without credentials
+- [x] **No investment logic in UI** — display pipeline output only
+- [x] Tests for sorting/loader parity (pytest or shared test vectors from `ui/src/data/sorting.test.ts`)
+- [x] Document run command: `streamlit run streamlit/app.py`
 
 ### Password protection (required)
 
-- [ ] **Login gate** before any opportunity data or listing links render
-- [ ] Password from environment / secrets — **never hardcoded or committed**:
+- [x] **Login gate** before any opportunity data or listing links render
+- [x] Password from environment / secrets — **never hardcoded or committed**:
   - Local: `.streamlit/secrets.toml` (gitignored): `APP_PASSWORD`, `SUPABASE_URL`, `SUPABASE_SERVICE_ROLE_KEY`
   - Streamlit Cloud: same keys in app secrets dashboard
-- [ ] Provide `.streamlit/secrets.toml.example` with placeholder keys
-- [ ] Session persists after login (`st.session_state`); logout control in sidebar
-- [ ] Failed login shows generic error (no password hints)
-- [ ] README documents setup for local secrets and Streamlit Cloud deployment with **private GitHub repo** recommended
+- [x] Provide `.streamlit/secrets.toml.example` with placeholder keys
+- [x] Session persists after login (`st.session_state`); logout control in sidebar
+- [x] Failed login shows generic error (no password hints)
+- [x] README documents setup for local secrets and Streamlit Cloud deployment with **private GitHub repo** recommended
 
 Suggested pattern (Builder may adjust):
 
@@ -113,3 +113,8 @@ streamlit/
 - **Private repo + password + Supabase RLS** — do not expose service role key to the browser
 - Keep ranking rules in sync with React — shared test fixtures recommended.
 - Python 3.11+ recommended.
+
+## Builder progress (TASK-006)
+
+- Closed React parity gaps: header Table/Cards toggle (default Table), field provenance labels + confidence, ConfidenceBadge color parity.
+- Added `streamlit/field_display.py` plus tests for provenance and data loader sample/Supabase fallback.
