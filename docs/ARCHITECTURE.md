@@ -108,6 +108,8 @@ Library API (TypeScript): `lib/property` (`PropertyRecordManager`, `SchemaValida
 
 Scout **REJECT** decisions append to the reviewed log only — they do not create `data/properties/` directories. Bulk market scrapes (e.g. Redfin zip/city pulls) sync to `market_listings` for browse-only market research; they are not scout decisions and are not underwritten opportunities.
 
+US ACTIVE Redfin scrapes (TASK-015): `scripts/scrape-us-active-markets.mjs` drives multi-state GIS pulls via `scripts/scrape-redfin-market.mjs` (`--state`, `--condo-only`). Region IDs are documented in `data/scrapes/README.md`.
+
 Reviewed listings use flat fields (price, est. cap rate, city, country, HOA, sqft) validated by `schemas/reviewed-listing.json`. Estimated cap rate is a scout first-pass metric (HOA-adjusted when HOA is known), not the underwritten cap rate on published opportunities.
 
 ## Data Schema

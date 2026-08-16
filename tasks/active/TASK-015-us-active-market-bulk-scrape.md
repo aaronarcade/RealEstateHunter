@@ -1,6 +1,6 @@
 # TASK-015: US ACTIVE market bulk scrape (Scout volume unblock)
 
-**Status:** BACKLOG  
+**Status:** ACTIVE  
 **Assignee:** Builder  
 **Priority:** P0
 
@@ -32,13 +32,13 @@ Only Panama City Beach currently has a bulk scrape among ACTIVE markets (`data/s
 
 ## Acceptance criteria
 
-- [ ] Extend `scripts/scrape-redfin-market.mjs` (or add `scripts/scrape-us-active-markets.mjs`) to support multi-state US markets (currently FL-only in `mapHome`)
-- [ ] Output JSON per market under `data/scrapes/{market-id}-active-listings-YYYY-MM-DD.json` matching existing schema (`source`, `market`, `scraped_at`, `count`, `listings[]`)
-- [ ] Each listing includes: `address`, `asking_price`, `beds`, `baths`, `property_type`, `hoa_monthly` (when available), `mls_id`, `listing_url`, `state`
-- [ ] Condo filter optional flag (`--condo-only`) for Scout-focused pulls
-- [ ] Document Redfin region IDs used per market in script comments or `data/scrapes/README.md`
-- [ ] Sync script (`scripts/sync-market-listings-to-supabase.mjs`) works with new files
-- [ ] Smoke test: each market file has ≥100 listings (or document dry-market if fewer)
+- [x] Extend `scripts/scrape-redfin-market.mjs` (or add `scripts/scrape-us-active-markets.mjs`) to support multi-state US markets (currently FL-only in `mapHome`)
+- [ ] Output JSON per market under `data/scrapes/{market-id}-active-listings-YYYY-MM-DD.json` matching existing schema (`source`, `market`, `scraped_at`, `count`, `listings[]`) — pending live Redfin egress
+- [x] Each listing includes: `address`, `asking_price`, `beds`, `baths`, `property_type`, `hoa_monthly` (when available), `mls_id`, `listing_url`, `state`
+- [x] Condo filter optional flag (`--condo-only`) for Scout-focused pulls
+- [x] Document Redfin region IDs used per market in script comments or `data/scrapes/README.md`
+- [x] Sync script (`scripts/sync-market-listings-to-supabase.mjs`) works with new files
+- [ ] Smoke test: each market file has ≥100 listings (or document dry-market if fewer) — pending live Redfin egress
 
 ## Reference
 
@@ -62,3 +62,12 @@ After scrape, Scout (TASK-009) filters `property_type: "condo"`, applies yield s
 ## Notes
 
 PCB is **not** blocked — Scout should process the existing PCB scrape in parallel. This task unblocks the other five ACTIVE markets only. WATCH-market scrapes (FWB, St Augustine, international) are out of scope.
+
+### Builder progress (2026-08-16)
+
+- Multi-state + `--condo-only` in `scripts/lib/redfin-market.mjs` / `scripts/scrape-redfin-market.mjs`
+- Orchestrator: `scripts/scrape-us-active-markets.mjs` (Phase A/B, `--market`, `--condo-only`)
+- Region IDs documented in `data/scrapes/README.md`
+- Schema + sync/verify + Streamlit `MARKET_ID_BY_AREA` updated for tampa/jacksonville/birmingham/memphis/cleveland
+- Unit tests in `scripts/scrape-redfin-market.test.mjs` (`npm test` green)
+- **Blocked on live scrape:** Cloud egress allowlist must include `www.redfin.com` (requested via environment setup; `ECONNRESET` today)

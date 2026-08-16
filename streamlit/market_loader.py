@@ -36,6 +36,12 @@ MARKET_ID_BY_AREA = {
     'fort-walton-beach': 'fort-walton-beach-fl',
     'merida-centro': 'merida-centro-mx',
     'cuenca': 'cuenca-ecuador',
+    'st-augustine': 'st-augustine-fl',
+    'tampa': 'tampa-fl',
+    'jacksonville': 'jacksonville-fl',
+    'birmingham': 'birmingham-al',
+    'memphis': 'memphis-tn',
+    'cleveland': 'cleveland-oh',
 }
 
 

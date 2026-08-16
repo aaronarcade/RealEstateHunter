@@ -37,6 +37,11 @@ const MARKET_ID_BY_AREA = {
   'merida-centro': 'merida-centro-mx',
   cuenca: 'cuenca-ecuador',
   'st-augustine': 'st-augustine-fl',
+  tampa: 'tampa-fl',
+  jacksonville: 'jacksonville-fl',
+  birmingham: 'birmingham-al',
+  memphis: 'memphis-tn',
+  cleveland: 'cleveland-oh',
   colmar: 'colmar-fr',
   kyoto: 'kyoto-jp',
   manta: 'manta-ec',
@@ -53,6 +58,15 @@ const MARKET_ID_BY_AREA = {
   krakow: 'krakow-pl',
   'playa-del-carmen': 'playa-del-carmen-mx',
 };
+
+/** Two-letter USPS codes for --us-only filtering (includes non-FL ACTIVE markets). */
+const US_STATE_CODES = new Set([
+  'AL', 'AK', 'AZ', 'AR', 'CA', 'CO', 'CT', 'DE', 'FL', 'GA',
+  'HI', 'ID', 'IL', 'IN', 'IA', 'KS', 'KY', 'LA', 'ME', 'MD',
+  'MA', 'MI', 'MN', 'MS', 'MO', 'MT', 'NE', 'NV', 'NH', 'NJ',
+  'NM', 'NY', 'NC', 'ND', 'OH', 'OK', 'OR', 'PA', 'RI', 'SC',
+  'SD', 'TN', 'TX', 'UT', 'VT', 'VA', 'WA', 'WV', 'WI', 'WY', 'DC',
+]);
 
 const { validate } = buildValidator();
 
@@ -157,8 +171,10 @@ function toMarketListing(listing, scrapeBatch, scrapedAt, source) {
   return row;
 }
 
-function isUsFlListing(listing) {
-  return (listing.state || 'FL') === 'FL' && (listing.country == null || listing.country === 'US');
+function isUsListing(listing) {
+  const state = String(listing.state || '').toUpperCase();
+  const countryOk = listing.country == null || listing.country === 'US';
+  return countryOk && US_STATE_CODES.has(state);
 }
 
 async function loadScrape(filePath, { usOnly = false } = {}) {
@@ -175,7 +191,7 @@ async function loadScrape(filePath, { usOnly = false } = {}) {
   const byId = new Map();
   for (const listing of listings) {
     if (!listing.listing_url) continue;
-    if (usOnly && !isUsFlListing(listing)) continue;
+    if (usOnly && !isUsListing(listing)) continue;
     const row = toMarketListing(listing, scrapeBatch, scrapedAt, source);
     const { valid, errors } = validate('market-listing.json', row);
     if (!valid) {
@@ -244,7 +260,7 @@ async function syncFile(filePath, supabase, { dryRun = false, usOnly = false } =
 
   const { listings, scrapeBatch, scrapedAt } = await loadScrape(filePath, { usOnly });
   log(
-    `Loaded ${listings.length} listings (batch: ${scrapeBatch}, scraped: ${scrapedAt}${usOnly ? ', US-FL only' : ''})`,
+    `Loaded ${listings.length} listings (batch: ${scrapeBatch}, scraped: ${scrapedAt}${usOnly ? ', US only' : ''})`,
   );
 
   const byArea = listings.reduce((acc, row) => {

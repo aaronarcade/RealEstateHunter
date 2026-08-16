@@ -12,7 +12,7 @@
     "validate-property": "node scripts/validate-property.mjs",
     "property-status": "node scripts/property-status.mjs",
     "create-property": "node scripts/create-property.mjs",
-    "test": "node --test scripts/validate.test.mjs scripts/property-cli.test.mjs"
+    "test": "node --test scripts/validate.test.mjs scripts/property-cli.test.mjs scripts/scrape-redfin-market.test.mjs"
   },
   "dependencies": {
     "ajv": "^8.17.1",
