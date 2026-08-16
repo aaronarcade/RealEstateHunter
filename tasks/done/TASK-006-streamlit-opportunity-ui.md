@@ -1,6 +1,6 @@
 # TASK-006: Streamlit opportunity comparison UI (React parity)
 
-**Status:** ACTIVE  
+**Status:** DONE  
 **Assignee:** Builder  
 **Priority:** P3
 
@@ -118,3 +118,8 @@ streamlit/
 
 - Closed React parity gaps: header Table/Cards toggle (default Table), field provenance labels + confidence, ConfidenceBadge color parity.
 - Added `streamlit/field_display.py` plus tests for provenance and data loader sample/Supabase fallback.
+
+## Completion
+
+Merged via PR #41 (`feat(TASK-006): Streamlit opportunity UI React parity`).
+
