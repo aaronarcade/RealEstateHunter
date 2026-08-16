@@ -1,6 +1,6 @@
 {
-  "version": 4,
-  "as_of": "2026-08-15T07:25:00Z",
+  "version": 5,
+  "as_of": "2026-08-16T07:30:00Z",
   "updated_by": "manager",
   "goal": "≥10% unlevered cap rate rental investments with high confidence",
   "volume_targets": {
@@ -31,7 +31,7 @@
       "bulk_scrape_available": true,
       "bulk_scrape_condo_count": 1074,
       "bulk_scrape_condo_beds2_in_band": 574,
-      "gap": "Still only 5 reviewed vs 40 target. Scrape ready — P0 Scout Phase A: start 15100 Front Beach (lower HOA ~$441), then Shores 9900/9902 S Thomas, then Laketown/Horizon siblings only if price/HOA better"
+      "gap": "Still only 5 reviewed vs 40 target. Scrape ready — P0 Scout Phase A (beds≥2 HOA-ranked): start 8700 Front Beach (~$672 med HOA), then Horizon South siblings (17462) only if better entry than archived reject, then 16819 / Shores; demote 15100 for 2BR+ (med HOA ~$1,261)"
     },
     {
       "market_id": "tampa-fl",
@@ -82,8 +82,8 @@
   "analyst_queue": [],
   "auditor_queue": [],
   "scout_next_actions": [
-    "P0: PCB Phase A — filter scrape property_type=condo, beds≥2, price $75k–$750k; review ≥40; aim ≥3 RESEARCH. Start 15100 Front Beach Rd (~37, HOA ~$441), then Shores (9900/9902 S Thomas), then other seed_buildings",
-    "P0: Do not re-prioritize Laketown/Horizon high-HOA siblings unless asking price or HOA is materially better than archived rejects",
+    "P0: PCB Phase A — filter scrape property_type=condo, beds≥2, price $75k–$750k; review ≥40; aim ≥3 RESEARCH. Start 8700 Front Beach Rd (~16 beds≥2, med HOA ~$672), then 17462 Horizon South siblings only if better than archived reject, then 16819 / Shores 9900+9902",
+    "P0: Do not start at 15100 Front Beach for beds≥2 (med HOA ~$1,261); skip 9850 S Thomas (all 1BR in scrape)",
     "P0: Tampa + Jacksonville condo seed-building search in parallel (manual until TASK-015)",
     "P1: Birmingham, Memphis, Cleveland condo sweeps after Phase A/B or when TASK-015 scrapes arrive",
     "Defer new international RESEARCH; keep Manta/Cuenca/Quito READY_FOR_UNDERWRITING and UNDERWRITTEN backlog parked"
@@ -92,7 +92,7 @@
     "TASK-015 US ACTIVE market bulk scrape (P0 — unblocks Scout volume on 5 zero-coverage markets; ship Tampa+Jax first)",
     "Do not divert Builder to new international scrapes or FWB/St Augustine expansion — WATCH scrapes already exist",
     "TASK-006 Streamlit UI parity (P3 — do not start before TASK-015)",
-    "TASK-001 helper scripts (P3 — agents write JSON directly)"
+    "TASK-001 complete — no further Builder schema helpers needed"
   ],
-  "notes": "Manager refresh 2026-08-15: No Scout progress since 2026-08-13 triage (open US RESEARCH still 0; NDJSON still 47). Bottleneck unchanged — execute TASK-009 Phase A against PCB scrape now. search-criteria.json bumped to v5: corrected Shores/Grand Panama address patterns, added lower-HOA PCB seed cluster (15100 Front Beach), expanded Thomas/Front Beach seeds. US archived rescreens not due until Oct 2026. No VIABLE candidates; Analyst/Auditor queues empty."
+  "notes": "Manager refresh 2026-08-16: Still no Scout volume since 2026-08-13 (open US RESEARCH = 0; NDJSON still 47). Bottleneck unchanged — execute TASK-009 Phase A against PCB scrape now with corrected beds≥2 HOA ranking (search-criteria.json v6). Prior v5 'start 15100' guidance was skewed by 0–1BR low-HOA rows. US archived rescreens not due until Oct 2026. No VIABLE candidates; Analyst/Auditor queues empty."
 }

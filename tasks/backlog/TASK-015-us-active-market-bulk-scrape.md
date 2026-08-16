@@ -4,11 +4,11 @@
 **Assignee:** Builder  
 **Priority:** P0
 
-## Manager triage (2026-08-15)
+## Manager triage (2026-08-16)
 
 **Remains P0 — still the Builder unblock for five zero-coverage ACTIVE markets.**
 
-Scout (TASK-009) can execute PCB immediately from the existing scrape, but Tampa, Jacksonville, Birmingham, Memphis, and Cleveland still have **zero** bulk inventory. Without this task, Scout cannot hit 40 listings/market on five of six US ACTIVE markets at scale.
+Scout (TASK-009) can execute PCB immediately from the existing scrape (now with corrected beds≥2 HOA seed order in criteria v6), but Tampa, Jacksonville, Birmingham, Memphis, and Cleveland still have **zero** bulk inventory. Without this task, Scout cannot hit 40 listings/market on five of six US ACTIVE markets at scale.
 
 Ship Phase A (Tampa + Jacksonville) first if sequencing is required; then Birmingham, Memphis, Cleveland.
 
