@@ -11,9 +11,9 @@
       "agentId": "bc-51c98de1-95ac-42e7-97fe-2a92d194a469",
       "runId": "run-34464280-103a-4f8a-ad96-bae7dac96083",
       "agentUrl": "https://cursor.com/agents/bc-51c98de1-95ac-42e7-97fe-2a92d194a469",
-      "status": "ACTIVE",
+      "status": "ERROR",
       "createdAt": "2026-08-15T07:21:47.228Z",
-      "updatedAt": "2026-08-15T07:21:47.228Z"
+      "updatedAt": "2026-08-16T07:22:27.036Z"
     },
     "manager:system:pipeline:triage-pipeline": {
       "workKey": "manager:system:pipeline:triage-pipeline",
@@ -22,12 +22,12 @@
       "subjectId": "pipeline",
       "action": "triage-pipeline",
       "branch": "main",
-      "agentId": "bc-aa9d87b5-b21a-4b7b-a523-15f0eac509fe",
-      "runId": "run-d37bbd93-c12c-45f7-beed-ba111881053a",
-      "agentUrl": "https://cursor.com/agents/bc-aa9d87b5-b21a-4b7b-a523-15f0eac509fe",
+      "agentId": "bc-8e2dabe3-5ba1-4a09-8a05-33ddcac81150",
+      "runId": "run-a8f86444-373c-4860-a4d9-8118eb4689f0",
+      "agentUrl": "https://cursor.com/agents/bc-8e2dabe3-5ba1-4a09-8a05-33ddcac81150",
       "status": "ACTIVE",
-      "createdAt": "2026-08-15T07:21:44.030Z",
-      "updatedAt": "2026-08-15T07:21:44.030Z"
+      "createdAt": "2026-08-16T07:22:34.003Z",
+      "updatedAt": "2026-08-16T07:22:34.003Z"
     },
     "builder:task:TASK-002:implement-task": {
       "workKey": "builder:task:TASK-002:implement-task",
@@ -372,12 +372,26 @@
       "subjectId": "TASK-015",
       "action": "implement-task",
       "branch": "agent/task-015-us-active-market-bulk-scrape",
-      "agentId": "bc-fcb2dbb1-7262-4143-99c1-741fdfc2356d",
-      "runId": "run-e8e484ef-d2a4-436f-aaa2-aab102a41c61",
-      "agentUrl": "https://cursor.com/agents/bc-fcb2dbb1-7262-4143-99c1-741fdfc2356d",
+      "agentId": "bc-e2e355d1-d794-4e17-81a9-b2e5cf927fdd",
+      "runId": "run-c04caef0-c353-4a2b-900e-d164db27db7f",
+      "agentUrl": "https://cursor.com/agents/bc-e2e355d1-d794-4e17-81a9-b2e5cf927fdd",
       "status": "ACTIVE",
-      "createdAt": "2026-08-15T07:21:41.050Z",
-      "updatedAt": "2026-08-15T07:21:41.050Z"
+      "createdAt": "2026-08-16T07:22:31.603Z",
+      "updatedAt": "2026-08-16T07:22:31.603Z"
+    },
+    "builder:task:TASK-006:implement-task": {
+      "workKey": "builder:task:TASK-006:implement-task",
+      "role": "builder",
+      "subjectType": "task",
+      "subjectId": "TASK-006",
+      "action": "implement-task",
+      "branch": "agent/task-006-streamlit-opportunity-ui",
+      "agentId": "bc-265c0a81-5789-4938-bd26-0f4f1ec9ea29",
+      "runId": "run-abf99f56-2b16-4fab-8234-be87a04548d0",
+      "agentUrl": "https://cursor.com/agents/bc-265c0a81-5789-4938-bd26-0f4f1ec9ea29",
+      "status": "ACTIVE",
+      "createdAt": "2026-08-16T07:22:36.693Z",
+      "updatedAt": "2026-08-16T07:22:36.693Z"
     }
   }
 }
