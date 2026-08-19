@@ -22,12 +22,12 @@
       "subjectId": "pipeline",
       "action": "triage-pipeline",
       "branch": "main",
-      "agentId": "bc-8e2dabe3-5ba1-4a09-8a05-33ddcac81150",
-      "runId": "run-a8f86444-373c-4860-a4d9-8118eb4689f0",
-      "agentUrl": "https://cursor.com/agents/bc-8e2dabe3-5ba1-4a09-8a05-33ddcac81150",
-      "status": "ERROR",
-      "createdAt": "2026-08-16T07:22:34.003Z",
-      "updatedAt": "2026-08-17T07:42:49.228Z"
+      "agentId": "bc-08d58477-fcc5-495c-ab0e-7464e9e89960",
+      "runId": "run-8683342e-e7e8-456f-b2ec-66c4a47e1658",
+      "agentUrl": "https://cursor.com/agents/bc-08d58477-fcc5-495c-ab0e-7464e9e89960",
+      "status": "ACTIVE",
+      "createdAt": "2026-08-19T07:29:39.307Z",
+      "updatedAt": "2026-08-19T07:29:39.307Z"
     },
     "builder:task:TASK-002:implement-task": {
       "workKey": "builder:task:TASK-002:implement-task",
@@ -372,12 +372,12 @@
       "subjectId": "TASK-015",
       "action": "implement-task",
       "branch": "agent/task-015-us-active-market-bulk-scrape",
-      "agentId": "bc-e2e355d1-d794-4e17-81a9-b2e5cf927fdd",
-      "runId": "run-c04caef0-c353-4a2b-900e-d164db27db7f",
-      "agentUrl": "https://cursor.com/agents/bc-e2e355d1-d794-4e17-81a9-b2e5cf927fdd",
-      "status": "ERROR",
-      "createdAt": "2026-08-16T07:22:31.603Z",
-      "updatedAt": "2026-08-17T07:42:50.274Z"
+      "agentId": "bc-4e2a2d44-5cb8-4985-860b-6a691ff1004b",
+      "runId": "run-78cd869d-f834-452e-9dea-a897c8750602",
+      "agentUrl": "https://cursor.com/agents/bc-4e2a2d44-5cb8-4985-860b-6a691ff1004b",
+      "status": "ACTIVE",
+      "createdAt": "2026-08-19T07:29:36.561Z",
+      "updatedAt": "2026-08-19T07:29:36.561Z"
     },
     "builder:task:TASK-006:implement-task": {
       "workKey": "builder:task:TASK-006:implement-task",
@@ -392,6 +392,20 @@
       "status": "ERROR",
       "createdAt": "2026-08-16T07:22:36.693Z",
       "updatedAt": "2026-08-17T07:42:50.674Z"
+    },
+    "analyst:property:cuenca-ingenieros-3br-condo-house-ec:complete-underwriting": {
+      "workKey": "analyst:property:cuenca-ingenieros-3br-condo-house-ec:complete-underwriting",
+      "role": "analyst",
+      "subjectType": "property",
+      "subjectId": "cuenca-ingenieros-3br-condo-house-ec",
+      "action": "complete-underwriting",
+      "branch": "main",
+      "agentId": "bc-d4297eb1-6f8f-431f-8589-7b4221e71977",
+      "runId": "run-9fa57bc3-e4f3-4373-9cbb-a003e0630a81",
+      "agentUrl": "https://cursor.com/agents/bc-d4297eb1-6f8f-431f-8589-7b4221e71977",
+      "status": "ACTIVE",
+      "createdAt": "2026-08-19T07:29:41.968Z",
+      "updatedAt": "2026-08-19T07:29:41.968Z"
     }
   }
 }
