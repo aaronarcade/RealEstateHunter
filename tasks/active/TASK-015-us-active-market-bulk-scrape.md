@@ -38,6 +38,8 @@ Only Panama City Beach currently has a bulk scrape among ACTIVE markets (`data/s
 - [x] Sync script (`scripts/sync-market-listings-to-supabase.mjs`) works with new files
 - [ ] Smoke test: each market file has ≥100 listings (or document dry-market if fewer)
 
+**Builder note (2026-08-19):** Scrape scripts and CI job are ready. Cloud agent egress blocks `www.redfin.com`; PR CI will commit `data/scrapes/*-active-listings-2026-08-19.json` when Actions runs on #44. Run locally: `node scripts/scrape-us-active-markets.mjs --date 2026-08-19`.
+
 ## Reference
 
 - Existing FL scraper: `scripts/scrape-redfin-market.mjs`
