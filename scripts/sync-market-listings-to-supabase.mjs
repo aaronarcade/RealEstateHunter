@@ -52,6 +52,11 @@ const MARKET_ID_BY_AREA = {
   bali: 'bali-id',
   krakow: 'krakow-pl',
   'playa-del-carmen': 'playa-del-carmen-mx',
+  tampa: 'tampa-fl',
+  jacksonville: 'jacksonville-fl',
+  birmingham: 'birmingham-al',
+  memphis: 'memphis-tn',
+  cleveland: 'cleveland-oh',
 };
 
 const { validate } = buildValidator();

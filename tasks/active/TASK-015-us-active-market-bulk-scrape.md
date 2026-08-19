@@ -30,13 +30,15 @@ Only Panama City Beach currently has a bulk scrape among ACTIVE markets (`data/s
 
 ## Acceptance criteria
 
-- [ ] Extend `scripts/scrape-redfin-market.mjs` (or add `scripts/scrape-us-active-markets.mjs`) to support multi-state US markets (currently FL-only in `mapHome`)
-- [ ] Output JSON per market under `data/scrapes/{market-id}-active-listings-YYYY-MM-DD.json` matching existing schema (`source`, `market`, `scraped_at`, `count`, `listings[]`)
-- [ ] Each listing includes: `address`, `asking_price`, `beds`, `baths`, `property_type`, `hoa_monthly` (when available), `mls_id`, `listing_url`, `state`
-- [ ] Condo filter optional flag (`--condo-only`) for Scout-focused pulls
-- [ ] Document Redfin region IDs used per market in script comments or `data/scrapes/README.md`
-- [ ] Sync script (`scripts/sync-market-listings-to-supabase.mjs`) works with new files
+- [x] Extend `scripts/scrape-redfin-market.mjs` (or add `scripts/scrape-us-active-markets.mjs`) to support multi-state US markets (currently FL-only in `mapHome`)
+- [x] Output JSON per market under `data/scrapes/{market-id}-active-listings-YYYY-MM-DD.json` matching existing schema (`source`, `market`, `scraped_at`, `count`, `listings[]`)
+- [x] Each listing includes: `address`, `asking_price`, `beds`, `baths`, `property_type`, `hoa_monthly` (when available), `mls_id`, `listing_url`, `state`
+- [x] Condo filter optional flag (`--condo-only`) for Scout-focused pulls
+- [x] Document Redfin region IDs used per market in script comments or `data/scrapes/README.md`
+- [x] Sync script (`scripts/sync-market-listings-to-supabase.mjs`) works with new files
 - [ ] Smoke test: each market file has ≥100 listings (or document dry-market if fewer)
+
+**Builder note (2026-08-19):** Scrape scripts and CI job are ready. Cloud agent egress blocks `www.redfin.com`; PR CI will commit `data/scrapes/*-active-listings-2026-08-19.json` when Actions runs on #44. Run locally: `node scripts/scrape-us-active-markets.mjs --date 2026-08-19`.
 
 ## Reference
 

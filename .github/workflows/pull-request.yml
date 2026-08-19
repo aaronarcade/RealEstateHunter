@@ -11,6 +11,8 @@ concurrency:
 jobs:
   ci:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -41,6 +43,22 @@ jobs:
       - name: Orchestrator test
         working-directory: orchestrator
         run: npm test
+
+      - name: TASK-015 Redfin bulk scrape (US ACTIVE markets)
+        if: |
+          github.head_ref == 'agent/task-015-us-active-market-bulk-scrape' ||
+          github.head_ref == 'cursor/builder-task-015-928e'
+        run: node scripts/scrape-us-active-markets.mjs --date 2026-08-19
+
+      - name: TASK-015 upload scrape outputs
+        if: |
+          github.head_ref == 'agent/task-015-us-active-market-bulk-scrape' ||
+          github.head_ref == 'cursor/builder-task-015-928e'
+        uses: actions/upload-artifact@v4
+        with:
+          name: task-015-us-active-scrapes
+          path: data/scrapes/*-active-listings-2026-08-19.json
+          if-no-files-found: error
 
   agent-auto-merge:
     needs: ci
