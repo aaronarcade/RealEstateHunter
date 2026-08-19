@@ -1,0 +1,128 @@
+{
+  "property_id": "cuenca-ingenieros-3br-condo-house-ec",
+  "annual_gross_rent": 9600,
+  "annual_operating_expenses": 2820,
+  "operating_expense_breakdown": {
+    "hoa_annual": {
+      "value": 960,
+      "note": "From evidence: $80/mo ESTIMATED (LOW confidence) private condominium alicuota"
+    },
+    "special_assessments_annual": {
+      "value": null,
+      "note": "UNKNOWN in evidence; excluded from base calculation — not assumed zero"
+    },
+    "property_taxes_annual": {
+      "value": 50,
+      "note": "From evidence, ESTIMATED at Ecuador predial norms"
+    },
+    "insurance_annual": {
+      "value": 250,
+      "note": "From evidence, ESTIMATED owner policy for highland SFH"
+    },
+    "management_annual": {
+      "value": 960,
+      "note": "From evidence, ESTIMATED at 10% of $800/mo rent"
+    },
+    "utilities_annual": {
+      "value": 0,
+      "note": "From evidence, tenant-paid utilities assumed for LTR"
+    },
+    "other_expenses_annual": {
+      "value": 600,
+      "note": "From evidence, gardening/maintenance reserve for SFH"
+    }
+  },
+  "noi": 6780,
+  "cap_rate": 0.0363,
+  "cap_rate_percent": "3.63%",
+  "proposed_status": "REJECTED",
+  "proposed_status_reason": "Cap rate 3.63% is well below the 10% threshold. At $187,000 purchase price and $800/mo estimated rent, NOI of $6,780 cannot support target returns. Even at the high rent comp ($1,000/mo), cap rate reaches only ~4.9%. Special assessments and rental/STR restrictions remain UNKNOWN, adding further downside risk.",
+  "sensitivity_analysis": {
+    "low_rent_scenario": {
+      "monthly_rent": 650,
+      "annual_gross_rent": 7800,
+      "operating_expenses": 2820,
+      "noi": 4980,
+      "cap_rate": 0.0266,
+      "cap_rate_percent": "2.66%",
+      "note": "Using evidence range_low comp"
+    },
+    "base_scenario": {
+      "monthly_rent": 800,
+      "annual_gross_rent": 9600,
+      "operating_expenses": 2820,
+      "noi": 6780,
+      "cap_rate": 0.0363,
+      "cap_rate_percent": "3.63%",
+      "note": "Base case using evidence point estimate"
+    },
+    "high_rent_scenario": {
+      "monthly_rent": 1000,
+      "annual_gross_rent": 12000,
+      "operating_expenses": 2820,
+      "noi": 9180,
+      "cap_rate": 0.0491,
+      "cap_rate_percent": "4.91%",
+      "note": "Using evidence range_high comp — still below 10%"
+    }
+  },
+  "breakeven_analysis": {
+    "required_monthly_rent_for_10pct": 2018,
+    "note": "At current expense load ($2,820/yr), would need ~$2,018/mo rent (152% above base estimate) to achieve 10% cap rate. Comps suggest max achievable is ~$1,000/mo."
+  },
+  "input_summary": {
+    "purchase_price": {
+      "value": 187000,
+      "status": "VERIFIED",
+      "confidence": "HIGH"
+    },
+    "monthly_rent": {
+      "value": 800,
+      "status": "ESTIMATED",
+      "confidence": "MEDIUM"
+    },
+    "hoa_monthly": {
+      "value": 80,
+      "status": "ESTIMATED",
+      "confidence": "LOW"
+    },
+    "special_assessments": {
+      "value": null,
+      "status": "UNKNOWN",
+      "confidence": "LOW"
+    },
+    "property_taxes_annual": {
+      "value": 50,
+      "status": "ESTIMATED",
+      "confidence": "LOW"
+    },
+    "insurance_annual": {
+      "value": 250,
+      "status": "ESTIMATED",
+      "confidence": "MEDIUM"
+    },
+    "management_annual": {
+      "value": 960,
+      "status": "ESTIMATED",
+      "confidence": "MEDIUM"
+    },
+    "utilities_annual": {
+      "value": 0,
+      "status": "ESTIMATED",
+      "confidence": "MEDIUM"
+    },
+    "other_expenses_annual": {
+      "value": 600,
+      "status": "ESTIMATED",
+      "confidence": "LOW"
+    }
+  },
+  "risk_factors": [
+    "Cap rate well below 10% under all rent scenarios in evidence range",
+    "HOA alicuota is ESTIMATED with LOW confidence — actual may differ",
+    "Special assessments UNKNOWN — excluded from base expenses, potential downside",
+    "Rental and STR restrictions UNKNOWN — LTR-only assumed",
+    "Price-to-rent ratio ($187k / $800/mo) incompatible with 10% cap rate criteria"
+  ],
+  "computed_at": "2026-08-19T07:30:00Z"
+}
