@@ -1,0 +1,46 @@
+name: Scrape US Active Markets
+
+on:
+  workflow_dispatch:
+    inputs:
+      markets:
+        description: Comma-separated market IDs (default all five TASK-015 markets)
+        required: false
+        default: tampa-fl,jacksonville-fl,birmingham-al,memphis-tn,cleveland-oh
+      condo_only:
+        description: Pass --condo-only to Redfin GIS pulls
+        required: false
+        type: boolean
+        default: false
+
+jobs:
+  scrape:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+
+      - name: Install
+        run: npm ci
+
+      - name: Scrape markets
+        run: |
+          set -euo pipefail
+          ARGS="--markets ${{ inputs.markets }}"
+          if [ "${{ inputs.condo_only }}" = "true" ]; then
+            ARGS="$ARGS --condo-only"
+          fi
+          node scripts/scrape-us-active-markets.mjs $ARGS
+
+      - name: Upload scrape artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: us-active-market-scrapes
+          path: data/scrapes/*-active-listings-2026-*.json
+          if-no-files-found: error

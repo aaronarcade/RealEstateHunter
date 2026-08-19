@@ -37,6 +37,11 @@ const MARKET_AREAS = [
   'bali',
   'krakow',
   'playa-del-carmen',
+  'tampa',
+  'jacksonville',
+  'birmingham',
+  'memphis',
+  'cleveland',
   'other',
 ];
 
