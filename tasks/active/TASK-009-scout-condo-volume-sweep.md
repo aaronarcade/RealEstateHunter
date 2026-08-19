@@ -4,9 +4,9 @@
 **Assignee:** Scout  
 **Priority:** P0
 
-## Manager triage (2026-08-16)
+## Manager triage (2026-08-19)
 
-**Still the critical path. No Scout volume progress since 2026-08-13 (NDJSON still 47; open US RESEARCH = 0).**
+**Still the critical path. No Scout volume progress since 2026-08-13 (NDJSON still 47; open US RESEARCH = 0; zero SCREENED properties).**
 
 US pipeline fully audited: all 3 US RESEARCH properties ARCHIVED REJECTED (Horizon South 6.0%, Melia Celebration 7.85%, Laketown Wharf 9.0%). **Auditor queue empty. Analyst queue empty.** Scout volume is the only path to new VIABLE candidates.
 
@@ -26,14 +26,15 @@ US pipeline fully audited: all 3 US RESEARCH properties ARCHIVED REJECTED (Horiz
 **Phase A — Panama City Beach scrape (P0, unblocked):**
 
 1. Filter `data/scrapes/panama-city-beach-fl-active-listings-2026-08-10.json` for `property_type: "condo"`, **`beds >= 2`**, price `$75k–$750k`.
-2. Building clusters in **beds≥2 median-HOA order** (see `search-criteria.json` v6 `seed_buildings` — corrects v5 15100 bias):
-   - **8700 Front Beach Rd** (~16 beds≥2) — median HOA ~$672 (**START HERE**; best new cluster)
-   - **Horizon South** — `17462 Front Beach Rd` (~12–16 beds≥2) — lowest med HOA (~$633) but Unit 31C REJECTED 6.0%; siblings only if better ask/rent
+2. Building clusters in **beds≥2 median-HOA order** (see `search-criteria.json` v7 `seed_buildings`):
+   - **8700 Front Beach Rd** (~16 beds≥2) — median HOA ~$672 (**START HERE**)
+   - **Horizon South** — `17462 Front Beach Rd` (~12 beds≥2) — med HOA ~$636 but Unit 31C REJECTED 6.0%; siblings only if better ask/rent
    - **16819 Front Beach Rd** (~17) — mid-tier Front Beach volume
-   - **Shores of Panama** — `9900` + `9902 S Thomas Dr` (large volume, high HOA ~$1k+)
-   - **Laketown Wharf** — `9860 S Thomas Dr` — prior 9.0% reject; siblings only if lower price/HOA
-   - **520 N Richard Jackson Blvd** (~26) — volume filler, high HOA
-   - **Skip / demote:** `15100 Front Beach` for beds≥2 (med HOA ~$1,261; sub-$500 rows are 0–1BR); `9850 S Thomas` (all 1BR); Grand Panama `5115 Gulf Dr` last
+   - **11807 Front Beach Rd** (~15) — median HOA ~$839; lower-HOA Front Beach before high-HOA towers
+   - **Shores of Panama** — `9900` + `9902 S Thomas Dr` (39+21 beds≥2, high HOA ~$1,065–$1,327)
+   - **Laketown Wharf** — `9860 S Thomas Dr` (~32) — prior 9.0% reject; siblings only if lower price/HOA
+   - **520 N Richard Jackson Blvd** (~26) — demoted volume filler, high HOA ~$1,254
+   - **Skip / demote:** `15100 Front Beach` (med HOA ~$1,261); `9850 S Thomas` (all 1BR); Grand Panama `5115 Gulf Dr` last
 3. Review ≥40 condo listings; aim for ≥3 new RESEARCH (SCREENED) candidates.
 4. Log rejects to `data/reviewed/listings.ndjson`.
 
@@ -115,7 +116,7 @@ For each candidate passing screen:
 
 ## Depends on
 
-- `data/search-criteria.json` v6
+- `data/search-criteria.json` v7
 - `data/pipeline-status.json` — current gap snapshot
 - `schemas/property-meta.json`, `schemas/reviewed-listing.json`
 - PCB scrape available now; other markets accelerated by TASK-015

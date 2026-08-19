@@ -1,11 +1,11 @@
 {
   "$schema": "../schemas/search-criteria.json",
-  "version": 6,
-  "updated_at": "2026-08-16T07:30:00Z",
+  "version": 7,
+  "updated_at": "2026-08-19T07:30:00Z",
   "updated_by": "manager",
   "target_cap_rate": 0.10,
   "target_yield_minimum": 0.10,
-  "notes": "P0 unchanged: Scout condo volume on US ACTIVE markets. PCB scrape still the only ready inventory (~1,074 condos / ~574 beds≥2 in price band) — execute Phase A NOW. Corrected beds≥2 HOA ranking (v6): start 8700 Front Beach (~$672 med HOA), then Horizon South siblings (17462, ~$633) only if better entry than archived reject, then mid-HOA Front Beach clusters; demote 15100 for 2BR+ (med HOA ~$1,261 — low-$400 samples are mostly 0–1BR). Tampa/Jax/BHM/MEM/CLE still zero coverage pending TASK-015. Open US RESEARCH = 0. Defer new international RESEARCH. See data/pipeline-status.json.",
+  "notes": "P0: Scout condo volume on US ACTIVE markets. PCB scrape is only ready bulk inventory (~1,074 condos / ~574 beds≥2 in band) — execute TASK-009 Phase A NOW. v7 adds 11807 Front Beach mid-HOA cluster. Cluster order: 8700 → 17462 (siblings only) → 16819 → 11807 → Shores 9900/9902 → Laketown 9860. Demote 15100, 520 N Richard Jackson, 9850 S Thomas. Tampa/Jax/BHM/MEM/CLE zero coverage pending TASK-015 (Builder ACTIVE). Open US RESEARCH = 0. Defer international. See data/pipeline-status.json.",
   "asset_focus": {
     "primary": "condo",
     "prioritize_condo_buildings": true,
@@ -318,6 +318,11 @@
             "notes": "~17 beds≥2 in band; median HOA ~$978 — mid-tier Front Beach volume after 8700/17462"
           },
           {
+            "name": "11807 Front Beach Rd cluster",
+            "address_pattern": "11807 Front Beach Rd",
+            "notes": "~15 beds≥2 in band; median HOA ~$839 — lower-HOA Front Beach cluster before Shores/Laketown"
+          },
+          {
             "name": "Shores of Panama",
             "address_pattern": "9900 S Thomas Dr",
             "notes": "Largest PCB cluster (~39 beds≥2 at 9900 + ~21 at 9902) but median HOA ~$1,065–$1,327 — scan after lower-HOA Front Beach"
@@ -330,7 +335,7 @@
           {
             "name": "520 N Richard Jackson Blvd cluster",
             "address_pattern": "520 N Richard Jackson Blvd",
-            "notes": "~26 beds≥2; high volume but median HOA ~$1,231 — volume filler after Front Beach/Shores"
+            "notes": "~26 beds≥2; high volume but median HOA ~$1,254 — volume filler after Front Beach/Shores; demote vs 11807"
           },
           {
             "name": "15100 Front Beach Rd cluster",

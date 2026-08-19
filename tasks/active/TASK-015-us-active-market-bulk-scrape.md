@@ -1,18 +1,16 @@
 # TASK-015: US ACTIVE market bulk scrape (Scout volume unblock)
 
-**Status:** BACKLOG  
+**Status:** ACTIVE  
 **Assignee:** Builder  
 **Priority:** P0
 
-## Manager triage (2026-08-16)
+## Manager triage (2026-08-19)
 
-**Remains P0 — still the Builder unblock for five zero-coverage ACTIVE markets.**
+**P0 ACTIVE — Builder spawned. Still the unblock for five zero-coverage US ACTIVE markets.**
 
-Scout (TASK-009) can execute PCB immediately from the existing scrape (now with corrected beds≥2 HOA seed order in criteria v6), but Tampa, Jacksonville, Birmingham, Memphis, and Cleveland still have **zero** bulk inventory. Without this task, Scout cannot hit 40 listings/market on five of six US ACTIVE markets at scale.
+Scout (TASK-009) must execute PCB Phase A immediately from existing scrape (search-criteria v7). This task unblocks Tampa, Jacksonville, Birmingham, Memphis, and Cleveland bulk inventory at 40+ listings/market scale. Ship Phase A (Tampa + Jacksonville) first; then Birmingham, Memphis, Cleveland.
 
-Ship Phase A (Tampa + Jacksonville) first if sequencing is required; then Birmingham, Memphis, Cleveland.
-
-Do **not** scrape new international markets. Do **not** expand Fort Walton Beach or St Augustine (WATCH scrapes already exist) until ACTIVE US targets are met.
+Do **not** scrape new international markets. Do **not** expand Fort Walton Beach or St Augustine until ACTIVE US volume targets are met.
 
 ## Description
 
