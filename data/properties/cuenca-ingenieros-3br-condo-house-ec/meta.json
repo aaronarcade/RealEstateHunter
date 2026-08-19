@@ -5,7 +5,7 @@
   "listing_url": "https://yapatree.com/buy-properties-cuenca/spacious-house-in-private-condominium/",
   "market_id": "cuenca-ec",
   "created_at": "2026-08-10T07:00:00Z",
-  "updated_at": "2026-08-19T07:30:00Z",
+  "updated_at": "2026-08-19T07:35:00Z",
   "last_screened_at": "2026-08-10T07:00:00Z",
   "screening_snapshot": {
     "price": 187000,
@@ -25,7 +25,7 @@
   "rough_gross_yield": 0.0513,
   "rent_source": "Researcher comps 2026-08-10",
   "rent_confidence": "MEDIUM",
-  "workflow_state": "UNDERWRITTEN",
+  "workflow_state": "AUDIT",
   "scout_decision": "RESEARCH",
   "advertised_hoa": 80
 }
