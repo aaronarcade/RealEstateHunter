@@ -25,9 +25,9 @@
       "agentId": "bc-08d58477-fcc5-495c-ab0e-7464e9e89960",
       "runId": "run-8683342e-e7e8-456f-b2ec-66c4a47e1658",
       "agentUrl": "https://cursor.com/agents/bc-08d58477-fcc5-495c-ab0e-7464e9e89960",
-      "status": "ACTIVE",
+      "status": "ERROR",
       "createdAt": "2026-08-19T07:29:39.307Z",
-      "updatedAt": "2026-08-19T07:29:39.307Z"
+      "updatedAt": "2026-08-19T07:32:05.526Z"
     },
     "builder:task:TASK-002:implement-task": {
       "workKey": "builder:task:TASK-002:implement-task",
@@ -375,9 +375,9 @@
       "agentId": "bc-4e2a2d44-5cb8-4985-860b-6a691ff1004b",
       "runId": "run-78cd869d-f834-452e-9dea-a897c8750602",
       "agentUrl": "https://cursor.com/agents/bc-4e2a2d44-5cb8-4985-860b-6a691ff1004b",
-      "status": "ACTIVE",
+      "status": "ERROR",
       "createdAt": "2026-08-19T07:29:36.561Z",
-      "updatedAt": "2026-08-19T07:29:36.561Z"
+      "updatedAt": "2026-08-19T07:32:05.792Z"
     },
     "builder:task:TASK-006:implement-task": {
       "workKey": "builder:task:TASK-006:implement-task",
@@ -403,9 +403,23 @@
       "agentId": "bc-d4297eb1-6f8f-431f-8589-7b4221e71977",
       "runId": "run-9fa57bc3-e4f3-4373-9cbb-a003e0630a81",
       "agentUrl": "https://cursor.com/agents/bc-d4297eb1-6f8f-431f-8589-7b4221e71977",
-      "status": "ACTIVE",
+      "status": "ERROR",
       "createdAt": "2026-08-19T07:29:41.968Z",
-      "updatedAt": "2026-08-19T07:29:41.968Z"
+      "updatedAt": "2026-08-19T07:32:06.028Z"
+    },
+    "auditor:property:cuenca-ingenieros-3br-condo-house-ec:audit": {
+      "workKey": "auditor:property:cuenca-ingenieros-3br-condo-house-ec:audit",
+      "role": "auditor",
+      "subjectType": "property",
+      "subjectId": "cuenca-ingenieros-3br-condo-house-ec",
+      "action": "audit",
+      "branch": "main",
+      "agentId": "bc-9a37033f-c4a6-4cd6-b7db-b228a1ba1538",
+      "runId": "run-039e9c02-7154-44e8-844d-ed678a63c57c",
+      "agentUrl": "https://cursor.com/agents/bc-9a37033f-c4a6-4cd6-b7db-b228a1ba1538",
+      "status": "ACTIVE",
+      "createdAt": "2026-08-19T07:32:09.653Z",
+      "updatedAt": "2026-08-19T07:32:09.653Z"
     }
   }
 }
