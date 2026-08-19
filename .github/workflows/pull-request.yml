@@ -50,21 +50,15 @@ jobs:
           github.head_ref == 'cursor/builder-task-015-928e'
         run: node scripts/scrape-us-active-markets.mjs --date 2026-08-19
 
-      - name: TASK-015 commit scrape outputs
+      - name: TASK-015 upload scrape outputs
         if: |
           github.head_ref == 'agent/task-015-us-active-market-bulk-scrape' ||
           github.head_ref == 'cursor/builder-task-015-928e'
-        run: |
-          set -euo pipefail
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add data/scrapes/*-active-listings-2026-08-19.json
-          if git diff --cached --quiet; then
-            echo "No new scrape files to commit"
-            exit 0
-          fi
-          git commit -m "data(TASK-015): US ACTIVE market bulk scrape outputs"
-          git push
+        uses: actions/upload-artifact@v4
+        with:
+          name: task-015-us-active-scrapes
+          path: data/scrapes/*-active-listings-2026-08-19.json
+          if-no-files-found: error
 
   agent-auto-merge:
     needs: ci
