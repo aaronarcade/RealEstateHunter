@@ -5,14 +5,14 @@
   "listing_url": "https://yapatree.com/buy-properties-cuenca/spacious-house-in-private-condominium/",
   "market_id": "cuenca-ec",
   "created_at": "2026-08-10T07:00:00Z",
-  "updated_at": "2026-08-19T07:35:00Z",
-  "last_screened_at": "2026-08-10T07:00:00Z",
+  "updated_at": "2026-08-19T07:40:00Z",
+  "last_screened_at": "2026-08-19T07:40:00Z",
   "screening_snapshot": {
     "price": 187000,
     "rough_monthly_rent": 800,
     "rough_gross_yield": 0.0513,
     "advertised_hoa": 80,
-    "screened_at": "2026-08-10T07:00:00Z"
+    "screened_at": "2026-08-19T07:40:00Z"
   },
   "scout_notes": "Newest/lowest-priced Ecuador tracker unit; still ~5% gross. Tracker unit_id=092db4bd-14ef-4d29-b351-f234e80fd4e7.",
   "property_type": "single_family",
@@ -23,9 +23,19 @@
   "asking_price": 187000,
   "rough_monthly_rent": 800,
   "rough_gross_yield": 0.0513,
-  "rent_source": "Researcher comps 2026-08-10",
+  "rent_source": "Researcher comps 2026-08-10; underwritten range $650–$1,000/mo",
   "rent_confidence": "MEDIUM",
-  "workflow_state": "AUDIT",
+  "workflow_state": "ARCHIVED",
   "scout_decision": "RESEARCH",
-  "advertised_hoa": 80
+  "advertised_hoa": 80,
+  "archive_reason": "audit_reject",
+  "rescreen_after": "2026-10-18T07:35:00Z",
+  "rescreen_count": 0,
+  "audit_summary": {
+    "final_status": "REJECTED",
+    "cap_rate": 0.0363,
+    "noi": 6780,
+    "audited_at": "2026-08-19T07:35:00Z"
+  },
+  "manager_notes": "Auditor PASS on REJECTED. Base-case cap rate 3.63% verified well below 10% threshold; high-rent sensitivity ($1,000/mo) reaches only 4.91%. Price-to-rent ratio (~19.4×) incompatible with target returns. Archived for 60-day rescreen per diligence_reject policy — monitor for price drop (~5%+) or improved rent evidence."
 }
