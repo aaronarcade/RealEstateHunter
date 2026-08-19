@@ -417,9 +417,23 @@
       "agentId": "bc-9a37033f-c4a6-4cd6-b7db-b228a1ba1538",
       "runId": "run-039e9c02-7154-44e8-844d-ed678a63c57c",
       "agentUrl": "https://cursor.com/agents/bc-9a37033f-c4a6-4cd6-b7db-b228a1ba1538",
-      "status": "ACTIVE",
+      "status": "ERROR",
       "createdAt": "2026-08-19T07:32:09.653Z",
-      "updatedAt": "2026-08-19T07:32:09.653Z"
+      "updatedAt": "2026-08-19T07:33:41.687Z"
+    },
+    "manager:property:cuenca-ingenieros-3br-condo-house-ec:rank-or-close": {
+      "workKey": "manager:property:cuenca-ingenieros-3br-condo-house-ec:rank-or-close",
+      "role": "manager",
+      "subjectType": "property",
+      "subjectId": "cuenca-ingenieros-3br-condo-house-ec",
+      "action": "rank-or-close",
+      "branch": "main",
+      "agentId": "bc-fa61f70c-f25d-4557-a405-0ec28ed85804",
+      "runId": "run-08e2be84-a4e4-435b-be8c-01a3458b3085",
+      "agentUrl": "https://cursor.com/agents/bc-fa61f70c-f25d-4557-a405-0ec28ed85804",
+      "status": "ACTIVE",
+      "createdAt": "2026-08-19T07:33:44.419Z",
+      "updatedAt": "2026-08-19T07:33:44.419Z"
     }
   }
 }
