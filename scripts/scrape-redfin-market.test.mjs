@@ -1,8 +1,10 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { mkdtemp, readFile, writeFile } from 'node:fs/promises';
-import { join } from 'node:path';
+import { existsSync } from 'node:fs';
+import { mkdtemp, readdir, readFile, writeFile } from 'node:fs/promises';
+import { join, dirname } from 'node:path';
 import { tmpdir } from 'node:os';
+import { fileURLToPath } from 'node:url';
 
 import {
   US_ACTIVE_MARKETS,
@@ -174,5 +176,38 @@ test('US_ACTIVE_MARKETS defines five TASK-015 markets with region metadata', () 
   for (const market of US_ACTIVE_MARKETS) {
     assert.match(market.redfinUrl, /redfin\.com\/city\/\d+/);
     assert.ok(market.regions.length >= 1);
+  }
+});
+
+const REPO_ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
+
+test('TASK-015 committed scrape files meet >=100 listing smoke target when present', async () => {
+  for (const market of US_ACTIVE_MARKETS) {
+    const scrapesDir = join(REPO_ROOT, 'data/scrapes');
+    const names = existsSync(scrapesDir) ? await readdir(scrapesDir) : [];
+    const match = names.find((name) => name.startsWith(`${market.id}-active-listings-`));
+    if (!match) continue;
+
+    const payload = JSON.parse(await readFile(join(scrapesDir, match), 'utf-8'));
+    assert.equal(payload.market, market.id);
+    assert.ok(Array.isArray(payload.listings));
+    assert.ok(
+      payload.count >= 100,
+      `${market.id} scrape ${match} has ${payload.count} listings (< 100 smoke target)`,
+    );
+
+    const sample = payload.listings[0];
+    for (const field of [
+      'address',
+      'asking_price',
+      'beds',
+      'baths',
+      'property_type',
+      'mls_id',
+      'listing_url',
+      'state',
+    ]) {
+      assert.ok(field in sample, `${market.id} listing missing ${field}`);
+    }
   }
 });

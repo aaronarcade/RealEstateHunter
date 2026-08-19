@@ -11,6 +11,8 @@ concurrency:
 jobs:
   ci:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -41,6 +43,24 @@ jobs:
       - name: Orchestrator test
         working-directory: orchestrator
         run: npm test
+
+      - name: TASK-015 Redfin bulk scrape (US ACTIVE markets)
+        if: github.head_ref == 'agent/task-015-us-active-market-bulk-scrape'
+        run: node scripts/scrape-us-active-markets.mjs --date 2026-08-19
+
+      - name: TASK-015 commit scrape outputs
+        if: github.head_ref == 'agent/task-015-us-active-market-bulk-scrape'
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/scrapes/*-active-listings-2026-08-19.json
+          if git diff --cached --quiet; then
+            echo "No new scrape files to commit"
+            exit 0
+          fi
+          git commit -m "data(TASK-015): US ACTIVE market bulk scrape outputs"
+          git push
 
   agent-auto-merge:
     needs: ci
