@@ -5,14 +5,14 @@
   "listing_url": "https://yapatree.com/buy-properties-cuenca/luxury-5bdr-home-countryside-green-area/",
   "market_id": "cuenca-ec",
   "created_at": "2026-08-10T07:00:00Z",
-  "updated_at": "2026-08-20T07:45:00Z",
-  "last_screened_at": "2026-08-10T07:00:00Z",
+  "updated_at": "2026-08-20T07:50:00Z",
+  "last_screened_at": "2026-08-20T07:50:00Z",
   "screening_snapshot": {
     "price": 580000,
     "rough_monthly_rent": 1800,
     "rough_gross_yield": 0.0372,
     "advertised_hoa": null,
-    "screened_at": "2026-08-10T07:00:00Z"
+    "screened_at": "2026-08-20T07:50:00Z"
   },
   "scout_notes": "Furnished countryside estate; property tax cited ~$10.78/yr on listing mirrors. Tracker unit_id=948eb932-f451-4f80-aa28-780a3bf0607b.",
   "property_type": "single_family",
@@ -28,7 +28,7 @@
   "workflow_state": "ARCHIVED",
   "scout_decision": "RESEARCH",
   "archive_reason": "audit_reject",
-  "rescreen_after": "2026-10-19T07:45:00Z",
+  "rescreen_after": "2026-10-19T07:50:00Z",
   "rescreen_count": 0,
   "audit_summary": {
     "final_status": "REJECTED",
@@ -36,5 +36,5 @@
     "noi": 17790,
     "audited_at": "2026-08-20T07:35:40Z"
   },
-  "manager_notes": "Auditor PASS on REJECTED. Base-case cap rate 3.07% verified well below 10%; high-rent sensitivity (~$2,200/mo) reaches only ~3.8–3.9%. Archived for 60-day rescreen per diligence_reject policy. International Analyst/Auditor remains deprioritized vs US Scout volume (TASK-009)."
+  "manager_notes": "Auditor PASS on REJECTED. Base-case cap rate 3.07% verified well below 10% threshold; high-rent sensitivity ($2,200/mo) reaches only ~3.89%. Gross yield at zero expenses ~3.72%. Price-to-rent ratio (~322× monthly) incompatible with target returns. Archived for 60-day rescreen per diligence_reject policy — monitor for price drop (~5%+) or improved rent evidence. International Analyst/Auditor remains deprioritized vs US Scout volume (TASK-009). Aaron not notified (not VIABLE)."
 }
