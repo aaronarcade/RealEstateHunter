@@ -1,0 +1,31 @@
+{
+  "property_id": "cuenca-putishi-5br-award-residence-ec",
+  "annual_gross_rent": 21600,
+  "annual_operating_expenses": 3810,
+  "noi": 17790,
+  "cap_rate": 0.0307,
+  "proposed_status": "REJECTED",
+  "proposed_status_reason": "Cap rate 3.07% is well below the 10% threshold. At $580,000 purchase price and $1,800/mo estimated rent, the property cannot achieve target returns. Even at the high rent estimate ($2,200/mo), cap rate would only reach ~3.89%; gross yield at zero expenses is ~3.72%. HOA and assessments remain UNKNOWN (treated as $0 for math only), which adds downside risk. The luxury countryside SFH price-to-rent ratio is incompatible with the 10% cap rate investment criteria.",
+  "input_summary": {
+    "purchase_price": { "status": "VERIFIED", "confidence": "HIGH" },
+    "monthly_rent": { "status": "ESTIMATED", "confidence": "MEDIUM" },
+    "hoa_monthly": { "status": "UNKNOWN", "confidence": "LOW" },
+    "special_assessments": { "status": "UNKNOWN", "confidence": "LOW" },
+    "property_taxes_annual": { "status": "ESTIMATED", "confidence": "LOW" },
+    "insurance_annual": { "status": "ESTIMATED", "confidence": "MEDIUM" },
+    "management_annual": { "status": "ESTIMATED", "confidence": "MEDIUM" },
+    "utilities_annual": { "status": "ESTIMATED", "confidence": "MEDIUM" },
+    "other_expenses_annual": { "status": "ESTIMATED", "confidence": "LOW" }
+  },
+  "operating_expense_breakdown": {
+    "hoa_annual": 0,
+    "special_assessments": 0,
+    "property_taxes_annual": 50,
+    "insurance_annual": 400,
+    "management_annual": 2160,
+    "utilities_annual": 0,
+    "other_expenses_annual": 1200,
+    "notes": "HOA and special assessments UNKNOWN (null in evidence); included as $0 for NOI math only — not asserted as verified zero."
+  },
+  "computed_at": "2026-08-20T07:35:00Z"
+}
