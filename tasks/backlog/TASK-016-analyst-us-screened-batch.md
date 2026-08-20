@@ -11,7 +11,8 @@
 US pipeline is empty after three audited REJECTED archives (Horizon South 6.0%, Celebration Melia 7.85%, Laketown Wharf 9.0%). International backlog remains **deprioritized**:
 
 - 11 READY_FOR_UNDERWRITING (mostly Manta)
-- 3 UNDERWRITTEN REJECTED pending audit (`fez-manta-unit-209`, `cuenca-banos-ultramodern-mansion`, `cuenca-putishi`) — do **not** spawn Auditor on these ahead of US Scout volume
+- 2 UNDERWRITTEN REJECTED pending audit (`fez-manta-unit-209`, `cuenca-banos-ultramodern-mansion`) — do **not** spawn Auditor on these ahead of US Scout volume
+- `cuenca-putishi` Auditor PASS REJECTED (3.07%) — Manager archived 2026-08-20
 
 Activate this task immediately when Scout commits new US SCREENED candidates — do not wait for full 10-candidate batch.
 

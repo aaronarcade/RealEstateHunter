@@ -18,7 +18,8 @@
     "viable": 0,
     "archived_us": 3,
     "international_ready_for_underwriting_parked": 11,
-    "international_underwritten_parked": 3
+    "international_underwritten_parked": 2,
+    "international_archived_after_audit": 2
   },
   "market_coverage": [
     {
@@ -93,5 +94,5 @@
     "Do not divert Builder to new international scrapes, UI work, or FWB/St Augustine expansion",
     "No new Builder tasks until TASK-015 scrape files are on main"
   ],
-  "notes": "Manager refresh 2026-08-20: Scout volume still stalled (NDJSON 47 unchanged since 2026-08-13; open US RESEARCH = 0; zero SCREENED). Critical path = TASK-009 Phase A against PCB scrape (574 condo beds≥2 in band). TASK-015 scripts merged (#44) but five US ACTIVE scrape files still missing from data/scrapes/ — Builder must commit them. International Analyst continued (cuenca-putishi now UNDERWRITTEN REJECTED 3.07%; 3 intl UNDERWRITTEN + 11 RFU parked) — deprioritize further intl Analyst/Auditor vs US Scout. US archived rescreens not due until Oct 2026. No VIABLE. Activate TASK-016 when ≥1 US SCREENED appears."
+  "notes": "Manager refresh 2026-08-20: Scout volume still stalled (NDJSON 47 unchanged since 2026-08-13; open US RESEARCH = 0; zero SCREENED). Critical path = TASK-009 Phase A against PCB scrape (574 condo beds≥2 in band). TASK-015 scripts merged (#44) but five US ACTIVE scrape files still missing from data/scrapes/ — Builder must commit them. Archived cuenca-putishi after Auditor PASS REJECTED (3.07%). Remaining intl UNDERWRITTEN (fez-209, cuenca-banos) + 11 RFU parked — do not spawn further intl Analyst/Auditor ahead of US Scout. US archived rescreens not due until Oct 2026. No VIABLE. Activate TASK-016 when ≥1 US SCREENED appears."
 }
