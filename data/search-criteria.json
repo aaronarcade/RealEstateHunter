@@ -1,11 +1,11 @@
 {
   "$schema": "../schemas/search-criteria.json",
-  "version": 7,
-  "updated_at": "2026-08-19T07:30:00Z",
+  "version": 8,
+  "updated_at": "2026-08-20T07:35:00Z",
   "updated_by": "manager",
   "target_cap_rate": 0.10,
   "target_yield_minimum": 0.10,
-  "notes": "P0: Scout condo volume on US ACTIVE markets. PCB scrape is only ready bulk inventory (~1,074 condos / ~574 beds≥2 in band) — execute TASK-009 Phase A NOW. v7 adds 11807 Front Beach mid-HOA cluster. Cluster order: 8700 → 17462 (siblings only) → 16819 → 11807 → Shores 9900/9902 → Laketown 9860. Demote 15100, 520 N Richard Jackson, 9850 S Thomas. Tampa/Jax/BHM/MEM/CLE zero coverage pending TASK-015 (Builder ACTIVE). Open US RESEARCH = 0. Defer international. See data/pipeline-status.json.",
+  "notes": "P0: Scout condo volume on US ACTIVE markets — still stalled (NDJSON 47; open US RESEARCH = 0). PCB scrape remains only ready bulk inventory (~1,074 condos / ~574 beds≥2 in band) — execute TASK-009 Phase A NOW. Cluster order unchanged: 8700 → 17462 (siblings only) → 16819 → 11807 → Shores 9900/9902 → Laketown 9860. Demote 15100, 520 N Richard Jackson, 9850 S Thomas. TASK-015 scripts merged (#44) but Tampa/Jax/BHM/MEM/CLE scrape JSON not yet in data/scrapes/ — Scout uses seed_buildings for those markets in parallel; Builder must commit scrape files. Defer international. See data/pipeline-status.json.",
   "asset_focus": {
     "primary": "condo",
     "prioritize_condo_buildings": true,
@@ -17,14 +17,14 @@
       "name": "Tampa, FL",
       "priority": 1,
       "status": "ACTIVE",
-      "rationale": "Strong rental demand, no state income tax, diverse economy — zero scout coverage; seed buildings + TASK-015"
+      "rationale": "Strong rental demand, no state income tax, diverse economy — zero scout coverage; seed buildings now; bulk scrape pending TASK-015 commit"
     },
     {
       "id": "jacksonville-fl",
       "name": "Jacksonville, FL",
       "priority": 2,
       "status": "ACTIVE",
-      "rationale": "Affordable price points, growing population, military presence — zero scout coverage; seed buildings + TASK-015"
+      "rationale": "Affordable price points, growing population, military presence — zero scout coverage; seed buildings now; bulk scrape pending TASK-015 commit"
     },
     {
       "id": "panama-city-beach-fl",
@@ -40,21 +40,21 @@
       "name": "Birmingham, AL",
       "priority": 4,
       "status": "ACTIVE",
-      "rationale": "Low entry prices, potential for higher yields — zero coverage; condo seed buildings + TASK-015"
+      "rationale": "Low entry prices, potential for higher yields — zero coverage; condo seed buildings; bulk scrape pending TASK-015 commit"
     },
     {
       "id": "memphis-tn",
       "name": "Memphis, TN",
       "priority": 5,
       "status": "ACTIVE",
-      "rationale": "Strong rental market, affordable prices, no state income tax — zero coverage; condo seed buildings + TASK-015"
+      "rationale": "Strong rental market, affordable prices, no state income tax — zero coverage; condo seed buildings; bulk scrape pending TASK-015 commit"
     },
     {
       "id": "cleveland-oh",
       "name": "Cleveland, OH",
       "priority": 6,
       "status": "ACTIVE",
-      "rationale": "Low prices relative to rent, diverse employment base — zero coverage; condo seed buildings + TASK-015"
+      "rationale": "Low prices relative to rent, diverse employment base — zero coverage; condo seed buildings; bulk scrape pending TASK-015 commit"
     },
     {
       "id": "celebration-fl",

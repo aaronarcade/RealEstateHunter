@@ -1,6 +1,6 @@
 {
-  "version": 6,
-  "as_of": "2026-08-19T07:30:00Z",
+  "version": 7,
+  "as_of": "2026-08-20T07:35:00Z",
   "updated_by": "manager",
   "goal": "≥10% unlevered cap rate rental investments with high confidence",
   "volume_targets": {
@@ -17,8 +17,8 @@
     "audited_us": 3,
     "viable": 0,
     "archived_us": 3,
-    "international_ready_for_underwriting_parked": 13,
-    "international_underwritten_parked": 2
+    "international_ready_for_underwriting_parked": 11,
+    "international_underwritten_parked": 3
   },
   "market_coverage": [
     {
@@ -40,7 +40,7 @@
       "listings_reviewed": 0,
       "research_candidates_open": 0,
       "bulk_scrape_available": false,
-      "gap": "ZERO coverage — P0 seed-building search (SkyHouse, Slade, Place at Channelside, Grand Central) while awaiting TASK-015"
+      "gap": "ZERO coverage — P0 seed-building search (SkyHouse, Slade, Place at Channelside, Grand Central) in parallel with PCB; TASK-015 scripts landed (#44) but scrape JSON not yet committed"
     },
     {
       "market_id": "jacksonville-fl",
@@ -49,7 +49,7 @@
       "listings_reviewed": 0,
       "research_candidates_open": 0,
       "bulk_scrape_available": false,
-      "gap": "ZERO coverage — P0 seed-building search (Strand, San Marco Place, Berkman, Brooklyn) while awaiting TASK-015"
+      "gap": "ZERO coverage — P0 seed-building search (Strand, San Marco Place, Berkman, Brooklyn) in parallel; TASK-015 scrape commit still open"
     },
     {
       "market_id": "birmingham-al",
@@ -58,7 +58,7 @@
       "listings_reviewed": 0,
       "research_candidates_open": 0,
       "bulk_scrape_available": false,
-      "gap": "ZERO coverage — P1 after PCB/Tampa/Jax progress; TASK-015 Phase B"
+      "gap": "ZERO coverage — P1 after PCB/Tampa/Jax progress; seed buildings until TASK-015 scrapes commit"
     },
     {
       "market_id": "memphis-tn",
@@ -67,7 +67,7 @@
       "listings_reviewed": 0,
       "research_candidates_open": 0,
       "bulk_scrape_available": false,
-      "gap": "ZERO coverage — P1 after PCB/Tampa/Jax progress; TASK-015 Phase B"
+      "gap": "ZERO coverage — P1 after PCB/Tampa/Jax progress; seed buildings until TASK-015 scrapes commit"
     },
     {
       "market_id": "cleveland-oh",
@@ -76,23 +76,22 @@
       "listings_reviewed": 0,
       "research_candidates_open": 0,
       "bulk_scrape_available": false,
-      "gap": "ZERO coverage — P1 after PCB/Tampa/Jax progress; TASK-015 Phase B"
+      "gap": "ZERO coverage — P1 after PCB/Tampa/Jax progress; seed buildings until TASK-015 scrapes commit"
     }
   ],
   "analyst_queue": [],
   "auditor_queue": [],
   "scout_next_actions": [
-    "P0: PCB Phase A — filter scrape property_type=condo, beds≥2, price $75k–$750k; review ≥40; aim ≥3 RESEARCH. Cluster order: 8700 Front Beach (16, med HOA ~$672) → 17462 Horizon South (12, ~$636; siblings only if better than archived 6.0% reject) → 16819 Front Beach (17) → 11807 Front Beach (15, ~$839) → 9900/9902 Shores (39+21, high HOA) → 9860 Laketown Wharf (32, prior 9.0% reject)",
-    "P0: Demote/skip 15100 Front Beach (13 beds≥2, med HOA ~$1,261), 520 N Richard Jackson (26, ~$1,254), 9850 S Thomas (no beds≥2 in band)",
-    "P0: Tampa + Jacksonville condo seed-building search in parallel (manual until TASK-015 Phase A lands)",
-    "P1: Birmingham, Memphis, Cleveland condo sweeps using seed_buildings (search-criteria v7) after PCB progress or when TASK-015 scrapes arrive",
-    "Defer new international RESEARCH and deprioritize international Analyst work until US ACTIVE volume targets met; 13 international READY_FOR_UNDERWRITING remain parked"
+    "P0: PCB Phase A NOW — filter scrape property_type=condo, beds≥2, price $75k–$750k; review ≥40; aim ≥3 RESEARCH. Cluster order: 8700 Front Beach → 17462 Horizon South (siblings only if better than archived 6.0%) → 16819 → 11807 → 9900/9902 Shores → 9860 Laketown (siblings only if lower price/HOA)",
+    "P0: Demote/skip 15100 Front Beach, 520 N Richard Jackson, 9850 S Thomas (all 1BR)",
+    "P0: Tampa + Jacksonville condo seed-building search in parallel (do not wait for scrape files)",
+    "P1: Birmingham, Memphis, Cleveland condo sweeps via seed_buildings after PCB/Tampa/Jax progress or when TASK-015 scrapes land in data/scrapes/",
+    "Defer new international RESEARCH; do not expand Analyst/Auditor onto international UNDERWRITTEN/RFU until US ACTIVE volume targets met"
   ],
   "builder_priorities": [
-    "TASK-015 US ACTIVE market bulk scrape (P0 ACTIVE — unblocks Scout on Tampa/Jax/Birmingham/Memphis/Cleveland; ship Tampa+Jax first)",
-    "Do not divert Builder to new international scrapes, Streamlit UI, or FWB/St Augustine expansion",
-    "TASK-006 complete — React UI is primary; no new UI work until TASK-015 done",
-    "TASK-001 complete — schema helpers sufficient for current pipeline"
+    "TASK-015 remaining: commit scrape JSON for tampa-fl, jacksonville-fl, birmingham-al, memphis-tn, cleveland-oh under data/scrapes/ (≥100 listings/market or dry-market note). Scripts/CI already merged (#44); workflow_dispatch uploads artifacts only — download or re-run and commit to main",
+    "Do not divert Builder to new international scrapes, UI work, or FWB/St Augustine expansion",
+    "No new Builder tasks until TASK-015 scrape files are on main"
   ],
-  "notes": "Manager refresh 2026-08-19: Scout volume still stalled (NDJSON 47 unchanged since 2026-08-13; open US RESEARCH = 0; zero SCREENED properties). Critical path unchanged — TASK-009 Phase A against PCB scrape (574 condo beds≥2 in band). Builder TASK-015 spawned ACTIVE. International Analyst spawn on cuenca-ingenieros is deprioritized vs US scout volume. US archived rescreens not due until Oct 2026. No VIABLE; Analyst/Auditor US queues empty. When Scout produces ≥1 US SCREENED, activate TASK-016."
+  "notes": "Manager refresh 2026-08-20: Scout volume still stalled (NDJSON 47 unchanged since 2026-08-13; open US RESEARCH = 0; zero SCREENED). Critical path = TASK-009 Phase A against PCB scrape (574 condo beds≥2 in band). TASK-015 scripts merged (#44) but five US ACTIVE scrape files still missing from data/scrapes/ — Builder must commit them. International Analyst continued (cuenca-putishi now UNDERWRITTEN REJECTED 3.07%; 3 intl UNDERWRITTEN + 11 RFU parked) — deprioritize further intl Analyst/Auditor vs US Scout. US archived rescreens not due until Oct 2026. No VIABLE. Activate TASK-016 when ≥1 US SCREENED appears."
 }
