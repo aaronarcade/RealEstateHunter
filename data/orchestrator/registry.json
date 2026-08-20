@@ -22,12 +22,12 @@
       "subjectId": "pipeline",
       "action": "triage-pipeline",
       "branch": "main",
-      "agentId": "bc-08d58477-fcc5-495c-ab0e-7464e9e89960",
-      "runId": "run-8683342e-e7e8-456f-b2ec-66c4a47e1658",
-      "agentUrl": "https://cursor.com/agents/bc-08d58477-fcc5-495c-ab0e-7464e9e89960",
-      "status": "ERROR",
-      "createdAt": "2026-08-19T07:29:39.307Z",
-      "updatedAt": "2026-08-19T07:32:05.526Z"
+      "agentId": "bc-6500b789-ff6f-489e-932b-85d57b773929",
+      "runId": "run-5fc92722-f6e0-426b-9c65-b8479644a3f7",
+      "agentUrl": "https://cursor.com/agents/bc-6500b789-ff6f-489e-932b-85d57b773929",
+      "status": "ACTIVE",
+      "createdAt": "2026-08-20T07:32:53.244Z",
+      "updatedAt": "2026-08-20T07:32:53.244Z"
     },
     "builder:task:TASK-002:implement-task": {
       "workKey": "builder:task:TASK-002:implement-task",
@@ -434,6 +434,34 @@
       "status": "ERROR",
       "createdAt": "2026-08-19T07:33:44.419Z",
       "updatedAt": "2026-08-19T07:34:50.734Z"
+    },
+    "builder:task:TASK-016:implement-task": {
+      "workKey": "builder:task:TASK-016:implement-task",
+      "role": "builder",
+      "subjectType": "task",
+      "subjectId": "TASK-016",
+      "action": "implement-task",
+      "branch": "agent/task-016-analyst-us-screened-batch",
+      "agentId": "bc-49bffec6-e012-48fd-b3db-d584f7bccafa",
+      "runId": "run-f84f14f3-f8e5-4438-ab55-a50a0bf0bef3",
+      "agentUrl": "https://cursor.com/agents/bc-49bffec6-e012-48fd-b3db-d584f7bccafa",
+      "status": "ACTIVE",
+      "createdAt": "2026-08-20T07:32:50.051Z",
+      "updatedAt": "2026-08-20T07:32:50.051Z"
+    },
+    "analyst:property:cuenca-putishi-5br-award-residence-ec:complete-underwriting": {
+      "workKey": "analyst:property:cuenca-putishi-5br-award-residence-ec:complete-underwriting",
+      "role": "analyst",
+      "subjectType": "property",
+      "subjectId": "cuenca-putishi-5br-award-residence-ec",
+      "action": "complete-underwriting",
+      "branch": "main",
+      "agentId": "bc-97d396b1-851a-43a1-b929-5873f97633db",
+      "runId": "run-8f56eec3-483f-43d7-92aa-3caa1f932537",
+      "agentUrl": "https://cursor.com/agents/bc-97d396b1-851a-43a1-b929-5873f97633db",
+      "status": "ACTIVE",
+      "createdAt": "2026-08-20T07:32:55.910Z",
+      "updatedAt": "2026-08-20T07:32:55.910Z"
     }
   }
 }
