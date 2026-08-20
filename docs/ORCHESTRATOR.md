@@ -133,6 +133,8 @@ The orchestrator reads:
 
 Builder tasks in `tasks/backlog/` spawn Builder agents (one per task, respecting caps).
 
+Only backlog files whose `**Assignee:**` is missing (defaults to Builder) or mentions **Builder** are planned. Parked Analyst/Scout/Auditor tracking tasks may live in `backlog/` without spawning Builder (e.g. TASK-016 until Scout produces US `SCREENED` candidates). Property-state rows still spawn Analyst/Scout/Auditor as usual.
+
 When properties or backlog need triage, a Manager agent may also be planned.
 
 ## Scheduled runs

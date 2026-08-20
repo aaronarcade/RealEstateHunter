@@ -147,6 +147,19 @@ Credentials via `SUPABASE_URL` + keys in environment/secrets only. Service role 
 
 ---
 
+## ADR-011: Backlog Assignee gate for Builder spawns
+
+**Date:** 2026-08-20  
+**Status:** Accepted
+
+**Context:** `tasks/backlog/` holds both Builder implementation work and parked role-tracking tasks (Analyst batches, Scout sweeps). The orchestrator treated every backlog markdown file as a Builder spawn, which incorrectly launched Builder for TASK-016 (`Assignee: Analyst`) while zero US `SCREENED` properties existed.
+
+**Decision:** `loadBuilderTasks` includes a backlog file only when `**Assignee:**` is absent (legacy default = Builder) or the assignee string contains `Builder` (case-insensitive). Analyst/Scout/Auditor/Manager-only assignees are skipped. Property workflow states continue to spawn those roles independently of task files.
+
+**Consequences:** Manager can keep parked pipeline checklists in `tasks/backlog/` without burning Builder capacity. Builder agents only receive software tasks. Activate Analyst batch work by committing `SCREENED` property metas (or moving a Builder-assignee task into backlog when software work is needed).
+
+---
+
 ## Template
 
 ```markdown

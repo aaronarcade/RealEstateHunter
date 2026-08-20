@@ -1,6 +1,6 @@
 # TASK-016: Analyst batch — next US SCREENED candidates
 
-**Status:** BACKLOG  
+**Status:** PARKED (dependency unmet)  
 **Assignee:** Analyst  
 **Priority:** P0 (activate when Scout produces US SCREENED)
 
@@ -11,6 +11,16 @@
 US pipeline is empty after three audited REJECTED archives (Horizon South 6.0%, Celebration Melia 7.85%, Laketown Wharf 9.0%). International READY_FOR_UNDERWRITING backlog (13 properties) is **deprioritized** until US ACTIVE volume targets are met.
 
 Activate this task immediately when Scout commits new US SCREENED candidates — do not wait for full 10-candidate batch.
+
+## Builder closeout (2026-08-20)
+
+Orchestrator incorrectly spawned Builder for this Analyst tracking task because `tasks/backlog/` was treated as Builder-only without reading `**Assignee:**`.
+
+**Repo check at activation:** 0 US ACTIVE properties in `SCREENED` among markets `tampa-fl`, `jacksonville-fl`, `birmingham-al`, `memphis-tn`, `cleveland-oh`, `panama-city-beach-fl`. Existing US records are ARCHIVED only.
+
+**Builder fix (this PR):** `loadBuilderTasks` skips backlog files whose Assignee does not mention Builder (Analyst/Scout/Auditor/Manager tracking tasks stay parked without spawning Builder). Analyst work still activates via property-state spawns when Scout writes `SCREENED` metas.
+
+Analyst acceptance criteria below remain **open** until SCREENED candidates exist. Keep this file in `tasks/backlog/` as parked tracking (not Builder work).
 
 ## Description
 
@@ -33,6 +43,11 @@ Complete diligence (`evidence.json`) and underwriting (`underwriting.json`) for 
 - [ ] Proposed status justified with documented rationale
 - [ ] `meta.json` updated to `UNDERWRITTEN`
 - [ ] Sensitivity analysis included for borderline cases
+
+### Builder remediation (false spawn)
+
+- [x] Orchestrator does not spawn Builder for non-Builder backlog assignees
+- [x] Document parked dependency (0 US SCREENED) and activation path
 
 ## Depends on
 

@@ -2,11 +2,13 @@
 
 Work items for the **Builder** (and occasionally Manager for process tasks).
 
+Parked Analyst/Scout/Auditor checklists may also live in `backlog/` with a non-Builder `**Assignee:**`. The orchestrator only spawns Builder for backlog tasks that omit Assignee or mention Builder.
+
 ## Directories
 
 | Directory | Purpose |
 |-----------|---------|
-| `backlog/` | Proposed, not yet started |
+| `backlog/` | Proposed / parked (not yet started) |
 | `active/` | Currently in progress (one per branch/worktree) |
 | `done/` | Completed and merged |
 
