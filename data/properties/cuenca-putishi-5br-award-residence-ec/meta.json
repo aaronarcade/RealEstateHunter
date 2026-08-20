@@ -5,7 +5,7 @@
   "listing_url": "https://yapatree.com/buy-properties-cuenca/luxury-5bdr-home-countryside-green-area/",
   "market_id": "cuenca-ec",
   "created_at": "2026-08-10T07:00:00Z",
-  "updated_at": "2026-08-20T07:35:00Z",
+  "updated_at": "2026-08-20T07:35:40Z",
   "last_screened_at": "2026-08-10T07:00:00Z",
   "screening_snapshot": {
     "price": 580000,
@@ -25,6 +25,12 @@
   "rough_gross_yield": 0.0372,
   "rent_source": "Researcher comps 2026-08-10",
   "rent_confidence": "MEDIUM",
-  "workflow_state": "UNDERWRITTEN",
-  "scout_decision": "RESEARCH"
+  "workflow_state": "AUDIT",
+  "scout_decision": "RESEARCH",
+  "audit_summary": {
+    "final_status": "REJECTED",
+    "cap_rate": 0.0307,
+    "noi": 17790,
+    "audited_at": "2026-08-20T07:35:40Z"
+  }
 }

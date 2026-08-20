@@ -1,0 +1,59 @@
+{
+  "property_id": "cuenca-putishi-5br-award-residence-ec",
+  "result": "PASS",
+  "final_status": "REJECTED",
+  "underwriter_proposed_status": "REJECTED",
+  "findings": [
+    {
+      "severity": "info",
+      "field": "cap_rate",
+      "message": "Base-case cap rate of 3.07% independently verified (NOI $17,790 / $580,000). Well below the 10% threshold; REJECTED classification is supported."
+    },
+    {
+      "severity": "info",
+      "field": "sensitivity_analysis",
+      "message": "High-rent scenario ($2,200/mo, evidence range_high) with fixed underwriting expenses yields ~3.89% cap rate; with management scaled to 10% of gross (~$4,290 OpEx) yields ~3.81%. Gross yield at zero expenses is only ~3.72%. No plausible rent within documented comps supports VIABLE."
+    },
+    {
+      "severity": "info",
+      "field": "breakeven_analysis",
+      "message": "Independent check: ~$5,523/mo rent needed for 10% cap assuming 10% management and fixed taxes/insurance/maintenance (~$1,650/yr). That is ~3.1× the base rent estimate and ~2.5× evidence range_high ($2,200)."
+    },
+    {
+      "severity": "info",
+      "field": "monthly_rent",
+      "message": "Rent ESTIMATED MEDIUM at $1,800/mo with documented range $1,400–$2,200. Mid-range estimate is not overly optimistic, but price-to-rent ratio ($580k / $1,800/mo ≈ 322×) is incompatible with a 10% unlevered cap rate."
+    },
+    {
+      "severity": "info",
+      "field": "purchase_price",
+      "message": "Purchase price VERIFIED HIGH at $580,000 via YapaTree listing. Price anchor is well supported."
+    },
+    {
+      "severity": "warning",
+      "field": "hoa_monthly",
+      "message": "HOA/alicuota UNKNOWN (LOW confidence). Underwriting correctly includes $0 for NOI math only and does not assert verified zero. Any confirmed HOA would further compress an already sub-threshold cap rate; does not change REJECTED outcome."
+    },
+    {
+      "severity": "warning",
+      "field": "special_assessments",
+      "message": "Special assessments UNKNOWN (LOW confidence). Underwriting correctly excludes them from the base expense total rather than asserting zero. Any confirmed assessment would reduce NOI further; does not change REJECTED outcome."
+    },
+    {
+      "severity": "warning",
+      "field": "rental_restrictions",
+      "message": "Rental and STR restrictions both UNKNOWN (LOW confidence). LTR-only income path is assumed without bylaws. Restrictions could limit use case but are immaterial given the cap rate gap."
+    },
+    {
+      "severity": "warning",
+      "field": "property_taxes_annual",
+      "message": "Taxes ESTIMATED LOW at $50/yr pending municipal bill; listing mirrors cite ~$10.78/yr. Even a materially higher predial bill would not close the gap to 10% cap rate."
+    },
+    {
+      "severity": "info",
+      "field": "operating_expense_breakdown",
+      "message": "Expense arithmetic verified: $50 + $400 + $2,160 + $0 + $1,200 = $3,810 OpEx; gross $21,600 − $3,810 = NOI $17,790. Management equals 10% of base rent."
+    }
+  ],
+  "audited_at": "2026-08-20T07:35:40Z"
+}
