@@ -4,29 +4,29 @@
 **Assignee:** Scout  
 **Priority:** P0
 
-## Manager triage (2026-08-19)
+## Manager triage (2026-08-20)
 
 **Still the critical path. No Scout volume progress since 2026-08-13 (NDJSON still 47; open US RESEARCH = 0; zero SCREENED properties).**
 
-US pipeline fully audited: all 3 US RESEARCH properties ARCHIVED REJECTED (Horizon South 6.0%, Melia Celebration 7.85%, Laketown Wharf 9.0%). **Auditor queue empty. Analyst queue empty.** Scout volume is the only path to new VIABLE candidates.
+US pipeline fully audited: all 3 US RESEARCH properties ARCHIVED REJECTED (Horizon South 6.0%, Melia Celebration 7.85%, Laketown Wharf 9.0%). **Auditor queue empty. Analyst US queue empty.** Scout volume is the only path to new VIABLE candidates.
 
 | Market | Priority | Listings Reviewed | RESEARCH open | Target | Bulk Scrape |
 |--------|----------|-------------------|---------------|--------|-------------|
 | Panama City Beach, FL | 3 | 5 | 0 (2 archived) | 40 / 3 | ✅ **1,074 condos** (~574 beds≥2 in band) |
-| Tampa, FL | 1 | 0 | 0 | 40 / 3 | ❌ TASK-015 |
-| Jacksonville, FL | 2 | 0 | 0 | 40 / 3 | ❌ TASK-015 |
-| Birmingham, AL | 4 | 0 | 0 | 40 / 3 | ❌ TASK-015 |
-| Memphis, TN | 5 | 0 | 0 | 40 / 3 | ❌ TASK-015 |
-| Cleveland, OH | 6 | 0 | 0 | 40 / 3 | ❌ TASK-015 |
+| Tampa, FL | 1 | 0 | 0 | 40 / 3 | ❌ TASK-015 commit pending |
+| Jacksonville, FL | 2 | 0 | 0 | 40 / 3 | ❌ TASK-015 commit pending |
+| Birmingham, AL | 4 | 0 | 0 | 40 / 3 | ❌ TASK-015 commit pending |
+| Memphis, TN | 5 | 0 | 0 | 40 / 3 | ❌ TASK-015 commit pending |
+| Cleveland, OH | 6 | 0 | 0 | 40 / 3 | ❌ TASK-015 commit pending |
 
 **Total reviewed (NDJSON):** 47 — 39 Manta EC rejects, 6 US (5 PCB + 1 Celebration), 2 Cuenca. **Open US ACTIVE RESEARCH = 0.**
 
-### Execute immediately (do not wait for TASK-015)
+### Execute immediately (do not wait for TASK-015 scrape files)
 
 **Phase A — Panama City Beach scrape (P0, unblocked):**
 
 1. Filter `data/scrapes/panama-city-beach-fl-active-listings-2026-08-10.json` for `property_type: "condo"`, **`beds >= 2`**, price `$75k–$750k`.
-2. Building clusters in **beds≥2 median-HOA order** (see `search-criteria.json` v7 `seed_buildings`):
+2. Building clusters in **beds≥2 median-HOA order** (see `search-criteria.json` v8 `seed_buildings`):
    - **8700 Front Beach Rd** (~16 beds≥2) — median HOA ~$672 (**START HERE**)
    - **Horizon South** — `17462 Front Beach Rd` (~12 beds≥2) — med HOA ~$636 but Unit 31C REJECTED 6.0%; siblings only if better ask/rent
    - **16819 Front Beach Rd** (~17) — mid-tier Front Beach volume
@@ -40,11 +40,11 @@ US pipeline fully audited: all 3 US RESEARCH properties ARCHIVED REJECTED (Horiz
 
 **Phase B — Tampa + Jacksonville seed buildings (P0, parallel):**
 
-Manual condo-building search using `seed_buildings` in `data/search-criteria.json` until TASK-015 lands. Do not stop at seed list — broaden to market condo filter.
+Manual condo-building search using `seed_buildings` in `data/search-criteria.json`. Do **not** wait for TASK-015 scrape JSON. Do not stop at seed list — broaden to market condo filter.
 
 **Phase C — Birmingham, Memphis, Cleveland (P1):**
 
-Condo-only sweeps after Phase A/B progress, or immediately when TASK-015 scrapes arrive. Use `seed_buildings` for these markets.
+Condo-only sweeps after Phase A/B progress, or immediately when TASK-015 scrapes appear under `data/scrapes/`. Use `seed_buildings` for these markets.
 
 **Do not expand international** until US ACTIVE markets meet volume targets or dry-market notes exist for each.
 
@@ -116,11 +116,11 @@ For each candidate passing screen:
 
 ## Depends on
 
-- `data/search-criteria.json` v7
+- `data/search-criteria.json` v8
 - `data/pipeline-status.json` — current gap snapshot
 - `schemas/property-meta.json`, `schemas/reviewed-listing.json`
-- PCB scrape available now; other markets accelerated by TASK-015
+- PCB scrape available now; other markets accelerated when TASK-015 scrape files commit
 
 ## Notes
 
-Prior PCB RESEARCH units underwrote below 10% after expenses — keep scanning sibling units at better price/HOA points; prefer lower-HOA **beds≥2** clusters first (8700 Front Beach, then careful Horizon South siblings). Celebration FL remains WATCH — do not prioritize over ACTIVE markets. Fort Walton Beach / St Augustine scrapes exist but stay WATCH until ACTIVE volume targets are met. TASK-015 (Builder P0) adds bulk scrapes for the five zero-coverage US ACTIVE markets.
+Prior PCB RESEARCH units underwrote below 10% after expenses — keep scanning sibling units at better price/HOA points; prefer lower-HOA **beds≥2** clusters first (8700 Front Beach, then careful Horizon South siblings). Celebration FL remains WATCH — do not prioritize over ACTIVE markets. Fort Walton Beach / St Augustine scrapes exist but stay WATCH until ACTIVE volume targets are met. TASK-015 scripts merged (#44); scrape JSON commit still required for full Tampa/Jax/BHM/MEM/CLE volume.

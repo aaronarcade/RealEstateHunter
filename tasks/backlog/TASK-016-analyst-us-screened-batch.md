@@ -4,11 +4,14 @@
 **Assignee:** Analyst  
 **Priority:** P0 (activate when Scout produces US SCREENED)
 
-## Manager triage (2026-08-19)
+## Manager triage (2026-08-20)
 
 **Parked until Scout (TASK-009) produces ≥1 US ACTIVE property with `workflow_state: SCREENED`.**
 
-US pipeline is empty after three audited REJECTED archives (Horizon South 6.0%, Celebration Melia 7.85%, Laketown Wharf 9.0%). International READY_FOR_UNDERWRITING backlog (13 properties) is **deprioritized** until US ACTIVE volume targets are met.
+US pipeline is empty after three audited REJECTED archives (Horizon South 6.0%, Celebration Melia 7.85%, Laketown Wharf 9.0%). International backlog remains **deprioritized**:
+
+- 11 READY_FOR_UNDERWRITING (mostly Manta)
+- 3 UNDERWRITTEN REJECTED pending audit (`fez-manta-unit-209`, `cuenca-banos-ultramodern-mansion`, `cuenca-putishi`) — do **not** spawn Auditor on these ahead of US Scout volume
 
 Activate this task immediately when Scout commits new US SCREENED candidates — do not wait for full 10-candidate batch.
 

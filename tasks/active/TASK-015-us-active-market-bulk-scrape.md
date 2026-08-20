@@ -4,11 +4,32 @@
 **Assignee:** Builder  
 **Priority:** P0
 
-## Manager triage (2026-08-19)
+## Manager triage (2026-08-20)
 
-**P0 ACTIVE — Builder spawned. Still the unblock for five zero-coverage US ACTIVE markets.**
+**Scripts/CI merged (#44). Remaining deliverable: commit scrape JSON files to `data/scrapes/` on main.**
 
-Scout (TASK-009) must execute PCB Phase A immediately from existing scrape (search-criteria v7). This task unblocks Tampa, Jacksonville, Birmingham, Memphis, and Cleveland bulk inventory at 40+ listings/market scale. Ship Phase A (Tampa + Jacksonville) first; then Birmingham, Memphis, Cleveland.
+| Item | Status |
+|------|--------|
+| Multi-state Redfin scrape scripts | ✅ Merged (#44) |
+| `scrape-us-active-markets.mjs` + tests | ✅ |
+| Region IDs documented in `data/scrapes/README.md` | ✅ |
+| `workflow_dispatch` scrape workflow | ✅ (uploads artifacts only) |
+| `data/scrapes/{market}-active-listings-*.json` on main | ❌ **Still missing for all 5 markets** |
+
+Scout (TASK-009) continues PCB Phase A and Tampa/Jax seed-building search without these files. This task unblocks full 40+/market volume on Tampa, Jacksonville, Birmingham, Memphis, and Cleveland.
+
+### Remaining Builder work (do this now)
+
+1. Run `workflow_dispatch` on `scrape-us-active-markets.yml` **or** locally: `node scripts/scrape-us-active-markets.mjs --date 2026-08-20`.
+2. Place outputs under `data/scrapes/` as:
+   - `tampa-fl-active-listings-YYYY-MM-DD.json`
+   - `jacksonville-fl-active-listings-YYYY-MM-DD.json`
+   - `birmingham-al-active-listings-YYYY-MM-DD.json`
+   - `memphis-tn-active-listings-YYYY-MM-DD.json`
+   - `cleveland-oh-active-listings-YYYY-MM-DD.json`
+3. Commit and push to main (or Builder PR that lands the files).
+4. Confirm each file has ≥100 listings (or document dry-market in commit notes).
+5. Optional: `--condo-only` variant if full-market pull is too large — Scout filters condo anyway.
 
 Do **not** scrape new international markets. Do **not** expand Fort Walton Beach or St Augustine until ACTIVE US volume targets are met.
 
@@ -16,7 +37,7 @@ Do **not** scrape new international markets. Do **not** expand Fort Walton Beach
 
 Bulk-scrape active for-sale listings for the five US ACTIVE markets with **zero scout coverage** so Scout can meet volume targets (40+ listings reviewed per market) without manual one-by-one search.
 
-Only Panama City Beach currently has a bulk scrape among ACTIVE markets (`data/scrapes/panama-city-beach-fl-active-listings-2026-08-10.json`, 2,700 listings / ~1,074 condos / ~574 beds≥2 in price band). Tampa, Jacksonville, Birmingham, Memphis, and Cleveland have none.
+Only Panama City Beach currently has a bulk scrape among ACTIVE markets (`data/scrapes/panama-city-beach-fl-active-listings-2026-08-10.json`, 2,700 listings / ~1,074 condos / ~574 beds≥2 in price band). Tampa, Jacksonville, Birmingham, Memphis, and Cleveland have none on disk yet.
 
 ## Markets to scrape
 
@@ -36,19 +57,18 @@ Only Panama City Beach currently has a bulk scrape among ACTIVE markets (`data/s
 - [x] Condo filter optional flag (`--condo-only`) for Scout-focused pulls
 - [x] Document Redfin region IDs used per market in script comments or `data/scrapes/README.md`
 - [x] Sync script (`scripts/sync-market-listings-to-supabase.mjs`) works with new files
-- [ ] Smoke test: each market file has ≥100 listings (or document dry-market if fewer)
-
-**Builder note (2026-08-19):** Scrape scripts and CI job are ready. Cloud agent egress blocks `www.redfin.com`; PR CI will commit `data/scrapes/*-active-listings-2026-08-19.json` when Actions runs on #44. Run locally: `node scripts/scrape-us-active-markets.mjs --date 2026-08-19`.
+- [ ] **Smoke test:** each market file committed under `data/scrapes/` with ≥100 listings (or document dry-market if fewer)
 
 ## Reference
 
 - Existing FL scraper: `scripts/scrape-redfin-market.mjs`
 - PCB output: `data/scrapes/panama-city-beach-fl-active-listings-2026-08-10.json`
 - Wave 2 international pattern: `scripts/scrape-wave2-yield-cities.mjs`
+- Workflow: `.github/workflows/scrape-us-active-markets.yml` (artifact upload — files must still be committed)
 
 ## Scout usage
 
-After scrape, Scout (TASK-009) filters `property_type: "condo"`, applies yield screen (≥10% gross), and logs rejects to `data/reviewed/listings.ndjson`. RESEARCH candidates get full `data/properties/{id}/` dirs.
+After scrape files land on main, Scout (TASK-009) filters `property_type: "condo"`, applies yield screen (≥10% gross), and logs rejects to `data/reviewed/listings.ndjson`. RESEARCH candidates get full `data/properties/{id}/` dirs.
 
 ## Depends on
 
@@ -61,4 +81,4 @@ After scrape, Scout (TASK-009) filters `property_type: "condo"`, applies yield s
 
 ## Notes
 
-PCB is **not** blocked — Scout should process the existing PCB scrape in parallel. This task unblocks the other five ACTIVE markets only. WATCH-market scrapes (FWB, St Augustine, international) are out of scope.
+PCB is **not** blocked — Scout should process the existing PCB scrape in parallel. This task unblocks the other five ACTIVE markets only. WATCH-market scrapes (FWB, St Augustine, international) are out of scope. Builder PR #44 shipped scripts; Manager will move this task to `tasks/done/` only after scrape JSON files are on main.
