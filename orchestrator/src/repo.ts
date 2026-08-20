@@ -116,15 +116,16 @@ export async function loadBuilderTasks(
       continue;
     }
 
-    const priorityMatch = await readTaskPriority(
-      path.join(backlogDir, fileName)
-    );
+    const content = await readFile(path.join(backlogDir, fileName), "utf8");
+    if (!isBuilderAssignableTask(content)) {
+      continue;
+    }
 
     tasks.push({
       taskId,
       slug: match[2],
       filePath: path.join("tasks", "backlog", fileName),
-      priority: priorityMatch,
+      priority: readTaskPriorityFromContent(content),
     });
   }
 
@@ -137,8 +138,20 @@ export async function loadBuilderTasks(
   });
 }
 
-async function readTaskPriority(taskFilePath: string): Promise<number> {
-  const content = await readFile(taskFilePath, "utf8");
+/**
+ * Backlog may hold parked Analyst/Scout/Auditor tracking tasks.
+ * Only spawn Builder when Assignee is missing (default Builder) or mentions Builder.
+ */
+export function isBuilderAssignableTask(taskMarkdown: string): boolean {
+  const assigneeMatch = /^\*\*Assignee:\*\*\s*(.+)$/m.exec(taskMarkdown);
+  if (!assigneeMatch) {
+    return true;
+  }
+  const assignee = assigneeMatch[1].trim();
+  return /\bbuilder\b/i.test(assignee);
+}
+
+function readTaskPriorityFromContent(content: string): number {
   if (/^\*\*Priority:\*\*\s*P0/m.test(content)) {
     return 1;
   }

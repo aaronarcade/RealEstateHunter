@@ -5,6 +5,7 @@ import path from "node:path";
 import {
   loadPropertyContexts,
   loadBuilderTasks,
+  isBuilderAssignableTask,
   loadActiveTaskIds,
   loadRegistry,
   saveRegistry,
@@ -230,6 +231,46 @@ test("loadBuilderTasks handles P0 priority", async () => {
 test("loadBuilderTasks returns empty array for missing directory", async () => {
   const tasks = await loadBuilderTasks("/nonexistent", "/also-nonexistent", new Set());
   assert.deepEqual(tasks, []);
+});
+
+test("loadBuilderTasks skips non-Builder assignee tasks in backlog", async () => {
+  await setup();
+  const backlogDir = path.join(TEST_DIR, "backlog");
+  const activeDir = path.join(TEST_DIR, "active");
+
+  await mkdir(backlogDir, { recursive: true });
+  await mkdir(activeDir, { recursive: true });
+
+  await writeFile(
+    path.join(backlogDir, "TASK-016-analyst-us-screened-batch.md"),
+    `# TASK-016\n\n**Assignee:** Analyst\n**Priority:** P0\n`
+  );
+  await writeFile(
+    path.join(backlogDir, "TASK-009-scout-condo-volume-sweep.md"),
+    `# TASK-009\n\n**Assignee:** Scout\n**Priority:** P0\n`
+  );
+  await writeFile(
+    path.join(backlogDir, "TASK-017-schema-fix.md"),
+    `# TASK-017\n\n**Assignee:** Builder\n**Priority:** P1\n`
+  );
+
+  const tasks = await loadBuilderTasks(backlogDir, activeDir, new Set());
+
+  assert.equal(tasks.length, 1);
+  assert.equal(tasks[0]?.taskId, "TASK-017");
+
+  await teardown();
+});
+
+test("isBuilderAssignableTask defaults missing assignee to Builder", () => {
+  assert.equal(isBuilderAssignableTask("**Priority:** P1\n"), true);
+  assert.equal(isBuilderAssignableTask("**Assignee:** Builder\n"), true);
+  assert.equal(isBuilderAssignableTask("**Assignee:** Analyst\n"), false);
+  assert.equal(isBuilderAssignableTask("**Assignee:** Scout\n"), false);
+  assert.equal(
+    isBuilderAssignableTask("**Assignee:** Auditor (+ Builder validation closeout)\n"),
+    true
+  );
 });
 
 // =============================================================================
