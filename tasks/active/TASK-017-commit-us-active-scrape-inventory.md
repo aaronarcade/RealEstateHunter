@@ -3,13 +3,31 @@
 **Status:** ACTIVE  
 **Assignee:** Builder  
 **Priority:** P0  
-**Related:** TASK-015 (scripts merged #44; this tracks the missing inventory files)
+**Related:** TASK-015 scripts merged (#44); this is the remaining inventory commit
 
-## Manager triage (2026-08-20)
+## Manager triage (2026-08-21)
 
-TASK-015 acceptance still open on smoke test because **no** `tampa-fl` / `jacksonville-fl` / `birmingham-al` / `memphis-tn` / `cleveland-oh` scrape files exist under `data/scrapes/`. CI `workflow_dispatch` uploads artifacts but does not commit them.
+**Still missing:** no `tampa-fl` / `jacksonville-fl` / `birmingham-al` / `memphis-tn` / `cleveland-oh` scrape files under `data/scrapes/`.
 
-Prefer completing remaining work on **TASK-015** itself. Use this task only if TASK-015 is closed for scripts-only and inventory commit needs a separate Builder spawn.
+TASK-015 script/CI work is complete — **this task owns the smoke-test deliverable** (commit the five JSON files). Do not open parallel scrape tasks.
+
+| Priority vs peers | Guidance |
+|-------------------|----------|
+| TASK-018 (Scout spawn) | Also P0 — unblocks PCB Phase A without scrapes |
+| This task (017) | Unblocks full 40+/market volume on the five zero-coverage markets |
+| UI / international scrapes | **Do not divert** |
+
+### Builder work (do this now)
+
+1. Run `workflow_dispatch` on `scrape-us-active-markets.yml` **or** locally: `node scripts/scrape-us-active-markets.mjs --date 2026-08-21` (optional `--condo-only`).
+2. Commit under `data/scrapes/`:
+   - `tampa-fl-active-listings-YYYY-MM-DD.json`
+   - `jacksonville-fl-active-listings-YYYY-MM-DD.json`
+   - `birmingham-al-active-listings-YYYY-MM-DD.json`
+   - `memphis-tn-active-listings-YYYY-MM-DD.json`
+   - `cleveland-oh-active-listings-YYYY-MM-DD.json`
+3. Each file ≥100 listings (or dry-market note in commit).
+4. Push via Builder PR to main.
 
 ## Description
 
@@ -30,8 +48,8 @@ Produce and commit Redfin bulk listing JSON for the five zero-coverage US ACTIVE
 
 ## Depends on
 
-- TASK-015 scripts (`scripts/scrape-us-active-markets.mjs`)
+- TASK-015 scripts (`scripts/scrape-us-active-markets.mjs`) — done
 
 ## Notes
 
-Do not expand international or WATCH-market scrapes. PCB already has inventory — out of scope.
+Do not expand international or WATCH-market scrapes. PCB already has inventory — out of scope. After merge, Scout TASK-009 Phase B/C can use the files immediately.

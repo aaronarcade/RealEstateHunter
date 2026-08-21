@@ -1,0 +1,149 @@
+{
+  "property_id": "nahla-unit-60-barbasquillo-manta-ec",
+  "annual_gross_rent": 9000,
+  "annual_operating_expenses": 3420,
+  "operating_expense_breakdown": {
+    "hoa_annual": {
+      "value": 1800,
+      "note": "UNKNOWN from evidence; using $150/mo mid-point of evidence amenity-building range ($100-200/mo). Barbasquillo comps with fewer amenities ~$78/mo."
+    },
+    "special_assessments_annual": {
+      "value": 0,
+      "note": "UNKNOWN from evidence; $0 used for math only — new delivery building with no assessment history found; cannot confirm zero without HOA docs."
+    },
+    "property_taxes_annual": {
+      "value": 120,
+      "note": "From evidence, ESTIMATED Ecuador impuesto predial"
+    },
+    "insurance_annual": {
+      "value": 300,
+      "note": "From evidence, ESTIMATED owner supplemental coastal coverage"
+    },
+    "management_annual": {
+      "value": 900,
+      "note": "From evidence, ESTIMATED at 10% of $750/mo rent"
+    },
+    "utilities_annual": {
+      "value": 0,
+      "note": "From evidence, ESTIMATED tenant-paid under standard LTR lease"
+    },
+    "other_expenses_annual": {
+      "value": 300,
+      "note": "From evidence, ESTIMATED misc maintenance/reserves"
+    }
+  },
+  "noi": 5580,
+  "cap_rate": 0.0576,
+  "cap_rate_percent": "5.76%",
+  "proposed_status": "REJECTED",
+  "proposed_status_reason": "Base-case unlevered cap rate of 5.76% is well below the 10% threshold at $96,900 purchase price and $750/mo estimated rent. Even with HOA treated as $0 (optimistic given UNKNOWN amenity-building alicuota), cap rate reaches only 7.62%. At the high rent estimate ($900/mo) with $0 HOA, cap rate is still ~9.47%. HOA and special assessments remain UNKNOWN, which precludes VIABLE and would cap status at WATCHLIST even if returns cleared 10%. Price-to-rent for this 107m² 3BR does not support the investment criteria.",
+  "sensitivity_analysis": {
+    "zero_hoa_scenario": {
+      "hoa_monthly": 0,
+      "hoa_annual": 0,
+      "operating_expenses": 1620,
+      "noi": 7380,
+      "cap_rate": 0.0762,
+      "cap_rate_percent": "7.62%",
+      "note": "Optimistic HOA=$0 — still below 10%"
+    },
+    "low_hoa_scenario": {
+      "hoa_monthly": 78,
+      "hoa_annual": 936,
+      "operating_expenses": 2556,
+      "noi": 6444,
+      "cap_rate": 0.0665,
+      "cap_rate_percent": "6.65%",
+      "note": "Barbasquillo lower-amenity comps ~$78/mo"
+    },
+    "mid_hoa_scenario": {
+      "hoa_monthly": 150,
+      "hoa_annual": 1800,
+      "operating_expenses": 3420,
+      "noi": 5580,
+      "cap_rate": 0.0576,
+      "cap_rate_percent": "5.76%",
+      "note": "Base case — mid-point of evidence $100-200/mo range"
+    },
+    "high_hoa_scenario": {
+      "hoa_monthly": 200,
+      "hoa_annual": 2400,
+      "operating_expenses": 4020,
+      "noi": 4980,
+      "cap_rate": 0.0514,
+      "cap_rate_percent": "5.14%",
+      "note": "Top of evidence amenity-building range"
+    },
+    "high_rent_zero_hoa": {
+      "monthly_rent": 900,
+      "hoa_monthly": 0,
+      "annual_gross_rent": 10800,
+      "operating_expenses": 1620,
+      "noi": 9180,
+      "cap_rate": 0.0947,
+      "cap_rate_percent": "9.47%",
+      "note": "High end of evidence rent range with $0 HOA — still below 10%"
+    }
+  },
+  "breakeven_analysis": {
+    "required_monthly_rent_for_10pct_at_base_hoa": 1093,
+    "required_monthly_rent_for_10pct_at_zero_hoa": 943,
+    "note": "At $150/mo HOA and other evidence expenses, need ~$1,093/mo rent for 10% cap (~46% above base $750). At $0 HOA, still need ~$943/mo. Evidence high rent is $900."
+  },
+  "input_summary": {
+    "purchase_price": {
+      "value": 96900,
+      "status": "VERIFIED",
+      "confidence": "HIGH"
+    },
+    "monthly_rent": {
+      "value": 750,
+      "status": "ESTIMATED",
+      "confidence": "MEDIUM"
+    },
+    "hoa_monthly": {
+      "value": 150,
+      "status": "UNKNOWN",
+      "confidence": "LOW",
+      "note": "Critical unknown — mid-point estimate from evidence range for math only"
+    },
+    "special_assessments": {
+      "value": null,
+      "status": "UNKNOWN",
+      "confidence": "LOW"
+    },
+    "property_taxes_annual": {
+      "value": 120,
+      "status": "ESTIMATED",
+      "confidence": "MEDIUM"
+    },
+    "insurance_annual": {
+      "value": 300,
+      "status": "ESTIMATED",
+      "confidence": "MEDIUM"
+    },
+    "management_annual": {
+      "value": 900,
+      "status": "ESTIMATED",
+      "confidence": "MEDIUM"
+    },
+    "utilities_annual": {
+      "value": 0,
+      "status": "ESTIMATED",
+      "confidence": "MEDIUM"
+    },
+    "other_expenses_annual": {
+      "value": 300,
+      "status": "ESTIMATED",
+      "confidence": "LOW"
+    }
+  },
+  "risk_factors": [
+    "HOA (alicuota) is UNKNOWN — material to cap rate; amenity-rich building likely $100-200/mo",
+    "Special assessments UNKNOWN — cannot assume $0 without HOA documentation",
+    "Monthly rent ESTIMATED without Nahla-specific lease comps",
+    "Base and optimistic scenarios remain below 10% unlevered cap rate",
+    "Scout gross yield used $825 rent; evidence trimmed to $750 — even scout rent fails 10% after expenses"
+  ],
+  "computed_at": "2026-08-21T07:35:39Z"
+}

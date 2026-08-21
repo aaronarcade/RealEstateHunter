@@ -1,11 +1,11 @@
 {
   "$schema": "../schemas/search-criteria.json",
-  "version": 8,
-  "updated_at": "2026-08-20T07:35:00Z",
+  "version": 9,
+  "updated_at": "2026-08-21T07:45:00Z",
   "updated_by": "manager",
   "target_cap_rate": 0.10,
   "target_yield_minimum": 0.10,
-  "notes": "P0: Scout condo volume on US ACTIVE markets — still stalled (NDJSON 47; open US RESEARCH = 0). PCB scrape remains only ready bulk inventory (~1,074 condos / ~574 beds≥2 in band) — execute TASK-009 Phase A NOW. Cluster order unchanged: 8700 → 17462 (siblings only) → 16819 → 11807 → Shores 9900/9902 → Laketown 9860. Demote 15100, 520 N Richard Jackson, 9850 S Thomas. TASK-015 scripts merged (#44) but Tampa/Jax/BHM/MEM/CLE scrape JSON not yet in data/scrapes/ — Scout uses seed_buildings for those markets in parallel; Builder must commit scrape files. Defer international. See data/pipeline-status.json.",
+  "notes": "P0: Scout condo volume on US ACTIVE markets — still stalled (NDJSON 47; open US RESEARCH = 0). Root cause: orchestrator does not spawn Scout for TASK-009 (see TASK-018). PCB scrape ready (~574 beds≥2) — Phase A cluster order: 8700 → 17462 (siblings only) → 14415 → 11807 → 16819 → Shores 9900/9902 → Laketown 9860. Demote 15100, 520 N Richard Jackson, 9850. TASK-017 owns five-market scrape JSON commit; TASK-015 scripts done. International pipeline hard-parked 2026-08-21. See data/pipeline-status.json.",
   "asset_focus": {
     "primary": "condo",
     "prioritize_condo_buildings": true,
@@ -17,14 +17,14 @@
       "name": "Tampa, FL",
       "priority": 1,
       "status": "ACTIVE",
-      "rationale": "Strong rental demand, no state income tax, diverse economy — zero scout coverage; seed buildings now; bulk scrape pending TASK-015 commit"
+      "rationale": "Strong rental demand, no state income tax, diverse economy — zero scout coverage; seed buildings now; bulk scrape pending TASK-017 commit"
     },
     {
       "id": "jacksonville-fl",
       "name": "Jacksonville, FL",
       "priority": 2,
       "status": "ACTIVE",
-      "rationale": "Affordable price points, growing population, military presence — zero scout coverage; seed buildings now; bulk scrape pending TASK-015 commit"
+      "rationale": "Affordable price points, growing population, military presence — zero scout coverage; seed buildings now; bulk scrape pending TASK-017 commit"
     },
     {
       "id": "panama-city-beach-fl",
@@ -40,21 +40,21 @@
       "name": "Birmingham, AL",
       "priority": 4,
       "status": "ACTIVE",
-      "rationale": "Low entry prices, potential for higher yields — zero coverage; condo seed buildings; bulk scrape pending TASK-015 commit"
+      "rationale": "Low entry prices, potential for higher yields — zero coverage; condo seed buildings; bulk scrape pending TASK-017 commit"
     },
     {
       "id": "memphis-tn",
       "name": "Memphis, TN",
       "priority": 5,
       "status": "ACTIVE",
-      "rationale": "Strong rental market, affordable prices, no state income tax — zero coverage; condo seed buildings; bulk scrape pending TASK-015 commit"
+      "rationale": "Strong rental market, affordable prices, no state income tax — zero coverage; condo seed buildings; bulk scrape pending TASK-017 commit"
     },
     {
       "id": "cleveland-oh",
       "name": "Cleveland, OH",
       "priority": 6,
       "status": "ACTIVE",
-      "rationale": "Low prices relative to rent, diverse employment base — zero coverage; condo seed buildings; bulk scrape pending TASK-015 commit"
+      "rationale": "Low prices relative to rent, diverse employment base — zero coverage; condo seed buildings; bulk scrape pending TASK-017 commit"
     },
     {
       "id": "celebration-fl",
@@ -274,7 +274,7 @@
       "memphis-tn",
       "cleveland-oh"
     ],
-    "defer_non_us_markets": "Do not add new Manta/Cuenca/international RESEARCH candidates until all US ACTIVE markets in market_sweep_order have ≥3 RESEARCH candidates or a documented dry-market note in scout_notes. International READY_FOR_UNDERWRITING backlog stays parked.",
+    "defer_non_us_markets": "Do not add new Manta/Cuenca/international RESEARCH candidates until all US ACTIVE markets in market_sweep_order have ≥3 RESEARCH candidates or a documented dry-market note in scout_notes. International open pipeline was hard-parked to ARCHIVED (watchlist) on 2026-08-21 with prior_pipeline_state for restore — do not unpark without Manager.",
     "condo_building_search": {
       "enabled": true,
       "strategy": [
@@ -282,13 +282,14 @@
         "When a bulk scrape exists, filter property_type=condo and sort/group by address pattern before open-web search.",
         "Prefer beds≥2 and price_range from property_filters when scoring scrape inventory.",
         "Among PCB scrape clusters, rank by median advertised HOA on beds≥2 in price band (not all-condo samples — studios/1BR skew HOA low).",
-        "PCB beds≥2 start order: 8700 Front Beach Rd → 17462 Front Beach (Horizon South siblings) → other Front Beach mid-HOA clusters → Shores/Laketown last.",
+        "PCB beds≥2 start order: 8700 Front Beach Rd → 17462 Front Beach (Horizon South siblings) → 14415 Front Beach → 11807 → 16819 → Shores/Laketown last.",
         "Do not prioritize 15100 Front Beach for beds≥2 — median HOA ~$1,261 on 2BR+; sub-$500 HOA rows are mostly 0–1BR (outside beds_min).",
         "Search by building name or street address when a condo complex has multiple active listings.",
         "When one unit in a building passes yield screen, review other units in the same building.",
         "Prefer established condo buildings (20+ units) with published HOA fees on the listing.",
         "Among sibling units, prefer lower advertised HOA and clearer LTR rent support (lesson from Laketown Wharf 9.0% reject).",
-        "Record building_name and unit in meta.json when available."
+        "Record building_name and unit in meta.json when available.",
+        "Commit reviewed batches of ~10 listings — do not wait for a full market before pushing."
       ],
       "building_signals": [
         "Multiple units for sale in same building",
@@ -310,12 +311,12 @@
           {
             "name": "Horizon South",
             "address_pattern": "17462 Front Beach Rd",
-            "notes": "~12–16 beds≥2 in band; median HOA ~$633 (lowest large cluster) but Unit 31C archived REJECTED at 6.0% — siblings only if lower ask or stronger LTR rent"
+            "notes": "~16 beds≥2 in band; median HOA ~$631 (lowest large cluster) but Unit 31C archived REJECTED at 6.0% — siblings only if lower ask or stronger LTR rent"
           },
           {
-            "name": "16819 Front Beach Rd cluster",
-            "address_pattern": "16819 Front Beach Rd",
-            "notes": "~17 beds≥2 in band; median HOA ~$978 — mid-tier Front Beach volume after 8700/17462"
+            "name": "14415 Front Beach Rd cluster",
+            "address_pattern": "14415 Front Beach Rd",
+            "notes": "~6 beds≥2 in band; median HOA ~$887 — mid-HOA Front Beach filler after 8700/17462 before higher-HOA 16819"
           },
           {
             "name": "11807 Front Beach Rd cluster",
@@ -323,19 +324,24 @@
             "notes": "~15 beds≥2 in band; median HOA ~$839 — lower-HOA Front Beach cluster before Shores/Laketown"
           },
           {
+            "name": "16819 Front Beach Rd cluster",
+            "address_pattern": "16819 Front Beach Rd",
+            "notes": "~17 beds≥2 in band; median HOA ~$978 — mid-tier Front Beach volume after 8700/17462/14415/11807"
+          },
+          {
             "name": "Shores of Panama",
             "address_pattern": "9900 S Thomas Dr",
-            "notes": "Largest PCB cluster (~39 beds≥2 at 9900 + ~21 at 9902) but median HOA ~$1,065–$1,327 — scan after lower-HOA Front Beach"
+            "notes": "Largest PCB cluster (~40 beds≥2 at 9900 + ~21 at 9902) but median HOA ~$1,065–$1,327 — scan after lower-HOA Front Beach"
           },
           {
             "name": "Laketown Wharf",
             "address_pattern": "9860 S Thomas Dr",
-            "notes": "~32 beds≥2; median HOA ~$1,065. Unit 917 archived REJECTED at 9.0% — siblings only if lower price/HOA"
+            "notes": "~33 beds≥2; median HOA ~$1,065. Unit 917 archived REJECTED at 9.0% — siblings only if lower price/HOA"
           },
           {
             "name": "520 N Richard Jackson Blvd cluster",
             "address_pattern": "520 N Richard Jackson Blvd",
-            "notes": "~26 beds≥2; high volume but median HOA ~$1,254 — volume filler after Front Beach/Shores; demote vs 11807"
+            "notes": "~26 beds≥2; high volume but median HOA ~$1,231 — volume filler after Front Beach/Shores; demote vs 11807"
           },
           {
             "name": "15100 Front Beach Rd cluster",

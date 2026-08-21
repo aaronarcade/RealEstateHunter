@@ -1,0 +1,69 @@
+{
+  "property_id": "nahla-unit-60-barbasquillo-manta-ec",
+  "result": "PASS",
+  "final_status": "REJECTED",
+  "underwriter_proposed_status": "REJECTED",
+  "findings": [
+    {
+      "severity": "info",
+      "field": "cap_rate",
+      "message": "Base-case cap rate of 5.76% independently verified (NOI $5,580 / $96,900). Well below the 10% threshold; REJECTED classification is supported."
+    },
+    {
+      "severity": "info",
+      "field": "operating_expense_breakdown",
+      "message": "Expense arithmetic verified: $1,800 HOA + $0 assessments + $120 taxes + $300 insurance + $900 management + $0 utilities + $300 other = $3,420 OpEx; gross $9,000 − $3,420 = NOI $5,580."
+    },
+    {
+      "severity": "info",
+      "field": "sensitivity_analysis",
+      "message": "Zero-HOA scenario yields 7.62%. High-rent ($900/mo) with $0 HOA yields 9.47%—still below 10%. Mid HOA ($150) and high HOA ($200) yield 5.76% and 5.14%. No documented scenario clears the investment threshold."
+    },
+    {
+      "severity": "info",
+      "field": "breakeven_analysis",
+      "message": "Independent check: ~$1,092.50/mo rent needed for 10% cap at base HOA ($150/mo); ~$942.50/mo at $0 HOA. Both exceed evidence range_high ($900/mo)."
+    },
+    {
+      "severity": "info",
+      "field": "purchase_price",
+      "message": "Purchase price VERIFIED HIGH at $96,900 via Trivo Nahla Unit 60 listing."
+    },
+    {
+      "severity": "info",
+      "field": "monthly_rent",
+      "message": "Rent ESTIMATED MEDIUM at $750/mo (range $650–$900), trimmed below scout $825. Mid-tier estimate is not overly optimistic relative to FazWaz median and Barbasquillo comps; rent is not the reason this fails 10%."
+    },
+    {
+      "severity": "blocking",
+      "field": "hoa_monthly",
+      "message": "HOA/alicuota UNKNOWN (LOW confidence). Underwriting correctly uses $150/mo mid-point of amenity-building range for math only and does not assert verified zero. Even optimistic $0 HOA leaves base case at 7.62%—material uncertainty plus sub-threshold returns support REJECTED over WATCHLIST."
+    },
+    {
+      "severity": "blocking",
+      "field": "special_assessments",
+      "message": "Special assessments UNKNOWN (LOW confidence). Underwriting includes $0 for math only with explicit caveat that zero cannot be confirmed without HOA docs. Per PRODUCT.md, assessments must be known for VIABLE; gap is consistent with REJECTED given cap rate."
+    },
+    {
+      "severity": "warning",
+      "field": "property_taxes_annual",
+      "message": "Taxes ESTIMATED MEDIUM at $120/yr based on Ecuador predial norms vs cadastral value. Exact Manta municipal bill unknown; even high-end of evidence range ($290) would not close the gap to 10%."
+    },
+    {
+      "severity": "warning",
+      "field": "insurance_annual",
+      "message": "Insurance ESTIMATED MEDIUM at $300/yr for owner supplemental coastal/earthquake coverage; building structure often in alicuota. Underestimate risk is modest relative to the large cap-rate shortfall."
+    },
+    {
+      "severity": "info",
+      "field": "rental_restrictions",
+      "message": "Rental and STR restrictions VERIFIED HIGH as Airbnb-friendly per Nahla marketing and AirROI Low regulation for Manta. Confirm reglamento interno at purchase; immaterial to REJECTED outcome."
+    },
+    {
+      "severity": "info",
+      "field": "management_annual",
+      "message": "Management ESTIMATED MEDIUM at 10% of rent ($900/yr). Self-management ($0) would raise base cap to ~6.69%—still well below 10%."
+    }
+  ],
+  "audited_at": "2026-08-21T07:37:52Z"
+}
