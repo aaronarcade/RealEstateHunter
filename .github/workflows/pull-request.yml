@@ -85,18 +85,6 @@ jobs:
           path: data/scrapes/*-active-listings-2026-08-19.json
           if-no-files-found: error
 
-      - name: TASK-017 upload scrape outputs
-        if: |
-          startsWith(github.head_ref, 'agent/task-017') ||
-          startsWith(github.head_ref, 'cursor/builder-task-017')
-        uses: actions/upload-artifact@v4
-        with:
-          name: task-017-us-active-scrapes
-          path: data/scrapes/{tampa-fl,jacksonville-fl,birmingham-al,memphis-tn,cleveland-oh}-active-listings-*.json
-          if-no-files-found: error
-
-      # Push last so tests already passed on the scraped workspace. The push triggers a
-      # follow-up PR synchronize; that second run skips scrape and auto-merges.
       - name: TASK-017 commit scrape inventory
         if: |
           startsWith(github.head_ref, 'agent/task-017') ||
@@ -113,6 +101,21 @@ jobs:
           git status
           git commit -m "TASK-017: commit US ACTIVE scrape inventory for five markets"
           git push origin "HEAD:${{ github.head_ref }}"
+
+      - name: TASK-017 upload scrape outputs
+        if: |
+          startsWith(github.head_ref, 'agent/task-017') ||
+          startsWith(github.head_ref, 'cursor/builder-task-017')
+        uses: actions/upload-artifact@v4
+        with:
+          name: task-017-us-active-scrapes
+          path: |
+            data/scrapes/tampa-fl-active-listings-*.json
+            data/scrapes/jacksonville-fl-active-listings-*.json
+            data/scrapes/birmingham-al-active-listings-*.json
+            data/scrapes/memphis-tn-active-listings-*.json
+            data/scrapes/cleveland-oh-active-listings-*.json
+          if-no-files-found: error
 
   agent-auto-merge:
     needs: ci
