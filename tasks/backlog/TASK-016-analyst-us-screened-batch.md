@@ -4,27 +4,13 @@
 **Assignee:** Analyst  
 **Priority:** P0 (activate when Scout produces US SCREENED)
 
-## Manager triage (2026-08-20)
+## Manager triage (2026-08-21)
 
 **Parked until Scout (TASK-009) produces ≥1 US ACTIVE property with `workflow_state: SCREENED`.**
 
-US pipeline is empty after three audited REJECTED archives (Horizon South 6.0%, Celebration Melia 7.85%, Laketown Wharf 9.0%). International backlog remains **deprioritized**:
+US pipeline empty after three audited REJECTED archives (Horizon South 6.0%, Celebration Melia 7.85%, Laketown Wharf 9.0%). International backlog **hard-parked** 2026-08-21 (13 properties ARCHIVED watchlist with `prior_pipeline_state`) so Analyst/Auditor capacity is not consumed ahead of US Scout volume.
 
-- 11 READY_FOR_UNDERWRITING (mostly Manta)
-- 2 UNDERWRITTEN REJECTED pending audit (`fez-manta-unit-209`, `cuenca-banos-ultramodern-mansion`) — do **not** spawn Auditor on these ahead of US Scout volume
-- `cuenca-putishi` Auditor PASS REJECTED (3.07%) — Manager archived 2026-08-20
-
-Activate this task immediately when Scout commits new US SCREENED candidates — do not wait for full 10-candidate batch.
-
-## Builder closeout (2026-08-20)
-
-Orchestrator incorrectly spawned Builder for this Analyst tracking task because `tasks/backlog/` was treated as Builder-only without reading `**Assignee:**`.
-
-**Repo check at activation:** 0 US ACTIVE properties in `SCREENED` among markets `tampa-fl`, `jacksonville-fl`, `birmingham-al`, `memphis-tn`, `cleveland-oh`, `panama-city-beach-fl`. Existing US records are ARCHIVED only.
-
-**Builder fix (this PR):** `loadBuilderTasks` skips backlog files whose Assignee does not mention Builder (Analyst/Scout/Auditor/Manager tracking tasks stay parked without spawning Builder). Analyst work still activates via property-state spawns when Scout writes `SCREENED` metas.
-
-Analyst acceptance criteria below remain **open** until SCREENED candidates exist. Keep this file in `tasks/backlog/` as parked tracking (not Builder work).
+Activate immediately when Scout commits new US SCREENED candidates — do not wait for full 10-candidate batch.
 
 ## Description
 
@@ -33,7 +19,7 @@ Complete diligence (`evidence.json`) and underwriting (`underwriting.json`) for 
 ## Instructions
 
 1. Read `docs/PRODUCT.md` for cap rate formulas and classification rules.
-2. For each US ACTIVE SCREENED property (check `market_id` in `tampa-fl`, `jacksonville-fl`, `birmingham-al`, `memphis-tn`, `cleveland-oh`, `panama-city-beach-fl`):
+2. For each US ACTIVE SCREENED property (`market_id` in `tampa-fl`, `jacksonville-fl`, `birmingham-al`, `memphis-tn`, `cleveland-oh`, `panama-city-beach-fl`):
    - Build complete `evidence.json` with verified/estimated/unknown status on all material fields.
    - Build `underwriting.json` with NOI, cap rate, sensitivity, and proposed status.
    - Update `meta.json` to `UNDERWRITTEN`.
@@ -48,11 +34,6 @@ Complete diligence (`evidence.json`) and underwriting (`underwriting.json`) for 
 - [ ] `meta.json` updated to `UNDERWRITTEN`
 - [ ] Sensitivity analysis included for borderline cases
 
-### Builder remediation (false spawn)
-
-- [x] Orchestrator does not spawn Builder for non-Builder backlog assignees
-- [x] Document parked dependency (0 US SCREENED) and activation path
-
 ## Depends on
 
 - TASK-009 Scout volume sweep producing US SCREENED candidates
@@ -64,4 +45,4 @@ Complete diligence (`evidence.json`) and underwriting (`underwriting.json`) for 
 
 ## Notes
 
-Prior batch TASK-012 covered the first two US properties (both REJECTED). PCB lessons: high gross yield with HOA + STR management often fails 10% cap — verify LTR comps and all operating expenses conservatively.
+Prior batch TASK-012 covered the first US properties (REJECTED). PCB lessons: high gross yield with HOA + STR management often fails 10% cap — verify LTR comps and all operating expenses conservatively. Orchestrator skips non-Builder backlog assignees (ADR) — this file stays parked without spawning Builder.
