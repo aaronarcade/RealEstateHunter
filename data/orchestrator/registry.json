@@ -518,6 +518,20 @@
       "status": "ERROR",
       "createdAt": "2026-08-21T07:37:05.235Z",
       "updatedAt": "2026-08-21T07:38:03.870Z"
+    },
+    "manager:property:nahla-unit-60-barbasquillo-manta-ec:rank-or-close": {
+      "workKey": "manager:property:nahla-unit-60-barbasquillo-manta-ec:rank-or-close",
+      "role": "manager",
+      "subjectType": "property",
+      "subjectId": "nahla-unit-60-barbasquillo-manta-ec",
+      "action": "rank-or-close",
+      "branch": "main",
+      "agentId": "bc-679b65d6-855d-4fe7-932a-6b1c378b9589",
+      "runId": "run-23b18804-ebe0-44d2-863a-3f53703741c6",
+      "agentUrl": "https://cursor.com/agents/bc-679b65d6-855d-4fe7-932a-6b1c378b9589",
+      "status": "ACTIVE",
+      "createdAt": "2026-08-21T07:39:28.967Z",
+      "updatedAt": "2026-08-21T07:39:28.967Z"
     }
   }
 }
