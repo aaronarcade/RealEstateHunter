@@ -1,6 +1,6 @@
 # TASK-017: Commit US ACTIVE scrape inventory to data/scrapes/
 
-**Status:** ACTIVE  
+**Status:** DONE  
 **Assignee:** Builder  
 **Priority:** P0  
 **Related:** TASK-015 scripts merged (#44); this is the remaining inventory commit
@@ -53,3 +53,16 @@ Produce and commit Redfin bulk listing JSON for the five zero-coverage US ACTIVE
 ## Notes
 
 Do not expand international or WATCH-market scrapes. PCB already has inventory — out of scope. After merge, Scout TASK-009 Phase B/C can use the files immediately.
+
+
+## Completion (2026-08-21)
+
+Merged via PR #47. Inventory on main:
+
+| Market | File | Listings | Condos |
+|--------|------|----------|--------|
+| tampa-fl | `tampa-fl-active-listings-2026-08-21.json` | 3746 | 749 |
+| jacksonville-fl | `jacksonville-fl-active-listings-2026-08-21.json` | 5035 | 523 |
+| birmingham-al | `birmingham-al-active-listings-2026-08-21.json` | 2209 | 198 |
+| memphis-tn | `memphis-tn-active-listings-2026-08-21.json` | 3361 | 307 |
+| cleveland-oh | `cleveland-oh-active-listings-2026-08-21.json` | 1345 | 64 |
