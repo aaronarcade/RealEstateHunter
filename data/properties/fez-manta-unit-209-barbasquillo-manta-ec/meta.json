@@ -1,11 +1,11 @@
 {
   "id": "fez-manta-unit-209-barbasquillo-manta-ec",
-  "address": "Fez Manta Unit 209, Barbasquillo, Manta, Manab\u00ed, Ecuador",
-  "location": "Manta, Manab\u00ed, Ecuador",
+  "address": "Fez Manta Unit 209, Barbasquillo, Manta, Manabí, Ecuador",
+  "location": "Manta, Manabí, Ecuador",
   "listing_url": "https://trivo.com.ec/propiedades/fez-manta/",
   "market_id": "manta-ec",
   "created_at": "2026-08-10T05:00:00Z",
-  "updated_at": "2026-08-10T05:05:00Z",
+  "updated_at": "2026-08-21T07:40:00Z",
   "last_screened_at": "2026-08-10T05:00:00Z",
   "screening_snapshot": {
     "price": 62150,
@@ -14,7 +14,7 @@
     "advertised_hoa": null,
     "screened_at": "2026-08-10T05:00:00Z"
   },
-  "scout_notes": "Pre-sale suite 32.29m\u00b2 piso 2, delivery H2 2026, includes parking. $520/mo estimate \u2192 10.0% gross yield borderline pass.",
+  "scout_notes": "Pre-sale suite 32.29m² piso 2, delivery H2 2026, includes parking. $520/mo estimate → 10.0% gross yield borderline pass.",
   "property_type": "condo",
   "building_name": "Fez Manta",
   "unit": "209",
@@ -25,12 +25,21 @@
   "rough_gross_yield": 0.1004,
   "rent_source": "FazWaz 1BR median $419 + amenity premium",
   "rent_confidence": "MEDIUM",
-  "workflow_state": "UNDERWRITTEN",
+  "workflow_state": "ARCHIVED",
   "scout_decision": "RESEARCH",
   "underwriting_summary": {
     "noi": 2525,
     "cap_rate": 0.0406,
     "proposed_status": "REJECTED",
     "underwritten_at": "2026-08-10T05:05:00Z"
-  }
+  },
+  "prior_pipeline_state": {
+    "workflow_state": "UNDERWRITTEN",
+    "parked_at": "2026-08-21T07:40:00Z",
+    "park_reason": "manager_defer_us_priority",
+    "restore_when": "US ACTIVE markets meet volume targets in data/pipeline-status.json (or Manager clears defer)"
+  },
+  "archive_reason": "watchlist",
+  "rescreen_after": "2026-12-01T00:00:00Z",
+  "manager_notes": "Manager park 2026-08-21T07:40:00Z: deferred international until US ACTIVE Scout volume targets met. Prior workflow_state=UNDERWRITTEN. Evidence/underwriting artifacts retained on disk. Do not advance Analyst/Auditor while parked. Restore prior_pipeline_state when US targets met."
 }

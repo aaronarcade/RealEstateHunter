@@ -5,7 +5,7 @@
   "listing_url": "https://www.realtor.com/international/ec/manta-manabi-province/",
   "market_id": "manta-ec",
   "created_at": "2026-08-10T05:00:00Z",
-  "updated_at": "2026-08-10T06:45:00Z",
+  "updated_at": "2026-08-21T07:40:00Z",
   "last_screened_at": "2026-08-10T05:00:00Z",
   "screening_snapshot": {
     "price": 130000,
@@ -23,6 +23,15 @@
   "rough_gross_yield": 0.1015,
   "rent_source": "Oceanfront 1BR STR comp; Realtor.com listing $130,000",
   "rent_confidence": "MEDIUM",
-  "workflow_state": "READY_FOR_UNDERWRITING",
-  "scout_decision": "RESEARCH"
+  "workflow_state": "ARCHIVED",
+  "scout_decision": "RESEARCH",
+  "prior_pipeline_state": {
+    "workflow_state": "READY_FOR_UNDERWRITING",
+    "parked_at": "2026-08-21T07:40:00Z",
+    "park_reason": "manager_defer_us_priority",
+    "restore_when": "US ACTIVE markets meet volume targets in data/pipeline-status.json (or Manager clears defer)"
+  },
+  "archive_reason": "watchlist",
+  "rescreen_after": "2026-12-01T00:00:00Z",
+  "manager_notes": "Manager park 2026-08-21T07:40:00Z: deferred international until US ACTIVE Scout volume targets met. Prior workflow_state=READY_FOR_UNDERWRITING. Evidence/underwriting artifacts retained on disk. Do not advance Analyst/Auditor while parked. Restore prior_pipeline_state when US targets met."
 }
