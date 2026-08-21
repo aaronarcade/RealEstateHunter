@@ -61,3 +61,17 @@ Smoke target: **≥100 listings per market** (or document dry-market in commit n
 |--------|------|-------|
 | Panama City Beach | `panama-city-beach-fl-active-listings-2026-08-10.json` | Region `14163:6`, FL |
 | Fort Walton Beach | `fort-walton-beach-fl-active-listings-2026-08-10.json` | Regions `6298:6`, `4501:6`, FL |
+
+## TASK-017 inventory (committed 2026-08-21)
+
+Full-market Redfin pulls for Scout offline volume (filter `property_type: condo`):
+
+| Market ID | File | Listings | Condos |
+|-----------|------|----------|--------|
+| `tampa-fl` | `tampa-fl-active-listings-2026-08-21.json` | 3746 | 749 |
+| `jacksonville-fl` | `jacksonville-fl-active-listings-2026-08-21.json` | 5035 | 523 |
+| `birmingham-al` | `birmingham-al-active-listings-2026-08-21.json` | 2209 | 198 |
+| `memphis-tn` | `memphis-tn-active-listings-2026-08-21.json` | 3361 | 307 |
+| `cleveland-oh` | `cleveland-oh-active-listings-2026-08-21.json` | 1345 | 64 |
+
+Smoke target (≥100 listings/market) met for all five. Cloud agent egress blocks `www.redfin.com`; PR CI scrapes/commits when inventory is missing on `agent/task-017*` / `cursor/builder-task-017*` branches.
