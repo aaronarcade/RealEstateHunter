@@ -95,5 +95,5 @@
     "TASK-015 scripts closed (done) — do not reopen",
     "Do not divert Builder to UI, international scrapes, or FWB/St Augustine expansion"
   ],
-  "notes": "Manager triage 2026-08-21: Scout volume still stalled (NDJSON 47). Root cause = orchestrator never plans Scout for TASK-009 market sweeps (0 scout registry entries). Created TASK-018. Parked 13 international RFU/UNDERWRITTEN properties to stop Analyst drain (nahla-60 had just underwritten). Moved TASK-015 scripts to done; inventory commit = TASK-017. No VIABLE. Activate TASK-016 when ≥1 US SCREENED appears."
+  "notes": "Manager triage 2026-08-21: Scout volume still stalled (NDJSON 47). Root cause = orchestrator never plans Scout for TASK-009 market sweeps (0 scout registry entries). Created TASK-018. Parked international RFU/UNDERWRITTEN to stop Analyst drain; nahla-60 raced to audit then Manager archived PASS REJECTED (5.76%). Moved TASK-015 scripts to done; inventory commit = TASK-017. No VIABLE. Activate TASK-016 when ≥1 US SCREENED appears."
 }
