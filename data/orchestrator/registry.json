@@ -25,9 +25,9 @@
       "agentId": "bc-35d6a9b5-c2e5-436a-a4c6-bfe8b1927cb0",
       "runId": "run-0b111011-3d80-4512-9163-c0d0d55084e6",
       "agentUrl": "https://cursor.com/agents/bc-35d6a9b5-c2e5-436a-a4c6-bfe8b1927cb0",
-      "status": "ACTIVE",
+      "status": "ERROR",
       "createdAt": "2026-08-21T07:34:47.726Z",
-      "updatedAt": "2026-08-21T07:34:47.726Z"
+      "updatedAt": "2026-08-21T07:37:00.761Z"
     },
     "builder:task:TASK-002:implement-task": {
       "workKey": "builder:task:TASK-002:implement-task",
@@ -487,9 +487,9 @@
       "agentId": "bc-58fd33b6-5d31-4d39-8ec7-903566dbf0f8",
       "runId": "run-398fa28d-8db6-48f7-946b-a6ce2bf91def",
       "agentUrl": "https://cursor.com/agents/bc-58fd33b6-5d31-4d39-8ec7-903566dbf0f8",
-      "status": "ACTIVE",
+      "status": "ERROR",
       "createdAt": "2026-08-21T07:34:43.683Z",
-      "updatedAt": "2026-08-21T07:34:43.683Z"
+      "updatedAt": "2026-08-21T07:37:01.981Z"
     },
     "analyst:property:nahla-unit-60-barbasquillo-manta-ec:complete-underwriting": {
       "workKey": "analyst:property:nahla-unit-60-barbasquillo-manta-ec:complete-underwriting",
@@ -501,9 +501,23 @@
       "agentId": "bc-59849e18-a6ff-44eb-92ad-eda4193f179d",
       "runId": "run-2144e02d-16ee-40c6-925b-57c2c8b1fcca",
       "agentUrl": "https://cursor.com/agents/bc-59849e18-a6ff-44eb-92ad-eda4193f179d",
-      "status": "ACTIVE",
+      "status": "ERROR",
       "createdAt": "2026-08-21T07:34:50.580Z",
-      "updatedAt": "2026-08-21T07:34:50.580Z"
+      "updatedAt": "2026-08-21T07:37:02.387Z"
+    },
+    "auditor:property:nahla-unit-60-barbasquillo-manta-ec:audit": {
+      "workKey": "auditor:property:nahla-unit-60-barbasquillo-manta-ec:audit",
+      "role": "auditor",
+      "subjectType": "property",
+      "subjectId": "nahla-unit-60-barbasquillo-manta-ec",
+      "action": "audit",
+      "branch": "main",
+      "agentId": "bc-6d4236ae-d549-4ed0-a997-24de73f16ba7",
+      "runId": "run-d6b8048f-30e1-4b18-b2c3-5d96cad2b45e",
+      "agentUrl": "https://cursor.com/agents/bc-6d4236ae-d549-4ed0-a997-24de73f16ba7",
+      "status": "ACTIVE",
+      "createdAt": "2026-08-21T07:37:05.235Z",
+      "updatedAt": "2026-08-21T07:37:05.235Z"
     }
   }
 }
