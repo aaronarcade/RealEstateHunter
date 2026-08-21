@@ -22,12 +22,12 @@
       "subjectId": "pipeline",
       "action": "triage-pipeline",
       "branch": "main",
-      "agentId": "bc-6500b789-ff6f-489e-932b-85d57b773929",
-      "runId": "run-5fc92722-f6e0-426b-9c65-b8479644a3f7",
-      "agentUrl": "https://cursor.com/agents/bc-6500b789-ff6f-489e-932b-85d57b773929",
-      "status": "ERROR",
-      "createdAt": "2026-08-20T07:32:53.244Z",
-      "updatedAt": "2026-08-20T07:34:27.514Z"
+      "agentId": "bc-35d6a9b5-c2e5-436a-a4c6-bfe8b1927cb0",
+      "runId": "run-0b111011-3d80-4512-9163-c0d0d55084e6",
+      "agentUrl": "https://cursor.com/agents/bc-35d6a9b5-c2e5-436a-a4c6-bfe8b1927cb0",
+      "status": "ACTIVE",
+      "createdAt": "2026-08-21T07:34:47.726Z",
+      "updatedAt": "2026-08-21T07:34:47.726Z"
     },
     "builder:task:TASK-002:implement-task": {
       "workKey": "builder:task:TASK-002:implement-task",
@@ -476,6 +476,34 @@
       "status": "ERROR",
       "createdAt": "2026-08-20T07:34:31.194Z",
       "updatedAt": "2026-08-20T07:39:28.206Z"
+    },
+    "builder:task:TASK-017:implement-task": {
+      "workKey": "builder:task:TASK-017:implement-task",
+      "role": "builder",
+      "subjectType": "task",
+      "subjectId": "TASK-017",
+      "action": "implement-task",
+      "branch": "agent/task-017-commit-us-active-scrape-inventory",
+      "agentId": "bc-58fd33b6-5d31-4d39-8ec7-903566dbf0f8",
+      "runId": "run-398fa28d-8db6-48f7-946b-a6ce2bf91def",
+      "agentUrl": "https://cursor.com/agents/bc-58fd33b6-5d31-4d39-8ec7-903566dbf0f8",
+      "status": "ACTIVE",
+      "createdAt": "2026-08-21T07:34:43.683Z",
+      "updatedAt": "2026-08-21T07:34:43.683Z"
+    },
+    "analyst:property:nahla-unit-60-barbasquillo-manta-ec:complete-underwriting": {
+      "workKey": "analyst:property:nahla-unit-60-barbasquillo-manta-ec:complete-underwriting",
+      "role": "analyst",
+      "subjectType": "property",
+      "subjectId": "nahla-unit-60-barbasquillo-manta-ec",
+      "action": "complete-underwriting",
+      "branch": "main",
+      "agentId": "bc-59849e18-a6ff-44eb-92ad-eda4193f179d",
+      "runId": "run-2144e02d-16ee-40c6-925b-57c2c8b1fcca",
+      "agentUrl": "https://cursor.com/agents/bc-59849e18-a6ff-44eb-92ad-eda4193f179d",
+      "status": "ACTIVE",
+      "createdAt": "2026-08-21T07:34:50.580Z",
+      "updatedAt": "2026-08-21T07:34:50.580Z"
     }
   }
 }
