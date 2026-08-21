@@ -35,10 +35,10 @@ Produce and commit Redfin bulk listing JSON for the five zero-coverage US ACTIVE
 
 ## Acceptance criteria
 
-- [ ] Five market files present under `data/scrapes/*-active-listings-YYYY-MM-DD.json`
-- [ ] Each file ≥100 listings (or dry-market note in commit)
-- [ ] Schema matches existing PCB scrape / `schemas/market-listing.json`
-- [ ] Scout can filter `property_type: condo` without open-web dependency for those markets
+- [x] Five market files present under `data/scrapes/*-active-listings-YYYY-MM-DD.json`
+- [x] Each file ≥100 listings (or dry-market note in commit)
+- [x] Schema matches existing PCB scrape / `schemas/market-listing.json`
+- [x] Scout can filter `property_type: condo` without open-web dependency for those markets
 
 ## Builder progress (2026-08-21)
 
