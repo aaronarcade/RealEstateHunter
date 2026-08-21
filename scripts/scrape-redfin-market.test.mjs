@@ -181,16 +181,23 @@ test('US_ACTIVE_MARKETS defines five TASK-015 markets with region metadata', () 
 
 const REPO_ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 
-test('TASK-015 committed scrape files meet >=100 listing smoke target when present', async () => {
+test('TASK-017 committed US ACTIVE scrape inventory present with >=100 listings', async () => {
+  const scrapesDir = join(REPO_ROOT, 'data/scrapes');
+  assert.ok(existsSync(scrapesDir), 'data/scrapes directory missing');
+  const names = await readdir(scrapesDir);
+
   for (const market of US_ACTIVE_MARKETS) {
-    const scrapesDir = join(REPO_ROOT, 'data/scrapes');
-    const names = existsSync(scrapesDir) ? await readdir(scrapesDir) : [];
     const match = names.find((name) => name.startsWith(`${market.id}-active-listings-`));
-    if (!match) continue;
+    assert.ok(
+      match,
+      `Missing scrape inventory for ${market.id} under data/scrapes/ (TASK-017)`,
+    );
 
     const payload = JSON.parse(await readFile(join(scrapesDir, match), 'utf-8'));
+    assert.equal(payload.source, 'redfin');
     assert.equal(payload.market, market.id);
     assert.ok(Array.isArray(payload.listings));
+    assert.equal(payload.count, payload.listings.length);
     assert.ok(
       payload.count >= 100,
       `${market.id} scrape ${match} has ${payload.count} listings (< 100 smoke target)`,
@@ -209,5 +216,27 @@ test('TASK-015 committed scrape files meet >=100 listing smoke target when prese
     ]) {
       assert.ok(field in sample, `${market.id} listing missing ${field}`);
     }
+    assert.equal(sample.state, market.state);
+    assert.equal(sample.market_area, market.marketArea);
+  }
+});
+
+test('TASK-017 Scout can filter property_type condo offline for US ACTIVE markets', async () => {
+  const scrapesDir = join(REPO_ROOT, 'data/scrapes');
+  const names = await readdir(scrapesDir);
+
+  for (const market of US_ACTIVE_MARKETS) {
+    const match = names.find((name) => name.startsWith(`${market.id}-active-listings-`));
+    assert.ok(match, `Missing scrape for ${market.id}`);
+    const payload = JSON.parse(await readFile(join(scrapesDir, match), 'utf-8'));
+    const condos = payload.listings.filter((row) => row.property_type === 'condo');
+    assert.ok(
+      condos.length >= 1,
+      `${market.id}: expected ≥1 condo for Scout offline filter (got ${condos.length})`,
+    );
+    assert.ok(
+      condos.every((row) => typeof row.listing_url === 'string' && row.listing_url.length > 0),
+      `${market.id}: condo rows must include listing_url`,
+    );
   }
 });

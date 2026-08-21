@@ -1,6 +1,6 @@
 # TASK-017: Commit US ACTIVE scrape inventory to data/scrapes/
 
-**Status:** BACKLOG (activate if Builder prefers a follow-on branch after TASK-015 scripts)  
+**Status:** ACTIVE  
 **Assignee:** Builder  
 **Priority:** P0  
 **Related:** TASK-015 (scripts merged #44; this tracks the missing inventory files)
@@ -21,6 +21,12 @@ Produce and commit Redfin bulk listing JSON for the five zero-coverage US ACTIVE
 - [ ] Each file ≥100 listings (or dry-market note in commit)
 - [ ] Schema matches existing PCB scrape / `schemas/market-listing.json`
 - [ ] Scout can filter `property_type: condo` without open-web dependency for those markets
+
+## Builder progress (2026-08-21)
+
+- Cloud egress blocks `www.redfin.com`; local scrape not possible in agent VM.
+- PR CI on this branch scrapes the five markets, runs tests against workspace files, then commits inventory to the branch.
+- Tests in `scripts/scrape-redfin-market.test.mjs` now **require** all five inventory files (≥100 listings) and ≥1 condo each for offline Scout filtering.
 
 ## Depends on
 
