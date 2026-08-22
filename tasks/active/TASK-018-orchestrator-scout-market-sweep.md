@@ -1,19 +1,19 @@
 # TASK-018: Orchestrator — spawn Scout for market-sweep tasks
 
-**Status:** BACKLOG  
+**Status:** ACTIVE  
 **Assignee:** Builder  
 **Priority:** P0
 
-## Manager triage (2026-08-21)
+## Manager triage (2026-08-22)
 
-**Root cause of Scout volume stall:** the orchestrator never plans Scout work for TASK-009.
+**Sole critical-path Builder task.** TASK-017 (scrape inventory) merged 2026-08-21 — all six US ACTIVE markets have bulk scrapes. Scout volume still stalled at 47 NDJSON because orchestrator never plans Scout for TASK-009.
 
 | Observation | Evidence |
 |-------------|----------|
 | TASK-009 in `tasks/active/` assigned to Scout | Present since prior triage |
 | Scout registry entries | **0** successful Scout spawns for market sweeps |
 | Planner Scout routes | Property `CANDIDATE` / due `ARCHIVED` rescreen only |
-| Builder task loader | Only `tasks/backlog/` + Builder assignee |
+| TASK-017 scrape commit | **DONE** (2026-08-21) — all five US ACTIVE scrape files on main |
 | NDJSON reviewed | Still **47** (unchanged since 2026-08-13) |
 | Open US RESEARCH / SCREENED | **0** |
 
@@ -58,4 +58,4 @@ Unblock high-volume condo Scout sweeps by teaching the orchestrator to spawn Sco
 
 ## Notes
 
-Priority over nice-to-haves: this is the critical-path software fix for US Scout volume. Coordinate with TASK-017 (scrape JSON commit) — both P0; if only one Builder slot, prefer this when TASK-017 is already in flight elsewhere, otherwise either unblocks a different Scout phase (018 → PCB Phase A; 017 → Tampa/Jax/BHM/MEM/CLE full volume).
+Priority over nice-to-haves: this is the **only remaining critical-path software fix** for US Scout volume. TASK-017 (scrape JSON) is done — Scout can execute TASK-009 offline on all six US ACTIVE markets once this orchestrator fix lands or a Scout agent is spawned manually.

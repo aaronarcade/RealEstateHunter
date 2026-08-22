@@ -4,11 +4,11 @@
 **Assignee:** Analyst  
 **Priority:** P0 (activate when Scout produces US SCREENED)
 
-## Manager triage (2026-08-21)
+## Manager triage (2026-08-22)
 
 **Parked until Scout (TASK-009) produces ≥1 US ACTIVE property with `workflow_state: SCREENED`.**
 
-US pipeline empty after three audited REJECTED archives (Horizon South 6.0%, Celebration Melia 7.85%, Laketown Wharf 9.0%). International backlog **hard-parked** 2026-08-21 (13 properties ARCHIVED watchlist with `prior_pipeline_state`) so Analyst/Auditor capacity is not consumed ahead of US Scout volume.
+TASK-017 merged — all US ACTIVE scrape files available; Scout has no inventory excuse. Orchestrator TASK-018 still needed for autonomous Scout spawn. US pipeline empty after three audited REJECTED archives (Horizon South 6.0%, Celebration Melia 7.85%, Laketown Wharf 9.0%). International backlog **hard-parked** 2026-08-21 (13 properties ARCHIVED).
 
 Activate immediately when Scout commits new US SCREENED candidates — do not wait for full 10-candidate batch.
 

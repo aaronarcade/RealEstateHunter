@@ -1,11 +1,19 @@
 {
   "$schema": "../schemas/search-criteria.json",
-  "version": 9,
-  "updated_at": "2026-08-21T07:45:00Z",
+  "version": 10,
+  "updated_at": "2026-08-22T07:30:00Z",
   "updated_by": "manager",
   "target_cap_rate": 0.10,
   "target_yield_minimum": 0.10,
-  "notes": "P0: Scout condo volume on US ACTIVE markets — still stalled (NDJSON 47; open US RESEARCH = 0). Root cause: orchestrator does not spawn Scout for TASK-009 (see TASK-018). PCB scrape ready (~574 beds≥2) — Phase A cluster order: 8700 → 17462 (siblings only) → 14415 → 11807 → 16819 → Shores 9900/9902 → Laketown 9860. Demote 15100, 520 N Richard Jackson, 9850. TASK-017 owns five-market scrape JSON commit; TASK-015 scripts done. International pipeline hard-parked 2026-08-21. See data/pipeline-status.json.",
+  "notes": "All six US ACTIVE markets have bulk scrapes (TASK-017 merged 2026-08-21). Scout volume still stalled (NDJSON 47; open US RESEARCH = 0) — TASK-018 orchestrator fix is critical path. PCB Phase A cluster order: 8700 → 17462 siblings → 14415 → 11807 → 16819 → 9900/9902 → 9860. Tampa/Jax Phase B uses TASK-017 scrape files in parallel. International pipeline hard-parked 2026-08-21. See data/pipeline-status.json.",
+  "scrape_files": {
+    "panama-city-beach-fl": "data/scrapes/panama-city-beach-fl-active-listings-2026-08-10.json",
+    "tampa-fl": "data/scrapes/tampa-fl-active-listings-2026-08-21.json",
+    "jacksonville-fl": "data/scrapes/jacksonville-fl-active-listings-2026-08-21.json",
+    "birmingham-al": "data/scrapes/birmingham-al-active-listings-2026-08-21.json",
+    "memphis-tn": "data/scrapes/memphis-tn-active-listings-2026-08-21.json",
+    "cleveland-oh": "data/scrapes/cleveland-oh-active-listings-2026-08-21.json"
+  },
   "asset_focus": {
     "primary": "condo",
     "prioritize_condo_buildings": true,
@@ -17,14 +25,14 @@
       "name": "Tampa, FL",
       "priority": 1,
       "status": "ACTIVE",
-      "rationale": "Strong rental demand, no state income tax, diverse economy — zero scout coverage; seed buildings now; bulk scrape pending TASK-017 commit"
+      "rationale": "Strong rental demand, no state income tax, diverse economy — zero scout coverage; TASK-017 scrape: 749 condos (428 beds≥2 in band)"
     },
     {
       "id": "jacksonville-fl",
       "name": "Jacksonville, FL",
       "priority": 2,
       "status": "ACTIVE",
-      "rationale": "Affordable price points, growing population, military presence — zero scout coverage; seed buildings now; bulk scrape pending TASK-017 commit"
+      "rationale": "Affordable price points, growing population, military presence — zero scout coverage; TASK-017 scrape: 523 condos (440 beds≥2 in band)"
     },
     {
       "id": "panama-city-beach-fl",
@@ -40,21 +48,21 @@
       "name": "Birmingham, AL",
       "priority": 4,
       "status": "ACTIVE",
-      "rationale": "Low entry prices, potential for higher yields — zero coverage; condo seed buildings; bulk scrape pending TASK-017 commit"
+      "rationale": "Low entry prices, potential for higher yields — zero coverage; TASK-017 scrape: 198 condos (116 beds≥2; sparse HOA in scrape)"
     },
     {
       "id": "memphis-tn",
       "name": "Memphis, TN",
       "priority": 5,
       "status": "ACTIVE",
-      "rationale": "Strong rental market, affordable prices, no state income tax — zero coverage; condo seed buildings; bulk scrape pending TASK-017 commit"
+      "rationale": "Strong rental market, affordable prices, no state income tax — zero coverage; TASK-017 scrape: 307 condos (206 beds≥2; HOA not in scrape)"
     },
     {
       "id": "cleveland-oh",
       "name": "Cleveland, OH",
       "priority": 6,
       "status": "ACTIVE",
-      "rationale": "Low prices relative to rent, diverse employment base — zero coverage; condo seed buildings; bulk scrape pending TASK-017 commit"
+      "rationale": "Low prices relative to rent, diverse employment base — zero coverage; TASK-017 scrape: 64 condos (48 beds≥2; thin market)"
     },
     {
       "id": "celebration-fl",
@@ -361,97 +369,107 @@
         ],
         "tampa-fl": [
           {
+            "name": "Richmond Place",
+            "address_pattern": "18001 Richmond Place Dr",
+            "notes": "6 beds≥2 in band in scrape; median HOA ~$482 — P0 start cluster (TASK-017 validated)"
+          },
+          {
+            "name": "Knights Run",
+            "address_pattern": "501 Knights Run Ave",
+            "notes": "7 beds≥2 in band; median HOA ~$684; Channelside area"
+          },
+          {
+            "name": "Highland Oak",
+            "address_pattern": "9481 Highland Oak Dr",
+            "notes": "6 beds≥2 in band; median HOA ~$733; New Tampa"
+          },
+          {
             "name": "SkyHouse Channelside",
             "address_pattern": "1120 E Kennedy Blvd",
-            "notes": "Large downtown Tampa condo tower"
+            "notes": "4 beds≥2 in band; downtown tower — secondary after Richmond/Knights"
           },
           {
             "name": "The Slade",
             "address_pattern": "1001 Channelside Dr",
-            "notes": "Channelside high-rise with investor-friendly units"
-          },
-          {
-            "name": "The Place at Channelside",
-            "address_pattern": "Channelside Dr",
-            "notes": "Additional Channelside condo inventory cluster"
-          },
-          {
-            "name": "Grand Central at Kennedy",
-            "address_pattern": "Grand Central",
-            "notes": "West Tampa / Grand Central condo corridor"
+            "notes": "0 beds≥2 in current scrape — manual search if Channelside sweep expands"
           }
         ],
         "jacksonville-fl": [
           {
+            "name": "Burnt Mill",
+            "address_pattern": "10961 Burnt Mill Rd",
+            "notes": "12 beds≥2 in band; median HOA ~$474 — P0 start cluster (TASK-017 validated)"
+          },
+          {
+            "name": "Touchton (9745)",
+            "address_pattern": "9745 Touchton Rd",
+            "notes": "11 beds≥2 in band; median HOA ~$419"
+          },
+          {
+            "name": "Touchton (8550)",
+            "address_pattern": "8550 Touchton Rd",
+            "notes": "15 beds≥2 in band; median HOA ~$662"
+          },
+          {
+            "name": "Baymeadows",
+            "address_pattern": "7701 Baymeadows Cir W",
+            "notes": "8 beds≥2 in band; median HOA ~$590"
+          },
+          {
             "name": "The Strand",
             "address_pattern": "1401 Riverplace Blvd",
-            "notes": "Southbank high-rise condos"
-          },
-          {
-            "name": "San Marco Place",
-            "address_pattern": "San Marco Blvd",
-            "notes": "Established San Marco condo building"
-          },
-          {
-            "name": "Berkman Plaza",
-            "address_pattern": "Berkman Plaza",
-            "notes": "Downtown Northbank condo towers"
-          },
-          {
-            "name": "Brooklyn Riverside",
-            "address_pattern": "Brooklyn",
-            "notes": "Brooklyn neighborhood condo buildings near riverside"
+            "notes": "0 beds≥2 in current scrape — secondary manual search"
           }
         ],
         "birmingham-al": [
           {
+            "name": "Lorna Road condos",
+            "address_pattern": "3101 Lorna Rd",
+            "notes": "4 beds≥2 in band; HOA rarely in scrape — verify on listing page"
+          },
+          {
+            "name": "Downtown loft corridor",
+            "address_pattern": "2024 2nd Ave N",
+            "notes": "3 beds≥2 in band; sparse condo market — broad filter after seeds"
+          },
+          {
             "name": "The Zinszer",
             "address_pattern": "2025 2nd Ave N",
-            "notes": "Downtown Birmingham loft/condo conversion — start here"
-          },
-          {
-            "name": "Parkside",
-            "address_pattern": "Parkside",
-            "notes": "Railroad Park / Parkside condo corridor"
-          },
-          {
-            "name": "The Tower at City Federal",
-            "address_pattern": "2026 1st Ave N",
-            "notes": "Downtown adaptive-reuse condo tower"
+            "notes": "Downtown Birmingham loft/condo conversion"
           }
         ],
         "memphis-tn": [
           {
+            "name": "Riverside Dr",
+            "address_pattern": "717 Riverside Dr",
+            "notes": "8 beds≥2 in band; scrape has no HOA — must pull from listing page"
+          },
+          {
+            "name": "Union Ave",
+            "address_pattern": "2277 Union Ave",
+            "notes": "6 beds≥2 in band; midtown corridor"
+          },
+          {
             "name": "Harbor Town",
             "address_pattern": "Harbor Town",
-            "notes": "Mud Island Harbor Town condo/townhome inventory"
-          },
-          {
-            "name": "South Bluffs",
-            "address_pattern": "South Bluffs",
-            "notes": "Downtown South Bluffs condo buildings"
-          },
-          {
-            "name": "The Sterling",
-            "address_pattern": "92 S Front St",
-            "notes": "Downtown Front Street condo building"
+            "notes": "Mud Island Harbor Town — secondary if Riverside/Union exhausted"
           }
         ],
         "cleveland-oh": [
           {
-            "name": "Stonebridge Condominiums",
-            "address_pattern": "Stonebridge",
-            "notes": "Flats / Warehouse District condo cluster"
+            "name": "Washington Ave",
+            "address_pattern": "1237 Washington Ave",
+            "notes": "4 beds≥2 in band; median HOA ~$623 — best stated-HOA cluster (TASK-017 validated)"
           },
           {
-            "name": "The Avenue District",
-            "address_pattern": "Avenue District",
-            "notes": "Near West Side condo buildings"
+            "name": "W 4th St",
+            "address_pattern": "1260 W 4th St",
+            "notes": "2 beds≥2 in band; median HOA ~$291; Ohio City"
           },
           {
-            "name": "Residences at 668",
-            "address_pattern": "668 Euclid",
-            "notes": "Downtown Euclid Avenue condo residences"
+            "name": "W 9th St",
+            "address_pattern": "1133 W 9th St",
+            "notes": "2 beds≥2 in band; median HOA ~$498"
           }
         ]
       }

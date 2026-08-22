@@ -1,0 +1,60 @@
+{
+  "version": 1,
+  "as_of": "2026-08-22T07:30:00Z",
+  "updated_by": "manager",
+  "goal_met": false,
+  "viable_count": 0,
+  "notes": "No VIABLE opportunities. US pipeline: 3 audited REJECTED (all ARCHIVED with rescreen_after). International pipeline hard-parked 2026-08-21. Scout volume sweep (TASK-009) is critical path to refill SCREENED queue.",
+  "ranking_rules": [
+    "VIABLE first",
+    "Confidence over marginal cap rate",
+    "Cap rate",
+    "NOI",
+    "Unresolved uncertainty"
+  ],
+  "opportunities": [
+    {
+      "rank": 1,
+      "property_id": "9860-s-thomas-dr-unit-917-panama-city-beach-fl",
+      "address": "9860 S Thomas Dr Unit 917, Panama City Beach, FL",
+      "market_id": "panama-city-beach-fl",
+      "status": "REJECTED",
+      "workflow_state": "ARCHIVED",
+      "cap_rate": 0.0899,
+      "noi": 25080,
+      "confidence": "HIGH",
+      "building_name": "Laketown Wharf",
+      "rescreen_after": "2026-10-11T08:20:00Z",
+      "notes": "Closest to threshold at 9.0% verified cap despite 19% gross. Monitor sibling units and price drops."
+    },
+    {
+      "rank": 2,
+      "property_id": "225-celebration-pl-unit-526-celebration-fl",
+      "address": "225 Celebration Pl Unit 526, Celebration, FL",
+      "market_id": "celebration-fl",
+      "status": "REJECTED",
+      "workflow_state": "ARCHIVED",
+      "cap_rate": 0.0785,
+      "noi": 11780,
+      "confidence": "MEDIUM",
+      "building_name": "Melia Orlando",
+      "rescreen_after": "2026-10-10T08:20:00Z",
+      "notes": "Condo-hotel model; $1,242/mo HOA limits upside. WATCH market — not ACTIVE priority."
+    },
+    {
+      "rank": 3,
+      "property_id": "17462-front-beach-rd-unit-31c-panama-city-beach-fl",
+      "address": "17462 Front Beach Rd Unit 31C, Panama City Beach, FL",
+      "market_id": "panama-city-beach-fl",
+      "status": "REJECTED",
+      "workflow_state": "ARCHIVED",
+      "cap_rate": 0.06,
+      "noi": null,
+      "confidence": "MEDIUM",
+      "building_name": "Horizon South IV",
+      "rescreen_after": "2026-10-10T05:00:00Z",
+      "notes": "6.0% cap after HOA + STR management. Scan Horizon South siblings at lower ask/HOA only."
+    }
+  ],
+  "published": []
+}
