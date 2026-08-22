@@ -1,6 +1,6 @@
 # TASK-018: Orchestrator — spawn Scout for market-sweep tasks
 
-**Status:** BACKLOG  
+**Status:** ACTIVE  
 **Assignee:** Builder  
 **Priority:** P0
 
@@ -39,12 +39,12 @@ Unblock high-volume condo Scout sweeps by teaching the orchestrator to spawn Sco
 
 ## Acceptance criteria
 
-- [ ] Scout-assignee task in `tasks/active/` (TASK-009) produces a planned Scout work item
-- [ ] Scout prompt includes path to the task file and search-criteria / pipeline-status
-- [ ] Builder is not planned for Scout-assignee tasks
-- [ ] With defer flag on, Analyst/Auditor are not planned for non-US-ACTIVE `market_id`s
-- [ ] Unit tests for planner/repo changes
-- [ ] Docs updated (ORCHESTRATOR + DECISIONS)
+- [x] Scout-assignee task in `tasks/active/` (TASK-009) produces a planned Scout work item
+- [x] Scout prompt includes path to the task file and search-criteria / pipeline-status
+- [x] Builder is not planned for Scout-assignee tasks
+- [x] With defer flag on, Analyst/Auditor are not planned for non-US-ACTIVE `market_id`s
+- [x] Unit tests for planner/repo changes
+- [x] Docs updated (ORCHESTRATOR + DECISIONS)
 
 ## Depends on
 

@@ -160,6 +160,22 @@ Credentials via `SUPABASE_URL` + keys in environment/secrets only. Service role 
 
 ---
 
+## ADR-012: Scout market-sweep task planning and international defer
+
+**Date:** 2026-08-22  
+**Status:** Accepted
+
+**Context:** TASK-009 (`Assignee: Scout`) lived in `tasks/active/` but the orchestrator only spawned Scout for property `CANDIDATE` / due `ARCHIVED` rescreens — never for market-sweep tasks. US Scout volume stalled (NDJSON unchanged; zero open US RESEARCH). Meanwhile Analyst/Auditor capacity was consumed on international properties Manager had parked.
+
+**Decision:**
+
+1. **Scout task planning:** Scan `tasks/active/` and `tasks/backlog/` for `**Assignee:** Scout`. Plan a Scout work item (`subjectType: task`, action `market-sweep`) pointing at the task file plus `data/search-criteria.json` and `data/pipeline-status.json`. Scout-assignee tasks are never routed to Builder (existing assignee gate).
+2. **International defer:** When `defer_international_until_us_targets_met` is true and US ACTIVE markets have not met `research_candidates_per_market_min` (also inferred from `data/pipeline-status.json` gaps), skip Analyst/Auditor planning for properties whose `market_id` is outside US ACTIVE markets.
+
+**Consequences:** Orchestrator autonomously spawns Scout for condo volume sweeps (TASK-009). Analyst/Auditor focus on US pipeline until volume targets are met. Scout property screening and market sweeps continue regardless of defer.
+
+---
+
 ## Template
 
 ```markdown

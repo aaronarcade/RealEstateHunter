@@ -113,9 +113,11 @@ The orchestrator reads:
 
 - `data/properties/*/meta.json` — property workflow state
 - `data/properties/*/audit.json` — audit routing (e.g. `NEEDS_RESEARCH`)
+- `tasks/active/*.md` — Scout market-sweep tasks (`Assignee: Scout`)
 - `tasks/backlog/*.md` — Builder tasks
 - `data/orchestrator/registry.json` — active agents
-- `data/search-criteria.json` — scout markets and screening rules (via `manager.scanCriteriaFile`)
+- `data/search-criteria.json` — scout markets, volume targets, defer flags (via `manager.scanCriteriaFile`)
+- `data/pipeline-status.json` — US market coverage gaps (optional; reinforces international defer)
 
 ### Property state → role
 
@@ -134,6 +136,14 @@ The orchestrator reads:
 Builder tasks in `tasks/backlog/` spawn Builder agents (one per task, respecting caps).
 
 Only backlog files whose `**Assignee:**` is missing (defaults to Builder) or mentions **Builder** are planned. Parked Analyst/Scout/Auditor tracking tasks may live in `backlog/` without spawning Builder (e.g. TASK-016 until Scout produces US `SCREENED` candidates). Property-state rows still spawn Analyst/Scout/Auditor as usual.
+
+### Scout market-sweep tasks
+
+Scout-assignee task files (e.g. `tasks/active/TASK-009-scout-condo-volume-sweep.md`) spawn **Scout** agents with action `market-sweep`. The prompt includes the task file path plus `data/search-criteria.json` and `data/pipeline-status.json`. Active-directory Scout tasks are the primary signal; backlog Scout tasks are also scanned (active wins if both exist). Unlike Builder tasks, Scout sweep tasks **stay** in `tasks/active/` while running — the orchestrator only skips them when a registry entry for that task is already `ACTIVE`.
+
+### International defer
+
+When `scout_instructions.volume_targets.defer_international_until_us_targets_met` is true (or `data/pipeline-status.json` shows ACTIVE US markets below per-market RESEARCH targets), the orchestrator **does not** plan Analyst or Auditor for properties whose `market_id` is outside US **ACTIVE** markets (`market_sweep_order` / `markets[].status === "ACTIVE"`). Scout property screening and market-sweep tasks are unaffected. Defer clears automatically when all US ACTIVE markets meet `research_candidates_per_market_min`, or when Manager turns off the flag.
 
 When properties or backlog need triage, a Manager agent may also be planned.
 
