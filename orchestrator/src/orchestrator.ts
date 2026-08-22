@@ -15,14 +15,19 @@ import {
 import { planWork, type WorkItem } from "./planner.js";
 import {
   activeRegistryEntries,
+  getUsActiveMarketIds,
   hasActiveWork,
   hasInFlightWork,
   loadActiveTaskIds,
   loadBuilderTasks,
+  loadPipelineStatus,
   loadPropertyContexts,
   loadRegistry,
+  loadScoutTasks,
+  loadSearchCriteria,
   repoPaths,
   saveRegistry,
+  shouldDeferInternationalRoles,
   shouldRunManagerTriage,
   type Registry,
   type RegistryEntry,
@@ -58,22 +63,49 @@ export async function runOrchestrator(
 
   const activeTaskIds = await loadActiveTaskIds(paths.tasksActiveDir);
   const activeRegistry = activeRegistryEntries(registry);
+  const registryTaskIds = new Set(
+    activeRegistry
+      .filter((entry) => entry.subjectType === "task")
+      .map((entry) => entry.subjectId)
+  );
+  const builderInFlightTaskIds = new Set([
+    ...activeTaskIds,
+    ...registryTaskIds,
+  ]);
 
   const properties = await loadPropertyContexts(paths.propertiesDir);
   const builderTasks = await loadBuilderTasks(
     paths.tasksBacklogDir,
     paths.tasksActiveDir,
-    new Set([
-      ...activeTaskIds,
-      ...activeRegistry
-        .filter((entry) => entry.subjectType === "task")
-        .map((entry) => entry.subjectId),
-    ])
+    builderInFlightTaskIds
   );
+  const scoutTasks = await loadScoutTasks(
+    paths.tasksActiveDir,
+    paths.tasksBacklogDir,
+    registryTaskIds
+  );
+
+  const searchCriteria = await loadSearchCriteria(
+    path.join(
+      options.repoRoot,
+      config.manager?.scanCriteriaFile ?? "data/search-criteria.json"
+    )
+  );
+  const pipelineStatus = await loadPipelineStatus(
+    path.join(options.repoRoot, "data/pipeline-status.json")
+  );
+  const deferInternational = shouldDeferInternationalRoles(
+    searchCriteria,
+    pipelineStatus
+  );
+  const usActiveMarketIds = getUsActiveMarketIds(searchCriteria);
 
   const planned = planWork({
     properties,
     builderTasks,
+    scoutTasks,
+    deferInternational,
+    usActiveMarketIds,
     pendingManagerReview: shouldRunManagerTriage(properties, builderTasks),
   });
 
@@ -322,27 +354,64 @@ function skipReason(
   return "lower priority or spawn budget exhausted";
 }
 
-export async function planOnly(repoRoot: string): Promise<WorkItem[]> {
+export async function planOnly(
+  repoRoot: string,
+  configPath?: string
+): Promise<WorkItem[]> {
   const paths = repoPaths(repoRoot);
   const registry = await loadRegistry(paths.registryPath);
   const activeRegistry = activeRegistryEntries(registry);
   const activeTaskIds = await loadActiveTaskIds(paths.tasksActiveDir);
+  const registryTaskIds = new Set(
+    activeRegistry
+      .filter((entry) => entry.subjectType === "task")
+      .map((entry) => entry.subjectId)
+  );
+  const builderInFlightTaskIds = new Set([
+    ...activeTaskIds,
+    ...registryTaskIds,
+  ]);
 
   const properties = await loadPropertyContexts(paths.propertiesDir);
   const builderTasks = await loadBuilderTasks(
     paths.tasksBacklogDir,
     paths.tasksActiveDir,
-    new Set([
-      ...activeTaskIds,
-      ...activeRegistry
-        .filter((entry) => entry.subjectType === "task")
-        .map((entry) => entry.subjectId),
-    ])
+    builderInFlightTaskIds
+  );
+  const scoutTasks = await loadScoutTasks(
+    paths.tasksActiveDir,
+    paths.tasksBacklogDir,
+    registryTaskIds
+  );
+
+  let scanCriteriaFile = "data/search-criteria.json";
+  if (configPath) {
+    try {
+      const configRaw = await readFile(configPath, "utf8");
+      const config = loadConfig(configPath, configRaw);
+      scanCriteriaFile =
+        config.manager?.scanCriteriaFile ?? scanCriteriaFile;
+    } catch {
+      // use default
+    }
+  }
+
+  const searchCriteria = await loadSearchCriteria(
+    path.join(repoRoot, scanCriteriaFile)
+  );
+  const pipelineStatus = await loadPipelineStatus(
+    path.join(repoRoot, "data/pipeline-status.json")
   );
 
   return planWork({
     properties,
     builderTasks,
+    scoutTasks,
+    deferInternational: shouldDeferInternationalRoles(
+      searchCriteria,
+      pipelineStatus
+    ),
+    usActiveMarketIds: getUsActiveMarketIds(searchCriteria),
     pendingManagerReview: shouldRunManagerTriage(properties, builderTasks),
   });
 }

@@ -5,7 +5,31 @@ import type {
   PropertyAudit,
   PropertyContext,
   PropertyMeta,
+  ScoutTask,
 } from "./planner.js";
+
+export interface SearchCriteria {
+  markets?: Array<{ id: string; status?: string }>;
+  scout_instructions?: {
+    volume_targets?: {
+      defer_international_until_us_targets_met?: boolean;
+      research_candidates_per_market_min?: number;
+    };
+    market_sweep_order?: string[];
+  };
+}
+
+export interface PipelineStatus {
+  volume_targets?: {
+    research_candidates_per_market_min?: number;
+  };
+  market_coverage?: Array<{
+    market_id: string;
+    status?: string;
+    research_candidates_open?: number;
+  }>;
+  scout_next_actions?: string[];
+}
 
 const EXCLUDED_PROPERTY_DIRS = new Set(["_example"]);
 
@@ -135,6 +159,168 @@ export async function loadBuilderTasks(
       return a.priority - b.priority;
     }
     return a.taskId.localeCompare(b.taskId);
+  });
+}
+
+export async function loadScoutTasks(
+  activeDir: string,
+  backlogDir: string,
+  inFlightTaskIds: Set<string>
+): Promise<ScoutTask[]> {
+  const tasks: ScoutTask[] = [];
+  const seen = new Set<string>();
+
+  for (const [dir, dirLabel] of [
+    [activeDir, "active"],
+    [backlogDir, "backlog"],
+  ] as const) {
+    let entries: string[] = [];
+    try {
+      entries = await readdir(dir);
+    } catch {
+      continue;
+    }
+
+    for (const fileName of entries) {
+      if (!fileName.endsWith(".md")) {
+        continue;
+      }
+
+      const match = /^TASK-(\d+)-(.+)\.md$/.exec(fileName);
+      if (!match) {
+        continue;
+      }
+
+      const taskId = `TASK-${match[1]}`;
+      if (seen.has(taskId) || inFlightTaskIds.has(taskId)) {
+        continue;
+      }
+
+      const content = await readFile(path.join(dir, fileName), "utf8");
+      if (!isScoutAssignableTask(content)) {
+        continue;
+      }
+
+      seen.add(taskId);
+      tasks.push({
+        taskId,
+        slug: match[2],
+        filePath: path.join("tasks", dirLabel, fileName),
+        priority: readTaskPriorityFromContent(content),
+      });
+    }
+  }
+
+  return tasks.sort((a, b) => {
+    if (a.priority !== b.priority) {
+      return a.priority - b.priority;
+    }
+    return a.taskId.localeCompare(b.taskId);
+  });
+}
+
+/**
+ * Active/backlog tasks assigned to Scout (e.g. TASK-009 market sweep).
+ */
+export function isScoutAssignableTask(taskMarkdown: string): boolean {
+  const assigneeMatch = /^\*\*Assignee:\*\*\s*(.+)$/m.exec(taskMarkdown);
+  if (!assigneeMatch) {
+    return false;
+  }
+  return /\bscout\b/i.test(assigneeMatch[1].trim());
+}
+
+export async function loadSearchCriteria(
+  criteriaPath: string
+): Promise<SearchCriteria> {
+  return (await readJson<SearchCriteria>(criteriaPath)) ?? {};
+}
+
+export async function loadPipelineStatus(
+  statusPath: string
+): Promise<PipelineStatus | undefined> {
+  return readJson<PipelineStatus>(statusPath);
+}
+
+/** US ACTIVE markets: union of market_sweep_order and markets with status ACTIVE. */
+export function getUsActiveMarketIds(criteria: SearchCriteria): Set<string> {
+  const fromMarkets = (criteria.markets ?? [])
+    .filter((market) => market.status === "ACTIVE")
+    .map((market) => market.id);
+  const sweepOrder = criteria.scout_instructions?.market_sweep_order ?? [];
+  return new Set([...fromMarkets, ...sweepOrder]);
+}
+
+export function shouldDeferInternationalRoles(
+  criteria: SearchCriteria,
+  pipelineStatus?: PipelineStatus
+): boolean {
+  const deferFlag =
+    criteria.scout_instructions?.volume_targets
+      ?.defer_international_until_us_targets_met ?? false;
+
+  if (!deferFlag && !pipelineIndicatesDefer(pipelineStatus)) {
+    return false;
+  }
+
+  if (areUsVolumeTargetsMet(criteria, pipelineStatus)) {
+    return false;
+  }
+
+  return true;
+}
+
+function pipelineIndicatesDefer(status?: PipelineStatus): boolean {
+  if (!status) {
+    return false;
+  }
+  if (
+    status.scout_next_actions?.some((action) =>
+      /defer.*international/i.test(action)
+    )
+  ) {
+    return true;
+  }
+  return hasActiveMarketVolumeGaps(status);
+}
+
+function hasActiveMarketVolumeGaps(status: PipelineStatus): boolean {
+  const perMarketMin =
+    status.volume_targets?.research_candidates_per_market_min ?? 3;
+  return (status.market_coverage ?? [])
+    .filter((market) => market.status === "ACTIVE")
+    .some(
+      (market) => (market.research_candidates_open ?? 0) < perMarketMin
+    );
+}
+
+function areUsVolumeTargetsMet(
+  criteria: SearchCriteria,
+  status?: PipelineStatus
+): boolean {
+  const perMarketMin =
+    criteria.scout_instructions?.volume_targets
+      ?.research_candidates_per_market_min ??
+    status?.volume_targets?.research_candidates_per_market_min ??
+    3;
+
+  const activeMarketIds = (criteria.markets ?? [])
+    .filter((market) => market.status === "ACTIVE")
+    .map((market) => market.id);
+  const marketIds =
+    activeMarketIds.length > 0
+      ? activeMarketIds
+      : (criteria.scout_instructions?.market_sweep_order ?? []);
+
+  if (marketIds.length === 0 || !status?.market_coverage) {
+    return false;
+  }
+
+  return marketIds.every((marketId) => {
+    const coverage = status.market_coverage!.find(
+      (market) => market.market_id === marketId
+    );
+    return (coverage?.research_candidates_open ?? 0) >= perMarketMin;
   });
 }
 

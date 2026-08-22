@@ -131,7 +131,7 @@ async function main(): Promise<void> {
 
   switch (command) {
     case "plan": {
-      const planned = await planOnly(repoRoot);
+      const planned = await planOnly(repoRoot, resolvedConfig);
       printWorkItems("Planned work", planned);
       break;
     }

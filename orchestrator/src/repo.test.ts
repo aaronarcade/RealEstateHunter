@@ -5,7 +5,9 @@ import path from "node:path";
 import {
   loadPropertyContexts,
   loadBuilderTasks,
+  loadScoutTasks,
   isBuilderAssignableTask,
+  isScoutAssignableTask,
   loadActiveTaskIds,
   loadRegistry,
   saveRegistry,
@@ -14,8 +16,12 @@ import {
   hasInFlightWork,
   parseChangedPropertyIds,
   shouldRunManagerTriage,
+  getUsActiveMarketIds,
+  shouldDeferInternationalRoles,
   repoPaths,
   type Registry,
+  type SearchCriteria,
+  type PipelineStatus,
 } from "./repo.js";
 
 const TEST_DIR = path.join(import.meta.dirname, "..", ".test-fixtures");
@@ -271,6 +277,154 @@ test("isBuilderAssignableTask defaults missing assignee to Builder", () => {
     isBuilderAssignableTask("**Assignee:** Auditor (+ Builder validation closeout)\n"),
     true
   );
+});
+
+test("isScoutAssignableTask matches Scout assignee only", () => {
+  assert.equal(isScoutAssignableTask("**Assignee:** Scout\n"), true);
+  assert.equal(isScoutAssignableTask("**Assignee:** Builder\n"), false);
+  assert.equal(isScoutAssignableTask("**Assignee:** Analyst\n"), false);
+  assert.equal(isScoutAssignableTask("**Priority:** P0\n"), false);
+});
+
+test("loadScoutTasks loads Scout-assignee tasks from active directory", async () => {
+  await setup();
+  const activeDir = path.join(TEST_DIR, "active");
+  const backlogDir = path.join(TEST_DIR, "backlog");
+
+  await mkdir(activeDir, { recursive: true });
+  await mkdir(backlogDir, { recursive: true });
+
+  await writeFile(
+    path.join(activeDir, "TASK-009-scout-condo-volume-sweep.md"),
+    `# TASK-009\n\n**Assignee:** Scout\n**Priority:** P0\n`
+  );
+  await writeFile(
+    path.join(backlogDir, "TASK-016-analyst-us-screened-batch.md"),
+    `# TASK-016\n\n**Assignee:** Analyst\n**Priority:** P0\n`
+  );
+  await writeFile(
+    path.join(backlogDir, "TASK-018-orchestrator-scout-market-sweep.md"),
+    `# TASK-018\n\n**Assignee:** Builder\n**Priority:** P0\n`
+  );
+
+  const tasks = await loadScoutTasks(activeDir, backlogDir, new Set());
+
+  assert.equal(tasks.length, 1);
+  assert.equal(tasks[0]?.taskId, "TASK-009");
+  assert.equal(
+    tasks[0]?.filePath,
+    "tasks/active/TASK-009-scout-condo-volume-sweep.md"
+  );
+  assert.equal(tasks[0]?.priority, 1);
+
+  await teardown();
+});
+
+test("loadScoutTasks skips tasks with active registry entry", async () => {
+  await setup();
+  const activeDir = path.join(TEST_DIR, "active");
+  const backlogDir = path.join(TEST_DIR, "backlog");
+
+  await mkdir(activeDir, { recursive: true });
+  await mkdir(backlogDir, { recursive: true });
+
+  await writeFile(
+    path.join(activeDir, "TASK-009-scout-condo-volume-sweep.md"),
+    `**Assignee:** Scout\n**Priority:** P0\n`
+  );
+
+  const tasks = await loadScoutTasks(
+    activeDir,
+    backlogDir,
+    new Set(["TASK-009"])
+  );
+
+  assert.equal(tasks.length, 0);
+
+  await teardown();
+});
+
+test("loadScoutTasks prefers active over backlog for same task id", async () => {
+  await setup();
+  const activeDir = path.join(TEST_DIR, "active");
+  const backlogDir = path.join(TEST_DIR, "backlog");
+
+  await mkdir(activeDir, { recursive: true });
+  await mkdir(backlogDir, { recursive: true });
+
+  await writeFile(
+    path.join(activeDir, "TASK-009-scout-condo-volume-sweep.md"),
+    `**Assignee:** Scout\n**Priority:** P0\n`
+  );
+  await writeFile(
+    path.join(backlogDir, "TASK-009-scout-condo-volume-sweep.md"),
+    `**Assignee:** Scout\n**Priority:** P1\n`
+  );
+
+  const tasks = await loadScoutTasks(activeDir, backlogDir, new Set());
+
+  assert.equal(tasks.length, 1);
+  assert.equal(tasks[0]?.filePath, "tasks/active/TASK-009-scout-condo-volume-sweep.md");
+
+  await teardown();
+});
+
+test("getUsActiveMarketIds returns ACTIVE markets and market_sweep_order", () => {
+  const criteria: SearchCriteria = {
+    markets: [
+      { id: "tampa-fl", status: "ACTIVE" },
+      { id: "manta-ec", status: "WATCH" },
+    ],
+    scout_instructions: {
+      market_sweep_order: ["panama-city-beach-fl", "tampa-fl"],
+    },
+  };
+
+  const ids = getUsActiveMarketIds(criteria);
+  assert.ok(ids.has("tampa-fl"));
+  assert.ok(ids.has("panama-city-beach-fl"));
+  assert.equal(ids.has("manta-ec"), false);
+});
+
+test("shouldDeferInternationalRoles true when defer flag set and targets unmet", () => {
+  const criteria: SearchCriteria = {
+    markets: [{ id: "tampa-fl", status: "ACTIVE" }],
+    scout_instructions: {
+      volume_targets: {
+        defer_international_until_us_targets_met: true,
+        research_candidates_per_market_min: 3,
+      },
+      market_sweep_order: ["tampa-fl"],
+    },
+  };
+  const status: PipelineStatus = {
+    volume_targets: { research_candidates_per_market_min: 3 },
+    market_coverage: [
+      { market_id: "tampa-fl", status: "ACTIVE", research_candidates_open: 0 },
+    ],
+  };
+
+  assert.equal(shouldDeferInternationalRoles(criteria, status), true);
+});
+
+test("shouldDeferInternationalRoles false when US volume targets met", () => {
+  const criteria: SearchCriteria = {
+    markets: [{ id: "tampa-fl", status: "ACTIVE" }],
+    scout_instructions: {
+      volume_targets: {
+        defer_international_until_us_targets_met: true,
+        research_candidates_per_market_min: 3,
+      },
+    },
+  };
+  const status: PipelineStatus = {
+    volume_targets: { research_candidates_per_market_min: 3 },
+    market_coverage: [
+      { market_id: "tampa-fl", status: "ACTIVE", research_candidates_open: 3 },
+    ],
+  };
+
+  assert.equal(shouldDeferInternationalRoles(criteria, status), false);
 });
 
 // =============================================================================

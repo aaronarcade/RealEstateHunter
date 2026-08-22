@@ -33,6 +33,7 @@ export interface PropertyMeta {
   id: string;
   address?: string;
   listing_url?: string;
+  market_id?: string;
   workflow_state: WorkflowState;
   scout_decision?: "REJECT" | "RESEARCH";
   rescreen_after?: string;
@@ -68,20 +69,36 @@ export interface BuilderTask {
   priority: number;
 }
 
+export interface ScoutTask {
+  taskId: string;
+  slug: string;
+  filePath: string;
+  priority: number;
+}
+
 export interface PlannerInput {
   properties: PropertyContext[];
   builderTasks: BuilderTask[];
+  scoutTasks?: ScoutTask[];
+  deferInternational?: boolean;
+  usActiveMarketIds?: Set<string>;
   pendingManagerReview: boolean;
 }
 
 export function planWork(input: PlannerInput): WorkItem[] {
   const items: WorkItem[] = [];
+  const deferInternational = input.deferInternational ?? false;
+  const usActiveMarketIds = input.usActiveMarketIds ?? new Set<string>();
 
   for (const property of input.properties) {
-    const next = planPropertyWork(property);
+    const next = planPropertyWork(property, deferInternational, usActiveMarketIds);
     if (next) {
       items.push(next);
     }
+  }
+
+  for (const task of input.scoutTasks ?? []) {
+    items.push(planScoutWork(task));
   }
 
   for (const task of input.builderTasks) {
@@ -95,9 +112,30 @@ export function planWork(input: PlannerInput): WorkItem[] {
   return items.sort((a, b) => a.priority - b.priority);
 }
 
-function planPropertyWork(ctx: PropertyContext): WorkItem | null {
+function isDeferredInternationalProperty(
+  meta: PropertyMeta,
+  deferInternational: boolean,
+  usActiveMarketIds: Set<string>
+): boolean {
+  if (!deferInternational || !meta.market_id) {
+    return false;
+  }
+  return !usActiveMarketIds.has(meta.market_id);
+}
+
+function planPropertyWork(
+  ctx: PropertyContext,
+  deferInternational = false,
+  usActiveMarketIds = new Set<string>()
+): WorkItem | null {
   const { propertyId, meta } = ctx;
   const branchBase = `agent/${propertyId}`;
+
+  if (
+    isDeferredInternationalProperty(meta, deferInternational, usActiveMarketIds)
+  ) {
+    return null;
+  }
 
   switch (meta.workflow_state) {
     case "CANDIDATE":
@@ -247,6 +285,18 @@ function planBuilderWork(task: BuilderTask): WorkItem {
     branch: `agent/${task.taskId.toLowerCase()}-${task.slug}`,
     priority: task.priority,
     prompt: builderPrompt(task),
+  });
+}
+
+function planScoutWork(task: ScoutTask): WorkItem {
+  return workItem({
+    role: "scout",
+    subjectType: "task",
+    subjectId: task.taskId,
+    action: "market-sweep",
+    branch: `agent/${task.taskId.toLowerCase()}-${task.slug}`,
+    priority: task.priority,
+    prompt: scoutMarketSweepPrompt(task),
   });
 }
 
@@ -483,5 +533,19 @@ function builderPrompt(task: BuilderTask): string {
     "Move the task file to tasks/active/ while working.",
     "Implement acceptance criteria, add tests, run tests, open a PR.",
     "Move task to tasks/done/ when merged.",
+  ].join("\n");
+}
+
+function scoutMarketSweepPrompt(task: ScoutTask): string {
+  return [
+    roleHeader("scout"),
+    `Task: ${task.taskId}`,
+    `Task file: ${task.filePath}`,
+    "",
+    "Execute the market-sweep instructions in the task file.",
+    "Read data/search-criteria.json for scout_instructions, market_sweep_order, condo_building_search, and volume_targets.",
+    "Read data/pipeline-status.json for current progress, market_coverage gaps, and scout_next_actions.",
+    "Follow volume targets — review 40+ listings per market; aim for 10+ RESEARCH total. Do not stop early.",
+    "Commit reviewed batches as you progress; push directly to main when complete.",
   ].join("\n");
 }

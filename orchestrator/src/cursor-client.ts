@@ -17,6 +17,9 @@ export interface OrchestratorConfig {
   autoCreatePR: boolean;
   skipReviewerRequest: boolean;
   roles: Record<string, RoleConfig>;
+  manager?: {
+    scanCriteriaFile?: string;
+  };
 }
 
 export interface CreateAgentRequest {

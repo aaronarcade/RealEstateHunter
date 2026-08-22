@@ -1,6 +1,25 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import { planWork, type PropertyContext, type BuilderTask } from "./planner.js";
+import { planWork, type PropertyContext, type BuilderTask, type ScoutTask } from "./planner.js";
+
+function scoutTask(overrides: Partial<ScoutTask> = {}): ScoutTask {
+  return {
+    taskId: "TASK-009",
+    slug: "scout-condo-volume-sweep",
+    filePath: "tasks/active/TASK-009-scout-condo-volume-sweep.md",
+    priority: 1,
+    ...overrides,
+  };
+}
+
+const US_ACTIVE_MARKETS = new Set([
+  "panama-city-beach-fl",
+  "tampa-fl",
+  "jacksonville-fl",
+  "birmingham-al",
+  "memphis-tn",
+  "cleveland-oh",
+]);
 
 function property(
   overrides: Partial<PropertyContext> & Pick<PropertyContext, "propertyId" | "meta">
@@ -608,4 +627,124 @@ test("prompts include role header", () => {
     const expectedHeader = `You are the ${item.role.charAt(0).toUpperCase()}${item.role.slice(1)} agent`;
     assert.match(item.prompt, new RegExp(expectedHeader), `prompt should include role header for ${item.role}`);
   }
+});
+
+// =============================================================================
+// TASK-018: Scout market-sweep task planning
+// =============================================================================
+
+test("TASK-018: Scout-assignee active task produces market-sweep work item", () => {
+  const items = planWork({
+    properties: [],
+    scoutTasks: [scoutTask()],
+    builderTasks: [],
+    pendingManagerReview: false,
+  });
+
+  assert.equal(items.length, 1);
+  assert.equal(items[0]?.role, "scout");
+  assert.equal(items[0]?.subjectType, "task");
+  assert.equal(items[0]?.subjectId, "TASK-009");
+  assert.equal(items[0]?.action, "market-sweep");
+  assert.equal(items[0]?.key, "scout:task:TASK-009:market-sweep");
+});
+
+test("TASK-018: Scout market-sweep prompt includes task file and criteria paths", () => {
+  const items = planWork({
+    properties: [],
+    scoutTasks: [scoutTask()],
+    builderTasks: [],
+    pendingManagerReview: false,
+  });
+
+  const prompt = items[0]?.prompt ?? "";
+  assert.match(prompt, /tasks\/active\/TASK-009-scout-condo-volume-sweep\.md/);
+  assert.match(prompt, /data\/search-criteria\.json/);
+  assert.match(prompt, /data\/pipeline-status\.json/);
+});
+
+test("TASK-018: defer international skips analyst for non-US-ACTIVE market_id", () => {
+  const items = planWork({
+    properties: [
+      property({
+        propertyId: "nahla-unit-60-barbasquillo-manta-ec",
+        meta: {
+          id: "nahla-unit-60-barbasquillo-manta-ec",
+          market_id: "manta-ec",
+          workflow_state: "SCREENED",
+          scout_decision: "RESEARCH",
+        },
+      }),
+    ],
+    builderTasks: [],
+    deferInternational: true,
+    usActiveMarketIds: US_ACTIVE_MARKETS,
+    pendingManagerReview: false,
+  });
+
+  assert.equal(items.length, 0);
+});
+
+test("TASK-018: defer international still plans analyst for US ACTIVE market_id", () => {
+  const items = planWork({
+    properties: [
+      property({
+        propertyId: "9860-s-thomas-dr-unit-917-panama-city-beach-fl",
+        meta: {
+          id: "9860-s-thomas-dr-unit-917-panama-city-beach-fl",
+          market_id: "panama-city-beach-fl",
+          workflow_state: "SCREENED",
+          scout_decision: "RESEARCH",
+        },
+      }),
+    ],
+    builderTasks: [],
+    deferInternational: true,
+    usActiveMarketIds: US_ACTIVE_MARKETS,
+    pendingManagerReview: false,
+  });
+
+  assert.equal(items.length, 1);
+  assert.equal(items[0]?.role, "analyst");
+});
+
+test("TASK-018: defer international skips auditor for non-US-ACTIVE UNDERWRITTEN", () => {
+  const items = planWork({
+    properties: [
+      property({
+        propertyId: "fez-manta-unit-209-barbasquillo-manta-ec",
+        meta: {
+          id: "fez-manta-unit-209-barbasquillo-manta-ec",
+          market_id: "manta-ec",
+          workflow_state: "UNDERWRITTEN",
+        },
+        hasEvidence: true,
+        hasUnderwriting: true,
+      }),
+    ],
+    builderTasks: [],
+    deferInternational: true,
+    usActiveMarketIds: US_ACTIVE_MARKETS,
+    pendingManagerReview: false,
+  });
+
+  assert.equal(items.length, 0);
+});
+
+test("TASK-018: scout market-sweep and property scout can both be planned", () => {
+  const items = planWork({
+    properties: [
+      property({
+        propertyId: "new-listing",
+        meta: { id: "new-listing", workflow_state: "CANDIDATE" },
+      }),
+    ],
+    scoutTasks: [scoutTask()],
+    builderTasks: [],
+    pendingManagerReview: false,
+  });
+
+  const roles = items.map((item) => item.role);
+  assert.ok(roles.includes("scout"));
+  assert.equal(roles.filter((role) => role === "scout").length, 2);
 });
