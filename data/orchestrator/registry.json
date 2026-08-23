@@ -25,9 +25,9 @@
       "agentId": "bc-9acf4f66-1527-41e9-8a5f-0d36f64a4430",
       "runId": "run-061c3f9b-4ff3-4ba7-a25e-f24fefc6d2da",
       "agentUrl": "https://cursor.com/agents/bc-9acf4f66-1527-41e9-8a5f-0d36f64a4430",
-      "status": "ACTIVE",
+      "status": "ERROR",
       "createdAt": "2026-08-22T07:23:11.005Z",
-      "updatedAt": "2026-08-22T07:23:11.005Z"
+      "updatedAt": "2026-08-23T07:24:45.748Z"
     },
     "builder:task:TASK-002:implement-task": {
       "workKey": "builder:task:TASK-002:implement-task",
@@ -543,9 +543,9 @@
       "agentId": "bc-32662f7c-ee93-44f6-af05-ca478f73cd8b",
       "runId": "run-da60aaae-e1a1-46aa-8ef5-3b883f9ae163",
       "agentUrl": "https://cursor.com/agents/bc-32662f7c-ee93-44f6-af05-ca478f73cd8b",
-      "status": "ACTIVE",
+      "status": "ERROR",
       "createdAt": "2026-08-22T07:23:08.352Z",
-      "updatedAt": "2026-08-22T07:23:08.352Z"
+      "updatedAt": "2026-08-23T07:24:46.169Z"
     }
   }
 }
