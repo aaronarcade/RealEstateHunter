@@ -599,9 +599,9 @@
       "agentId": "bc-18375a66-c8d4-4560-8eea-8f16d09c5be6",
       "runId": "run-e2c90c04-a78f-455e-9dbc-fc11d329d053",
       "agentUrl": "https://cursor.com/agents/bc-18375a66-c8d4-4560-8eea-8f16d09c5be6",
-      "status": "ACTIVE",
+      "status": "ERROR",
       "createdAt": "2026-09-10T11:57:29.954Z",
-      "updatedAt": "2026-09-10T11:57:29.954Z"
+      "updatedAt": "2026-09-10T11:59:09.162Z"
     },
     "scout:property:buzios-3br-oceanfront-barbasquillo-manta-ec:rescreen-listing": {
       "workKey": "scout:property:buzios-3br-oceanfront-barbasquillo-manta-ec:rescreen-listing",
@@ -613,9 +613,9 @@
       "agentId": "bc-80944ba2-af3c-48c0-b331-b6d6bc7f3498",
       "runId": "run-61d6f4cc-68e9-450e-9545-dd964562955c",
       "agentUrl": "https://cursor.com/agents/bc-80944ba2-af3c-48c0-b331-b6d6bc7f3498",
-      "status": "ACTIVE",
+      "status": "ERROR",
       "createdAt": "2026-09-10T11:57:33.910Z",
-      "updatedAt": "2026-09-10T11:57:33.910Z"
+      "updatedAt": "2026-09-10T11:59:09.456Z"
     },
     "scout:property:ciudad-del-mar-2br-oceanfront-manta-ec:rescreen-listing": {
       "workKey": "scout:property:ciudad-del-mar-2br-oceanfront-manta-ec:rescreen-listing",
@@ -627,9 +627,9 @@
       "agentId": "bc-904c9e82-62af-4e37-bd84-fb26cf341b21",
       "runId": "run-ccff9115-b0e8-45e4-93ed-cae191a50216",
       "agentUrl": "https://cursor.com/agents/bc-904c9e82-62af-4e37-bd84-fb26cf341b21",
-      "status": "ACTIVE",
+      "status": "ERROR",
       "createdAt": "2026-09-10T11:57:36.634Z",
-      "updatedAt": "2026-09-10T11:57:36.634Z"
+      "updatedAt": "2026-09-10T11:59:09.800Z"
     }
   }
 }
