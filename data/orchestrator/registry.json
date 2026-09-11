@@ -630,6 +630,48 @@
       "status": "ERROR",
       "createdAt": "2026-09-10T11:57:36.634Z",
       "updatedAt": "2026-09-10T11:59:09.800Z"
+    },
+    "scout:property:ciudad-del-mar-3br-condo-manta-ec:rescreen-listing": {
+      "workKey": "scout:property:ciudad-del-mar-3br-condo-manta-ec:rescreen-listing",
+      "role": "scout",
+      "subjectType": "property",
+      "subjectId": "ciudad-del-mar-3br-condo-manta-ec",
+      "action": "rescreen-listing",
+      "branch": "main",
+      "agentId": "bc-768d8197-3fd5-4213-8dd5-4c6d04889d30",
+      "runId": "run-8878d782-7f84-4db5-aa74-0a8af866b90b",
+      "agentUrl": "https://cursor.com/agents/bc-768d8197-3fd5-4213-8dd5-4c6d04889d30",
+      "status": "ACTIVE",
+      "createdAt": "2026-09-11T11:56:12.250Z",
+      "updatedAt": "2026-09-11T11:56:12.250Z"
+    },
+    "scout:property:dep-manta-2br-ocean-view-manta-ec:rescreen-listing": {
+      "workKey": "scout:property:dep-manta-2br-ocean-view-manta-ec:rescreen-listing",
+      "role": "scout",
+      "subjectType": "property",
+      "subjectId": "dep-manta-2br-ocean-view-manta-ec",
+      "action": "rescreen-listing",
+      "branch": "main",
+      "agentId": "bc-8cae69d6-0650-4c9f-9eaa-5851ce1c9cfe",
+      "runId": "run-b1fd6e34-a0e7-451b-84ce-55f80b20c7cc",
+      "agentUrl": "https://cursor.com/agents/bc-8cae69d6-0650-4c9f-9eaa-5851ce1c9cfe",
+      "status": "ACTIVE",
+      "createdAt": "2026-09-11T11:56:15.379Z",
+      "updatedAt": "2026-09-11T11:56:15.379Z"
+    },
+    "scout:property:departamento-vista-mar-2br-manta-ec:rescreen-listing": {
+      "workKey": "scout:property:departamento-vista-mar-2br-manta-ec:rescreen-listing",
+      "role": "scout",
+      "subjectType": "property",
+      "subjectId": "departamento-vista-mar-2br-manta-ec",
+      "action": "rescreen-listing",
+      "branch": "main",
+      "agentId": "bc-45d10f82-dd30-4daf-b37f-111d97cce450",
+      "runId": "run-c70ea1f8-6d58-4d3b-875f-11f8493b095f",
+      "agentUrl": "https://cursor.com/agents/bc-45d10f82-dd30-4daf-b37f-111d97cce450",
+      "status": "ACTIVE",
+      "createdAt": "2026-09-11T11:56:18.458Z",
+      "updatedAt": "2026-09-11T11:56:18.458Z"
     }
   }
 }
