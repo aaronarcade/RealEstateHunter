@@ -1,20 +1,20 @@
 {
   "id": "elite-towers-3br-oceanfront-manta-ec",
-  "address": "Elite Towers 3BR, Manta, Manab\u00ed, Ecuador",
-  "location": "Manta, Manab\u00ed, Ecuador",
+  "address": "Elite Towers 3BR, Manta, Manabí, Ecuador",
+  "location": "Manta, Manabí, Ecuador",
   "listing_url": "https://www.ecuadorshoresrealty.com/property/3-2-double-balcony-fully-furnished-oceanfront-condo-manta-ecuador/",
   "market_id": "manta-ec",
   "created_at": "2026-08-10T05:00:00Z",
-  "updated_at": "2026-08-10T05:00:00Z",
-  "last_screened_at": "2026-08-10T05:00:00Z",
+  "updated_at": "2026-09-12T11:23:38Z",
+  "last_screened_at": "2026-09-12T11:23:38Z",
   "screening_snapshot": {
     "price": 319900,
     "rough_monthly_rent": 1500,
     "rough_gross_yield": 0.0563,
     "advertised_hoa": 225,
-    "screened_at": "2026-08-10T05:00:00Z"
+    "screened_at": "2026-09-12T11:23:38Z"
   },
-  "scout_notes": "Premium 3/2 oceanfront Elite Towers. Listing claims >$4K STR but at $1,500 conservative \u2192 5.6% gross.",
+  "scout_notes": "Rescreen 2026-09-12: Ecuador Shores Realty listing still For Sale at $319,900 furnished (0% vs prior snapshot; no ≥5% price-drop trigger). HOA still $225/mo; taxes <$400/yr. Conservative LTR $1,500/mo → 5.6% gross; HOA-adjusted (1500−225)×12/319900 ≈ 4.8%. Same-building Elit 1BR suite LTR ~$1,100 (incl. alícuota) supports $1,500 as fair for 3BR — optimistic $2,000 still only 7.5%. Need ~$2,666/mo for 10%. Stay ARCHIVED scout_reject; rescreen_after +30d.",
   "property_type": "condo",
   "building_name": "Elite Towers",
   "beds": 3,
@@ -23,11 +23,11 @@
   "rough_monthly_rent": 1500,
   "rough_gross_yield": 0.0563,
   "advertised_hoa": 225,
-  "rent_source": "Listing STR marketing; conservative $1,500 applied",
+  "rent_source": "Conservative LTR; Elit/CdM comps (1BR suite ~$1,100; prior STR marketing overstated)",
   "rent_confidence": "MEDIUM",
   "workflow_state": "ARCHIVED",
   "scout_decision": "REJECT",
   "archive_reason": "scout_reject",
-  "rescreen_after": "2026-09-09T05:00:00Z",
-  "rescreen_count": 0
+  "rescreen_after": "2026-10-12T11:23:38Z",
+  "rescreen_count": 1
 }
