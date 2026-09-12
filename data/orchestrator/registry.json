@@ -683,9 +683,9 @@
       "agentId": "bc-0c5b01d3-cb36-43aa-8494-9255e2c98049",
       "runId": "run-2485514a-3a3e-4633-a30c-e504a8818aca",
       "agentUrl": "https://cursor.com/agents/bc-0c5b01d3-cb36-43aa-8494-9255e2c98049",
-      "status": "ACTIVE",
+      "status": "ERROR",
       "createdAt": "2026-09-12T11:22:46.220Z",
-      "updatedAt": "2026-09-12T11:22:46.220Z"
+      "updatedAt": "2026-09-12T11:24:15.446Z"
     },
     "scout:property:el-faro-unit-2f-ciudad-del-mar-manta-ec:rescreen-listing": {
       "workKey": "scout:property:el-faro-unit-2f-ciudad-del-mar-manta-ec:rescreen-listing",
@@ -697,9 +697,9 @@
       "agentId": "bc-41e82d36-5ce9-4258-a54e-649ab3cd8371",
       "runId": "run-1bf7cd42-28a1-47cc-b8ce-f5e551e4eece",
       "agentUrl": "https://cursor.com/agents/bc-41e82d36-5ce9-4258-a54e-649ab3cd8371",
-      "status": "ACTIVE",
+      "status": "ERROR",
       "createdAt": "2026-09-12T11:22:49.515Z",
-      "updatedAt": "2026-09-12T11:22:49.515Z"
+      "updatedAt": "2026-09-12T11:24:15.903Z"
     },
     "scout:property:elite-towers-3br-oceanfront-manta-ec:rescreen-listing": {
       "workKey": "scout:property:elite-towers-3br-oceanfront-manta-ec:rescreen-listing",
@@ -711,9 +711,9 @@
       "agentId": "bc-589f34be-07a5-48a5-a246-5999632e7f18",
       "runId": "run-f7f56a96-cb11-4407-a3be-164f00e37b73",
       "agentUrl": "https://cursor.com/agents/bc-589f34be-07a5-48a5-a246-5999632e7f18",
-      "status": "ACTIVE",
+      "status": "ERROR",
       "createdAt": "2026-09-12T11:22:55.109Z",
-      "updatedAt": "2026-09-12T11:22:55.109Z"
+      "updatedAt": "2026-09-12T11:24:16.126Z"
     }
   }
 }
