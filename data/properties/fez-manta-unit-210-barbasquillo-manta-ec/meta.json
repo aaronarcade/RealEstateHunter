@@ -1,20 +1,20 @@
 {
   "id": "fez-manta-unit-210-barbasquillo-manta-ec",
-  "address": "Fez Manta Unit 210, Barbasquillo, Manta, Manab\u00ed, Ecuador",
-  "location": "Manta, Manab\u00ed, Ecuador",
+  "address": "Fez Manta Unit 210, Barbasquillo, Manta, Manabí, Ecuador",
+  "location": "Manta, Manabí, Ecuador",
   "listing_url": "https://trivo.com.ec/propiedades/fez-manta/",
   "market_id": "manta-ec",
   "created_at": "2026-08-10T05:00:00Z",
-  "updated_at": "2026-08-10T05:00:00Z",
-  "last_screened_at": "2026-08-10T05:00:00Z",
+  "updated_at": "2026-09-13T12:27:45Z",
+  "last_screened_at": "2026-09-13T12:27:45Z",
   "screening_snapshot": {
     "price": 109324,
     "rough_monthly_rent": 732,
     "rough_gross_yield": 0.0803,
     "advertised_hoa": null,
-    "screened_at": "2026-08-10T05:00:00Z"
+    "screened_at": "2026-09-13T12:27:45Z"
   },
-  "scout_notes": "Fez 2BR 59.74m\u00b2 pre-sale. Median rent \u2192 8.0% gross.",
+  "scout_notes": "Rescreen 2026-09-13: Trivo Fez Manta still lists Unidad 210 among available units — 2BR piso 2, 59.74m² at $109,324 (0% vs prior snapshot; no ≥5% price-drop trigger). Building still marketed from $62,150; sibling 408 still $211,287 / 102.17m². Plusvalía mirrors a finished Edif. Fez piso-2 59.74m² (1 dorm+estudio) at $119,000 — secondary ask is higher, not a discount. FazWaz Manta 2BR median still $732/mo → 8.0% gross; Barbasquillo LTR comps ~$700–$850 still only 7.7–9.3%. Need ~$911/mo for 10%. HOA not stated. Stay ARCHIVED scout_reject; rescreen_after +30d.",
   "property_type": "condo",
   "building_name": "Fez Manta",
   "unit": "210",
@@ -23,11 +23,12 @@
   "asking_price": 109324,
   "rough_monthly_rent": 732,
   "rough_gross_yield": 0.0803,
-  "rent_source": "FazWaz 2BR median",
+  "advertised_hoa": null,
+  "rent_source": "FazWaz Manta 2BR median $732 (Barbasquillo LTR comps $700–$850)",
   "rent_confidence": "MEDIUM",
   "workflow_state": "ARCHIVED",
   "scout_decision": "REJECT",
   "archive_reason": "scout_reject",
-  "rescreen_after": "2026-09-09T05:00:00Z",
-  "rescreen_count": 0
+  "rescreen_after": "2026-10-13T12:27:45Z",
+  "rescreen_count": 1
 }
