@@ -851,9 +851,9 @@
       "agentId": "bc-59ba9eed-ffac-4a59-8482-5455c18bcb89",
       "runId": "run-c10a72d1-8f07-422c-b0d9-64325dae9ed1",
       "agentUrl": "https://cursor.com/agents/bc-59ba9eed-ffac-4a59-8482-5455c18bcb89",
-      "status": "ACTIVE",
+      "status": "ERROR",
       "createdAt": "2026-09-16T12:18:24.405Z",
-      "updatedAt": "2026-09-16T12:18:24.405Z"
+      "updatedAt": "2026-09-16T12:20:44.829Z"
     },
     "scout:property:nahla-unit-d-203-barbasquillo-manta-ec:rescreen-listing": {
       "workKey": "scout:property:nahla-unit-d-203-barbasquillo-manta-ec:rescreen-listing",
@@ -865,9 +865,9 @@
       "agentId": "bc-00e8f1b3-c433-4c18-b185-66a7d66b0158",
       "runId": "run-0384091d-4a82-475d-bd41-903648c48b41",
       "agentUrl": "https://cursor.com/agents/bc-00e8f1b3-c433-4c18-b185-66a7d66b0158",
-      "status": "ACTIVE",
+      "status": "ERROR",
       "createdAt": "2026-09-16T12:18:48.046Z",
-      "updatedAt": "2026-09-16T12:18:48.046Z"
+      "updatedAt": "2026-09-16T12:20:45.207Z"
     },
     "scout:property:nahla-unit-d-204-barbasquillo-manta-ec:rescreen-listing": {
       "workKey": "scout:property:nahla-unit-d-204-barbasquillo-manta-ec:rescreen-listing",
@@ -879,9 +879,9 @@
       "agentId": "bc-cca225ec-78a2-4ab9-b823-8765cc4c1a10",
       "runId": "run-905e3c21-a418-4c3c-9b01-8e6f8a724033",
       "agentUrl": "https://cursor.com/agents/bc-cca225ec-78a2-4ab9-b823-8765cc4c1a10",
-      "status": "ACTIVE",
+      "status": "ERROR",
       "createdAt": "2026-09-16T12:18:51.314Z",
-      "updatedAt": "2026-09-16T12:18:51.314Z"
+      "updatedAt": "2026-09-16T12:20:46.155Z"
     }
   }
 }
