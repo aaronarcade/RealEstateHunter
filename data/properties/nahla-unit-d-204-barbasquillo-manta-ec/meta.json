@@ -1,20 +1,20 @@
 {
   "id": "nahla-unit-d-204-barbasquillo-manta-ec",
-  "address": "Nahla Unit D-204, Barbasquillo, Manta, Manab\u00ed, Ecuador",
-  "location": "Manta, Manab\u00ed, Ecuador",
+  "address": "Nahla Unit D-204, Barbasquillo, Manta, Manabí, Ecuador",
+  "location": "Manta, Manabí, Ecuador",
   "listing_url": "https://trivo.com.ec/propiedades/nahla/",
   "market_id": "manta-ec",
   "created_at": "2026-08-10T05:00:00Z",
-  "updated_at": "2026-08-10T05:00:00Z",
-  "last_screened_at": "2026-08-10T05:00:00Z",
+  "updated_at": "2026-09-16T12:20:33Z",
+  "last_screened_at": "2026-09-16T12:20:33Z",
   "screening_snapshot": {
     "price": 99382,
     "rough_monthly_rent": 750,
     "rough_gross_yield": 0.0906,
     "advertised_hoa": null,
-    "screened_at": "2026-08-10T05:00:00Z"
+    "screened_at": "2026-09-16T12:20:33Z"
   },
-  "scout_notes": "Nahla 2BR 86m\u00b2. $750/mo STR \u2192 9.1% gross.",
+  "scout_notes": "Rescreen 2026-09-16: Trivo Nahla project page still active (direct fetch egress-blocked; indexed Unidades disponibles still shows $99,382 / 86.15 m² 2BR matching D-204) — 0% price change vs snapshot (no ≥5% drop trigger). HOA still not stated. Rent refresh: FazWaz Manta condo 2BR avg $733 / apt 2BR avg $717; Barbasquillo LTR comps Rentberry $700 (105 m²) / FazWaz $500–$800 (80–90 m²) / Rentola Torres del Sol 85 m² $850 incl. alícuota+internet. Keep optimistic STR $750 → 9.1% gross; LTR band $700–$800 → 8.4–9.7%. Need ~$828/mo for 10%. Stay ARCHIVED scout_reject; rescreen_after +30d.",
   "property_type": "condo",
   "building_name": "Nahla",
   "unit": "D-204",
@@ -23,11 +23,12 @@
   "asking_price": 99382,
   "rough_monthly_rent": 750,
   "rough_gross_yield": 0.0906,
-  "rent_source": "2BR STR estimate",
+  "advertised_hoa": null,
+  "rent_source": "Optimistic STR $750 (FazWaz Manta condo 2BR avg $733; Barbasquillo LTR comps $700–$800)",
   "rent_confidence": "MEDIUM",
   "workflow_state": "ARCHIVED",
   "scout_decision": "REJECT",
   "archive_reason": "scout_reject",
-  "rescreen_after": "2026-09-09T05:00:00Z",
-  "rescreen_count": 0
+  "rescreen_after": "2026-10-16T12:20:33Z",
+  "rescreen_count": 1
 }
