@@ -893,9 +893,9 @@
       "agentId": "bc-bd0380d3-ebe9-4cf7-8c4c-75284137955b",
       "runId": "run-7d505dfb-0b6c-4b2e-b53a-0701359a0bb8",
       "agentUrl": "https://cursor.com/agents/bc-bd0380d3-ebe9-4cf7-8c4c-75284137955b",
-      "status": "ACTIVE",
+      "status": "ERROR",
       "createdAt": "2026-09-17T12:18:17.754Z",
-      "updatedAt": "2026-09-17T12:18:17.754Z"
+      "updatedAt": "2026-09-17T12:19:53.116Z"
     },
     "scout:property:oceania-4br-beachfront-manta-ec:rescreen-listing": {
       "workKey": "scout:property:oceania-4br-beachfront-manta-ec:rescreen-listing",
@@ -907,9 +907,9 @@
       "agentId": "bc-4e0c420f-b0fc-40fd-a292-935746f28a90",
       "runId": "run-62e72609-f48b-4298-8840-a714369ae215",
       "agentUrl": "https://cursor.com/agents/bc-4e0c420f-b0fc-40fd-a292-935746f28a90",
-      "status": "ACTIVE",
+      "status": "ERROR",
       "createdAt": "2026-09-17T12:18:23.044Z",
-      "updatedAt": "2026-09-17T12:18:23.044Z"
+      "updatedAt": "2026-09-17T12:19:57.406Z"
     },
     "scout:property:oceania-sky-loft-manta-ec:rescreen-listing": {
       "workKey": "scout:property:oceania-sky-loft-manta-ec:rescreen-listing",
@@ -921,9 +921,9 @@
       "agentId": "bc-1b83dbc6-5519-4a11-ad71-bb66337b8cc7",
       "runId": "run-59815aff-f6e3-4a9e-9de4-56d7da38945e",
       "agentUrl": "https://cursor.com/agents/bc-1b83dbc6-5519-4a11-ad71-bb66337b8cc7",
-      "status": "ACTIVE",
+      "status": "ERROR",
       "createdAt": "2026-09-17T12:18:27.854Z",
-      "updatedAt": "2026-09-17T12:18:27.854Z"
+      "updatedAt": "2026-09-17T12:19:57.682Z"
     }
   }
 }
