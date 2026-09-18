@@ -1,20 +1,20 @@
 {
   "id": "poseidon-9f-2br-barbasquillo-manta-ec",
-  "address": "Poseidon Hotel Apt 9F, Barbasquillo, Manta, Manab\u00ed, Ecuador",
-  "location": "Manta, Manab\u00ed, Ecuador",
-  "listing_url": "https://www.realtor.com/international/ec/manta-manabi-province/p3/",
+  "address": "Poseidon Hotel Apt 9F, Barbasquillo, Manta, Manabí, Ecuador",
+  "location": "Manta, Manabí, Ecuador",
+  "listing_url": "https://mls-ecuador.com/en/real-estate/manta-real-estate/rs2500096",
   "market_id": "manta-ec",
   "created_at": "2026-08-10T05:00:00Z",
-  "updated_at": "2026-08-10T05:00:00Z",
-  "last_screened_at": "2026-08-10T05:00:00Z",
+  "updated_at": "2026-09-18T11:59:21Z",
+  "last_screened_at": "2026-09-18T11:59:21Z",
   "screening_snapshot": {
     "price": 230000,
     "rough_monthly_rent": 1300,
     "rough_gross_yield": 0.0678,
-    "advertised_hoa": null,
-    "screened_at": "2026-08-10T05:00:00Z"
+    "advertised_hoa": 328,
+    "screened_at": "2026-09-18T11:59:21Z"
   },
-  "scout_notes": "Poseidon 2BR full ocean views 9th floor. Using sibling verified rent $1,300 \u2192 6.8% gross.",
+  "scout_notes": "Rescreen 2026-09-18: MLS RS2500096 still Active at $230,000 (2/2, 111.48 m², 9th floor Poseidon Hotel, Barbasquillo) — 0% price change vs prior snapshot (no ≥5% drop trigger). realtor.com international fetch egress-blocked; MLS/PropertyShelf index confirms Active. HOA/Association Fee now stated $328/mo (was null). Rent refresh: same-building Poseidon Rentola 120 m² LTR $900 / 135 m² furnished LTR $1,300 incl. alícuota+utils; sibling 7F RS2600215 still cites current rent $1,300. Keep optimistic $1,300 → 6.8% gross; HOA-adj (1300−328)×12/230000 ≈ 5.1%. Size-matched $900 → 4.7% gross. Need ~$1,917/mo for 10%. Stay ARCHIVED scout_reject; rescreen_after +30d.",
   "property_type": "condo",
   "building_name": "Poseidon",
   "unit": "9F",
@@ -23,11 +23,13 @@
   "asking_price": 230000,
   "rough_monthly_rent": 1300,
   "rough_gross_yield": 0.0678,
-  "rent_source": "Poseidon rs2600215 verified rent comp",
+  "advertised_hoa": 328,
+  "rent_source": "Optimistic same-building Poseidon $1,300 (sibling 7F RS2600215 stated rent; Rentola Poseidon 135 m² $1,300); size-matched Rentola 120 m² LTR $900",
   "rent_confidence": "MEDIUM",
+  "mls_id": "RS2500096",
   "workflow_state": "ARCHIVED",
   "scout_decision": "REJECT",
   "archive_reason": "scout_reject",
-  "rescreen_after": "2026-09-09T05:00:00Z",
-  "rescreen_count": 0
+  "rescreen_after": "2026-10-18T11:59:21Z",
+  "rescreen_count": 1
 }
