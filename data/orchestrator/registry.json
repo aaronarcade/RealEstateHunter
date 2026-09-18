@@ -924,6 +924,48 @@
       "status": "ERROR",
       "createdAt": "2026-09-17T12:18:27.854Z",
       "updatedAt": "2026-09-17T12:19:57.682Z"
+    },
+    "scout:property:orongo-unit-12-barbasquillo-manta-ec:rescreen-listing": {
+      "workKey": "scout:property:orongo-unit-12-barbasquillo-manta-ec:rescreen-listing",
+      "role": "scout",
+      "subjectType": "property",
+      "subjectId": "orongo-unit-12-barbasquillo-manta-ec",
+      "action": "rescreen-listing",
+      "branch": "main",
+      "agentId": "bc-de0ae5a5-65d3-45c1-900a-fdc1be2da4c8",
+      "runId": "run-d0f283e3-dce8-485e-bf6b-e72e91399daa",
+      "agentUrl": "https://cursor.com/agents/bc-de0ae5a5-65d3-45c1-900a-fdc1be2da4c8",
+      "status": "ACTIVE",
+      "createdAt": "2026-09-18T11:58:28.859Z",
+      "updatedAt": "2026-09-18T11:58:28.859Z"
+    },
+    "scout:property:poseidon-2br-under-190k-manta-ec:rescreen-listing": {
+      "workKey": "scout:property:poseidon-2br-under-190k-manta-ec:rescreen-listing",
+      "role": "scout",
+      "subjectType": "property",
+      "subjectId": "poseidon-2br-under-190k-manta-ec",
+      "action": "rescreen-listing",
+      "branch": "main",
+      "agentId": "bc-d4dc0181-c184-4999-81b9-ae3f55db71ea",
+      "runId": "run-ab13f429-cd5b-44e4-b1c0-147aceecf728",
+      "agentUrl": "https://cursor.com/agents/bc-d4dc0181-c184-4999-81b9-ae3f55db71ea",
+      "status": "ACTIVE",
+      "createdAt": "2026-09-18T11:58:35.498Z",
+      "updatedAt": "2026-09-18T11:58:35.498Z"
+    },
+    "scout:property:poseidon-9f-2br-barbasquillo-manta-ec:rescreen-listing": {
+      "workKey": "scout:property:poseidon-9f-2br-barbasquillo-manta-ec:rescreen-listing",
+      "role": "scout",
+      "subjectType": "property",
+      "subjectId": "poseidon-9f-2br-barbasquillo-manta-ec",
+      "action": "rescreen-listing",
+      "branch": "main",
+      "agentId": "bc-59011d05-486c-4848-8c82-dee213feb605",
+      "runId": "run-24222729-d7af-46c5-b2b3-69b3c33023e4",
+      "agentUrl": "https://cursor.com/agents/bc-59011d05-486c-4848-8c82-dee213feb605",
+      "status": "ACTIVE",
+      "createdAt": "2026-09-18T11:58:38.485Z",
+      "updatedAt": "2026-09-18T11:58:38.485Z"
     }
   }
 }
