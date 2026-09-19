@@ -1,20 +1,20 @@
 {
   "id": "poseidon-unit-7f-barbasquillo-manta-ec",
-  "address": "Poseidon Building Unit 7F, Barbasquillo, Manta, Manab\u00ed, Ecuador",
-  "location": "Manta, Manab\u00ed, Ecuador",
+  "address": "Poseidon Building Unit 7F, Barbasquillo, Manta, Manabí, Ecuador",
+  "location": "Manta, Manabí, Ecuador",
   "listing_url": "https://mls-ecuador.com/en/real-estate/manta-real-estate/rs2600215",
   "market_id": "manta-ec",
   "created_at": "2026-08-10T05:00:00Z",
-  "updated_at": "2026-08-10T05:00:00Z",
-  "last_screened_at": "2026-08-10T05:00:00Z",
+  "updated_at": "2026-09-19T11:43:13Z",
+  "last_screened_at": "2026-09-19T11:43:13Z",
   "screening_snapshot": {
     "price": 199000,
     "rough_monthly_rent": 1300,
     "rough_gross_yield": 0.0784,
     "advertised_hoa": 369,
-    "screened_at": "2026-08-10T05:00:00Z"
+    "screened_at": "2026-09-19T11:43:13Z"
   },
-  "scout_notes": "Verified rent $1,300/mo but gross yield only 7.8%. HOA $369/mo crushes adjusted yield to 5.6%. High HOA scrutiny flag.",
+  "scout_notes": "Rescreen 2026-09-19: MLS RS2600215 still Active (PropertyShelf print-listing Status Active). Official mls-ecuador.com / agency / print-listing List Price $199,000 — 0% vs prior snapshot (no ≥5% drop on canonical listing). Some PropertyShelf browse mirrors show $169,900 (−14.6%) but print + MLS agree $199k; even at $169.9k + $1,300 rent → 9.2% gross / 6.6% HOA-adj, still below 10%. Direct MLS fetch egress-blocked; indexed MLS/PropertyShelf confirms Active. Rent still stated $1,300/mo current; HOA/Association Fee $369/mo unchanged. At $199k → 7.8% gross; HOA-adj (1300−369)×12/199000 ≈ 5.6%. Need ~$1,658/mo for 10% (or ask ≤~$156k at $1,300). Stay ARCHIVED scout_reject; rescreen_after +30d.",
   "property_type": "condo",
   "building_name": "Poseidon",
   "unit": "7F",
@@ -26,9 +26,10 @@
   "advertised_hoa": 369,
   "rent_source": "Listing stated current rent $1,300/mo",
   "rent_confidence": "MEDIUM",
+  "mls_id": "RS2600215",
   "workflow_state": "ARCHIVED",
   "scout_decision": "REJECT",
   "archive_reason": "scout_reject",
-  "rescreen_after": "2026-09-09T05:00:00Z",
-  "rescreen_count": 0
+  "rescreen_after": "2026-10-19T11:43:13Z",
+  "rescreen_count": 1
 }
