@@ -966,6 +966,48 @@
       "status": "ERROR",
       "createdAt": "2026-09-18T11:58:38.485Z",
       "updatedAt": "2026-09-18T12:00:43.602Z"
+    },
+    "scout:property:poseidon-unit-7f-barbasquillo-manta-ec:rescreen-listing": {
+      "workKey": "scout:property:poseidon-unit-7f-barbasquillo-manta-ec:rescreen-listing",
+      "role": "scout",
+      "subjectType": "property",
+      "subjectId": "poseidon-unit-7f-barbasquillo-manta-ec",
+      "action": "rescreen-listing",
+      "branch": "main",
+      "agentId": "bc-d1208cfe-ddcb-4eeb-a5b0-de74ad36e3ae",
+      "runId": "run-c4b5fbd4-b06e-4389-aac4-a1f6f9231b78",
+      "agentUrl": "https://cursor.com/agents/bc-d1208cfe-ddcb-4eeb-a5b0-de74ad36e3ae",
+      "status": "ACTIVE",
+      "createdAt": "2026-09-19T11:42:20.021Z",
+      "updatedAt": "2026-09-19T11:42:20.021Z"
+    },
+    "scout:property:riva-di-mare-1br-flavio-reyes-manta-ec:rescreen-listing": {
+      "workKey": "scout:property:riva-di-mare-1br-flavio-reyes-manta-ec:rescreen-listing",
+      "role": "scout",
+      "subjectType": "property",
+      "subjectId": "riva-di-mare-1br-flavio-reyes-manta-ec",
+      "action": "rescreen-listing",
+      "branch": "main",
+      "agentId": "bc-b4fd2071-f536-4ea2-a25c-6c32d1b898ad",
+      "runId": "run-c0042a98-8a7c-4909-97af-b21a85e0177d",
+      "agentUrl": "https://cursor.com/agents/bc-b4fd2071-f536-4ea2-a25c-6c32d1b898ad",
+      "status": "ACTIVE",
+      "createdAt": "2026-09-19T11:42:23.003Z",
+      "updatedAt": "2026-09-19T11:42:23.003Z"
+    },
+    "scout:property:riva-di-mare-2br-flavio-reyes-manta-ec:rescreen-listing": {
+      "workKey": "scout:property:riva-di-mare-2br-flavio-reyes-manta-ec:rescreen-listing",
+      "role": "scout",
+      "subjectType": "property",
+      "subjectId": "riva-di-mare-2br-flavio-reyes-manta-ec",
+      "action": "rescreen-listing",
+      "branch": "main",
+      "agentId": "bc-1b869f9d-1fc2-4ea5-bcf9-b86b2993eadc",
+      "runId": "run-eee58658-1e42-40bd-86d5-67ccc40c7014",
+      "agentUrl": "https://cursor.com/agents/bc-1b869f9d-1fc2-4ea5-bcf9-b86b2993eadc",
+      "status": "ACTIVE",
+      "createdAt": "2026-09-19T11:42:25.667Z",
+      "updatedAt": "2026-09-19T11:42:25.667Z"
     }
   }
 }
