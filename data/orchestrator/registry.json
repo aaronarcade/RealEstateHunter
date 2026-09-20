@@ -1019,9 +1019,9 @@
       "agentId": "bc-ce4e099f-0850-4bf0-a98f-6cb72e0679f9",
       "runId": "run-18beeee8-d5d7-4504-8348-f5ccea8be23f",
       "agentUrl": "https://cursor.com/agents/bc-ce4e099f-0850-4bf0-a98f-6cb72e0679f9",
-      "status": "ACTIVE",
+      "status": "ERROR",
       "createdAt": "2026-09-20T11:54:28.977Z",
-      "updatedAt": "2026-09-20T11:54:28.977Z"
+      "updatedAt": "2026-09-20T11:56:26.286Z"
     },
     "scout:property:skorpios-3br-beachfront-manta-ec:rescreen-listing": {
       "workKey": "scout:property:skorpios-3br-beachfront-manta-ec:rescreen-listing",
@@ -1033,9 +1033,9 @@
       "agentId": "bc-e241b1c8-9e22-4421-bccb-67b728062457",
       "runId": "run-67990ec9-17e2-4f01-8417-12a1c5287f53",
       "agentUrl": "https://cursor.com/agents/bc-e241b1c8-9e22-4421-bccb-67b728062457",
-      "status": "ACTIVE",
+      "status": "ERROR",
       "createdAt": "2026-09-20T11:54:32.115Z",
-      "updatedAt": "2026-09-20T11:54:32.115Z"
+      "updatedAt": "2026-09-20T11:56:26.738Z"
     },
     "scout:property:skyline-1br-presale-manta-ec:rescreen-listing": {
       "workKey": "scout:property:skyline-1br-presale-manta-ec:rescreen-listing",
@@ -1047,9 +1047,9 @@
       "agentId": "bc-3c2fc675-c69e-426e-9f87-bc5438c859bd",
       "runId": "run-447c1679-5bce-4dab-9639-3d3d79bd4e77",
       "agentUrl": "https://cursor.com/agents/bc-3c2fc675-c69e-426e-9f87-bc5438c859bd",
-      "status": "ACTIVE",
+      "status": "ERROR",
       "createdAt": "2026-09-20T11:54:34.743Z",
-      "updatedAt": "2026-09-20T11:54:34.743Z"
+      "updatedAt": "2026-09-20T11:56:27.006Z"
     }
   }
 }
