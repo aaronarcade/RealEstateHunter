@@ -1050,6 +1050,48 @@
       "status": "ERROR",
       "createdAt": "2026-09-20T11:54:34.743Z",
       "updatedAt": "2026-09-20T11:56:27.006Z"
+    },
+    "scout:property:torre-elit-1br-ciudad-del-mar-manta-ec:rescreen-listing": {
+      "workKey": "scout:property:torre-elit-1br-ciudad-del-mar-manta-ec:rescreen-listing",
+      "role": "scout",
+      "subjectType": "property",
+      "subjectId": "torre-elit-1br-ciudad-del-mar-manta-ec",
+      "action": "rescreen-listing",
+      "branch": "main",
+      "agentId": "bc-05db5894-51bb-4699-a27b-210a4b866335",
+      "runId": "run-8335e5da-2fdb-47f4-891f-672d10768627",
+      "agentUrl": "https://cursor.com/agents/bc-05db5894-51bb-4699-a27b-210a4b866335",
+      "status": "ACTIVE",
+      "createdAt": "2026-09-21T13:27:56.656Z",
+      "updatedAt": "2026-09-21T13:27:56.656Z"
+    },
+    "scout:property:torre-marina-1br-el-murciélago-manta-ec:rescreen-listing": {
+      "workKey": "scout:property:torre-marina-1br-el-murciélago-manta-ec:rescreen-listing",
+      "role": "scout",
+      "subjectType": "property",
+      "subjectId": "torre-marina-1br-el-murciélago-manta-ec",
+      "action": "rescreen-listing",
+      "branch": "main",
+      "agentId": "bc-d035d2e2-7e12-4355-a862-98af2a921542",
+      "runId": "run-1dc6b6a4-1ed5-4bbb-bb84-00dafa7613a5",
+      "agentUrl": "https://cursor.com/agents/bc-d035d2e2-7e12-4355-a862-98af2a921542",
+      "status": "ACTIVE",
+      "createdAt": "2026-09-21T13:28:03.474Z",
+      "updatedAt": "2026-09-21T13:28:03.474Z"
+    },
+    "scout:property:torremarina-unit-3f-el-murciélago-manta-ec:rescreen-listing": {
+      "workKey": "scout:property:torremarina-unit-3f-el-murciélago-manta-ec:rescreen-listing",
+      "role": "scout",
+      "subjectType": "property",
+      "subjectId": "torremarina-unit-3f-el-murciélago-manta-ec",
+      "action": "rescreen-listing",
+      "branch": "main",
+      "agentId": "bc-4b5bd649-a288-4e87-a25b-c6ad440e2962",
+      "runId": "run-dbfe2da6-4cfe-4566-9526-a556040a1110",
+      "agentUrl": "https://cursor.com/agents/bc-4b5bd649-a288-4e87-a25b-c6ad440e2962",
+      "status": "ACTIVE",
+      "createdAt": "2026-09-21T13:28:08.208Z",
+      "updatedAt": "2026-09-21T13:28:08.208Z"
     }
   }
 }
