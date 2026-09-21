@@ -1,20 +1,20 @@
 {
-  "id": "torre-marina-1br-el-murci\u00e9lago-manta-ec",
-  "address": "Torre Marina 1BR, El Murci\u00e9lago, Manta, Manab\u00ed, Ecuador",
-  "location": "Manta, Manab\u00ed, Ecuador",
+  "id": "torre-marina-1br-el-murciélago-manta-ec",
+  "address": "Torre Marina 1BR, El Murciélago, Manta, Manabí, Ecuador",
+  "location": "Manta, Manabí, Ecuador",
   "listing_url": "https://www.owninecuador.com/forsale/torre-marina-1",
   "market_id": "manta-ec",
   "created_at": "2026-08-10T05:00:00Z",
-  "updated_at": "2026-08-10T05:00:00Z",
-  "last_screened_at": "2026-08-10T05:00:00Z",
+  "updated_at": "2026-09-21T13:28:59Z",
+  "last_screened_at": "2026-09-21T13:28:59Z",
   "screening_snapshot": {
     "price": 68000,
     "rough_monthly_rent": 500,
     "rough_gross_yield": 0.0882,
-    "advertised_hoa": null,
-    "screened_at": "2026-08-10T05:00:00Z"
+    "advertised_hoa": 85,
+    "screened_at": "2026-09-21T13:28:59Z"
   },
-  "scout_notes": "1BR 72m\u00b2 steps from beach at $68K. $500/mo generous LTR estimate \u2192 8.8% gross, below 10% threshold.",
+  "scout_notes": "Rescreen 2026-09-21: OwnInEcuador /forsale/torre-marina-1 still indexed For Sale at $68,000 / 72.38 m² 1BR/1BA first floor (direct fetch egress-blocked; confirmed via search index + icasas.ec Own In Ecuador syndication + squarespace mirror). 0% price change vs snapshot (no ≥5% drop trigger). Sibling/near-match: OwnInEcuador /1b-marina furnished ask $69,000 (reduced from $75k); manta360realty same 72.38 m² suite $70,000 with alícuota $85/mo. Rent refresh: FazWaz Playa Murciélago 1BR avg $416 (112 props; was ~$419); neighborhood median rent $550 — rent not up vs prior $500 generous LTR. Seller STR marketing $1,000–$1,100 unsupported vs LTR comps. Keep $500 → 8.8% gross; HOA-adj (500−85)×12/68000 ≈ 7.3% (<8% flag). Need ~$567/mo for 10%. Stay ARCHIVED scout_reject; rescreen_after +30d.",
   "property_type": "condo",
   "building_name": "Torre Marina",
   "beds": 1,
@@ -22,11 +22,12 @@
   "asking_price": 68000,
   "rough_monthly_rent": 500,
   "rough_gross_yield": 0.0882,
-  "rent_source": "FazWaz 1BR median $419 + location premium estimate",
+  "advertised_hoa": 85,
+  "rent_source": "FazWaz Playa Murciélago 1BR avg $416 + location/amenity premium → $500 (unchanged vs prior)",
   "rent_confidence": "MEDIUM",
   "workflow_state": "ARCHIVED",
   "scout_decision": "REJECT",
   "archive_reason": "scout_reject",
-  "rescreen_after": "2026-09-09T05:00:00Z",
-  "rescreen_count": 0
+  "rescreen_after": "2026-10-21T13:28:59Z",
+  "rescreen_count": 1
 }
