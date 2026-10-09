@@ -5,16 +5,16 @@
   "listing_url": "https://mls.mls-ecuador.com/agencies/santosazuainversionesec/listings/rs2500678",
   "market_id": "manta-ec",
   "created_at": "2026-08-10T05:00:00Z",
-  "updated_at": "2026-09-09T12:04:32Z",
-  "last_screened_at": "2026-09-09T12:04:32Z",
+  "updated_at": "2026-10-09T14:00:09Z",
+  "last_screened_at": "2026-10-09T14:00:09Z",
   "screening_snapshot": {
     "price": 198000,
     "rough_monthly_rent": 1300,
     "rough_gross_yield": 0.0788,
     "advertised_hoa": 195,
-    "screened_at": "2026-09-09T12:04:32Z"
+    "screened_at": "2026-10-09T14:00:09Z"
   },
-  "scout_notes": "Rescreen 2026-09-09: listing still active (RS2500678 Vista Serene). Ask unchanged $198,000; HOA still $195. Rent estimate raised to $1,300 from Plusvalía Arrecife 3BR/3BA furnished LTR in Pedro Balda (130m²) — prior FazWaz 3BR median $825 still published. Gross at $1,300 = 7.9%; HOA-adjusted = 6.7%. Need ~$1,650/mo for 10% gross. No material price drop. Stay ARCHIVED scout_reject.",
+  "scout_notes": "Rescreen 2026-10-09: direct MLS egress blocked; RS2500678 still published Active Residential Sale on mls-ecuador.com + PropertyShelf + Santos Azúa agency at List Price $198,000 / HOA $195 (0% vs prior $198k snapshot; no ≥5% drop trigger). \"Sold furnished or unfurnished\" is furniture option language, not MLS sold status. Rent refresh: Plusvalía/Rentberry Umiña 3BR LTR ~$850; FazWaz Edificio Umiña furnished 3BR 160m² $1,200; icasas Arrecife Pedro Balda 4BR rent $1,000; Barbasquillo ocean furnished ~$1,500 incl. alícuota (premium). Prior Plusvalía Arrecife 3BR $1,300 not reconfirmed — keep optimistic $1,300 → 7.9% gross; HOA-adjusted (1300−195)×12/198000 = 6.7%. Need ~$1,650/mo for 10% gross. No rent-up or HOA-change trigger. Stay ARCHIVED scout_reject; rescreen_after +30d.",
   "property_type": "condo",
   "building_name": "Arrecife",
   "unit": "5F",
@@ -24,11 +24,11 @@
   "rough_monthly_rent": 1300,
   "rough_gross_yield": 0.0788,
   "advertised_hoa": 195,
-  "rent_source": "Plusvalía Arrecife Pedro Balda 3BR furnished LTR $1,300/mo (FazWaz 3BR median still $825)",
+  "rent_source": "Optimistic $1,300 retained; refresh comps Plusvalía/Rentberry Umiña 3BR ~$850, FazWaz Edificio Umiña furnished 3BR $1,200, Arrecife 4BR icasas $1,000",
   "rent_confidence": "MEDIUM",
   "workflow_state": "ARCHIVED",
   "scout_decision": "REJECT",
   "archive_reason": "scout_reject",
-  "rescreen_after": "2026-10-09T12:04:32Z",
-  "rescreen_count": 1
+  "rescreen_after": "2026-11-08T14:00:09Z",
+  "rescreen_count": 2
 }
