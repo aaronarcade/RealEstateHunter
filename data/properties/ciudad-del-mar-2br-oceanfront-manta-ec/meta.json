@@ -5,16 +5,16 @@
   "listing_url": "https://mls.mls-ecuador.com/agencies/ecuador-shores-realty/listings/rs2500665",
   "market_id": "manta-ec",
   "created_at": "2026-08-10T05:00:00Z",
-  "updated_at": "2026-09-10T11:58:50Z",
-  "last_screened_at": "2026-09-10T11:58:50Z",
+  "updated_at": "2026-10-11T13:38:52Z",
+  "last_screened_at": "2026-10-11T13:38:52Z",
   "screening_snapshot": {
     "price": 189900,
     "rough_monthly_rent": 990,
     "rough_gross_yield": 0.0626,
     "advertised_hoa": 248,
-    "screened_at": "2026-09-10T11:58:50Z"
+    "screened_at": "2026-10-11T13:38:52Z"
   },
-  "scout_notes": "Rescreen 2026-09-10: live MLS RS2500665 (Oceanfront 2/2 Ciudad Del Mar w/ upgrades) still active at $189,900 — 0% price change vs prior snapshot (no ≥5% drop trigger). HOA now stated $248/mo. Ciudad del Mar 2BR LTR comps ~$990–$1,300; using $990 → 6.3% gross; HOA-adjusted (990−248)×12/189900 ≈ 4.7%. Optimistic $1,300 still ~8.2% gross / ~6.7% HOA-adj — below 10% scout threshold (~$1,583/mo needed). Stay ARCHIVED scout_reject; rescreen_after +30d.",
+  "scout_notes": "Rescreen 2026-10-11: mls-ecuador.com / propertyshelf direct fetch egress-blocked; MLS RS2500665 still Active via indexed mls-ecuador.com Manta + Residential Sales + PropertyShelf mirrors (Oceanfront 2/2 Ciudad Del Mar w/ upgrades, 127 m², HOA $248) at List Price $189,900 — 0% price change vs prior snapshot (no ≥5% drop trigger). Rent refresh: Rentola Torre Helios CdM 95 m² 2BR $990 incl. alícuota+internet; FazWaz CdM ocean-view 75 m² $1,000; Rentola CdM duplex 120 m² $1,000; FazWaz CdM oceanfront 120 m² $1,200; FazWaz CdM furnished 110 m² $1,500; opportunity 130 m² $900. Using conservative LTR $990 → 6.3% gross; HOA-adjusted (990−248)×12/189900 ≈ 4.7%. Optimistic $1,200 → 7.6% / 6.0% HOA-adj; even $1,500 still 9.5% gross / 7.9% HOA-adj — below 10% (~$1,582/mo needed). Stay ARCHIVED scout_reject; rescreen_after +30d.",
   "property_type": "condo",
   "building_name": "Ciudad del Mar",
   "beds": 2,
@@ -23,12 +23,12 @@
   "rough_monthly_rent": 990,
   "rough_gross_yield": 0.0626,
   "advertised_hoa": 248,
-  "rent_source": "Ciudad del Mar 2BR LTR comps (Rentola/FindAll ~$990–$1,300)",
+  "rent_source": "Ciudad del Mar 2BR LTR comps (Rentola Helios $990; FazWaz $900–$1,500; duplex/oceanfront $1,000–$1,200)",
   "rent_confidence": "MEDIUM",
   "mls_id": "RS2500665",
   "workflow_state": "ARCHIVED",
   "scout_decision": "REJECT",
   "archive_reason": "scout_reject",
-  "rescreen_after": "2026-10-10T11:58:50Z",
-  "rescreen_count": 1
+  "rescreen_after": "2026-11-10T13:38:52Z",
+  "rescreen_count": 2
 }
