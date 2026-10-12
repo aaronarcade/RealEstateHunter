@@ -5,27 +5,27 @@
   "listing_url": "https://www.realtor.com/international/ec/manta-manabi-province/p3/",
   "market_id": "manta-ec",
   "created_at": "2026-08-10T05:00:00Z",
-  "updated_at": "2026-09-11T12:03:07Z",
-  "last_screened_at": "2026-09-11T12:03:07Z",
+  "updated_at": "2026-10-12T16:20:00Z",
+  "last_screened_at": "2026-10-12T16:20:00Z",
   "screening_snapshot": {
     "price": 190000,
     "rough_monthly_rent": 1000,
     "rough_gross_yield": 0.0632,
     "advertised_hoa": null,
-    "screened_at": "2026-09-11T12:03:07Z"
+    "screened_at": "2026-10-12T16:20:00Z"
   },
-  "scout_notes": "Rescreen 2026-09-11: listing still active on Realtor.com International index as \"Dep - Manta: Ocean View Apartment + Independent Suite\" at $190,000 — 0% price change vs prior snapshot (no ≥5% drop trigger). HOA not stated. Rent refreshed to $1,000/mo (Rentberry Manta 2BR LTR ~$750–$850; modest independent-suite premium). Gross at $1,000 = 6.3%. Optimistic ocean-view/suite $1,400/mo → 8.8% gross — still below 10% (~$1,584/mo needed). Stay ARCHIVED scout_reject; rescreen_after +30d.",
+  "scout_notes": "Rescreen 2026-10-12: realtor.com international direct fetch egress-blocked. Dedicated realestate.com.au syndication for exact title \"Dep - Manta: Ocean View Apartment + Independent Suite\" (id 310099705958) now Offline / Listing Not Exist — \"deleted, sold or offlined by agent\". No active MLS / PropertyShelf / FazWaz / ESR detail mirror found for this title. Realtor.com Manta p3 search index still shows a stale $190,000 card — treat as lag vs dedicated syndication offline. Last known ask $190k held in snapshot (0% vs prior; no ≥5% drop while active). Rent refresh would not matter for screen: Rentberry Manta 2BR LTR $700–$850; Barbasquillo sea-view $1,000; Poseidon oceanfront $1,400 — at $190k + $1,000 = 6.3%; optimistic $1,400 → 8.8% (need ~$1,584/mo for 10%). Stay ARCHIVED listing_inactive; rescreen_after +90d; rescreen_count=2.",
   "property_type": "condo",
   "beds": 2,
   "baths": 2,
   "asking_price": 190000,
   "rough_monthly_rent": 1000,
   "rough_gross_yield": 0.0632,
-  "rent_source": "Rentberry Manta 2BR LTR ~$750–$850 + independent-suite premium → $1,000; optimistic ocean-view comps to $1,400",
+  "rent_source": "Last active screen: Rentberry Manta 2BR LTR ~$750–$850 + suite premium → $1,000; optimistic ocean-view/Poseidon comps to $1,400 (listing now offline)",
   "rent_confidence": "MEDIUM",
   "workflow_state": "ARCHIVED",
   "scout_decision": "REJECT",
-  "archive_reason": "scout_reject",
-  "rescreen_after": "2026-10-11T12:03:07Z",
-  "rescreen_count": 1
+  "archive_reason": "listing_inactive",
+  "rescreen_after": "2027-01-10T16:20:00Z",
+  "rescreen_count": 2
 }
