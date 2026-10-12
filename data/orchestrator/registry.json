@@ -641,9 +641,9 @@
       "agentId": "bc-40b9a26d-ba1d-491c-9d0c-c2efca1b1c90",
       "runId": "run-437cd0c4-07f2-4afa-9d25-a9dd52e68be8",
       "agentUrl": "https://cursor.com/agents/bc-40b9a26d-ba1d-491c-9d0c-c2efca1b1c90",
-      "status": "ACTIVE",
+      "status": "ERROR",
       "createdAt": "2026-10-12T16:17:13.943Z",
-      "updatedAt": "2026-10-12T16:17:13.943Z"
+      "updatedAt": "2026-10-12T16:18:55.948Z"
     },
     "scout:property:dep-manta-2br-ocean-view-manta-ec:rescreen-listing": {
       "workKey": "scout:property:dep-manta-2br-ocean-view-manta-ec:rescreen-listing",
@@ -655,9 +655,9 @@
       "agentId": "bc-a74c964c-5569-4b12-ac12-81e9d56a9762",
       "runId": "run-2b0d5210-79d9-4ed1-9af1-9c40d016c0d3",
       "agentUrl": "https://cursor.com/agents/bc-a74c964c-5569-4b12-ac12-81e9d56a9762",
-      "status": "ACTIVE",
+      "status": "ERROR",
       "createdAt": "2026-10-12T16:17:17.729Z",
-      "updatedAt": "2026-10-12T16:17:17.729Z"
+      "updatedAt": "2026-10-12T16:18:56.414Z"
     },
     "scout:property:departamento-vista-mar-2br-manta-ec:rescreen-listing": {
       "workKey": "scout:property:departamento-vista-mar-2br-manta-ec:rescreen-listing",
@@ -669,9 +669,9 @@
       "agentId": "bc-456b649e-ae88-4158-add2-b0fed5a4ad0d",
       "runId": "run-5760c8c7-7022-4254-b22a-35856def5905",
       "agentUrl": "https://cursor.com/agents/bc-456b649e-ae88-4158-add2-b0fed5a4ad0d",
-      "status": "ACTIVE",
+      "status": "ERROR",
       "createdAt": "2026-10-12T16:17:20.796Z",
-      "updatedAt": "2026-10-12T16:17:20.796Z"
+      "updatedAt": "2026-10-12T16:18:56.816Z"
     },
     "scout:property:edificio-buzios-3br-manta-ec:rescreen-listing": {
       "workKey": "scout:property:edificio-buzios-3br-manta-ec:rescreen-listing",
