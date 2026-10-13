@@ -683,9 +683,9 @@
       "agentId": "bc-32cf5d1a-bd5c-47b9-a365-b8567654eed4",
       "runId": "run-a0f590ce-6374-4d80-b653-3b9858e14669",
       "agentUrl": "https://cursor.com/agents/bc-32cf5d1a-bd5c-47b9-a365-b8567654eed4",
-      "status": "ACTIVE",
+      "status": "ERROR",
       "createdAt": "2026-10-13T14:40:42.252Z",
-      "updatedAt": "2026-10-13T14:40:42.252Z"
+      "updatedAt": "2026-10-13T14:43:03.794Z"
     },
     "scout:property:el-faro-unit-2f-ciudad-del-mar-manta-ec:rescreen-listing": {
       "workKey": "scout:property:el-faro-unit-2f-ciudad-del-mar-manta-ec:rescreen-listing",
@@ -697,9 +697,9 @@
       "agentId": "bc-1c7b98c7-d41d-417d-9d51-4c5785d8674e",
       "runId": "run-6366a348-94c5-40c2-8b2d-b56db445ca83",
       "agentUrl": "https://cursor.com/agents/bc-1c7b98c7-d41d-417d-9d51-4c5785d8674e",
-      "status": "ACTIVE",
+      "status": "ERROR",
       "createdAt": "2026-10-13T14:40:47.304Z",
-      "updatedAt": "2026-10-13T14:40:47.304Z"
+      "updatedAt": "2026-10-13T14:43:04.347Z"
     },
     "scout:property:elite-towers-3br-oceanfront-manta-ec:rescreen-listing": {
       "workKey": "scout:property:elite-towers-3br-oceanfront-manta-ec:rescreen-listing",
@@ -711,9 +711,9 @@
       "agentId": "bc-88888f34-02eb-4857-a505-77e73f039452",
       "runId": "run-fb146a30-5ba6-468f-9a4b-51ccc72baf4c",
       "agentUrl": "https://cursor.com/agents/bc-88888f34-02eb-4857-a505-77e73f039452",
-      "status": "ACTIVE",
+      "status": "ERROR",
       "createdAt": "2026-10-13T14:40:59.599Z",
-      "updatedAt": "2026-10-13T14:40:59.599Z"
+      "updatedAt": "2026-10-13T14:43:04.716Z"
     },
     "scout:property:fez-manta-unit-210-barbasquillo-manta-ec:rescreen-listing": {
       "workKey": "scout:property:fez-manta-unit-210-barbasquillo-manta-ec:rescreen-listing",
