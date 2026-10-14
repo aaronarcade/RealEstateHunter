@@ -725,9 +725,9 @@
       "agentId": "bc-d42b0ad8-3ef5-4f82-b544-a825392d7a5b",
       "runId": "run-98bdcecf-f4e0-4b74-98da-2d6b492e854b",
       "agentUrl": "https://cursor.com/agents/bc-d42b0ad8-3ef5-4f82-b544-a825392d7a5b",
-      "status": "ACTIVE",
+      "status": "ERROR",
       "createdAt": "2026-10-14T12:33:08.676Z",
-      "updatedAt": "2026-10-14T12:33:08.676Z"
+      "updatedAt": "2026-10-14T12:42:14.138Z"
     },
     "scout:property:fez-manta-unit-405-barbasquillo-manta-ec:rescreen-listing": {
       "workKey": "scout:property:fez-manta-unit-405-barbasquillo-manta-ec:rescreen-listing",
@@ -739,9 +739,9 @@
       "agentId": "bc-c969194b-ad16-4100-b45d-cc3ce321cf63",
       "runId": "run-3b664cc7-c5f0-46b2-84a7-9ba48e4b027f",
       "agentUrl": "https://cursor.com/agents/bc-c969194b-ad16-4100-b45d-cc3ce321cf63",
-      "status": "ACTIVE",
+      "status": "ERROR",
       "createdAt": "2026-10-14T12:33:12.106Z",
-      "updatedAt": "2026-10-14T12:33:12.106Z"
+      "updatedAt": "2026-10-14T12:42:14.689Z"
     },
     "scout:property:fez-manta-unit-408-barbasquillo-manta-ec:rescreen-listing": {
       "workKey": "scout:property:fez-manta-unit-408-barbasquillo-manta-ec:rescreen-listing",
@@ -753,9 +753,9 @@
       "agentId": "bc-62622be0-a9a5-4739-9650-22d9b02197ff",
       "runId": "run-7ea279f1-5a74-47fc-bb28-2b3b0fcf6b95",
       "agentUrl": "https://cursor.com/agents/bc-62622be0-a9a5-4739-9650-22d9b02197ff",
-      "status": "ACTIVE",
+      "status": "ERROR",
       "createdAt": "2026-10-14T12:33:15.105Z",
-      "updatedAt": "2026-10-14T12:33:15.105Z"
+      "updatedAt": "2026-10-14T12:42:15.877Z"
     },
     "scout:property:grand-bay-3br-corner-manta-ec:rescreen-listing": {
       "workKey": "scout:property:grand-bay-3br-corner-manta-ec:rescreen-listing",
