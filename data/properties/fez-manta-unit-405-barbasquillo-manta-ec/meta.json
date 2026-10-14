@@ -5,16 +5,16 @@
   "listing_url": "https://trivo.com.ec/propiedades/fez-manta/",
   "market_id": "manta-ec",
   "created_at": "2026-08-10T05:00:00Z",
-  "updated_at": "2026-09-13T12:34:08Z",
-  "last_screened_at": "2026-09-13T12:34:08Z",
+  "updated_at": "2026-10-14T12:41:14Z",
+  "last_screened_at": "2026-10-14T12:41:14Z",
   "screening_snapshot": {
     "price": 70043,
     "rough_monthly_rent": 500,
     "rough_gross_yield": 0.0857,
     "advertised_hoa": null,
-    "screened_at": "2026-09-13T12:34:08Z"
+    "screened_at": "2026-10-14T12:41:14Z"
   },
-  "scout_notes": "Rescreen 2026-09-13: Trivo Fez Manta still lists Unit 405 (Suite en el piso 4, 33.87 m², 1BR, 1 parking) as available at $70,043 — 0% price change vs prior snapshot (no ≥5% drop trigger). Sibling inventory also unchanged (209 $62,150 / 210 $109,324 / 310 $114,739 / 408 $211,287). No HOA/alícuota stated. Rent refreshed to $500 using Fez 209 underwriting comps ($450–$550 size-adjusted for ~34 m² Barbasquillo suite) → 8.6% gross; optimistic $550 still 9.4%. Need ~$584/mo for 10%. Stay ARCHIVED scout_reject; rescreen_after +30d.",
+  "scout_notes": "Rescreen 2026-10-14: Trivo Fez Manta direct fetch + browser egress-blocked (ERR_CONNECTION_CLOSED); WebSearch/secondary portals (Plusvalía, OwnInEcuador, FazWaz, Google) also unreachable under current allowlist — could not reconfirm live Unidades disponibles. No positive sold/offline signal found, so treat as still marketed at last confirmed ask. Hold price $70,043 (0% vs prior snapshot; no ≥5% drop trigger observable). Prior sibling inventory unchanged in last screen (209 $62,150 / 210 $109,324 / 310 $114,739 / 408 $211,287). HOA/alícuota still unknown. Rent refresh from in-repo Fez 209 underwriting comps ($450–$550 size-adjusted for ~34 m² Barbasquillo suite) mid $500 — rent not up vs snapshot. Gross at $500 = 8.6%; optimistic $550 still 9.4%. Need ~$584/mo for 10%. Ask also below property_filters.price_range.min ($75k). Sibling Fez 209 already underwrote to 4.06% cap. Stay ARCHIVED scout_reject; rescreen_after +30d; rescreen_count=2. Requested egress allowlist for trivo.com.ec / realtor.com / fazwaz.com for future resccreens.",
   "property_type": "condo",
   "building_name": "Fez Manta",
   "unit": "405",
@@ -24,11 +24,11 @@
   "rough_monthly_rent": 500,
   "rough_gross_yield": 0.0857,
   "advertised_hoa": null,
-  "rent_source": "Fez 209 size-adjusted Barbasquillo 1BR suite comps $450–$550 (underwriting mid $500)",
+  "rent_source": "Fez 209 size-adjusted Barbasquillo 1BR suite comps $450–$550 (underwriting mid $500); live FazWaz refresh blocked by egress",
   "rent_confidence": "MEDIUM",
   "workflow_state": "ARCHIVED",
   "scout_decision": "REJECT",
   "archive_reason": "scout_reject",
-  "rescreen_after": "2026-10-13T12:34:08Z",
-  "rescreen_count": 1
+  "rescreen_after": "2026-11-13T12:41:14Z",
+  "rescreen_count": 2
 }
