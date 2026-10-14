@@ -722,12 +722,12 @@
       "subjectId": "fez-manta-unit-210-barbasquillo-manta-ec",
       "action": "rescreen-listing",
       "branch": "main",
-      "agentId": "bc-c6135c83-93a5-49bd-8853-c503ea89be6c",
-      "runId": "run-bf06849d-efdf-4108-94c3-d156e0b4f3e0",
-      "agentUrl": "https://cursor.com/agents/bc-c6135c83-93a5-49bd-8853-c503ea89be6c",
-      "status": "ERROR",
-      "createdAt": "2026-09-13T12:26:21.798Z",
-      "updatedAt": "2026-09-13T12:28:45.278Z"
+      "agentId": "bc-d42b0ad8-3ef5-4f82-b544-a825392d7a5b",
+      "runId": "run-98bdcecf-f4e0-4b74-98da-2d6b492e854b",
+      "agentUrl": "https://cursor.com/agents/bc-d42b0ad8-3ef5-4f82-b544-a825392d7a5b",
+      "status": "ACTIVE",
+      "createdAt": "2026-10-14T12:33:08.676Z",
+      "updatedAt": "2026-10-14T12:33:08.676Z"
     },
     "scout:property:fez-manta-unit-405-barbasquillo-manta-ec:rescreen-listing": {
       "workKey": "scout:property:fez-manta-unit-405-barbasquillo-manta-ec:rescreen-listing",
@@ -736,12 +736,12 @@
       "subjectId": "fez-manta-unit-405-barbasquillo-manta-ec",
       "action": "rescreen-listing",
       "branch": "main",
-      "agentId": "bc-d46df9e8-c2f9-42db-9d4b-1ba9198b61b4",
-      "runId": "run-681867be-5796-4032-bfa0-326baf971f63",
-      "agentUrl": "https://cursor.com/agents/bc-d46df9e8-c2f9-42db-9d4b-1ba9198b61b4",
-      "status": "ERROR",
-      "createdAt": "2026-09-13T12:26:25.210Z",
-      "updatedAt": "2026-09-13T12:28:45.609Z"
+      "agentId": "bc-c969194b-ad16-4100-b45d-cc3ce321cf63",
+      "runId": "run-3b664cc7-c5f0-46b2-84a7-9ba48e4b027f",
+      "agentUrl": "https://cursor.com/agents/bc-c969194b-ad16-4100-b45d-cc3ce321cf63",
+      "status": "ACTIVE",
+      "createdAt": "2026-10-14T12:33:12.106Z",
+      "updatedAt": "2026-10-14T12:33:12.106Z"
     },
     "scout:property:fez-manta-unit-408-barbasquillo-manta-ec:rescreen-listing": {
       "workKey": "scout:property:fez-manta-unit-408-barbasquillo-manta-ec:rescreen-listing",
@@ -750,12 +750,12 @@
       "subjectId": "fez-manta-unit-408-barbasquillo-manta-ec",
       "action": "rescreen-listing",
       "branch": "main",
-      "agentId": "bc-d00f56ea-e140-4b54-8ddb-81d49f26b53c",
-      "runId": "run-17e3a23f-c117-4f5e-ab88-e76db9178240",
-      "agentUrl": "https://cursor.com/agents/bc-d00f56ea-e140-4b54-8ddb-81d49f26b53c",
-      "status": "ERROR",
-      "createdAt": "2026-09-13T12:26:28.042Z",
-      "updatedAt": "2026-09-13T12:28:45.929Z"
+      "agentId": "bc-62622be0-a9a5-4739-9650-22d9b02197ff",
+      "runId": "run-7ea279f1-5a74-47fc-bb28-2b3b0fcf6b95",
+      "agentUrl": "https://cursor.com/agents/bc-62622be0-a9a5-4739-9650-22d9b02197ff",
+      "status": "ACTIVE",
+      "createdAt": "2026-10-14T12:33:15.105Z",
+      "updatedAt": "2026-10-14T12:33:15.105Z"
     },
     "scout:property:grand-bay-3br-corner-manta-ec:rescreen-listing": {
       "workKey": "scout:property:grand-bay-3br-corner-manta-ec:rescreen-listing",
