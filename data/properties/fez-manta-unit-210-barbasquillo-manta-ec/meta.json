@@ -5,16 +5,16 @@
   "listing_url": "https://trivo.com.ec/propiedades/fez-manta/",
   "market_id": "manta-ec",
   "created_at": "2026-08-10T05:00:00Z",
-  "updated_at": "2026-09-13T12:27:45Z",
-  "last_screened_at": "2026-09-13T12:27:45Z",
+  "updated_at": "2026-10-14T12:43:16Z",
+  "last_screened_at": "2026-10-14T12:43:16Z",
   "screening_snapshot": {
     "price": 109324,
     "rough_monthly_rent": 732,
     "rough_gross_yield": 0.0803,
     "advertised_hoa": null,
-    "screened_at": "2026-09-13T12:27:45Z"
+    "screened_at": "2026-10-14T12:43:16Z"
   },
-  "scout_notes": "Rescreen 2026-09-13: Trivo Fez Manta still lists Unidad 210 among available units — 2BR piso 2, 59.74m² at $109,324 (0% vs prior snapshot; no ≥5% price-drop trigger). Building still marketed from $62,150; sibling 408 still $211,287 / 102.17m². Plusvalía mirrors a finished Edif. Fez piso-2 59.74m² (1 dorm+estudio) at $119,000 — secondary ask is higher, not a discount. FazWaz Manta 2BR median still $732/mo → 8.0% gross; Barbasquillo LTR comps ~$700–$850 still only 7.7–9.3%. Need ~$911/mo for 10%. HOA not stated. Stay ARCHIVED scout_reject; rescreen_after +30d.",
+  "scout_notes": "Rescreen 2026-10-14: trivo.com.ec direct fetch egress-blocked (browser/curl ERR_CONNECTION_CLOSED / SSL_ERROR_SYSCALL); WebSearch + indexed mirrors returned no Fez Manta Unit 210 price update, sold, or offline signal. Holding last-known Trivo ask $109,324 / 59.74 m² / 2BR piso 2 from 2026-09-13 snapshot (0% vs prior; no ≥5% drop evidence). Prior Plusvalía mirror at $119,000 (higher, not a discount) not re-confirmed. Sibling Fez 405/408 resccreens today same egress finding — inventory treated as still marketed. Rent refresh from pipeline Barbasquillo ~60 m² 2BR screens: FazWaz Manta 2BR ~$732; LTR comps $700–$850 (Nahla/Rentberry) — rent not up vs prior $732. Using $732 → 8.0% gross; optimistic $850 still 9.3%. Need ~$911/mo for 10%. HOA still unstated. Stay ARCHIVED scout_reject; rescreen_after +30d; rescreen_count=2.",
   "property_type": "condo",
   "building_name": "Fez Manta",
   "unit": "210",
@@ -24,11 +24,11 @@
   "rough_monthly_rent": 732,
   "rough_gross_yield": 0.0803,
   "advertised_hoa": null,
-  "rent_source": "FazWaz Manta 2BR median $732 (Barbasquillo LTR comps $700–$850)",
+  "rent_source": "Pipeline Barbasquillo/Manta 2BR LTR screens: FazWaz ~$732; comps $700–$850; base $732 unchanged (live FazWaz refresh blocked by egress)",
   "rent_confidence": "MEDIUM",
   "workflow_state": "ARCHIVED",
   "scout_decision": "REJECT",
   "archive_reason": "scout_reject",
-  "rescreen_after": "2026-10-13T12:27:45Z",
-  "rescreen_count": 1
+  "rescreen_after": "2026-11-13T12:43:16Z",
+  "rescreen_count": 2
 }
