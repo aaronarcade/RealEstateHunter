@@ -764,12 +764,12 @@
       "subjectId": "grand-bay-3br-corner-manta-ec",
       "action": "rescreen-listing",
       "branch": "main",
-      "agentId": "bc-1e8a2398-3781-47e0-9aa8-d32b3913bc10",
-      "runId": "run-ab1d8096-a64b-4547-b25d-5d3ba7ddae65",
-      "agentUrl": "https://cursor.com/agents/bc-1e8a2398-3781-47e0-9aa8-d32b3913bc10",
-      "status": "ERROR",
-      "createdAt": "2026-09-14T13:28:52.697Z",
-      "updatedAt": "2026-09-14T13:30:53.661Z"
+      "agentId": "bc-ff6bf54f-a372-49f6-b150-04013fc73a40",
+      "runId": "run-b66dadd4-c352-4164-a62f-7180e9db7bdc",
+      "agentUrl": "https://cursor.com/agents/bc-ff6bf54f-a372-49f6-b150-04013fc73a40",
+      "status": "ACTIVE",
+      "createdAt": "2026-10-15T12:16:16.001Z",
+      "updatedAt": "2026-10-15T12:16:16.001Z"
     },
     "scout:property:ibiza-3br-barbasquillo-260k-manta-ec:rescreen-listing": {
       "workKey": "scout:property:ibiza-3br-barbasquillo-260k-manta-ec:rescreen-listing",
@@ -778,12 +778,12 @@
       "subjectId": "ibiza-3br-barbasquillo-260k-manta-ec",
       "action": "rescreen-listing",
       "branch": "main",
-      "agentId": "bc-dbc9b1a4-7fc0-48b1-9d4b-0f60c2bed557",
-      "runId": "run-2a3a100f-a447-4b49-b236-df345f2d3b1c",
-      "agentUrl": "https://cursor.com/agents/bc-dbc9b1a4-7fc0-48b1-9d4b-0f60c2bed557",
-      "status": "ERROR",
-      "createdAt": "2026-09-14T13:29:20.094Z",
-      "updatedAt": "2026-09-14T13:30:54.234Z"
+      "agentId": "bc-27c2a00a-af72-46ba-b053-fb016800c018",
+      "runId": "run-89bfcc20-7edc-4d9f-a242-3a16848e322a",
+      "agentUrl": "https://cursor.com/agents/bc-27c2a00a-af72-46ba-b053-fb016800c018",
+      "status": "ACTIVE",
+      "createdAt": "2026-10-15T12:16:19.407Z",
+      "updatedAt": "2026-10-15T12:16:19.407Z"
     },
     "scout:property:ibiza-unit-3br-furnished-umiña-manta-ec:rescreen-listing": {
       "workKey": "scout:property:ibiza-unit-3br-furnished-umiña-manta-ec:rescreen-listing",
@@ -792,12 +792,12 @@
       "subjectId": "ibiza-unit-3br-furnished-umiña-manta-ec",
       "action": "rescreen-listing",
       "branch": "main",
-      "agentId": "bc-ef45042c-3e5d-4c42-b988-2ec31ae0cec5",
-      "runId": "run-d2e5e863-2fc8-402b-a877-bbc8e82900c4",
-      "agentUrl": "https://cursor.com/agents/bc-ef45042c-3e5d-4c42-b988-2ec31ae0cec5",
-      "status": "ERROR",
-      "createdAt": "2026-09-14T13:29:23.242Z",
-      "updatedAt": "2026-09-14T13:30:54.553Z"
+      "agentId": "bc-da32802b-67c1-4f9f-aa2f-2aedee435e79",
+      "runId": "run-87ec3ec3-4cc8-4486-993f-84e7621e2e9f",
+      "agentUrl": "https://cursor.com/agents/bc-da32802b-67c1-4f9f-aa2f-2aedee435e79",
+      "status": "ACTIVE",
+      "createdAt": "2026-10-15T12:16:22.572Z",
+      "updatedAt": "2026-10-15T12:16:22.572Z"
     },
     "scout:property:ibiza-unit-4f-umiña-manta-ec:rescreen-listing": {
       "workKey": "scout:property:ibiza-unit-4f-umiña-manta-ec:rescreen-listing",
