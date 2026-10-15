@@ -767,9 +767,9 @@
       "agentId": "bc-ff6bf54f-a372-49f6-b150-04013fc73a40",
       "runId": "run-b66dadd4-c352-4164-a62f-7180e9db7bdc",
       "agentUrl": "https://cursor.com/agents/bc-ff6bf54f-a372-49f6-b150-04013fc73a40",
-      "status": "ACTIVE",
+      "status": "ERROR",
       "createdAt": "2026-10-15T12:16:16.001Z",
-      "updatedAt": "2026-10-15T12:16:16.001Z"
+      "updatedAt": "2026-10-15T12:19:07.556Z"
     },
     "scout:property:ibiza-3br-barbasquillo-260k-manta-ec:rescreen-listing": {
       "workKey": "scout:property:ibiza-3br-barbasquillo-260k-manta-ec:rescreen-listing",
@@ -781,9 +781,9 @@
       "agentId": "bc-27c2a00a-af72-46ba-b053-fb016800c018",
       "runId": "run-89bfcc20-7edc-4d9f-a242-3a16848e322a",
       "agentUrl": "https://cursor.com/agents/bc-27c2a00a-af72-46ba-b053-fb016800c018",
-      "status": "ACTIVE",
+      "status": "ERROR",
       "createdAt": "2026-10-15T12:16:19.407Z",
-      "updatedAt": "2026-10-15T12:16:19.407Z"
+      "updatedAt": "2026-10-15T12:19:08.054Z"
     },
     "scout:property:ibiza-unit-3br-furnished-umiña-manta-ec:rescreen-listing": {
       "workKey": "scout:property:ibiza-unit-3br-furnished-umiña-manta-ec:rescreen-listing",
@@ -795,9 +795,9 @@
       "agentId": "bc-da32802b-67c1-4f9f-aa2f-2aedee435e79",
       "runId": "run-87ec3ec3-4cc8-4486-993f-84e7621e2e9f",
       "agentUrl": "https://cursor.com/agents/bc-da32802b-67c1-4f9f-aa2f-2aedee435e79",
-      "status": "ACTIVE",
+      "status": "ERROR",
       "createdAt": "2026-10-15T12:16:22.572Z",
-      "updatedAt": "2026-10-15T12:16:22.572Z"
+      "updatedAt": "2026-10-15T12:19:08.444Z"
     },
     "scout:property:ibiza-unit-4f-umiña-manta-ec:rescreen-listing": {
       "workKey": "scout:property:ibiza-unit-4f-umiña-manta-ec:rescreen-listing",
