@@ -809,9 +809,9 @@
       "agentId": "bc-411e4ee9-f52e-4871-882a-108df786b54f",
       "runId": "run-ad102d57-0b86-4624-9c3f-2e3cd8551249",
       "agentUrl": "https://cursor.com/agents/bc-411e4ee9-f52e-4871-882a-108df786b54f",
-      "status": "ACTIVE",
+      "status": "ERROR",
       "createdAt": "2026-10-16T11:59:54.133Z",
-      "updatedAt": "2026-10-16T11:59:54.133Z"
+      "updatedAt": "2026-10-16T12:01:21.117Z"
     },
     "scout:property:ibiza-unit-5f-umiña-manta-ec:rescreen-listing": {
       "workKey": "scout:property:ibiza-unit-5f-umiña-manta-ec:rescreen-listing",
@@ -823,9 +823,9 @@
       "agentId": "bc-23d1c94b-e1f7-49c8-b917-46c5c0407a02",
       "runId": "run-a53025c5-7703-4892-87e4-7f7f7e16aa0a",
       "agentUrl": "https://cursor.com/agents/bc-23d1c94b-e1f7-49c8-b917-46c5c0407a02",
-      "status": "ACTIVE",
+      "status": "ERROR",
       "createdAt": "2026-10-16T11:59:57.059Z",
-      "updatedAt": "2026-10-16T11:59:57.059Z"
+      "updatedAt": "2026-10-16T12:01:21.491Z"
     },
     "scout:property:lanzarote-unit-6b-el-murciélago-manta-ec:rescreen-listing": {
       "workKey": "scout:property:lanzarote-unit-6b-el-murciélago-manta-ec:rescreen-listing",
@@ -837,9 +837,9 @@
       "agentId": "bc-55688fae-9956-4e35-af36-01cd29b28c91",
       "runId": "run-57ef5cc2-ecc1-4ef8-8f7c-20ac3a966860",
       "agentUrl": "https://cursor.com/agents/bc-55688fae-9956-4e35-af36-01cd29b28c91",
-      "status": "ACTIVE",
+      "status": "ERROR",
       "createdAt": "2026-10-16T12:00:01.743Z",
-      "updatedAt": "2026-10-16T12:00:01.743Z"
+      "updatedAt": "2026-10-16T12:01:21.791Z"
     },
     "scout:property:nahla-unit-d-106-barbasquillo-manta-ec:rescreen-listing": {
       "workKey": "scout:property:nahla-unit-d-106-barbasquillo-manta-ec:rescreen-listing",
