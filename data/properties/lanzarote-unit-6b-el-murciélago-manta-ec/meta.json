@@ -5,16 +5,16 @@
   "listing_url": "https://mls-ecuador.com/en/agencies/ecuadorshoresrealty/ecuadorshoresrealty-investment/rs2300228",
   "market_id": "manta-ec",
   "created_at": "2026-08-10T05:00:00Z",
-  "updated_at": "2026-09-15T12:25:19Z",
-  "last_screened_at": "2026-09-15T12:25:19Z",
+  "updated_at": "2026-10-16T12:02:00Z",
+  "last_screened_at": "2026-10-16T12:02:00Z",
   "screening_snapshot": {
     "price": 198440,
     "rough_monthly_rent": 1200,
     "rough_gross_yield": 0.0726,
     "advertised_hoa": 164,
-    "screened_at": "2026-09-15T12:25:19Z"
+    "screened_at": "2026-10-16T12:02:00Z"
   },
-  "scout_notes": "Rescreen 2026-09-15: Unit 6B still For Sale via realtor.com international syndication (PSECI-rs2300228) at $198,440 — 0% price change vs snapshot (no ≥5% drop trigger). Direct mls-ecuador.com fetch blocked by egress; sibling Lanzarote 1A RS2300227 still Active on MLS at $199,785 / HOA $161. Keep prior HOA $164 for Type B. Rent refresh: Rentberry El Murciélago 2BR $850 (utils+maint incl.) / Rentberry Barbasquillo 2BR $700 / MLS RL2600064 oceanfront El Murciélago 2BR $1,200; keep optimistic STR $1,200. Gross at $1,200 = 7.3%; HOA-adjusted (1200−164)×12/198440 ≈ 6.3%. Need ~$1,654/mo for 10% gross. Stay ARCHIVED scout_reject; rescreen_after +30d.",
+  "scout_notes": "Rescreen 2026-10-16: mls-ecuador.com / ecuador shores / realtor.com / fazwaz / rentberry direct fetch egress-blocked (domains not in allowlist; curl SSL fail / WebFetch reject). WebSearch for RS2300228 / PSECI-rs2300228 / Lanzarote Unit 6B $198,440 returned no sold, offline, or price-update signal (Canary Islands Lanzarote noise only). Holding last-known MLS/PSECI ask $198,440 / HOA $164 Type B (0% vs 2026-09-15 snapshot; no ≥5% drop trigger). Rent refresh from pipeline El Murciélago / Barbasquillo 2BR: FazWaz Murciélago 2BR LTR $720; Rentola Murciélago $600; Rentberry Barbasquillo $600–$800 / Murciélago furnished ~$850; oceanfront MLS RL2600064 $1,200 — rent not up vs prior optimistic STR $1,200. Using $1,200 → 7.3% gross; HOA-adjusted (1200−164)×12/198440 ≈ 6.3%. Need ~$1,654/mo for 10% gross. Stay ARCHIVED scout_reject; rescreen_after +30d; rescreen_count=2.",
   "property_type": "condo",
   "building_name": "Lanzarote",
   "unit": "6B",
@@ -24,11 +24,11 @@
   "rough_monthly_rent": 1200,
   "rough_gross_yield": 0.0726,
   "advertised_hoa": 164,
-  "rent_source": "Optimistic STR $1,200 (MLS El Murciélago oceanfront 2BR $1,200 / Rentberry Murciélago 2BR $850 / Barbasquillo 2BR $700)",
+  "rent_source": "Optimistic oceanfront STR $1,200 held (MLS RL2600064); pipeline refresh FazWaz Murciélago 2BR LTR $720, Rentola $600, Rentberry Barbasquillo $600–$800 / furnished ~$850 (live portals egress-blocked)",
   "rent_confidence": "MEDIUM",
   "workflow_state": "ARCHIVED",
   "scout_decision": "REJECT",
   "archive_reason": "scout_reject",
-  "rescreen_after": "2026-10-15T12:25:19Z",
-  "rescreen_count": 1
+  "rescreen_after": "2026-11-15T12:02:00Z",
+  "rescreen_count": 2
 }
