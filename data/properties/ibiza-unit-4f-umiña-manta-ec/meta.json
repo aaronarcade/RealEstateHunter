@@ -5,16 +5,16 @@
   "listing_url": "https://mls-ecuador.com/en/real-estate/manta-real-estate/rs2600324",
   "market_id": "manta-ec",
   "created_at": "2026-08-10T05:00:00Z",
-  "updated_at": "2026-09-15T12:22:08Z",
-  "last_screened_at": "2026-09-15T12:22:08Z",
+  "updated_at": "2026-10-16T12:00:38Z",
+  "last_screened_at": "2026-10-16T12:00:38Z",
   "screening_snapshot": {
     "price": 239900,
     "rough_monthly_rent": 1200,
     "rough_gross_yield": 0.06,
     "advertised_hoa": 252,
-    "screened_at": "2026-09-15T12:22:08Z"
+    "screened_at": "2026-10-16T12:00:38Z"
   },
-  "scout_notes": "Rescreen 2026-09-15: MLS RS2600324 still active (mls-ecuador + Santos Azúa agency page). Ask unchanged $239,900; Association Fee still $252/mo — 0% price change vs snapshot (no ≥5% drop trigger). Rent refresh: Rentola Navegante Umiña 2BR $850 (HOA included) / Rentberry Umiña 2BR ocean-view $750 / Manta Homes Barbasquillo 2BR $1,200; keep prior premium STR $1,200 as optimistic ask. Gross at $1,200 = 6.0%; HOA-adjusted (1200−252)×12/239900 ≈ 4.7%. Need ~$2,000/mo for 10% gross. Stay ARCHIVED scout_reject; rescreen_after +30d.",
+  "scout_notes": "Rescreen 2026-10-16: mls-ecuador.com / PropertyShelf / Santos Azúa direct fetch egress-blocked (curl/WebFetch allowlist reject). WebSearch returned no RS2600324 price update, sold, or offline signal. Holding last-known MLS ask $239,900 / Association Fee $252 (0% vs 2026-09-15 snapshot; no ≥5% drop trigger). Rent refresh from pipeline: prior Umiña 2BR band Rentola Navegante $850 / Rentberry ocean-view $750; Barbasquillo 2BR screens $1,100–$1,200 (Poseidon/Riva); keep optimistic premium STR $1,200 — rent not up vs snapshot. Gross at $1,200 = 6.0%; HOA-adjusted (1200−252)×12/239900 ≈ 4.7%. Need ~$2,000/mo for 10% gross. Stay ARCHIVED scout_reject; rescreen_after +30d; rescreen_count=2.",
   "property_type": "condo",
   "building_name": "Ibiza",
   "unit": "4F",
@@ -24,11 +24,11 @@
   "rough_monthly_rent": 1200,
   "rough_gross_yield": 0.06,
   "advertised_hoa": 252,
-  "rent_source": "Optimistic STR $1,200 (Rentola Umiña 2BR $850 / Rentberry Umiña $750 / Manta Homes Barbasquillo 2BR $1,200)",
+  "rent_source": "Optimistic STR $1,200 held; pipeline Umiña 2BR $750–$850 / Barbasquillo 2BR $1,100–$1,200 (live portals egress-blocked)",
   "rent_confidence": "MEDIUM",
   "workflow_state": "ARCHIVED",
   "scout_decision": "REJECT",
   "archive_reason": "scout_reject",
-  "rescreen_after": "2026-10-15T12:22:08Z",
-  "rescreen_count": 1
+  "rescreen_after": "2026-11-15T12:00:38Z",
+  "rescreen_count": 2
 }
