@@ -806,12 +806,12 @@
       "subjectId": "ibiza-unit-4f-umiña-manta-ec",
       "action": "rescreen-listing",
       "branch": "main",
-      "agentId": "bc-c2fa32c9-b072-47a0-9f02-777bde80d7ea",
-      "runId": "run-9cd40c0e-20cb-484b-990d-6fffd1dfdc76",
-      "agentUrl": "https://cursor.com/agents/bc-c2fa32c9-b072-47a0-9f02-777bde80d7ea",
-      "status": "ERROR",
-      "createdAt": "2026-09-15T12:20:52.843Z",
-      "updatedAt": "2026-09-15T12:22:45.192Z"
+      "agentId": "bc-411e4ee9-f52e-4871-882a-108df786b54f",
+      "runId": "run-ad102d57-0b86-4624-9c3f-2e3cd8551249",
+      "agentUrl": "https://cursor.com/agents/bc-411e4ee9-f52e-4871-882a-108df786b54f",
+      "status": "ACTIVE",
+      "createdAt": "2026-10-16T11:59:54.133Z",
+      "updatedAt": "2026-10-16T11:59:54.133Z"
     },
     "scout:property:ibiza-unit-5f-umiña-manta-ec:rescreen-listing": {
       "workKey": "scout:property:ibiza-unit-5f-umiña-manta-ec:rescreen-listing",
@@ -820,12 +820,12 @@
       "subjectId": "ibiza-unit-5f-umiña-manta-ec",
       "action": "rescreen-listing",
       "branch": "main",
-      "agentId": "bc-7510a853-0b26-4e43-a648-b95ad0e0a4b2",
-      "runId": "run-fc739c1d-4cd3-41df-83d0-ec0b6a326296",
-      "agentUrl": "https://cursor.com/agents/bc-7510a853-0b26-4e43-a648-b95ad0e0a4b2",
-      "status": "ERROR",
-      "createdAt": "2026-09-15T12:20:57.791Z",
-      "updatedAt": "2026-09-15T12:22:46.929Z"
+      "agentId": "bc-23d1c94b-e1f7-49c8-b917-46c5c0407a02",
+      "runId": "run-a53025c5-7703-4892-87e4-7f7f7e16aa0a",
+      "agentUrl": "https://cursor.com/agents/bc-23d1c94b-e1f7-49c8-b917-46c5c0407a02",
+      "status": "ACTIVE",
+      "createdAt": "2026-10-16T11:59:57.059Z",
+      "updatedAt": "2026-10-16T11:59:57.059Z"
     },
     "scout:property:lanzarote-unit-6b-el-murciélago-manta-ec:rescreen-listing": {
       "workKey": "scout:property:lanzarote-unit-6b-el-murciélago-manta-ec:rescreen-listing",
@@ -834,12 +834,12 @@
       "subjectId": "lanzarote-unit-6b-el-murciélago-manta-ec",
       "action": "rescreen-listing",
       "branch": "main",
-      "agentId": "bc-3bb58e80-8c9c-4561-bdf0-5df70bb46861",
-      "runId": "run-c17521de-881f-4b71-be33-737c36b15c70",
-      "agentUrl": "https://cursor.com/agents/bc-3bb58e80-8c9c-4561-bdf0-5df70bb46861",
-      "status": "ERROR",
-      "createdAt": "2026-09-15T12:21:05.043Z",
-      "updatedAt": "2026-09-15T12:22:47.199Z"
+      "agentId": "bc-55688fae-9956-4e35-af36-01cd29b28c91",
+      "runId": "run-57ef5cc2-ecc1-4ef8-8f7c-20ac3a966860",
+      "agentUrl": "https://cursor.com/agents/bc-55688fae-9956-4e35-af36-01cd29b28c91",
+      "status": "ACTIVE",
+      "createdAt": "2026-10-16T12:00:01.743Z",
+      "updatedAt": "2026-10-16T12:00:01.743Z"
     },
     "scout:property:nahla-unit-d-106-barbasquillo-manta-ec:rescreen-listing": {
       "workKey": "scout:property:nahla-unit-d-106-barbasquillo-manta-ec:rescreen-listing",
