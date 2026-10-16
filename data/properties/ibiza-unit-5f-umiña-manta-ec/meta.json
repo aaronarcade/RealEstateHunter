@@ -5,16 +5,16 @@
   "listing_url": "https://www.realtor.com/international/ec/oceanview-a-ibiza-5th-floor-turn-key-coastal-opportunity-a-3br-oceanview-condo-with-premium-amenities-manta-manabi-province-310101628441/",
   "market_id": "manta-ec",
   "created_at": "2026-08-10T05:00:00Z",
-  "updated_at": "2026-09-15T12:28:25Z",
-  "last_screened_at": "2026-09-15T12:28:25Z",
+  "updated_at": "2026-10-16T12:01:02Z",
+  "last_screened_at": "2026-10-16T12:01:02Z",
   "screening_snapshot": {
     "price": 289000,
     "rough_monthly_rent": 2000,
     "rough_gross_yield": 0.083,
     "advertised_hoa": 316,
-    "screened_at": "2026-09-15T12:28:25Z"
+    "screened_at": "2026-10-16T12:01:02Z"
   },
-  "scout_notes": "Rescreen 2026-09-15: Realtor.com listing 310101628441 (Oceanview – Ibiza 5th Floor turn-key 3BR/2.5BA, 157.9 m², Pedro Balda / Umiña) still active at $289,000 — +11.2% vs prior $259,900 snapshot (no ≥5% drop trigger; price moved against yield). HOA now stated $316/mo (includes potable water; was null). Rent refreshed to same-building Ibiza 157 m² 3BR furnished ocean-view LTR ask $2,000/mo incl. alícuota (Rentola/Plusvalía) — rent up vs prior $1,000 STR guess. Gross at $2,000 = 8.3%; HOA-adjusted (2000−316)×12/289000 ≈ 7.0%. Need ~$2,408/mo for 10% gross. Stay ARCHIVED scout_reject; rescreen_after +30d.",
+  "scout_notes": "Rescreen 2026-10-16: realtor.com listing 310101628441 (Oceanview – Ibiza 5th Floor turn-key 3BR/2.5BA, 157.9 m², Pedro Balda / Umiña) direct fetch egress-blocked (domain not in allowlist; curl/WebFetch fail). WebSearch for listing id / Ibiza Umiña $289k returned no sold, offline, or price-update signal. Holding last-known ask $289,000 / HOA $316 (0% vs 2026-09-15 snapshot; no ≥5% drop trigger). Rent refresh from pipeline: same-building Ibiza furnished 3BR still screens $2,000 LTR (sibling RS2500586); Arrecife/Umiña 3BR optimistic $1,300; FazWaz El Murciélago 160 m² 3BR $1,200; Barbasquillo luxury ~$1,500; Malecón Rentberry $1,800 — rent not up vs prior $2,000. Using $2,000 → 8.3% gross; HOA-adjusted (2000−316)×12/289000 ≈ 7.0%. Need ~$2,408/mo for 10% gross. Stay ARCHIVED scout_reject; rescreen_after +30d; rescreen_count=2.",
   "property_type": "condo",
   "building_name": "Ibiza",
   "unit": "5F",
@@ -24,11 +24,11 @@
   "rough_monthly_rent": 2000,
   "rough_gross_yield": 0.083,
   "advertised_hoa": 316,
-  "rent_source": "Same-building Ibiza 157m² 3BR furnished ocean-view LTR ask $2,000/mo incl. alícuota (Rentola/Plusvalía)",
-  "rent_confidence": "HIGH",
+  "rent_source": "Same-building Ibiza 157m² 3BR furnished ocean-view LTR $2,000/mo held; pipeline refresh Arrecife/Umiña $1,300, Murciélago FazWaz $1,200, Barbasquillo luxury $1,500, Malecón Rentberry $1,800 (live portals egress-blocked)",
+  "rent_confidence": "MEDIUM",
   "workflow_state": "ARCHIVED",
   "scout_decision": "REJECT",
   "archive_reason": "scout_reject",
-  "rescreen_after": "2026-10-15T12:28:25Z",
-  "rescreen_count": 1
+  "rescreen_after": "2026-11-15T12:01:02Z",
+  "rescreen_count": 2
 }
