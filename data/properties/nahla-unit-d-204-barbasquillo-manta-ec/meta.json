@@ -5,16 +5,16 @@
   "listing_url": "https://trivo.com.ec/propiedades/nahla/",
   "market_id": "manta-ec",
   "created_at": "2026-08-10T05:00:00Z",
-  "updated_at": "2026-09-16T12:20:33Z",
-  "last_screened_at": "2026-09-16T12:20:33Z",
+  "updated_at": "2026-10-17T11:17:12Z",
+  "last_screened_at": "2026-10-17T11:17:12Z",
   "screening_snapshot": {
     "price": 99382,
     "rough_monthly_rent": 750,
     "rough_gross_yield": 0.0906,
     "advertised_hoa": null,
-    "screened_at": "2026-09-16T12:20:33Z"
+    "screened_at": "2026-10-17T11:17:12Z"
   },
-  "scout_notes": "Rescreen 2026-09-16: Trivo Nahla project page still active (direct fetch egress-blocked; indexed Unidades disponibles still shows $99,382 / 86.15 m² 2BR matching D-204) — 0% price change vs snapshot (no ≥5% drop trigger). HOA still not stated. Rent refresh: FazWaz Manta condo 2BR avg $733 / apt 2BR avg $717; Barbasquillo LTR comps Rentberry $700 (105 m²) / FazWaz $500–$800 (80–90 m²) / Rentola Torres del Sol 85 m² $850 incl. alícuota+internet. Keep optimistic STR $750 → 9.1% gross; LTR band $700–$800 → 8.4–9.7%. Need ~$828/mo for 10%. Stay ARCHIVED scout_reject; rescreen_after +30d.",
+  "scout_notes": "Rescreen 2026-10-17: trivo.com.ec Nahla project page direct fetch egress-blocked (domain not in allowlist; curl SSL fail / WebFetch reject). WebSearch for trivo.com.ec/propiedades/nahla / Nahla Barbasquillo D-204 $99,382 / 86.15 m² returned no sold, offline, or price-update signal. Holding last-known Trivo Unidades disponibles ask $99,382 (0% vs 2026-09-16 snapshot; no ≥5% drop trigger). HOA still not stated. Rent refresh from pipeline Barbasquillo / El Murciélago 2BR: FazWaz Murciélago 2BR LTR $720; Rentola Murciélago $600; Rentberry Barbasquillo $600–$800 / furnished ~$850 — rent not up vs prior optimistic STR $750. Using $750 → 9.1% gross; LTR band $700–$800 → 8.4–9.7%. Need ~$828/mo for 10% (or ask ≤~$90k at $750). Stay ARCHIVED scout_reject; rescreen_after +30d; rescreen_count=2.",
   "property_type": "condo",
   "building_name": "Nahla",
   "unit": "D-204",
@@ -24,11 +24,11 @@
   "rough_monthly_rent": 750,
   "rough_gross_yield": 0.0906,
   "advertised_hoa": null,
-  "rent_source": "Optimistic STR $750 (FazWaz Manta condo 2BR avg $733; Barbasquillo LTR comps $700–$800)",
+  "rent_source": "Optimistic STR $750 held; pipeline refresh FazWaz Murciélago 2BR LTR $720, Rentola $600, Rentberry Barbasquillo $600–$800 / furnished ~$850 (live portals egress-blocked)",
   "rent_confidence": "MEDIUM",
   "workflow_state": "ARCHIVED",
   "scout_decision": "REJECT",
   "archive_reason": "scout_reject",
-  "rescreen_after": "2026-10-16T12:20:33Z",
-  "rescreen_count": 1
+  "rescreen_after": "2026-11-16T11:17:12Z",
+  "rescreen_count": 2
 }
