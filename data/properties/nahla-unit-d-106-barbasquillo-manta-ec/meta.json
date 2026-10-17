@@ -5,16 +5,16 @@
   "listing_url": "https://trivo.com.ec/propiedades/nahla/",
   "market_id": "manta-ec",
   "created_at": "2026-08-10T05:00:00Z",
-  "updated_at": "2026-09-16T12:27:03Z",
-  "last_screened_at": "2026-09-16T12:27:03Z",
+  "updated_at": "2026-10-17T11:17:16Z",
+  "last_screened_at": "2026-10-17T11:17:16Z",
   "screening_snapshot": {
     "price": 66717,
     "rough_monthly_rent": 500,
     "rough_gross_yield": 0.0899,
     "advertised_hoa": null,
-    "screened_at": "2026-09-16T12:27:03Z"
+    "screened_at": "2026-10-17T11:17:16Z"
   },
-  "scout_notes": "Rescreen 2026-09-16: Trivo Nahla project page still active (direct fetch egress-blocked; indexed Unidades disponibles still shows D-106 / $66,717 / 34.53 m² studio) — 0% price change vs snapshot (no ≥5% drop trigger). HOA still not stated. Rent refresh: Fez 405 size-matched ~34 m² Barbasquillo suite comps $450–$550 (mid $500); sibling D-105 (larger 41.52 m²) evidence $400–$550. Using $500 → 9.0% gross; optimistic $550 still 9.9%. Need ~$556/mo for 10%. Stay ARCHIVED scout_reject; rescreen_after +30d.",
+  "scout_notes": "Rescreen 2026-10-17: trivo.com.ec direct fetch egress-blocked (curl empty / WebFetch allowlist reject); WebSearch returned no Nahla D-106 / $66,717 price update, sold, or offline signal. Sibling Trivo Fez 405/210 resccreens 2026-10-14 same egress finding — treat Nahla inventory as still marketed. Holding last-known Trivo ask $66,717 / 34.53 m² studio (0% vs 2026-09-16 snapshot; no ≥5% drop trigger). HOA/alícuota still unstated. Rent refresh from in-repo Fez 209/405 size-adjusted ~34 m² Barbasquillo suite comps $450–$550 (mid $500) + D-105 larger-studio evidence $400–$550 — rent not up vs snapshot. Using $500 → 9.0% gross; optimistic $550 still 9.9%. Need ~$556/mo for 10%. Ask also below property_filters.price_range.min ($75k). Stay ARCHIVED scout_reject; rescreen_after +30d; rescreen_count=2.",
   "property_type": "condo",
   "building_name": "Nahla",
   "unit": "D-106",
@@ -24,11 +24,11 @@
   "rough_monthly_rent": 500,
   "rough_gross_yield": 0.0899,
   "advertised_hoa": null,
-  "rent_source": "Fez 405 size-adjusted Barbasquillo ~34m² suite comps $450–$550 (mid $500); D-105 larger-studio evidence $400–$550",
+  "rent_source": "Fez 209/405 size-adjusted Barbasquillo ~34m² suite comps $450–$550 (mid $500); D-105 larger-studio evidence $400–$550; live Trivo/FazWaz refresh blocked by egress",
   "rent_confidence": "MEDIUM",
   "workflow_state": "ARCHIVED",
   "scout_decision": "REJECT",
   "archive_reason": "scout_reject",
-  "rescreen_after": "2026-10-16T12:27:03Z",
-  "rescreen_count": 1
+  "rescreen_after": "2026-11-16T11:17:16Z",
+  "rescreen_count": 2
 }
