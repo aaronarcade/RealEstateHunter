@@ -890,12 +890,12 @@
       "subjectId": "oceanfront-penthouse-lease-ciudad-del-mar-manta-ec",
       "action": "rescreen-listing",
       "branch": "main",
-      "agentId": "bc-bd0380d3-ebe9-4cf7-8c4c-75284137955b",
-      "runId": "run-7d505dfb-0b6c-4b2e-b53a-0701359a0bb8",
-      "agentUrl": "https://cursor.com/agents/bc-bd0380d3-ebe9-4cf7-8c4c-75284137955b",
-      "status": "ERROR",
-      "createdAt": "2026-09-17T12:18:17.754Z",
-      "updatedAt": "2026-09-17T12:19:53.116Z"
+      "agentId": "bc-1512dc11-e1e8-4464-b67e-8ac82a1de828",
+      "runId": "run-8902f19b-bc9b-455c-ba69-7ce73225cab9",
+      "agentUrl": "https://cursor.com/agents/bc-1512dc11-e1e8-4464-b67e-8ac82a1de828",
+      "status": "ACTIVE",
+      "createdAt": "2026-10-18T11:52:21.757Z",
+      "updatedAt": "2026-10-18T11:52:21.757Z"
     },
     "scout:property:oceania-4br-beachfront-manta-ec:rescreen-listing": {
       "workKey": "scout:property:oceania-4br-beachfront-manta-ec:rescreen-listing",
@@ -904,12 +904,12 @@
       "subjectId": "oceania-4br-beachfront-manta-ec",
       "action": "rescreen-listing",
       "branch": "main",
-      "agentId": "bc-4e0c420f-b0fc-40fd-a292-935746f28a90",
-      "runId": "run-62e72609-f48b-4298-8840-a714369ae215",
-      "agentUrl": "https://cursor.com/agents/bc-4e0c420f-b0fc-40fd-a292-935746f28a90",
-      "status": "ERROR",
-      "createdAt": "2026-09-17T12:18:23.044Z",
-      "updatedAt": "2026-09-17T12:19:57.406Z"
+      "agentId": "bc-8e9346e4-7559-472b-a4f6-e869681c4486",
+      "runId": "run-499e4b8c-4b1c-4464-92c2-e3c720fd57aa",
+      "agentUrl": "https://cursor.com/agents/bc-8e9346e4-7559-472b-a4f6-e869681c4486",
+      "status": "ACTIVE",
+      "createdAt": "2026-10-18T11:52:24.497Z",
+      "updatedAt": "2026-10-18T11:52:24.497Z"
     },
     "scout:property:oceania-sky-loft-manta-ec:rescreen-listing": {
       "workKey": "scout:property:oceania-sky-loft-manta-ec:rescreen-listing",
@@ -1134,6 +1134,20 @@
       "status": "ERROR",
       "createdAt": "2026-10-11T13:37:52.192Z",
       "updatedAt": "2026-10-11T13:44:40.709Z"
+    },
+    "scout:property:cuenca-ingenieros-3br-condo-house-ec:rescreen-listing": {
+      "workKey": "scout:property:cuenca-ingenieros-3br-condo-house-ec:rescreen-listing",
+      "role": "scout",
+      "subjectType": "property",
+      "subjectId": "cuenca-ingenieros-3br-condo-house-ec",
+      "action": "rescreen-listing",
+      "branch": "main",
+      "agentId": "bc-a79f6f5e-c752-44e4-9cd1-28b890096687",
+      "runId": "run-245033af-5f77-4258-87e2-84509e06f272",
+      "agentUrl": "https://cursor.com/agents/bc-a79f6f5e-c752-44e4-9cd1-28b890096687",
+      "status": "ACTIVE",
+      "createdAt": "2026-10-18T11:52:17.882Z",
+      "updatedAt": "2026-10-18T11:52:17.882Z"
     }
   }
 }
