@@ -918,12 +918,12 @@
       "subjectId": "oceania-sky-loft-manta-ec",
       "action": "rescreen-listing",
       "branch": "main",
-      "agentId": "bc-1b83dbc6-5519-4a11-ad71-bb66337b8cc7",
-      "runId": "run-59815aff-f6e3-4a9e-9de4-56d7da38945e",
-      "agentUrl": "https://cursor.com/agents/bc-1b83dbc6-5519-4a11-ad71-bb66337b8cc7",
-      "status": "ERROR",
-      "createdAt": "2026-09-17T12:18:27.854Z",
-      "updatedAt": "2026-09-17T12:19:57.682Z"
+      "agentId": "bc-671b27bb-c7d8-4578-ac5d-e251376cf124",
+      "runId": "run-22307bfc-23d2-4dc2-b51d-ed827f7e2f6c",
+      "agentUrl": "https://cursor.com/agents/bc-671b27bb-c7d8-4578-ac5d-e251376cf124",
+      "status": "ACTIVE",
+      "createdAt": "2026-10-19T14:09:43.138Z",
+      "updatedAt": "2026-10-19T14:09:43.138Z"
     },
     "scout:property:orongo-unit-12-barbasquillo-manta-ec:rescreen-listing": {
       "workKey": "scout:property:orongo-unit-12-barbasquillo-manta-ec:rescreen-listing",
@@ -932,12 +932,12 @@
       "subjectId": "orongo-unit-12-barbasquillo-manta-ec",
       "action": "rescreen-listing",
       "branch": "main",
-      "agentId": "bc-de0ae5a5-65d3-45c1-900a-fdc1be2da4c8",
-      "runId": "run-d0f283e3-dce8-485e-bf6b-e72e91399daa",
-      "agentUrl": "https://cursor.com/agents/bc-de0ae5a5-65d3-45c1-900a-fdc1be2da4c8",
-      "status": "ERROR",
-      "createdAt": "2026-09-18T11:58:28.859Z",
-      "updatedAt": "2026-09-18T12:00:38.420Z"
+      "agentId": "bc-b6cf67e4-c57b-45c8-85b0-a7585f486b3d",
+      "runId": "run-cc0ed540-a866-4269-8176-fdeb68f67aef",
+      "agentUrl": "https://cursor.com/agents/bc-b6cf67e4-c57b-45c8-85b0-a7585f486b3d",
+      "status": "ACTIVE",
+      "createdAt": "2026-10-19T14:09:46.298Z",
+      "updatedAt": "2026-10-19T14:09:46.298Z"
     },
     "scout:property:poseidon-2br-under-190k-manta-ec:rescreen-listing": {
       "workKey": "scout:property:poseidon-2br-under-190k-manta-ec:rescreen-listing",
@@ -1148,6 +1148,20 @@
       "status": "ERROR",
       "createdAt": "2026-10-18T11:52:17.882Z",
       "updatedAt": "2026-10-18T11:53:57.714Z"
+    },
+    "scout:property:cuenca-putishi-5br-award-residence-ec:rescreen-listing": {
+      "workKey": "scout:property:cuenca-putishi-5br-award-residence-ec:rescreen-listing",
+      "role": "scout",
+      "subjectType": "property",
+      "subjectId": "cuenca-putishi-5br-award-residence-ec",
+      "action": "rescreen-listing",
+      "branch": "main",
+      "agentId": "bc-e28c99c3-4bb0-4c3d-af99-ffde3d1dde54",
+      "runId": "run-d74f0e17-cc32-4c8d-846b-f05c0c1b0ed7",
+      "agentUrl": "https://cursor.com/agents/bc-e28c99c3-4bb0-4c3d-af99-ffde3d1dde54",
+      "status": "ACTIVE",
+      "createdAt": "2026-10-19T14:09:38.811Z",
+      "updatedAt": "2026-10-19T14:09:38.811Z"
     }
   }
 }
