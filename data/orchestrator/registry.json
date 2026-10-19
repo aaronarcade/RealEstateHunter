@@ -921,9 +921,9 @@
       "agentId": "bc-671b27bb-c7d8-4578-ac5d-e251376cf124",
       "runId": "run-22307bfc-23d2-4dc2-b51d-ed827f7e2f6c",
       "agentUrl": "https://cursor.com/agents/bc-671b27bb-c7d8-4578-ac5d-e251376cf124",
-      "status": "ACTIVE",
+      "status": "ERROR",
       "createdAt": "2026-10-19T14:09:43.138Z",
-      "updatedAt": "2026-10-19T14:09:43.138Z"
+      "updatedAt": "2026-10-19T14:17:04.150Z"
     },
     "scout:property:orongo-unit-12-barbasquillo-manta-ec:rescreen-listing": {
       "workKey": "scout:property:orongo-unit-12-barbasquillo-manta-ec:rescreen-listing",
@@ -935,9 +935,9 @@
       "agentId": "bc-b6cf67e4-c57b-45c8-85b0-a7585f486b3d",
       "runId": "run-cc0ed540-a866-4269-8176-fdeb68f67aef",
       "agentUrl": "https://cursor.com/agents/bc-b6cf67e4-c57b-45c8-85b0-a7585f486b3d",
-      "status": "ACTIVE",
+      "status": "ERROR",
       "createdAt": "2026-10-19T14:09:46.298Z",
-      "updatedAt": "2026-10-19T14:09:46.298Z"
+      "updatedAt": "2026-10-19T14:17:04.567Z"
     },
     "scout:property:poseidon-2br-under-190k-manta-ec:rescreen-listing": {
       "workKey": "scout:property:poseidon-2br-under-190k-manta-ec:rescreen-listing",
@@ -1159,9 +1159,9 @@
       "agentId": "bc-e28c99c3-4bb0-4c3d-af99-ffde3d1dde54",
       "runId": "run-d74f0e17-cc32-4c8d-846b-f05c0c1b0ed7",
       "agentUrl": "https://cursor.com/agents/bc-e28c99c3-4bb0-4c3d-af99-ffde3d1dde54",
-      "status": "ACTIVE",
+      "status": "ERROR",
       "createdAt": "2026-10-19T14:09:38.811Z",
-      "updatedAt": "2026-10-19T14:09:38.811Z"
+      "updatedAt": "2026-10-19T14:17:17.584Z"
     }
   }
 }
