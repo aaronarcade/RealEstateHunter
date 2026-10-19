@@ -5,16 +5,16 @@
   "listing_url": "https://trivo.com.ec/propiedades/orongo/",
   "market_id": "manta-ec",
   "created_at": "2026-08-10T05:00:00Z",
-  "updated_at": "2026-09-18T12:00:00Z",
-  "last_screened_at": "2026-09-18T12:00:00Z",
+  "updated_at": "2026-10-19T14:11:00Z",
+  "last_screened_at": "2026-10-19T14:11:00Z",
   "screening_snapshot": {
     "price": 55503,
     "rough_monthly_rent": 450,
     "rough_gross_yield": 0.0973,
     "advertised_hoa": null,
-    "screened_at": "2026-09-18T12:00:00Z"
+    "screened_at": "2026-10-19T14:11:00Z"
   },
-  "scout_notes": "Rescreen 2026-09-18: Trivo Orongo project page still active (direct fetch egress-blocked; indexed Unidades disponibles still shows 47.22 m² estudio at $55,503 / balcón 9.39 matching Unit 12) — 0% price change vs snapshot (no ≥5% drop trigger). Building still En obra, delivery H2 2026; precios desde $42,223. Sibling 47.22 m² floorplan also listed at $57,723 (smaller balcony). HOA/alícuota not stated. Rent refresh: FazWaz Manta 1BR avg $418 / Mall del Pacífico 1BR avg $419; Barbasquillo LTR 1BR asks $500–$700 are 68–90 m² (not size-comparable to 47 m² studio). Keep prior $450 (FazWaz 1BR + new-product adj) — rent not up vs snapshot. Gross at $450 = 9.7%; optimistic $500 still only 10.8% but unsupported for this floorplate. Need ~$463/mo for 10%. Stay ARCHIVED scout_reject; rescreen_after +30d.",
+  "scout_notes": "Rescreen 2026-10-19: trivo.com.ec / orongoconstructores.com direct fetch egress-blocked (curl SSL_ERROR_SYSCALL / WebFetch allowlist reject); WebSearch returned no Orongo / $55,503 / 47.22 m² Unit 12 index hit and no sold/offline signal — treat last-known active pre-sale economics as still marketed (same egress pattern as 2026-09-18 rescreen and Aug scrape listing_url still on Trivo Orongo). Holding $55,503 ask / $450 rent (0% vs snapshot; no rent-up or ≥5% price-drop trigger). HOA/alícuota still unknown. Gross at $450 = 9.7%; optimistic $500 still only 10.8% but unsupported for ~47 m² studio vs larger Barbasquillo LTR asks. Need ~$463/mo for 10%. Stay ARCHIVED scout_reject; rescreen_after +30d; rescreen_count=2.",
   "property_type": "condo",
   "building_name": "Orongo",
   "unit": "12",
@@ -24,11 +24,11 @@
   "rough_monthly_rent": 450,
   "rough_gross_yield": 0.0973,
   "advertised_hoa": null,
-  "rent_source": "FazWaz Manta 1BR avg $418 + new Barbasquillo product adj → $450 (unchanged vs prior)",
+  "rent_source": "FazWaz Manta 1BR avg ~$418–$419 + new Barbasquillo product adj → $450 (last-known; live FazWaz refresh egress-blocked)",
   "rent_confidence": "MEDIUM",
   "workflow_state": "ARCHIVED",
   "scout_decision": "REJECT",
   "archive_reason": "scout_reject",
-  "rescreen_after": "2026-10-18T12:00:00Z",
-  "rescreen_count": 1
+  "rescreen_after": "2026-11-18T14:11:00Z",
+  "rescreen_count": 2
 }
