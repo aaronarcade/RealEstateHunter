@@ -5,16 +5,16 @@
   "listing_url": "https://www.fazwaz.com.ec/en/projects/ecuador/manabi/manta/manta/furnished-22-beachfront-prime-location-under-190k",
   "market_id": "manta-ec",
   "created_at": "2026-08-10T05:00:00Z",
-  "updated_at": "2026-09-18T12:00:19Z",
-  "last_screened_at": "2026-09-18T12:00:19Z",
+  "updated_at": "2026-10-20T12:24:29Z",
+  "last_screened_at": "2026-10-20T12:24:29Z",
   "screening_snapshot": {
     "price": 189000,
     "rough_monthly_rent": 1100,
     "rough_gross_yield": 0.0698,
     "advertised_hoa": null,
-    "screened_at": "2026-09-18T12:00:19Z"
+    "screened_at": "2026-10-20T12:24:29Z"
   },
-  "scout_notes": "Rescreen 2026-09-18: FazWaz direct fetch egress-blocked; indexed project + unit U505900 still For Sale at $189,000 (96 m² 2/2) — 0% price change vs prior snapshot (no ≥5% drop trigger). HOA still not stated on listing (building alícuota comps $369–$400). Rent refresh: size-matched Poseidon 96 m² 2/2 LTR $1,100/mo alícuota-included (Manta Homes D125); larger 135 m² Poseidon ask $1,300 incl. $400 alícuota (Rentola) — rent not up vs prior $1,300. At $189k + $1,100 → 7.0% gross; optimistic $1,300 still 8.3%. Need ~$1,575/mo for 10% (or ask ≤~$156k at $1,300). Stay ARCHIVED scout_reject; rescreen_after +30d.",
+  "scout_notes": "Rescreen 2026-10-20: FazWaz direct fetch egress-blocked (curl fail / WebFetch allowlist reject); WebSearch returned no U505900 / furnished-22-beachfront-under-190k / $189k sold, offline, or price-update signal — treat last-known For Sale economics as still marketed (same egress pattern as 2026-09-18 rescreen). Holding $189,000 ask / $1,100 size-matched Poseidon 96 m² LTR (0% vs snapshot; no rent-up or ≥5% price-drop trigger). HOA still not stated (building alícuota comps $369–$400). Sibling pipeline still cites optimistic Poseidon $1,300 (7F RS2600215 / Rentola 135 m²). At $189k + $1,100 → 7.0% gross; optimistic $1,300 still 8.3%. Need ~$1,575/mo for 10% (or ask ≤~$156k at $1,300). Stay ARCHIVED scout_reject; rescreen_after +30d; rescreen_count=2.",
   "property_type": "condo",
   "building_name": "Poseidon",
   "beds": 2,
@@ -23,11 +23,11 @@
   "rough_monthly_rent": 1100,
   "rough_gross_yield": 0.0698,
   "advertised_hoa": null,
-  "rent_source": "Poseidon size-matched 96 m² LTR $1,100 (Manta Homes D125); optimistic building ask $1,300 (Rentola 135 m² / prior verified 7F)",
+  "rent_source": "Poseidon size-matched 96 m² LTR $1,100 (Manta Homes D125); optimistic building ask $1,300 (Rentola 135 m² / sibling 7F); live FazWaz refresh egress-blocked",
   "rent_confidence": "MEDIUM",
   "workflow_state": "ARCHIVED",
   "scout_decision": "REJECT",
   "archive_reason": "scout_reject",
-  "rescreen_after": "2026-10-18T12:00:19Z",
-  "rescreen_count": 1
+  "rescreen_after": "2026-11-19T12:24:29Z",
+  "rescreen_count": 2
 }
