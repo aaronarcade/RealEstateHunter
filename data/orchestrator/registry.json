@@ -949,9 +949,9 @@
       "agentId": "bc-42e716d8-0693-4f91-80cb-ccbdc81712fe",
       "runId": "run-fc613010-c10b-4b25-87f3-e9af631995b0",
       "agentUrl": "https://cursor.com/agents/bc-42e716d8-0693-4f91-80cb-ccbdc81712fe",
-      "status": "ACTIVE",
+      "status": "ERROR",
       "createdAt": "2026-10-20T12:24:58.589Z",
-      "updatedAt": "2026-10-20T12:24:58.589Z"
+      "updatedAt": "2026-10-20T12:25:58.680Z"
     },
     "scout:property:poseidon-9f-2br-barbasquillo-manta-ec:rescreen-listing": {
       "workKey": "scout:property:poseidon-9f-2br-barbasquillo-manta-ec:rescreen-listing",
@@ -963,9 +963,9 @@
       "agentId": "bc-318971f9-b709-4801-b222-e3a99a1d6e81",
       "runId": "run-eb6b6b80-beab-49df-9d05-de2d4018c287",
       "agentUrl": "https://cursor.com/agents/bc-318971f9-b709-4801-b222-e3a99a1d6e81",
-      "status": "ACTIVE",
+      "status": "ERROR",
       "createdAt": "2026-10-20T12:25:03.731Z",
-      "updatedAt": "2026-10-20T12:25:03.731Z"
+      "updatedAt": "2026-10-20T12:26:00.248Z"
     },
     "scout:property:poseidon-unit-7f-barbasquillo-manta-ec:rescreen-listing": {
       "workKey": "scout:property:poseidon-unit-7f-barbasquillo-manta-ec:rescreen-listing",
@@ -1173,9 +1173,9 @@
       "agentId": "bc-7a95aa82-db71-4150-8a72-fcb0759e814d",
       "runId": "run-dded1899-dbb5-480f-8a9e-24d74ff180df",
       "agentUrl": "https://cursor.com/agents/bc-7a95aa82-db71-4150-8a72-fcb0759e814d",
-      "status": "ACTIVE",
+      "status": "ERROR",
       "createdAt": "2026-10-20T12:23:00.215Z",
-      "updatedAt": "2026-10-20T12:23:00.215Z"
+      "updatedAt": "2026-10-20T12:26:00.718Z"
     }
   }
 }
