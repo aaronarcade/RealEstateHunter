@@ -974,12 +974,12 @@
       "subjectId": "poseidon-unit-7f-barbasquillo-manta-ec",
       "action": "rescreen-listing",
       "branch": "main",
-      "agentId": "bc-d1208cfe-ddcb-4eeb-a5b0-de74ad36e3ae",
-      "runId": "run-c4b5fbd4-b06e-4389-aac4-a1f6f9231b78",
-      "agentUrl": "https://cursor.com/agents/bc-d1208cfe-ddcb-4eeb-a5b0-de74ad36e3ae",
-      "status": "ERROR",
-      "createdAt": "2026-09-19T11:42:20.021Z",
-      "updatedAt": "2026-09-19T11:43:58.068Z"
+      "agentId": "bc-5abe5da5-4ff8-49f6-90ce-0d75d4aaf0a9",
+      "runId": "run-d4f9fb1f-a65c-40fc-ba45-724163adbff7",
+      "agentUrl": "https://cursor.com/agents/bc-5abe5da5-4ff8-49f6-90ce-0d75d4aaf0a9",
+      "status": "ACTIVE",
+      "createdAt": "2026-10-21T12:33:09.436Z",
+      "updatedAt": "2026-10-21T12:33:09.436Z"
     },
     "scout:property:riva-di-mare-1br-flavio-reyes-manta-ec:rescreen-listing": {
       "workKey": "scout:property:riva-di-mare-1br-flavio-reyes-manta-ec:rescreen-listing",
@@ -988,12 +988,12 @@
       "subjectId": "riva-di-mare-1br-flavio-reyes-manta-ec",
       "action": "rescreen-listing",
       "branch": "main",
-      "agentId": "bc-b4fd2071-f536-4ea2-a25c-6c32d1b898ad",
-      "runId": "run-c0042a98-8a7c-4909-97af-b21a85e0177d",
-      "agentUrl": "https://cursor.com/agents/bc-b4fd2071-f536-4ea2-a25c-6c32d1b898ad",
-      "status": "ERROR",
-      "createdAt": "2026-09-19T11:42:23.003Z",
-      "updatedAt": "2026-09-19T11:43:58.434Z"
+      "agentId": "bc-7487e879-ca85-46ca-8f42-5c047011f5ad",
+      "runId": "run-7611e445-6753-44f9-8455-b42742de4eab",
+      "agentUrl": "https://cursor.com/agents/bc-7487e879-ca85-46ca-8f42-5c047011f5ad",
+      "status": "ACTIVE",
+      "createdAt": "2026-10-21T12:33:14.586Z",
+      "updatedAt": "2026-10-21T12:33:14.586Z"
     },
     "scout:property:riva-di-mare-2br-flavio-reyes-manta-ec:rescreen-listing": {
       "workKey": "scout:property:riva-di-mare-2br-flavio-reyes-manta-ec:rescreen-listing",
@@ -1002,12 +1002,12 @@
       "subjectId": "riva-di-mare-2br-flavio-reyes-manta-ec",
       "action": "rescreen-listing",
       "branch": "main",
-      "agentId": "bc-1b869f9d-1fc2-4ea5-bcf9-b86b2993eadc",
-      "runId": "run-eee58658-1e42-40bd-86d5-67ccc40c7014",
-      "agentUrl": "https://cursor.com/agents/bc-1b869f9d-1fc2-4ea5-bcf9-b86b2993eadc",
-      "status": "ERROR",
-      "createdAt": "2026-09-19T11:42:25.667Z",
-      "updatedAt": "2026-09-19T11:43:58.727Z"
+      "agentId": "bc-c33fd5f2-9e76-43f2-a367-c98b7b1815e4",
+      "runId": "run-912f2065-c9d0-49b0-ba6d-07c8ba15c47d",
+      "agentUrl": "https://cursor.com/agents/bc-c33fd5f2-9e76-43f2-a367-c98b7b1815e4",
+      "status": "ACTIVE",
+      "createdAt": "2026-10-21T12:33:17.686Z",
+      "updatedAt": "2026-10-21T12:33:17.686Z"
     },
     "scout:property:santa-marianita-3br-oceanfront-manta-ec:rescreen-listing": {
       "workKey": "scout:property:santa-marianita-3br-oceanfront-manta-ec:rescreen-listing",
