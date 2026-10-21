@@ -977,9 +977,9 @@
       "agentId": "bc-5abe5da5-4ff8-49f6-90ce-0d75d4aaf0a9",
       "runId": "run-d4f9fb1f-a65c-40fc-ba45-724163adbff7",
       "agentUrl": "https://cursor.com/agents/bc-5abe5da5-4ff8-49f6-90ce-0d75d4aaf0a9",
-      "status": "ACTIVE",
+      "status": "ERROR",
       "createdAt": "2026-10-21T12:33:09.436Z",
-      "updatedAt": "2026-10-21T12:33:09.436Z"
+      "updatedAt": "2026-10-21T12:36:04.590Z"
     },
     "scout:property:riva-di-mare-1br-flavio-reyes-manta-ec:rescreen-listing": {
       "workKey": "scout:property:riva-di-mare-1br-flavio-reyes-manta-ec:rescreen-listing",
@@ -991,9 +991,9 @@
       "agentId": "bc-7487e879-ca85-46ca-8f42-5c047011f5ad",
       "runId": "run-7611e445-6753-44f9-8455-b42742de4eab",
       "agentUrl": "https://cursor.com/agents/bc-7487e879-ca85-46ca-8f42-5c047011f5ad",
-      "status": "ACTIVE",
+      "status": "ERROR",
       "createdAt": "2026-10-21T12:33:14.586Z",
-      "updatedAt": "2026-10-21T12:33:14.586Z"
+      "updatedAt": "2026-10-21T12:36:18.435Z"
     },
     "scout:property:riva-di-mare-2br-flavio-reyes-manta-ec:rescreen-listing": {
       "workKey": "scout:property:riva-di-mare-2br-flavio-reyes-manta-ec:rescreen-listing",
@@ -1005,9 +1005,9 @@
       "agentId": "bc-c33fd5f2-9e76-43f2-a367-c98b7b1815e4",
       "runId": "run-912f2065-c9d0-49b0-ba6d-07c8ba15c47d",
       "agentUrl": "https://cursor.com/agents/bc-c33fd5f2-9e76-43f2-a367-c98b7b1815e4",
-      "status": "ACTIVE",
+      "status": "ERROR",
       "createdAt": "2026-10-21T12:33:17.686Z",
-      "updatedAt": "2026-10-21T12:33:17.686Z"
+      "updatedAt": "2026-10-21T12:36:25.337Z"
     },
     "scout:property:santa-marianita-3br-oceanfront-manta-ec:rescreen-listing": {
       "workKey": "scout:property:santa-marianita-3br-oceanfront-manta-ec:rescreen-listing",
