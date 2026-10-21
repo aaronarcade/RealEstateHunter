@@ -5,16 +5,16 @@
   "listing_url": "https://mls-ecuador.com/en/real-estate/manta-real-estate/rs2401115",
   "market_id": "manta-ec",
   "created_at": "2026-08-10T05:00:00Z",
-  "updated_at": "2026-09-19T11:43:20Z",
-  "last_screened_at": "2026-09-19T11:43:20Z",
+  "updated_at": "2026-10-21T12:34:00Z",
+  "last_screened_at": "2026-10-21T12:34:00Z",
   "screening_snapshot": {
     "price": 160000,
     "rough_monthly_rent": 1200,
     "rough_gross_yield": 0.09,
     "advertised_hoa": 170,
-    "screened_at": "2026-09-19T11:43:20Z"
+    "screened_at": "2026-10-21T12:34:00Z"
   },
-  "scout_notes": "Rescreen 2026-09-19: realtor.com international search URL egress-blocked; MLS RS2401115 (RIVA DE MARE MANTA 2/2 furnished, 93 m², Barbasquillo / Av. Flavio Reyes corridor) still Active at $160,000 (bienesraices mirror $180k — using MLS list price). Price −38.5% vs prior $259,990 snapshot (meets ≥5% drop trigger). Building 2BR inventory also active at $199k–$269.5k. HOA now $170/mo from same-building Slideprop 2BR (ESR custom unit cites $220 incl. WiFi). Rent refresh: same-building LTR $980–$1,200 incl. alícuota (Slideprop); Rentola 124 m² $1,200 incl. alícuota; luxury 145 m² jacuzzi ask $1,600 — rent up vs prior $900. At $160k + $1,200 → 9.0% gross; HOA-adj (1200−170)×12/160000 ≈ 7.7% (<8%). Optimistic $1,600 would be 12% but unsupported for 93 m² floorplate. Need ~$1,333/mo for 10%. Stay ARCHIVED scout_reject; rescreen_after +30d.",
+  "scout_notes": "Rescreen 2026-10-21: mls-ecuador.com / PropertyShelf / bienesraices / realtor.com / ESR / Slideprop / Rentola / FazWaz direct fetch egress-blocked (domains not in allowlist; curl empty / WebFetch reject). WebSearch for RS2401115 / RIVA DE MARE MANTA 2BR / $160k Flavio Reyes / 93 m² returned no sold, offline, or price-update signal. Pipeline sibling barbasquillo-3br-apt-manta-ec (same building, MLS RS2600320) rescanned 2026-10-10 still treated as marketed at $340k — building inventory assumed still live. Holding $160,000 ask / HOA $170 (0% vs 2026-09-19 snapshot; no ≥5% drop trigger). Rent refresh: same-building LTR $980–$1,200 incl. alícuota (prior Slideprop/Rentola); luxury 145 m² jacuzzi $1,600 unsupported for 93 m² — rent not up vs snapshot. Keep $1,200 → 9.0% gross; HOA-adj (1200−170)×12/160000 ≈ 7.7% (<8%). Need ~$1,333/mo for 10% (or ask ≤~$144k at $1,200). No rescreen trigger met. Stay ARCHIVED scout_reject; rescreen_after +30d; rescreen_count=2.",
   "property_type": "condo",
   "building_name": "Riva Di Mare",
   "beds": 2,
@@ -23,11 +23,12 @@
   "rough_monthly_rent": 1200,
   "rough_gross_yield": 0.09,
   "advertised_hoa": 170,
-  "rent_source": "Same-building Riva Di Mare 2BR LTR $980–$1,200 incl. alícuota (Slideprop); Rentola 124 m² $1,200",
+  "rent_source": "Same-building Riva Di Mare 2BR LTR $980–$1,200 incl. alícuota (Slideprop/Rentola from prior screen; live refresh egress-blocked)",
   "rent_confidence": "MEDIUM",
+  "mls_id": "RS2401115",
   "workflow_state": "ARCHIVED",
   "scout_decision": "REJECT",
   "archive_reason": "scout_reject",
-  "rescreen_after": "2026-10-19T11:43:20Z",
-  "rescreen_count": 1
+  "rescreen_after": "2026-11-20T12:34:00Z",
+  "rescreen_count": 2
 }
