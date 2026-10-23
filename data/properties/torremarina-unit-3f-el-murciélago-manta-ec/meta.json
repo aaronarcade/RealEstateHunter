@@ -5,16 +5,16 @@
   "listing_url": "https://mls-ecuador.com/en/real-estate/manta-real-estate/rs2600214",
   "market_id": "manta-ec",
   "created_at": "2026-08-10T05:00:00Z",
-  "updated_at": "2026-09-21T13:29:31Z",
-  "last_screened_at": "2026-09-21T13:29:31Z",
+  "updated_at": "2026-10-23T12:16:59Z",
+  "last_screened_at": "2026-10-23T12:16:59Z",
   "screening_snapshot": {
     "price": 117000,
     "rough_monthly_rent": 720,
     "rough_gross_yield": 0.0738,
     "advertised_hoa": 120,
-    "screened_at": "2026-09-21T13:29:31Z"
+    "screened_at": "2026-10-23T12:16:59Z"
   },
-  "scout_notes": "Rescreen 2026-09-21: mls-ecuador.com direct fetch egress-blocked; RS2600214 still Active on MLS + PropertyShelf print + Santos Azúa agency mirror at List Price $117,000 / HOA $120 (0% vs prior $117k snapshot; no ≥5% drop trigger). One PropertyShelf HTML mirror shows $124k — treat as stale vs MLS $117k. Unit is 3rd-floor second-line (partial ocean view), not first-line beachfront. Rent refresh: FazWaz El Murciélago 2BR LTR $720; Rentola Murciélago 2BR $600; Rentberry Barbasquillo 2BR $600–$800; Murciélago furnished ~$850; oceanfront El Murciélago MLS RL2600064 $1,200 (premium vs this unit). Using same-sector LTR $720 → 7.4% gross; HOA-adjusted (720−120)×12/117000 = 6.2%. Optimistic non-oceanfront $850 still 8.7% (need ~$975/mo for 10%). Stay ARCHIVED scout_reject; rescreen_after +30d.",
+  "scout_notes": "Rescreen 2026-10-23: mls-ecuador.com / PropertyShelf / Santos Azúa direct fetch egress-blocked (domains not in allowlist; curl SSL_ERROR_SYSCALL / WebFetch reject). WebSearch for RS2600214 / TorreMarina Unit 3F / $117k El Murciélago returned no sold, offline, or price-update signal. Holding last-known MLS ask $117,000 / HOA $120 (0% vs 2026-09-21 snapshot; no ≥5% drop trigger). Prior PropertyShelf $124k mirror still treated as stale vs MLS $117k. Unit remains 3rd-floor second-line (partial ocean view), not first-line beachfront. Rent refresh from pipeline El Murciélago / Barbasquillo 2BR (lanzarote/nahla Oct 2026 screens): FazWaz Murciélago 2BR LTR $720; Rentola Murciélago $600; Rentberry Barbasquillo $600–$800 / furnished ~$850; oceanfront MLS RL2600064 $1,200 (premium vs this unit) — rent not up vs snapshot. Keep $720 → 7.4% gross; HOA-adj (720−120)×12/117000 = 6.2%. Optimistic non-oceanfront $850 still 8.7%. Need ~$975/mo for 10% (or ask ≤~$86.4k at $720). No rescreen trigger met. Stay ARCHIVED scout_reject; rescreen_after +30d; rescreen_count=2.",
   "property_type": "condo",
   "building_name": "TorreMarina",
   "unit": "3F",
@@ -24,11 +24,11 @@
   "rough_monthly_rent": 720,
   "rough_gross_yield": 0.0738,
   "advertised_hoa": 120,
-  "rent_source": "FazWaz El Murciélago 2BR LTR $720; Rentola Murciélago $600; Rentberry Barbasquillo $600–$800; Murciélago furnished ~$850; oceanfront MLS RL2600064 $1,200 (premium)",
+  "rent_source": "FazWaz El Murciélago 2BR LTR $720; Rentola Murciélago $600; Rentberry Barbasquillo $600–$800; Murciélago furnished ~$850; oceanfront MLS RL2600064 $1,200 (premium) — live portals egress-blocked",
   "rent_confidence": "MEDIUM",
   "workflow_state": "ARCHIVED",
   "scout_decision": "REJECT",
   "archive_reason": "scout_reject",
-  "rescreen_after": "2026-10-21T13:29:31Z",
-  "rescreen_count": 1
+  "rescreen_after": "2026-11-22T12:16:59Z",
+  "rescreen_count": 2
 }
