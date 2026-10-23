@@ -1058,12 +1058,12 @@
       "subjectId": "torre-elit-1br-ciudad-del-mar-manta-ec",
       "action": "rescreen-listing",
       "branch": "main",
-      "agentId": "bc-05db5894-51bb-4699-a27b-210a4b866335",
-      "runId": "run-8335e5da-2fdb-47f4-891f-672d10768627",
-      "agentUrl": "https://cursor.com/agents/bc-05db5894-51bb-4699-a27b-210a4b866335",
-      "status": "ERROR",
-      "createdAt": "2026-09-21T13:27:56.656Z",
-      "updatedAt": "2026-09-21T13:30:52.613Z"
+      "agentId": "bc-84d09a1a-57d0-4c2a-bbb3-86889e2d0355",
+      "runId": "run-f7fb6682-1fa7-46d9-b244-32a2a95f1d63",
+      "agentUrl": "https://cursor.com/agents/bc-84d09a1a-57d0-4c2a-bbb3-86889e2d0355",
+      "status": "ACTIVE",
+      "createdAt": "2026-10-23T12:15:37.997Z",
+      "updatedAt": "2026-10-23T12:15:37.997Z"
     },
     "scout:property:torre-marina-1br-el-murciélago-manta-ec:rescreen-listing": {
       "workKey": "scout:property:torre-marina-1br-el-murciélago-manta-ec:rescreen-listing",
@@ -1072,12 +1072,12 @@
       "subjectId": "torre-marina-1br-el-murciélago-manta-ec",
       "action": "rescreen-listing",
       "branch": "main",
-      "agentId": "bc-d035d2e2-7e12-4355-a862-98af2a921542",
-      "runId": "run-1dc6b6a4-1ed5-4bbb-bb84-00dafa7613a5",
-      "agentUrl": "https://cursor.com/agents/bc-d035d2e2-7e12-4355-a862-98af2a921542",
-      "status": "ERROR",
-      "createdAt": "2026-09-21T13:28:03.474Z",
-      "updatedAt": "2026-09-21T13:30:57.093Z"
+      "agentId": "bc-e926f947-06d6-47ce-aadd-8eb1941c8152",
+      "runId": "run-baefe65e-6212-429d-9eb5-86966d608323",
+      "agentUrl": "https://cursor.com/agents/bc-e926f947-06d6-47ce-aadd-8eb1941c8152",
+      "status": "ACTIVE",
+      "createdAt": "2026-10-23T12:15:41.310Z",
+      "updatedAt": "2026-10-23T12:15:41.310Z"
     },
     "scout:property:torremarina-unit-3f-el-murciélago-manta-ec:rescreen-listing": {
       "workKey": "scout:property:torremarina-unit-3f-el-murciélago-manta-ec:rescreen-listing",
@@ -1086,12 +1086,12 @@
       "subjectId": "torremarina-unit-3f-el-murciélago-manta-ec",
       "action": "rescreen-listing",
       "branch": "main",
-      "agentId": "bc-4b5bd649-a288-4e87-a25b-c6ad440e2962",
-      "runId": "run-dbfe2da6-4cfe-4566-9526-a556040a1110",
-      "agentUrl": "https://cursor.com/agents/bc-4b5bd649-a288-4e87-a25b-c6ad440e2962",
-      "status": "ERROR",
-      "createdAt": "2026-09-21T13:28:08.208Z",
-      "updatedAt": "2026-09-21T13:30:57.482Z"
+      "agentId": "bc-135cdb84-48dd-4b66-9124-ff90cd772ec0",
+      "runId": "run-f821005e-4bb6-4831-b6cf-89c4d89ee5ba",
+      "agentUrl": "https://cursor.com/agents/bc-135cdb84-48dd-4b66-9124-ff90cd772ec0",
+      "status": "ACTIVE",
+      "createdAt": "2026-10-23T12:15:44.465Z",
+      "updatedAt": "2026-10-23T12:15:44.465Z"
     },
     "scout:property:17462-front-beach-rd-unit-31c-panama-city-beach-fl:rescreen-listing": {
       "workKey": "scout:property:17462-front-beach-rd-unit-31c-panama-city-beach-fl:rescreen-listing",
