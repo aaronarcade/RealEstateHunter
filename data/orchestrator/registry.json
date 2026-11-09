@@ -554,12 +554,12 @@
       "subjectId": "3br-oceanfront-gem-manta-ec",
       "action": "rescreen-listing",
       "branch": "main",
-      "agentId": "bc-c42b1555-dc73-4559-ada7-26173774517d",
-      "runId": "run-04ee2f19-9cd4-4b26-978e-7b1c1f4ffd19",
-      "agentUrl": "https://cursor.com/agents/bc-c42b1555-dc73-4559-ada7-26173774517d",
-      "status": "ERROR",
-      "createdAt": "2026-10-09T13:59:03.224Z",
-      "updatedAt": "2026-10-09T14:01:17.876Z"
+      "agentId": "bc-38f81c9f-b667-44e7-bfe1-45ff7b4d44e1",
+      "runId": "run-ad84180d-0ad8-4356-8ded-6b607aed0b35",
+      "agentUrl": "https://cursor.com/agents/bc-38f81c9f-b667-44e7-bfe1-45ff7b4d44e1",
+      "status": "ACTIVE",
+      "createdAt": "2026-11-09T16:58:18.299Z",
+      "updatedAt": "2026-11-09T16:58:18.299Z"
     },
     "scout:property:arrecife-unit-5f-umiña-manta-ec:rescreen-listing": {
       "workKey": "scout:property:arrecife-unit-5f-umiña-manta-ec:rescreen-listing",
@@ -568,12 +568,12 @@
       "subjectId": "arrecife-unit-5f-umiña-manta-ec",
       "action": "rescreen-listing",
       "branch": "main",
-      "agentId": "bc-aa388b52-06e0-4ebe-8d7d-8145e3064fe4",
-      "runId": "run-f6934b66-f580-4dd6-91b7-222640bfe7f3",
-      "agentUrl": "https://cursor.com/agents/bc-aa388b52-06e0-4ebe-8d7d-8145e3064fe4",
-      "status": "ERROR",
-      "createdAt": "2026-10-09T13:59:07.020Z",
-      "updatedAt": "2026-10-09T14:01:18.269Z"
+      "agentId": "bc-f83ccb84-b856-4c18-9aae-c1bb4c4d3e01",
+      "runId": "run-f3d19b59-4725-47cc-94df-0792f054255e",
+      "agentUrl": "https://cursor.com/agents/bc-f83ccb84-b856-4c18-9aae-c1bb4c4d3e01",
+      "status": "ACTIVE",
+      "createdAt": "2026-11-09T16:58:26.130Z",
+      "updatedAt": "2026-11-09T16:58:26.130Z"
     },
     "scout:property:barbasquillo-2br-apt-230k-manta-ec:rescreen-listing": {
       "workKey": "scout:property:barbasquillo-2br-apt-230k-manta-ec:rescreen-listing",
@@ -582,12 +582,12 @@
       "subjectId": "barbasquillo-2br-apt-230k-manta-ec",
       "action": "rescreen-listing",
       "branch": "main",
-      "agentId": "bc-d92530c5-1f57-4d74-9917-38f692b94bb8",
-      "runId": "run-6ac82b24-c389-4412-b02e-28e89787006a",
-      "agentUrl": "https://cursor.com/agents/bc-d92530c5-1f57-4d74-9917-38f692b94bb8",
-      "status": "ERROR",
-      "createdAt": "2026-10-09T13:59:10.995Z",
-      "updatedAt": "2026-10-09T14:01:20.567Z"
+      "agentId": "bc-ebb35432-d3bf-4e18-bc00-a3f889b53802",
+      "runId": "run-5f3c5b6c-4eed-432e-9d2b-d324dc029651",
+      "agentUrl": "https://cursor.com/agents/bc-ebb35432-d3bf-4e18-bc00-a3f889b53802",
+      "status": "ACTIVE",
+      "createdAt": "2026-11-09T16:58:32.914Z",
+      "updatedAt": "2026-11-09T16:58:32.914Z"
     },
     "scout:property:barbasquillo-3br-apt-manta-ec:rescreen-listing": {
       "workKey": "scout:property:barbasquillo-3br-apt-manta-ec:rescreen-listing",
