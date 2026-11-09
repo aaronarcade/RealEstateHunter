@@ -5,16 +5,16 @@
   "listing_url": "https://www.realtor.com/international/ec/manta-manabi-province/p3/",
   "market_id": "manta-ec",
   "created_at": "2026-08-10T05:00:00Z",
-  "updated_at": "2026-10-09T14:00:00Z",
-  "last_screened_at": "2026-10-09T14:00:00Z",
+  "updated_at": "2026-11-09T16:59:10Z",
+  "last_screened_at": "2026-11-09T16:59:10Z",
   "screening_snapshot": {
     "price": 230000,
     "rough_monthly_rent": 850,
     "rough_gross_yield": 0.0443,
     "advertised_hoa": 328,
-    "screened_at": "2026-10-09T14:00:00Z"
+    "screened_at": "2026-11-09T16:59:10Z"
   },
-  "scout_notes": "Rescreen 2026-10-09: realtor.com international fetch egress-blocked; MLS RS2500096 (Poseidon Hotel Apt 9F, Barbasquillo) still Status Active on MLS/PropertyShelf/bienesraices mirrors at List Price $230,000 — 0% vs prior snapshot (no ≥5% drop). Association Fee $328/mo now stated (was null). Rent refresh: Rentberry Barbasquillo 2BR LTR $600–$800; same-building Poseidon optimistic $1,300 (sibling 7F/9F). At $850 → 4.4% gross; HOA-adj (850−328)×12/230000 ≈ 2.7%. Optimistic $1,300 → 6.8% gross / 5.1% HOA-adj. Need ~$1,917/mo for 10%. Stay ARCHIVED scout_reject; rescreen_after +30d.",
+  "scout_notes": "Rescreen 2026-11-09: realtor.com international /p3/ + mls-ecuador.com RS2500096 / PropertyShelf / bienesraices / FazWaz / Rentberry direct fetch egress-blocked (domains not in allowlist; curl SSL_ERROR_SYSCALL / WebFetch reject). WebSearch for RS2500096 / Poseidon Hotel Apt 9F / $230k Barbasquillo returned no sold, offline, or price-update signal. Pipeline sibling poseidon-9f-2br-barbasquillo-manta-ec (same MLS) rescanned 2026-10-20 still treating List Price $230,000 / HOA $328 as marketed. Holding $230,000 ask (0% vs 2026-10-09 snapshot; no ≥5% drop trigger). HOA $328/mo unchanged. Rent refresh from pipeline Barbasquillo / Poseidon 2BR (poseidon-9f/7f Oct 2026 screens): Rentberry Barbasquillo 2BR LTR $600–$800; size-matched ~120 m² LTR $900; optimistic same-building Poseidon $1,300 (sibling 7F RS2600215 / Rentola 135 m²) — rent not up vs snapshot. Keep conservative LTR $850 → 4.4% gross; HOA-adj (850−328)×12/230000 ≈ 2.7%. Optimistic $1,300 → 6.8% gross / 5.1% HOA-adj. Need ~$1,917/mo for 10% (or ask ≤~$102k at $850 / ≤~$156k at $1,300). No rescreen trigger met. Stay ARCHIVED scout_reject; rescreen_after +30d; rescreen_count=3.",
   "property_type": "condo",
   "building_name": "Poseidon",
   "unit": "9F",
@@ -24,12 +24,12 @@
   "rough_monthly_rent": 850,
   "rough_gross_yield": 0.0443,
   "advertised_hoa": 328,
-  "rent_source": "Barbasquillo 2BR LTR comps (Rentberry $600–$800); optimistic same-building Poseidon $1,300",
+  "rent_source": "Barbasquillo 2BR LTR comps (Rentberry $600–$800); optimistic same-building Poseidon $1,300 (live portals egress-blocked)",
   "rent_confidence": "MEDIUM",
   "mls_id": "RS2500096",
   "workflow_state": "ARCHIVED",
   "scout_decision": "REJECT",
   "archive_reason": "scout_reject",
-  "rescreen_after": "2026-11-08T14:00:00Z",
-  "rescreen_count": 2
+  "rescreen_after": "2026-12-09T16:59:10Z",
+  "rescreen_count": 3
 }
