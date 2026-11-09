@@ -5,16 +5,16 @@
   "listing_url": "https://mls.mls-ecuador.com/agencies/ecuador-shores-realty/listings/rs2500285",
   "market_id": "manta-ec",
   "created_at": "2026-08-10T05:00:00Z",
-  "updated_at": "2026-10-09T14:00:22Z",
-  "last_screened_at": "2026-10-09T14:00:22Z",
+  "updated_at": "2026-11-09T16:59:40Z",
+  "last_screened_at": "2026-11-09T16:59:40Z",
   "screening_snapshot": {
     "price": 264500,
     "rough_monthly_rent": 1500,
     "rough_gross_yield": 0.0681,
     "advertised_hoa": 273,
-    "screened_at": "2026-10-09T14:00:22Z"
+    "screened_at": "2026-11-09T16:59:40Z"
   },
-  "scout_notes": "Rescreen 2026-10-09: mls.mls-ecuador.com direct fetch egress-blocked; RS2500285 still Active via MLS search index + ESR agency mirror (no SOLD/PENDING markers). List Price $264,500 / HOA $273 (0% vs prior $264.5k snapshot; ESR mirror $259k ≈2.1% — below 5% drop trigger). Rent refresh: San Marino 1BR LTR $700–$750; oceanfront 3BR Manta LTR comps $1,500 (FazWaz/Asia Villas) and $1,800 (Rentberry Malecón). Using optimistic oceanfront 3BR LTR $1,500 → 6.8% gross; HOA-adjusted (1500−273)×12/264500 ≈ 5.6%. Even $1,800 still 8.2% (need ~$2,204/mo for 10%). Stay ARCHIVED scout_reject; rescreen_after +30d.",
+  "scout_notes": "Rescreen 2026-11-09: mls.mls-ecuador.com / ESR / FazWaz / Rentberry / realtor.com direct fetch egress-blocked (domains not in allowlist; curl SSL fail / WebFetch reject). WebSearch for RS2500285 / Oceanfront Gem / San Marino Murciélago / $264,500 / Ecuador Shores Realty returned no sold, offline, or price-update signal. Holding last-known MLS ask $264,500 / HOA $273 (0% vs 2026-10-09 snapshot; prior ESR mirror $259k ≈2.1% — below 5% drop trigger). Rent refresh: no indexed rent-up vs prior oceanfront 3BR LTR comps $1,500–$1,800 / San Marino 1BR $700–$750. Keep $1,500 → 6.8% gross; HOA-adj (1500−273)×12/264500 ≈ 5.6%. Optimistic $1,800 still 8.2% (need ~$2,204/mo for 10%). No rescreen trigger met. Stay ARCHIVED scout_reject; rescreen_after +30d; rescreen_count=3.",
   "property_type": "condo",
   "building_name": "San Marino",
   "beds": 3,
@@ -23,12 +23,12 @@
   "rough_monthly_rent": 1500,
   "rough_gross_yield": 0.0681,
   "advertised_hoa": 273,
-  "rent_source": "Oceanfront 3BR Manta LTR comps $1,500–$1,800; San Marino same-building 1BR $700–$750",
+  "rent_source": "Oceanfront 3BR Manta LTR comps $1,500–$1,800; San Marino same-building 1BR $700–$750 (live portals egress-blocked; unchanged vs prior)",
   "rent_confidence": "MEDIUM",
   "mls_id": "RS2500285",
   "workflow_state": "ARCHIVED",
   "scout_decision": "REJECT",
   "archive_reason": "scout_reject",
-  "rescreen_after": "2026-11-08T14:00:22Z",
-  "rescreen_count": 2
+  "rescreen_after": "2026-12-09T16:59:40Z",
+  "rescreen_count": 3
 }
