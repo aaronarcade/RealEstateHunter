@@ -5,16 +5,16 @@
   "listing_url": "https://mls-ecuador.com/en/real-estate/manta-real-estate/rs2600320",
   "market_id": "manta-ec",
   "created_at": "2026-08-10T05:00:00Z",
-  "updated_at": "2026-10-10T13:09:47Z",
-  "last_screened_at": "2026-10-10T13:09:47Z",
+  "updated_at": "2026-11-10T15:19:23Z",
+  "last_screened_at": "2026-11-10T15:19:23Z",
   "screening_snapshot": {
     "price": 340000,
     "rough_monthly_rent": 900,
     "rough_gross_yield": 0.0318,
     "advertised_hoa": 254,
-    "screened_at": "2026-10-10T13:09:47Z"
+    "screened_at": "2026-11-10T15:19:23Z"
   },
-  "scout_notes": "Rescreen 2026-10-10: mls-ecuador.com / PropertyShelf direct fetch egress-blocked; RS2600320 (Riva di Mare, Barbasquillo, floor 5, 3BR/2BA ~118–132 m² furnished) still indexed For Sale on MLS + ecuador.propertyshelf mirrors at List Price $340,000 / alícuota $254 — 0% vs prior snapshot (no ≥5% drop trigger). Rent refresh: FazWaz Barbasquillo 3BR unfurnished 65 m² $490; Rentola Barbasquillo 120 m² $515; Rentberry Lomas de Barbasquillo furnished 174 m² $1,200 — rent not up vs prior $900 generous LTR for this ~130 m² unit. At $900 → 3.2% gross; HOA-adj (900−254)×12/340000 ≈ 2.3%. Optimistic $1,200 → 4.2% gross / 3.3% HOA-adj. Need ~$2,833/mo for 10%. Stay ARCHIVED scout_reject; rescreen_after +30d.",
+  "scout_notes": "Rescreen 2026-11-10: mls-ecuador.com / PropertyShelf direct fetch egress-blocked (domains not in allowlist; curl SSL_ERROR_SYSCALL / WebFetch reject). WebSearch for RS2600320 / Riva di Mare Barbasquillo 3BR / $340k returned no sold, offline, or price-update signal. Pipeline siblings riva-di-mare-2br (RS2401115) and riva-di-mare-1br rescanned 2026-10-21 still treated same-building inventory as marketed. Holding last-known MLS ask $340,000 / alícuota $254 (0% vs 2026-10-10 snapshot; no ≥5% drop trigger). Rent refresh from pipeline Barbasquillo/Manta 3BR screens: FazWaz Barbasquillo 3BR unfurnished ~65 m² $490; Rentola Barbasquillo ~120 m² $515; FazWaz Manta 3BR avg ~$825; Rentberry Lomas de Barbasquillo furnished 174 m² / Barbasquillo 3BR ~$1,200; Buzios oceanfront comps $1,200–$1,300 — rent not up vs prior $900 generous size-matched LTR for this ~118–132 m² unit. Keep $900 → 3.2% gross; HOA-adj (900−254)×12/340000 ≈ 2.3%. Optimistic $1,200 → 4.2% gross / 3.3% HOA-adj. Need ~$2,833/mo for 10% (or ask ≤~$108k at $900). No rescreen trigger met. Stay ARCHIVED scout_reject; rescreen_after +30d; rescreen_count=3.",
   "property_type": "condo",
   "building_name": "Riva di Mare",
   "beds": 3,
@@ -23,12 +23,12 @@
   "rough_monthly_rent": 900,
   "rough_gross_yield": 0.0318,
   "advertised_hoa": 254,
-  "rent_source": "Barbasquillo 3BR LTR comps (FazWaz $490; Rentola $515; Rentberry furnished 174 m² $1,200); keep $900 generous size-matched",
+  "rent_source": "Pipeline Barbasquillo/Manta 3BR: FazWaz ~$490–$825; Rentola ~$515; Rentberry furnished ~$1,200; keep $900 generous size-matched (live portals egress-blocked)",
   "rent_confidence": "MEDIUM",
   "mls_id": "RS2600320",
   "workflow_state": "ARCHIVED",
   "scout_decision": "REJECT",
   "archive_reason": "scout_reject",
-  "rescreen_after": "2026-11-09T13:09:47Z",
-  "rescreen_count": 2
+  "rescreen_after": "2026-12-10T15:19:23Z",
+  "rescreen_count": 3
 }
