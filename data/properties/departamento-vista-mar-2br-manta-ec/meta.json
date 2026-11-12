@@ -5,16 +5,16 @@
   "listing_url": "http://bienesraices-ecuador.com/en/latest-listings/rs2500306",
   "market_id": "manta-ec",
   "created_at": "2026-08-10T05:00:00Z",
-  "updated_at": "2026-10-12T16:18:17Z",
-  "last_screened_at": "2026-10-12T16:18:17Z",
+  "updated_at": "2026-11-12T15:42:00Z",
+  "last_screened_at": "2026-11-12T15:42:00Z",
   "screening_snapshot": {
     "price": 170000,
     "rough_monthly_rent": 990,
     "rough_gross_yield": 0.0699,
     "advertised_hoa": null,
-    "screened_at": "2026-10-12T16:18:17Z"
+    "screened_at": "2026-11-12T15:42:00Z"
   },
-  "scout_notes": "Rescreen 2026-10-12: bienesraices-ecuador.com / mls-ecuador.com direct fetch egress-blocked; MLS RS2500306 (Departamento con vista al mar – Beachfront Apartment, Ciudad del Mar, 99 m², 2BR/2.5BA, floor 2) still Status Active via indexed bienesraices-ecuador + search mirrors at List Price $170,000 — 0% price change vs prior snapshot (no ≥5% drop trigger). HOA/alícuota still not stated on listing. Rent refresh: Rentola Torre Helios CdM 95 m² 2BR $990 incl. alícuota+internet; Rentola CdM oceanfront duplex 120 m² $1,000; CdM 2BR house LTR $1,200; rent not up vs prior $990–$1,300 band. Using conservative LTR $990 → 7.0% gross. Optimistic $1,200 → 8.5%; even $1,300 still 9.2% — need ~$1,417/mo for 10%. Stay ARCHIVED scout_reject; rescreen_after +30d; rescreen_count=2.",
+  "scout_notes": "Rescreen 2026-11-12: bienesraices-ecuador.com / mls-ecuador.com / realtor.com direct fetch egress-blocked (domains not in allowlist; curl 403 / WebFetch reject). WebSearch for RS2500306 / Ciudad del Mar Departamento con vista al mar 2BR / $170,000 returned no sold, offline, or price-update signal. Holding last-known MLS ask $170,000 (0% vs 2026-10-12 snapshot; no ≥5% price-drop trigger). HOA/alícuota still not stated. Rent refresh: no indexed rent-up vs prior CdM 2BR LTR band (Rentola Helios $990; duplex/oceanfront $1,000–$1,200; pipeline El Faro size-matched ~$1,200). Keep conservative LTR $990 → 7.0% gross. Optimistic $1,200 → 8.5%; even $1,300 still 9.2% — need ~$1,417/mo for 10%. No rescreen trigger met. Stay ARCHIVED scout_reject; rescreen_after +30d; rescreen_count=3.",
   "property_type": "condo",
   "building_name": "Ciudad del Mar",
   "beds": 2,
@@ -23,12 +23,12 @@
   "rough_monthly_rent": 990,
   "rough_gross_yield": 0.0699,
   "advertised_hoa": null,
-  "rent_source": "Ciudad del Mar 2BR LTR comps (Rentola Helios $990; CdM duplex/oceanfront $1,000–$1,200)",
+  "rent_source": "Ciudad del Mar 2BR LTR comps (Rentola Helios $990; CdM duplex/oceanfront $1,000–$1,200; live portals egress-blocked; unchanged vs prior)",
   "rent_confidence": "MEDIUM",
   "mls_id": "RS2500306",
   "workflow_state": "ARCHIVED",
   "scout_decision": "REJECT",
   "archive_reason": "scout_reject",
-  "rescreen_after": "2026-11-11T16:18:17Z",
-  "rescreen_count": 2
+  "rescreen_after": "2026-12-12T15:42:00Z",
+  "rescreen_count": 3
 }
