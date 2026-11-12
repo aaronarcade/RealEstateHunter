@@ -638,12 +638,12 @@
       "subjectId": "ciudad-del-mar-3br-condo-manta-ec",
       "action": "rescreen-listing",
       "branch": "main",
-      "agentId": "bc-40b9a26d-ba1d-491c-9d0c-c2efca1b1c90",
-      "runId": "run-437cd0c4-07f2-4afa-9d25-a9dd52e68be8",
-      "agentUrl": "https://cursor.com/agents/bc-40b9a26d-ba1d-491c-9d0c-c2efca1b1c90",
-      "status": "ERROR",
-      "createdAt": "2026-10-12T16:17:13.943Z",
-      "updatedAt": "2026-10-12T16:18:55.948Z"
+      "agentId": "bc-886c1f87-3c0d-4fe3-9999-024ca43e730d",
+      "runId": "run-f60a15d8-b342-4e84-ac05-4258844954c8",
+      "agentUrl": "https://cursor.com/agents/bc-886c1f87-3c0d-4fe3-9999-024ca43e730d",
+      "status": "ACTIVE",
+      "createdAt": "2026-11-12T15:40:15.237Z",
+      "updatedAt": "2026-11-12T15:40:15.237Z"
     },
     "scout:property:dep-manta-2br-ocean-view-manta-ec:rescreen-listing": {
       "workKey": "scout:property:dep-manta-2br-ocean-view-manta-ec:rescreen-listing",
@@ -666,12 +666,12 @@
       "subjectId": "departamento-vista-mar-2br-manta-ec",
       "action": "rescreen-listing",
       "branch": "main",
-      "agentId": "bc-456b649e-ae88-4158-add2-b0fed5a4ad0d",
-      "runId": "run-5760c8c7-7022-4254-b22a-35856def5905",
-      "agentUrl": "https://cursor.com/agents/bc-456b649e-ae88-4158-add2-b0fed5a4ad0d",
-      "status": "ERROR",
-      "createdAt": "2026-10-12T16:17:20.796Z",
-      "updatedAt": "2026-10-12T16:18:56.816Z"
+      "agentId": "bc-dd1f4c8c-4d5e-4356-871f-00d9a4a0b8ba",
+      "runId": "run-f124e6c3-c456-46d4-b3f8-b222475c0539",
+      "agentUrl": "https://cursor.com/agents/bc-dd1f4c8c-4d5e-4356-871f-00d9a4a0b8ba",
+      "status": "ACTIVE",
+      "createdAt": "2026-11-12T15:40:19.395Z",
+      "updatedAt": "2026-11-12T15:40:19.395Z"
     },
     "scout:property:edificio-buzios-3br-manta-ec:rescreen-listing": {
       "workKey": "scout:property:edificio-buzios-3br-manta-ec:rescreen-listing",
@@ -680,12 +680,12 @@
       "subjectId": "edificio-buzios-3br-manta-ec",
       "action": "rescreen-listing",
       "branch": "main",
-      "agentId": "bc-32cf5d1a-bd5c-47b9-a365-b8567654eed4",
-      "runId": "run-a0f590ce-6374-4d80-b653-3b9858e14669",
-      "agentUrl": "https://cursor.com/agents/bc-32cf5d1a-bd5c-47b9-a365-b8567654eed4",
-      "status": "ERROR",
-      "createdAt": "2026-10-13T14:40:42.252Z",
-      "updatedAt": "2026-10-13T14:43:03.794Z"
+      "agentId": "bc-a36aac94-0285-4dcf-ad43-5bff4771fbf0",
+      "runId": "run-6e2e5df5-803b-4f4c-957c-3252402f0f02",
+      "agentUrl": "https://cursor.com/agents/bc-a36aac94-0285-4dcf-ad43-5bff4771fbf0",
+      "status": "ACTIVE",
+      "createdAt": "2026-11-12T15:40:31.153Z",
+      "updatedAt": "2026-11-12T15:40:31.153Z"
     },
     "scout:property:el-faro-unit-2f-ciudad-del-mar-manta-ec:rescreen-listing": {
       "workKey": "scout:property:el-faro-unit-2f-ciudad-del-mar-manta-ec:rescreen-listing",
