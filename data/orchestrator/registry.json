@@ -641,9 +641,9 @@
       "agentId": "bc-886c1f87-3c0d-4fe3-9999-024ca43e730d",
       "runId": "run-f60a15d8-b342-4e84-ac05-4258844954c8",
       "agentUrl": "https://cursor.com/agents/bc-886c1f87-3c0d-4fe3-9999-024ca43e730d",
-      "status": "ACTIVE",
+      "status": "ERROR",
       "createdAt": "2026-11-12T15:40:15.237Z",
-      "updatedAt": "2026-11-12T15:40:15.237Z"
+      "updatedAt": "2026-11-12T15:42:37.885Z"
     },
     "scout:property:dep-manta-2br-ocean-view-manta-ec:rescreen-listing": {
       "workKey": "scout:property:dep-manta-2br-ocean-view-manta-ec:rescreen-listing",
@@ -669,9 +669,9 @@
       "agentId": "bc-dd1f4c8c-4d5e-4356-871f-00d9a4a0b8ba",
       "runId": "run-f124e6c3-c456-46d4-b3f8-b222475c0539",
       "agentUrl": "https://cursor.com/agents/bc-dd1f4c8c-4d5e-4356-871f-00d9a4a0b8ba",
-      "status": "ACTIVE",
+      "status": "ERROR",
       "createdAt": "2026-11-12T15:40:19.395Z",
-      "updatedAt": "2026-11-12T15:40:19.395Z"
+      "updatedAt": "2026-11-12T15:42:37.928Z"
     },
     "scout:property:edificio-buzios-3br-manta-ec:rescreen-listing": {
       "workKey": "scout:property:edificio-buzios-3br-manta-ec:rescreen-listing",
@@ -683,9 +683,9 @@
       "agentId": "bc-a36aac94-0285-4dcf-ad43-5bff4771fbf0",
       "runId": "run-6e2e5df5-803b-4f4c-957c-3252402f0f02",
       "agentUrl": "https://cursor.com/agents/bc-a36aac94-0285-4dcf-ad43-5bff4771fbf0",
-      "status": "ACTIVE",
+      "status": "ERROR",
       "createdAt": "2026-11-12T15:40:31.153Z",
-      "updatedAt": "2026-11-12T15:40:31.153Z"
+      "updatedAt": "2026-11-12T15:42:39.420Z"
     },
     "scout:property:el-faro-unit-2f-ciudad-del-mar-manta-ec:rescreen-listing": {
       "workKey": "scout:property:el-faro-unit-2f-ciudad-del-mar-manta-ec:rescreen-listing",
