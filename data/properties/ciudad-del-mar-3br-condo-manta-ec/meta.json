@@ -5,16 +5,16 @@
   "listing_url": "https://mls-ecuador.com/en/real-estate/manta-real-estate/rs2500227",
   "market_id": "manta-ec",
   "created_at": "2026-08-10T05:00:00Z",
-  "updated_at": "2026-10-12T16:18:20Z",
-  "last_screened_at": "2026-10-12T16:18:20Z",
+  "updated_at": "2026-11-12T15:41:08Z",
+  "last_screened_at": "2026-11-12T15:41:08Z",
   "screening_snapshot": {
     "price": 183000,
     "rough_monthly_rent": 1250,
     "rough_gross_yield": 0.082,
     "advertised_hoa": 54,
-    "screened_at": "2026-10-12T16:18:20Z"
+    "screened_at": "2026-11-12T15:41:08Z"
   },
-  "scout_notes": "Rescreen 2026-10-12: mls-ecuador.com direct fetch egress-blocked; RS2500227 still Active via MLS search index + Santos Azúa agency mirror (no SOLD/PENDING markers). List Price $183,000 / HOA $54 (0% vs prior $183k snapshot — no ≥5% drop trigger). Rent refresh: Ciudad del Mar 3BR LTR — FazWaz Torres Elit $1,100; Rentola same-community 160m² ocean-view 2nd floor $1,250; MiPropiedad Torres Elit furnished $1,300; FazWaz 175m² ocean-view $1,400. Using mid same-community $1,250 → 8.2% gross; HOA-adjusted (1250−54)×12/183000 ≈ 7.8%. Optimistic $1,400 still 9.2% / 8.8% HOA-adj — below 10% scout threshold (~$1,525/mo needed). Stay ARCHIVED scout_reject; rescreen_after +30d.",
+  "scout_notes": "Rescreen 2026-11-12: mls-ecuador.com / Santos Azúa / PropertyShelf / FazWaz / Rentola / MiPropiedad direct fetch egress-blocked (domains not in allowlist; curl SSL_ERROR_SYSCALL / WebFetch reject). WebSearch for RS2500227 / Ciudad del Mar 3BR / $183k returned no sold, offline, or price-update signal. Holding last-known MLS ask $183,000 / HOA $54 (0% vs 2026-10-12 snapshot; no ≥5% drop trigger). Rent refresh: no indexed rent-up vs prior CdM 3BR LTR comps (FazWaz Torres Elit $1,100; Rentola same-community 160m² $1,250; MiPropiedad Torres Elit $1,300; FazWaz 175m² $1,400). Keep mid same-community $1,250 → 8.2% gross; HOA-adj (1250−54)×12/183000 ≈ 7.8%. Optimistic $1,400 still 9.2% / 8.8% HOA-adj — below 10% (~$1,525/mo needed). No rescreen trigger met. Stay ARCHIVED scout_reject; rescreen_after +30d; rescreen_count=3.",
   "property_type": "condo",
   "building_name": "Ciudad del Mar",
   "beds": 3,
@@ -23,12 +23,12 @@
   "rough_monthly_rent": 1250,
   "rough_gross_yield": 0.082,
   "advertised_hoa": 54,
-  "rent_source": "Ciudad del Mar 3BR LTR comps (Rentola $1,250 same-community; FazWaz Torres Elit $1,100; MiPropiedad $1,300; FazWaz 175m² $1,400)",
+  "rent_source": "Ciudad del Mar 3BR LTR comps (Rentola $1,250 same-community; FazWaz Torres Elit $1,100; MiPropiedad $1,300; FazWaz 175m² $1,400; live portals egress-blocked; unchanged vs prior)",
   "rent_confidence": "MEDIUM",
   "mls_id": "RS2500227",
   "workflow_state": "ARCHIVED",
   "scout_decision": "REJECT",
   "archive_reason": "scout_reject",
-  "rescreen_after": "2026-11-11T16:18:20Z",
-  "rescreen_count": 2
+  "rescreen_after": "2026-12-12T15:41:08Z",
+  "rescreen_count": 3
 }
