@@ -694,12 +694,12 @@
       "subjectId": "el-faro-unit-2f-ciudad-del-mar-manta-ec",
       "action": "rescreen-listing",
       "branch": "main",
-      "agentId": "bc-1c7b98c7-d41d-417d-9d51-4c5785d8674e",
-      "runId": "run-6366a348-94c5-40c2-8b2d-b56db445ca83",
-      "agentUrl": "https://cursor.com/agents/bc-1c7b98c7-d41d-417d-9d51-4c5785d8674e",
-      "status": "ERROR",
-      "createdAt": "2026-10-13T14:40:47.304Z",
-      "updatedAt": "2026-10-13T14:43:04.347Z"
+      "agentId": "bc-d5685b8c-6eb8-4d6d-baad-c422dd4d4a92",
+      "runId": "run-a542fa86-3fe4-46c7-ae85-72b377a6316b",
+      "agentUrl": "https://cursor.com/agents/bc-d5685b8c-6eb8-4d6d-baad-c422dd4d4a92",
+      "status": "ACTIVE",
+      "createdAt": "2026-11-13T14:58:49.220Z",
+      "updatedAt": "2026-11-13T14:58:49.220Z"
     },
     "scout:property:elite-towers-3br-oceanfront-manta-ec:rescreen-listing": {
       "workKey": "scout:property:elite-towers-3br-oceanfront-manta-ec:rescreen-listing",
@@ -708,12 +708,12 @@
       "subjectId": "elite-towers-3br-oceanfront-manta-ec",
       "action": "rescreen-listing",
       "branch": "main",
-      "agentId": "bc-88888f34-02eb-4857-a505-77e73f039452",
-      "runId": "run-fb146a30-5ba6-468f-9a4b-51ccc72baf4c",
-      "agentUrl": "https://cursor.com/agents/bc-88888f34-02eb-4857-a505-77e73f039452",
-      "status": "ERROR",
-      "createdAt": "2026-10-13T14:40:59.599Z",
-      "updatedAt": "2026-10-13T14:43:04.716Z"
+      "agentId": "bc-92467668-d9c5-492e-bc14-dd8391764a15",
+      "runId": "run-955304f8-56da-4448-a9f6-610c7a070a41",
+      "agentUrl": "https://cursor.com/agents/bc-92467668-d9c5-492e-bc14-dd8391764a15",
+      "status": "ACTIVE",
+      "createdAt": "2026-11-13T14:58:52.611Z",
+      "updatedAt": "2026-11-13T14:58:52.611Z"
     },
     "scout:property:fez-manta-unit-210-barbasquillo-manta-ec:rescreen-listing": {
       "workKey": "scout:property:fez-manta-unit-210-barbasquillo-manta-ec:rescreen-listing",
@@ -722,12 +722,12 @@
       "subjectId": "fez-manta-unit-210-barbasquillo-manta-ec",
       "action": "rescreen-listing",
       "branch": "main",
-      "agentId": "bc-d42b0ad8-3ef5-4f82-b544-a825392d7a5b",
-      "runId": "run-98bdcecf-f4e0-4b74-98da-2d6b492e854b",
-      "agentUrl": "https://cursor.com/agents/bc-d42b0ad8-3ef5-4f82-b544-a825392d7a5b",
-      "status": "ERROR",
-      "createdAt": "2026-10-14T12:33:08.676Z",
-      "updatedAt": "2026-10-14T12:42:14.138Z"
+      "agentId": "bc-78e802ac-1c53-435e-b445-963cdf070370",
+      "runId": "run-221a20e0-ca1a-4326-b9cd-cc3aaabe25ab",
+      "agentUrl": "https://cursor.com/agents/bc-78e802ac-1c53-435e-b445-963cdf070370",
+      "status": "ACTIVE",
+      "createdAt": "2026-11-13T14:58:55.208Z",
+      "updatedAt": "2026-11-13T14:58:55.208Z"
     },
     "scout:property:fez-manta-unit-405-barbasquillo-manta-ec:rescreen-listing": {
       "workKey": "scout:property:fez-manta-unit-405-barbasquillo-manta-ec:rescreen-listing",
