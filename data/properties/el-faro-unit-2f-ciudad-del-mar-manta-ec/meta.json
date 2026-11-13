@@ -5,16 +5,16 @@
   "listing_url": "https://mls.mls-ecuador.com/agencies/ecuadoriancoastalproperties/listings/rs2401126",
   "market_id": "manta-ec",
   "created_at": "2026-08-10T05:00:00Z",
-  "updated_at": "2026-10-13T14:41:43Z",
-  "last_screened_at": "2026-10-13T14:41:43Z",
+  "updated_at": "2026-11-13T15:00:00Z",
+  "last_screened_at": "2026-11-13T15:00:00Z",
   "screening_snapshot": {
     "price": 178000,
     "rough_monthly_rent": 1200,
     "rough_gross_yield": 0.0809,
     "advertised_hoa": 40,
-    "screened_at": "2026-10-13T14:41:43Z"
+    "screened_at": "2026-11-13T15:00:00Z"
   },
-  "scout_notes": "Rescreen 2026-10-13: mls-ecuador.com direct fetch egress-blocked; RS2401126 still Active via MLS agency page + recent-listings index (El Faro Unit 2F, furnished 2/2, 90.72 m², Ciudad del Mar) at List Price $178,000 / Association Fee Amount (Monthly) $40 — 0% vs prior $178k snapshot (no ≥5% drop trigger); no SOLD/PENDING markers. Rent refresh: Ciudad del Mar 2BR LTR — FazWaz oceanfront 130 m² $900; Rentola Torre Helios 95 m² $990 (incl. alícuota); FazWaz size-matched 90 m² oceanfront $1,200; FazWaz/Rentola 120 m² $1,200. Using size-matched $1,200 (up vs prior $990 screen) → 8.1% gross; HOA-adjusted (1200−40)×12/178000 ≈ 7.8%. Optimistic top of band still ~8.1% — need ~$1,483/mo for 10%. Stay ARCHIVED scout_reject; rescreen_after +30d.",
+  "scout_notes": "Rescreen 2026-11-13: mls.mls-ecuador.com / ecuadoriancoastalproperties.com / FazWaz / Rentola / realtor.com direct fetch egress-blocked (domains not in allowlist; curl SSL_ERROR_SYSCALL / WebFetch reject). WebSearch for RS2401126 / El Faro Unit 2F / Ciudad del Mar / $178,000 returned no sold, offline, or price-update signal. Holding last-known MLS ask $178,000 / Association Fee Amount (Monthly) $40 (0% vs 2026-10-13 snapshot; no ≥5% price-drop trigger). Rent refresh: no indexed rent-up vs prior CdM 2BR LTR band (FazWaz size-matched 90 m² $1,200; Rentola Helios 95 m² $990; FazWaz/Rentola 120 m² $1,200; FazWaz 130 m² $900). Keep size-matched $1,200 → 8.1% gross; HOA-adj (1200−40)×12/178000 ≈ 7.8%. Optimistic top of band still ~8.1% — need ~$1,483/mo for 10%. No rescreen trigger met. Stay ARCHIVED scout_reject; rescreen_after +30d; rescreen_count=3.",
   "property_type": "condo",
   "building_name": "El Faro",
   "unit": "2F",
@@ -24,12 +24,12 @@
   "rough_monthly_rent": 1200,
   "rough_gross_yield": 0.0809,
   "advertised_hoa": 40,
-  "rent_source": "Ciudad del Mar 2BR LTR comps (FazWaz 90 m² $1,200 size-matched; Rentola Helios 95 m² $990; FazWaz/Rentola 120 m² $1,200; FazWaz 130 m² $900)",
+  "rent_source": "Ciudad del Mar 2BR LTR comps (FazWaz 90 m² $1,200 size-matched; Rentola Helios 95 m² $990; FazWaz/Rentola 120 m² $1,200; FazWaz 130 m² $900 — live portals egress-blocked; unchanged vs prior)",
   "rent_confidence": "MEDIUM",
   "mls_id": "RS2401126",
   "workflow_state": "ARCHIVED",
   "scout_decision": "REJECT",
   "archive_reason": "scout_reject",
-  "rescreen_after": "2026-11-12T14:41:43Z",
-  "rescreen_count": 2
+  "rescreen_after": "2026-12-13T15:00:00Z",
+  "rescreen_count": 3
 }
