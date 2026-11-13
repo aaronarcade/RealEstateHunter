@@ -5,16 +5,16 @@
   "listing_url": "https://www.ecuadorshoresrealty.com/property/3-2-double-balcony-fully-furnished-oceanfront-condo-manta-ecuador/",
   "market_id": "manta-ec",
   "created_at": "2026-08-10T05:00:00Z",
-  "updated_at": "2026-10-13T14:42:10Z",
-  "last_screened_at": "2026-10-13T14:42:10Z",
+  "updated_at": "2026-11-13T15:00:04Z",
+  "last_screened_at": "2026-11-13T15:00:04Z",
   "screening_snapshot": {
     "price": 319900,
     "rough_monthly_rent": 1500,
     "rough_gross_yield": 0.0563,
     "advertised_hoa": 225,
-    "screened_at": "2026-10-13T14:42:10Z"
+    "screened_at": "2026-11-13T15:00:04Z"
   },
-  "scout_notes": "Rescreen 2026-10-13: ecuadorshoresrealty.com direct fetch egress-blocked; ESR listing still indexed For Sale at $319,900 furnished / HOA $225 / taxes <$400/yr (3/2, 1,313 sqft / 121 m², Elite Towers) — 0% vs prior snapshot (no ≥5% price-drop trigger). Rent refresh: same-building Torres Elit 3BR LTR MiPropiedad 122 m² $1,600 incl. internet+alícuota; FazWaz U4130937 122 m² $1,900; FazWaz U4117640 115 m² $1,100; Elit 1BR suite LTR ~$1,100 incl. alícuota — rent not materially up vs prior $1,500. Conservative $1,500 → 5.6% gross; HOA-adj (1500−225)×12/319900 ≈ 4.8%. Optimistic $1,900 still only 7.1%. Need ~$2,666/mo for 10%. Stay ARCHIVED scout_reject; rescreen_after +30d; rescreen_count=2.",
+  "scout_notes": "Rescreen 2026-11-13: ecuadorshoresrealty.com direct fetch egress-blocked (domain not in allowlist; curl SSL_ERROR_SYSCALL / WebFetch reject). WebSearch for Elite Towers / double-balcony oceanfront / $319,900 / ESR listing returned no sold, offline, or price-update signal. Holding last-known ESR For Sale ask $319,900 furnished / HOA $225 / taxes <$400/yr (3/2, 1,313 sqft / 121 m²) — 0% vs 2026-10-13 snapshot (no ≥5% drop trigger). Rent refresh: pipeline sibling ciudad-del-mar-3br (rescanned 2026-11-12) Torres Elit / CdM 3BR LTR comps FazWaz $1,100 / Rentola $1,250 / MiPropiedad $1,300 / FazWaz 175m² $1,400; prior same-building MiPropiedad 122 m² $1,600 / FazWaz $1,100–$1,900 — rent not up vs snapshot $1,500. Keep conservative $1,500 → 5.6% gross; HOA-adj (1500−225)×12/319900 ≈ 4.8%. Optimistic $1,900 still only 7.1%. Need ~$2,666/mo for 10% (or ask ≤~$180k at $1,500). No rescreen trigger met. Stay ARCHIVED scout_reject; rescreen_after +30d; rescreen_count=3.",
   "property_type": "condo",
   "building_name": "Elite Towers",
   "beds": 3,
@@ -23,11 +23,11 @@
   "rough_monthly_rent": 1500,
   "rough_gross_yield": 0.0563,
   "advertised_hoa": 225,
-  "rent_source": "Conservative LTR; Torres Elit 3BR comps MiPropiedad $1,600 / FazWaz $1,100–$1,900; prior suite ~$1,100",
+  "rent_source": "Conservative LTR $1,500; Torres Elit/CdM 3BR comps $1,100–$1,900 (pipeline sibling + prior MiPropiedad/FazWaz); live portals egress-blocked",
   "rent_confidence": "MEDIUM",
   "workflow_state": "ARCHIVED",
   "scout_decision": "REJECT",
   "archive_reason": "scout_reject",
-  "rescreen_after": "2026-11-12T14:42:10Z",
-  "rescreen_count": 2
+  "rescreen_after": "2026-12-13T15:00:04Z",
+  "rescreen_count": 3
 }
