@@ -697,9 +697,9 @@
       "agentId": "bc-d5685b8c-6eb8-4d6d-baad-c422dd4d4a92",
       "runId": "run-a542fa86-3fe4-46c7-ae85-72b377a6316b",
       "agentUrl": "https://cursor.com/agents/bc-d5685b8c-6eb8-4d6d-baad-c422dd4d4a92",
-      "status": "ACTIVE",
+      "status": "ERROR",
       "createdAt": "2026-11-13T14:58:49.220Z",
-      "updatedAt": "2026-11-13T14:58:49.220Z"
+      "updatedAt": "2026-11-13T15:01:03.552Z"
     },
     "scout:property:elite-towers-3br-oceanfront-manta-ec:rescreen-listing": {
       "workKey": "scout:property:elite-towers-3br-oceanfront-manta-ec:rescreen-listing",
@@ -711,9 +711,9 @@
       "agentId": "bc-92467668-d9c5-492e-bc14-dd8391764a15",
       "runId": "run-955304f8-56da-4448-a9f6-610c7a070a41",
       "agentUrl": "https://cursor.com/agents/bc-92467668-d9c5-492e-bc14-dd8391764a15",
-      "status": "ACTIVE",
+      "status": "ERROR",
       "createdAt": "2026-11-13T14:58:52.611Z",
-      "updatedAt": "2026-11-13T14:58:52.611Z"
+      "updatedAt": "2026-11-13T15:01:11.970Z"
     },
     "scout:property:fez-manta-unit-210-barbasquillo-manta-ec:rescreen-listing": {
       "workKey": "scout:property:fez-manta-unit-210-barbasquillo-manta-ec:rescreen-listing",
@@ -725,9 +725,9 @@
       "agentId": "bc-78e802ac-1c53-435e-b445-963cdf070370",
       "runId": "run-221a20e0-ca1a-4326-b9cd-cc3aaabe25ab",
       "agentUrl": "https://cursor.com/agents/bc-78e802ac-1c53-435e-b445-963cdf070370",
-      "status": "ACTIVE",
+      "status": "ERROR",
       "createdAt": "2026-11-13T14:58:55.208Z",
-      "updatedAt": "2026-11-13T14:58:55.208Z"
+      "updatedAt": "2026-11-13T15:01:12.275Z"
     },
     "scout:property:fez-manta-unit-405-barbasquillo-manta-ec:rescreen-listing": {
       "workKey": "scout:property:fez-manta-unit-405-barbasquillo-manta-ec:rescreen-listing",
