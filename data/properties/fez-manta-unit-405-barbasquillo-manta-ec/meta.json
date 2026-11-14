@@ -5,16 +5,16 @@
   "listing_url": "https://trivo.com.ec/propiedades/fez-manta/",
   "market_id": "manta-ec",
   "created_at": "2026-08-10T05:00:00Z",
-  "updated_at": "2026-10-14T12:41:14Z",
-  "last_screened_at": "2026-10-14T12:41:14Z",
+  "updated_at": "2026-11-14T13:52:20Z",
+  "last_screened_at": "2026-11-14T13:52:20Z",
   "screening_snapshot": {
     "price": 70043,
     "rough_monthly_rent": 500,
     "rough_gross_yield": 0.0857,
     "advertised_hoa": null,
-    "screened_at": "2026-10-14T12:41:14Z"
+    "screened_at": "2026-11-14T13:52:20Z"
   },
-  "scout_notes": "Rescreen 2026-10-14: Trivo Fez Manta direct fetch + browser egress-blocked (ERR_CONNECTION_CLOSED); WebSearch/secondary portals (Plusvalía, OwnInEcuador, FazWaz, Google) also unreachable under current allowlist — could not reconfirm live Unidades disponibles. No positive sold/offline signal found, so treat as still marketed at last confirmed ask. Hold price $70,043 (0% vs prior snapshot; no ≥5% drop trigger observable). Prior sibling inventory unchanged in last screen (209 $62,150 / 210 $109,324 / 310 $114,739 / 408 $211,287). HOA/alícuota still unknown. Rent refresh from in-repo Fez 209 underwriting comps ($450–$550 size-adjusted for ~34 m² Barbasquillo suite) mid $500 — rent not up vs snapshot. Gross at $500 = 8.6%; optimistic $550 still 9.4%. Need ~$584/mo for 10%. Ask also below property_filters.price_range.min ($75k). Sibling Fez 209 already underwrote to 4.06% cap. Stay ARCHIVED scout_reject; rescreen_after +30d; rescreen_count=2. Requested egress allowlist for trivo.com.ec / realtor.com / fazwaz.com for future resccreens.",
+  "scout_notes": "Rescreen 2026-11-14: trivo.com.ec direct fetch egress-blocked (domain not in allowlist; curl SSL_ERROR_SYSCALL / WebFetch reject). WebSearch for Fez Manta Unit 405 / Barbasquillo / $70,043 returned no sold, offline, or price-update signal. Sibling Fez 210 rescanned 2026-11-13 same Trivo project URL still ARCHIVED as marketed — inventory treated as still live. Holding last-known Trivo ask $70,043 / ~34 m² 1BR piso 4 (0% vs 2026-10-14 snapshot; no ≥5% drop trigger). HOA/alícuota still unknown. Rent refresh from in-repo Fez 209 underwriting comps ($450–$550 size-adjusted Barbasquillo suite) mid $500 — rent not up vs snapshot. Gross at $500 = 8.6%; optimistic $550 still 9.4%. Need ~$584/mo for 10%. Ask also below property_filters.price_range.min ($75k). Sibling Fez 209 underwrote to 4.06% cap. No rescreen trigger met. Stay ARCHIVED scout_reject; rescreen_after +30d; rescreen_count=3.",
   "property_type": "condo",
   "building_name": "Fez Manta",
   "unit": "405",
@@ -24,11 +24,11 @@
   "rough_monthly_rent": 500,
   "rough_gross_yield": 0.0857,
   "advertised_hoa": null,
-  "rent_source": "Fez 209 size-adjusted Barbasquillo 1BR suite comps $450–$550 (underwriting mid $500); live FazWaz refresh blocked by egress",
+  "rent_source": "Fez 209 size-adjusted Barbasquillo 1BR suite comps $450–$550 (underwriting mid $500); live portals egress-blocked",
   "rent_confidence": "MEDIUM",
   "workflow_state": "ARCHIVED",
   "scout_decision": "REJECT",
   "archive_reason": "scout_reject",
-  "rescreen_after": "2026-11-13T12:41:14Z",
-  "rescreen_count": 2
+  "rescreen_after": "2026-12-14T13:52:20Z",
+  "rescreen_count": 3
 }
