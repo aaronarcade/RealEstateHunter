@@ -739,9 +739,9 @@
       "agentId": "bc-664f4a27-e55a-4b74-8f5c-a5ee5dc0a667",
       "runId": "run-ba34c3de-712d-4c09-8984-7db2c35343af",
       "agentUrl": "https://cursor.com/agents/bc-664f4a27-e55a-4b74-8f5c-a5ee5dc0a667",
-      "status": "ACTIVE",
+      "status": "ERROR",
       "createdAt": "2026-11-14T13:51:59.758Z",
-      "updatedAt": "2026-11-14T13:51:59.758Z"
+      "updatedAt": "2026-11-14T13:54:04.125Z"
     },
     "scout:property:fez-manta-unit-408-barbasquillo-manta-ec:rescreen-listing": {
       "workKey": "scout:property:fez-manta-unit-408-barbasquillo-manta-ec:rescreen-listing",
@@ -753,9 +753,9 @@
       "agentId": "bc-9049c597-108c-4128-9a19-0c188c7ec51b",
       "runId": "run-9d866842-4cef-41f5-b137-b9bd9025cb1f",
       "agentUrl": "https://cursor.com/agents/bc-9049c597-108c-4128-9a19-0c188c7ec51b",
-      "status": "ACTIVE",
+      "status": "ERROR",
       "createdAt": "2026-11-14T13:52:07.010Z",
-      "updatedAt": "2026-11-14T13:52:07.010Z"
+      "updatedAt": "2026-11-14T13:54:10.898Z"
     },
     "scout:property:grand-bay-3br-corner-manta-ec:rescreen-listing": {
       "workKey": "scout:property:grand-bay-3br-corner-manta-ec:rescreen-listing",
@@ -767,9 +767,9 @@
       "agentId": "bc-8802cfe0-93c5-4f7e-9511-d22de89bba08",
       "runId": "run-dca40887-2560-45fc-9c69-5fc8273747de",
       "agentUrl": "https://cursor.com/agents/bc-8802cfe0-93c5-4f7e-9511-d22de89bba08",
-      "status": "ACTIVE",
+      "status": "ERROR",
       "createdAt": "2026-11-14T13:52:12.040Z",
-      "updatedAt": "2026-11-14T13:52:12.040Z"
+      "updatedAt": "2026-11-14T13:54:11.393Z"
     },
     "scout:property:ibiza-3br-barbasquillo-260k-manta-ec:rescreen-listing": {
       "workKey": "scout:property:ibiza-3br-barbasquillo-260k-manta-ec:rescreen-listing",
