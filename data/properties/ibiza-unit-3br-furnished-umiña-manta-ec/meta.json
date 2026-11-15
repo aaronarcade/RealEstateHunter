@@ -5,16 +5,16 @@
   "listing_url": "https://mls-ecuador.com/en/real-estate/manta-real-estate/rs2500586",
   "market_id": "manta-ec",
   "created_at": "2026-08-10T05:00:00Z",
-  "updated_at": "2026-10-15T12:17:17Z",
-  "last_screened_at": "2026-10-15T12:17:17Z",
+  "updated_at": "2026-11-15T14:26:37Z",
+  "last_screened_at": "2026-11-15T14:26:37Z",
   "screening_snapshot": {
     "price": 275000,
     "rough_monthly_rent": 2000,
     "rough_gross_yield": 0.0873,
     "advertised_hoa": 290,
-    "screened_at": "2026-10-15T12:17:17Z"
+    "screened_at": "2026-11-15T14:26:37Z"
   },
-  "scout_notes": "Rescreen 2026-10-15: mls-ecuador.com / PropertyShelf direct fetch egress-blocked; WebSearch returned no RS2500586 price update, sold, or offline signal. Holding last-known MLS ask $275,000 / HOA $290 (0% vs 2026-09-14 snapshot; no ≥5% drop trigger). Rent refresh from pipeline: same-building Ibiza 5F still screens $2,000 LTR; Arrecife/Umiña 3BR optimistic $1,300; FazWaz El Murciélago 160 m² 3BR $1,200; Barbasquillo luxury ~$1,500; Rentberry Malecón beachfront $1,800 — rent not up vs prior $2,000. Using $2,000 → 8.7% gross; HOA-adjusted (2000−290)×12/275000 ≈ 7.5%. Optimistic $1,800 still 7.9% / 6.6% HOA-adj — below 10% (~$2,292/mo needed). Stay ARCHIVED scout_reject; rescreen_after +30d; rescreen_count=2.",
+  "scout_notes": "Rescreen 2026-11-15: mls-ecuador.com / PropertyShelf direct fetch egress-blocked (domain not in allowlist; curl/WebFetch fail). WebSearch for RS2500586 / Ibiza Umiña furnished $275k returned no sold, offline, or price-update signal. Holding last-known MLS ask $275,000 / HOA $290 (0% vs 2026-10-15 snapshot; no ≥5% drop trigger). Rent refresh from pipeline: same-building Ibiza 5F still screens $2,000 LTR; Arrecife/Umiña 3BR $1,300; Buzios oceanfront 3BR $1,300; San Marino oceanfront $1,500; Barbasquillo 3BR Riva $900 — rent not up vs prior $2,000. Using $2,000 → 8.7% gross; HOA-adjusted (2000−290)×12/275000 ≈ 7.5%. Optimistic $1,500 still 6.5% / 5.3% HOA-adj — below 10% (~$2,292/mo needed). Stay ARCHIVED scout_reject; rescreen_after +30d; rescreen_count=3.",
   "property_type": "condo",
   "building_name": "Ibiza",
   "beds": 3,
@@ -23,11 +23,11 @@
   "rough_monthly_rent": 2000,
   "rough_gross_yield": 0.0873,
   "advertised_hoa": 290,
-  "rent_source": "Same-building Ibiza 5F/Rentola $2,000 LTR held; pipeline refresh Arrecife/Umiña $1,300, Murciélago FazWaz $1,200, Barbasquillo luxury $1,500, Malecón Rentberry $1,800 (live portals egress-blocked)",
+  "rent_source": "Same-building Ibiza 5F $2,000 LTR held; pipeline refresh Arrecife/Umiña $1,300, Buzios $1,300, San Marino $1,500, Barbasquillo Riva $900 (live portals egress-blocked)",
   "rent_confidence": "MEDIUM",
   "workflow_state": "ARCHIVED",
   "scout_decision": "REJECT",
   "archive_reason": "scout_reject",
-  "rescreen_after": "2026-11-14T12:17:17Z",
-  "rescreen_count": 2
+  "rescreen_after": "2026-12-15T14:26:37Z",
+  "rescreen_count": 3
 }
