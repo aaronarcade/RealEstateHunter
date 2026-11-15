@@ -5,16 +5,16 @@
   "listing_url": "https://mls-ecuador.com/en/real-estate/manta-real-estate/rs2600324",
   "market_id": "manta-ec",
   "created_at": "2026-08-10T05:00:00Z",
-  "updated_at": "2026-10-16T12:00:38Z",
-  "last_screened_at": "2026-10-16T12:00:38Z",
+  "updated_at": "2026-11-15T14:28:01Z",
+  "last_screened_at": "2026-11-15T14:28:01Z",
   "screening_snapshot": {
     "price": 239900,
     "rough_monthly_rent": 1200,
     "rough_gross_yield": 0.06,
     "advertised_hoa": 252,
-    "screened_at": "2026-10-16T12:00:38Z"
+    "screened_at": "2026-11-15T14:28:01Z"
   },
-  "scout_notes": "Rescreen 2026-10-16: mls-ecuador.com / PropertyShelf / Santos Azúa direct fetch egress-blocked (curl/WebFetch allowlist reject). WebSearch returned no RS2600324 price update, sold, or offline signal. Holding last-known MLS ask $239,900 / Association Fee $252 (0% vs 2026-09-15 snapshot; no ≥5% drop trigger). Rent refresh from pipeline: prior Umiña 2BR band Rentola Navegante $850 / Rentberry ocean-view $750; Barbasquillo 2BR screens $1,100–$1,200 (Poseidon/Riva); keep optimistic premium STR $1,200 — rent not up vs snapshot. Gross at $1,200 = 6.0%; HOA-adjusted (1200−252)×12/239900 ≈ 4.7%. Need ~$2,000/mo for 10% gross. Stay ARCHIVED scout_reject; rescreen_after +30d; rescreen_count=2.",
+  "scout_notes": "Rescreen 2026-11-15: mls-ecuador.com / PropertyShelf / Santos Azúa direct fetch egress-blocked (domain not in allowlist; curl SSL_ERROR_SYSCALL / WebFetch reject). WebSearch for RS2600324 / Ibiza Unit 4F Umiña / $239,900 returned no sold, offline, or price-update signal. Same-building Ibiza 3BR furnished (RS2500586) rescanned same day still ARCHIVED at $275k — building inventory treated as still marketed. Holding last-known MLS ask $239,900 / Association Fee $252 (0% vs 2026-10-16 snapshot; no ≥5% drop trigger). Rent refresh from pipeline: Umiña 2BR Rentola Navegante $850 / Rentberry ocean-view $750; Barbasquillo 2BR Poseidon optimistic $1,300 / Riva $1,200 / Rentberry $600–$800 — rent not up vs prior optimistic STR $1,200. Keep $1,200 → 6.0% gross; HOA-adjusted (1200−252)×12/239900 ≈ 4.7%. Need ~$2,000/mo for 10% (or ask ≤~$144k at $1,200). No rescreen trigger met. Stay ARCHIVED scout_reject; rescreen_after +30d; rescreen_count=3.",
   "property_type": "condo",
   "building_name": "Ibiza",
   "unit": "4F",
@@ -24,11 +24,11 @@
   "rough_monthly_rent": 1200,
   "rough_gross_yield": 0.06,
   "advertised_hoa": 252,
-  "rent_source": "Optimistic STR $1,200 held; pipeline Umiña 2BR $750–$850 / Barbasquillo 2BR $1,100–$1,200 (live portals egress-blocked)",
+  "rent_source": "Optimistic STR $1,200 held; pipeline Umiña 2BR $750–$850 / Barbasquillo 2BR Poseidon–Riva $1,200–$1,300 (live portals egress-blocked)",
   "rent_confidence": "MEDIUM",
   "workflow_state": "ARCHIVED",
   "scout_decision": "REJECT",
   "archive_reason": "scout_reject",
-  "rescreen_after": "2026-11-15T12:00:38Z",
-  "rescreen_count": 2
+  "rescreen_after": "2026-12-15T14:28:01Z",
+  "rescreen_count": 3
 }
