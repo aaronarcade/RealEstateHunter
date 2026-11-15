@@ -5,16 +5,16 @@
   "listing_url": "https://www.realtor.com/international/ec/manta-manabi-province/p2/",
   "market_id": "manta-ec",
   "created_at": "2026-08-10T05:00:00Z",
-  "updated_at": "2026-10-15T12:17:38Z",
-  "last_screened_at": "2026-10-15T12:17:38Z",
+  "updated_at": "2026-11-15T14:27:00Z",
+  "last_screened_at": "2026-11-15T14:27:00Z",
   "screening_snapshot": {
     "price": 260000,
     "rough_monthly_rent": 1200,
     "rough_gross_yield": 0.0554,
     "advertised_hoa": 290,
-    "screened_at": "2026-10-15T12:17:38Z"
+    "screened_at": "2026-11-15T14:27:00Z"
   },
-  "scout_notes": "Rescreen 2026-10-15: realtor.com international (Manta p2) direct fetch egress-blocked (domain not in allowlist; curl/WebFetch fail). WebSearch for \"IBIZA: Near the Coast and Oceanfront Apartment For Sale in Barbasquillo\" / $260k returned no sold, offline, or price-update signal. Holding last-known ask $260,000 (3BR, 1,689.93 sq ft) from 2026-09-14 snapshot — 0% vs prior (no ≥5% drop trigger). Sibling Ibiza RS2500586 same floorplate still archived at $275k / HOA $290 (not a discount path for this unit). Rent refresh from pipeline Barbasquillo/Manta 3BR screens: Rentberry Barbasquillo 3BR ~$1,200; FazWaz Manta 3BR avg ~$825; Buzios oceanfront comps $1,200–$1,300; premium oceanfront ~$1,300 — rent not up vs prior $1,200. Using $1,200 → 5.5% gross; HOA-adjusted (1200−290)×12/260000 ≈ 4.2%. Optimistic $1,500/mo still only 6.9% gross — need ~$2,167/mo for 10%. Stay ARCHIVED scout_reject; rescreen_after +30d; rescreen_count=2.",
+  "scout_notes": "Rescreen 2026-11-15: realtor.com international (Manta p2) direct fetch egress-blocked (domain not in allowlist; curl empty / WebFetch reject). WebSearch for \"IBIZA: Near the Coast and Oceanfront Apartment For Sale in Barbasquillo\" / $260k returned no sold, offline, or price-update signal. Holding last-known ask $260,000 (3BR, 1,689.93 sq ft) from 2026-10-15 snapshot — 0% vs prior (no ≥5% drop trigger). Sibling Ibiza RS2500586 same floorplate still archived at $275k / HOA $290 (not a discount path for this unit). Rent refresh from pipeline Barbasquillo/Manta 3BR screens: buzios-oceanfront (2026-11-10) $1,200–$1,300; barbasquillo-3br (2026-11-10) Rentberry ~$1,200 / Buzios $1,200–$1,300; FazWaz Manta 3BR avg ~$825 — rent not up vs prior $1,200. Using $1,200 → 5.5% gross; HOA-adjusted (1200−290)×12/260000 ≈ 4.2%. Optimistic $1,500/mo still only 6.9% gross — need ~$2,167/mo for 10% (or ask ≤~$144k at $1,200). No rescreen trigger met. Stay ARCHIVED scout_reject; rescreen_after +30d; rescreen_count=3.",
   "property_type": "condo",
   "building_name": "Ibiza",
   "beds": 3,
@@ -23,11 +23,11 @@
   "rough_monthly_rent": 1200,
   "rough_gross_yield": 0.0554,
   "advertised_hoa": 290,
-  "rent_source": "Pipeline Barbasquillo/Manta 3BR LTR screens: Rentberry ~$1,200; FazWaz avg ~$825; Buzios oceanfront $1,200–$1,300; base $1,200 unchanged (live portal refresh blocked by egress)",
+  "rent_source": "Pipeline Barbasquillo/Manta 3BR LTR screens: Rentberry ~$1,200; FazWaz avg ~$825; Buzios oceanfront $1,200–$1,300 (buzios/barbasquillo-3br Nov 2026); base $1,200 unchanged (live portal refresh blocked by egress)",
   "rent_confidence": "MEDIUM",
   "workflow_state": "ARCHIVED",
   "scout_decision": "REJECT",
   "archive_reason": "scout_reject",
-  "rescreen_after": "2026-11-14T12:17:38Z",
-  "rescreen_count": 2
+  "rescreen_after": "2026-12-15T14:27:00Z",
+  "rescreen_count": 3
 }
