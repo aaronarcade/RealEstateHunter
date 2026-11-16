@@ -823,9 +823,9 @@
       "agentId": "bc-ea0015d0-e385-4ac9-aed4-3535a6b81744",
       "runId": "run-ccb4e85f-35ed-42b0-abf5-2ae660cc11cd",
       "agentUrl": "https://cursor.com/agents/bc-ea0015d0-e385-4ac9-aed4-3535a6b81744",
-      "status": "ACTIVE",
+      "status": "ERROR",
       "createdAt": "2026-11-16T16:36:17.538Z",
-      "updatedAt": "2026-11-16T16:36:17.538Z"
+      "updatedAt": "2026-11-16T16:38:38.081Z"
     },
     "scout:property:lanzarote-unit-6b-el-murciélago-manta-ec:rescreen-listing": {
       "workKey": "scout:property:lanzarote-unit-6b-el-murciélago-manta-ec:rescreen-listing",
@@ -837,9 +837,9 @@
       "agentId": "bc-c721fed7-0209-46b5-806b-c0f4a3da973a",
       "runId": "run-1293bcbb-35dc-4952-88c1-bcedfac4575e",
       "agentUrl": "https://cursor.com/agents/bc-c721fed7-0209-46b5-806b-c0f4a3da973a",
-      "status": "ACTIVE",
+      "status": "ERROR",
       "createdAt": "2026-11-16T16:36:20.789Z",
-      "updatedAt": "2026-11-16T16:36:20.789Z"
+      "updatedAt": "2026-11-16T16:38:38.447Z"
     },
     "scout:property:nahla-unit-d-106-barbasquillo-manta-ec:rescreen-listing": {
       "workKey": "scout:property:nahla-unit-d-106-barbasquillo-manta-ec:rescreen-listing",
@@ -851,9 +851,9 @@
       "agentId": "bc-14f552de-abaa-4490-b978-94461df71e89",
       "runId": "run-a960f864-aed9-409f-9ea4-1fe6b6f50006",
       "agentUrl": "https://cursor.com/agents/bc-14f552de-abaa-4490-b978-94461df71e89",
-      "status": "ACTIVE",
+      "status": "ERROR",
       "createdAt": "2026-11-16T16:36:25.700Z",
-      "updatedAt": "2026-11-16T16:36:25.700Z"
+      "updatedAt": "2026-11-16T16:38:39.177Z"
     },
     "scout:property:nahla-unit-d-203-barbasquillo-manta-ec:rescreen-listing": {
       "workKey": "scout:property:nahla-unit-d-203-barbasquillo-manta-ec:rescreen-listing",
