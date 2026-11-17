@@ -865,9 +865,9 @@
       "agentId": "bc-214782fa-9ecd-45c2-96b9-f534bf5c7d6a",
       "runId": "run-83cc251a-6afb-43a3-9bac-7f24942187e6",
       "agentUrl": "https://cursor.com/agents/bc-214782fa-9ecd-45c2-96b9-f534bf5c7d6a",
-      "status": "ACTIVE",
+      "status": "ERROR",
       "createdAt": "2026-11-17T16:33:27.496Z",
-      "updatedAt": "2026-11-17T16:33:27.496Z"
+      "updatedAt": "2026-11-17T16:35:37.101Z"
     },
     "scout:property:nahla-unit-d-204-barbasquillo-manta-ec:rescreen-listing": {
       "workKey": "scout:property:nahla-unit-d-204-barbasquillo-manta-ec:rescreen-listing",
@@ -879,9 +879,9 @@
       "agentId": "bc-80e271df-df6d-4311-bf73-a50cd2b88d12",
       "runId": "run-61b1c769-6169-4298-b015-a060cfd1a1b2",
       "agentUrl": "https://cursor.com/agents/bc-80e271df-df6d-4311-bf73-a50cd2b88d12",
-      "status": "ACTIVE",
+      "status": "ERROR",
       "createdAt": "2026-11-17T16:33:30.672Z",
-      "updatedAt": "2026-11-17T16:33:30.672Z"
+      "updatedAt": "2026-11-17T16:35:38.076Z"
     },
     "scout:property:oceanfront-penthouse-lease-ciudad-del-mar-manta-ec:rescreen-listing": {
       "workKey": "scout:property:oceanfront-penthouse-lease-ciudad-del-mar-manta-ec:rescreen-listing",
@@ -893,9 +893,9 @@
       "agentId": "bc-9ab395e7-01e8-4f1b-afd1-d9a596792cec",
       "runId": "run-285acae0-3902-4816-ba27-ae40c2dd8fcb",
       "agentUrl": "https://cursor.com/agents/bc-9ab395e7-01e8-4f1b-afd1-d9a596792cec",
-      "status": "ACTIVE",
+      "status": "ERROR",
       "createdAt": "2026-11-17T16:33:34.095Z",
-      "updatedAt": "2026-11-17T16:33:34.095Z"
+      "updatedAt": "2026-11-17T16:35:38.338Z"
     },
     "scout:property:oceania-4br-beachfront-manta-ec:rescreen-listing": {
       "workKey": "scout:property:oceania-4br-beachfront-manta-ec:rescreen-listing",
