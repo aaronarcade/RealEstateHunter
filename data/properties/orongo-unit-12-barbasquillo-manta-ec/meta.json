@@ -5,16 +5,16 @@
   "listing_url": "https://trivo.com.ec/propiedades/orongo/",
   "market_id": "manta-ec",
   "created_at": "2026-08-10T05:00:00Z",
-  "updated_at": "2026-10-19T14:11:00Z",
-  "last_screened_at": "2026-10-19T14:11:00Z",
+  "updated_at": "2026-11-18T16:05:05Z",
+  "last_screened_at": "2026-11-18T16:05:05Z",
   "screening_snapshot": {
     "price": 55503,
     "rough_monthly_rent": 450,
     "rough_gross_yield": 0.0973,
     "advertised_hoa": null,
-    "screened_at": "2026-10-19T14:11:00Z"
+    "screened_at": "2026-11-18T16:05:05Z"
   },
-  "scout_notes": "Rescreen 2026-10-19: trivo.com.ec / orongoconstructores.com direct fetch egress-blocked (curl SSL_ERROR_SYSCALL / WebFetch allowlist reject); WebSearch returned no Orongo / $55,503 / 47.22 m² Unit 12 index hit and no sold/offline signal — treat last-known active pre-sale economics as still marketed (same egress pattern as 2026-09-18 rescreen and Aug scrape listing_url still on Trivo Orongo). Holding $55,503 ask / $450 rent (0% vs snapshot; no rent-up or ≥5% price-drop trigger). HOA/alícuota still unknown. Gross at $450 = 9.7%; optimistic $500 still only 10.8% but unsupported for ~47 m² studio vs larger Barbasquillo LTR asks. Need ~$463/mo for 10%. Stay ARCHIVED scout_reject; rescreen_after +30d; rescreen_count=2.",
+  "scout_notes": "Rescreen 2026-11-18: trivo.com.ec / orongoconstructores.com direct fetch egress-blocked (domain not in allowlist; curl SSL_ERROR_SYSCALL / WebFetch reject). WebSearch for Orongo / $55,503 / 47.22 m² Unit 12 / trivo.com.ec/propiedades/orongo returned no sold, offline, or price-update signal — treat last-known active pre-sale economics as still marketed (same egress pattern as 2026-10-19 and 2026-09-18 resccreens; Aug scrape listing_url still Trivo Orongo). Sibling Orongo units 10/11/13/21 still ARCHIVED on same project URL — building inventory treated as marketed. Holding $55,503 ask / $450 rent (0% vs 2026-10-19 snapshot; no rent-up or ≥5% price-drop trigger). HOA/alícuota still unknown. Rent refresh from pipeline Barbasquillo studio/1BR: Nahla D-106 ~34 m² $500; Fez 405 $500; Orongo siblings $450; Torre Marina 1BR $500 — rent not up vs snapshot for ~47 m² Unit 12. Keep $450 → 9.7% gross; optimistic $500 still only 10.8% but unsupported vs size-matched LTR. Need ~$463/mo for 10% (or ask ≤~$54k at $450). Ask also below property_filters.price_range.min ($75k). No rescreen trigger met. Stay ARCHIVED scout_reject; rescreen_after +30d; rescreen_count=3.",
   "property_type": "condo",
   "building_name": "Orongo",
   "unit": "12",
@@ -24,11 +24,11 @@
   "rough_monthly_rent": 450,
   "rough_gross_yield": 0.0973,
   "advertised_hoa": null,
-  "rent_source": "FazWaz Manta 1BR avg ~$418–$419 + new Barbasquillo product adj → $450 (last-known; live FazWaz refresh egress-blocked)",
+  "rent_source": "FazWaz Manta 1BR avg ~$418–$419 + new Barbasquillo product adj → $450; pipeline refresh Nahla D-106/Fez 405 studio $450–$500, Torre Marina 1BR $500 (live portals egress-blocked)",
   "rent_confidence": "MEDIUM",
   "workflow_state": "ARCHIVED",
   "scout_decision": "REJECT",
   "archive_reason": "scout_reject",
-  "rescreen_after": "2026-11-18T14:11:00Z",
-  "rescreen_count": 2
+  "rescreen_after": "2026-12-18T16:05:05Z",
+  "rescreen_count": 3
 }
