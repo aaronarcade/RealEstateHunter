@@ -5,16 +5,16 @@
   "listing_url": "https://www.realtor.com/international/ec/manta-manabi-province/p2/",
   "market_id": "manta-ec",
   "created_at": "2026-08-10T05:00:00Z",
-  "updated_at": "2026-10-19T14:12:00Z",
-  "last_screened_at": "2026-10-19T14:12:00Z",
+  "updated_at": "2026-11-18T16:03:26Z",
+  "last_screened_at": "2026-11-18T16:03:26Z",
   "screening_snapshot": {
     "price": 187000,
     "rough_monthly_rent": 1000,
     "rough_gross_yield": 0.0642,
     "advertised_hoa": 103,
-    "screened_at": "2026-10-19T14:12:00Z"
+    "screened_at": "2026-11-18T16:03:26Z"
   },
-  "scout_notes": "Rescreen 2026-10-19: realtor.com / mls-ecuador.com / bienesraices-ecuador.com direct fetch egress-blocked (allowlist reject / curl SSL_ERROR_SYSCALL); WebSearch returned no RS2600101 / Oceania Sky Loft 180 / $187k sold, offline, or price-update signal — treat last-known Active MLS List Price $187,000 (HOA $103/mo) as still marketed (same egress pattern as 2026-09-17 rescreen). Holding $1,000/mo same-building Oceania loft rent (Mantahomes D084 all-in; Murciélago 1BR $750–$900) — 0% vs snapshot (no rent-up or ≥5% price-drop trigger). At $187k + $1,000 → 6.4% gross; HOA-adj (1000−103)×12/187000 ≈ 5.8%. Optimistic prior $1,500 STR → 9.6% (need ~$1,558 for 10%). Stay ARCHIVED scout_reject; rescreen_after +30d; rescreen_count=2.",
+  "scout_notes": "Rescreen 2026-11-18: realtor.com / mls-ecuador.com / bienesraices-ecuador.com direct fetch egress-blocked (allowlist reject / curl SSL_ERROR_SYSCALL / WebFetch reject). WebSearch for RS2600101 / Oceania Sky Loft 180 / $187k returned no sold, offline, or price-update signal — treat last-known Active MLS List Price $187,000 (HOA $103/mo) as still marketed (same egress pattern as 2026-10-19 rescreen). Sibling oceania-4br-beachfront still ARCHIVED — building inventory treated as marketed. Holding $1,000/mo same-building Oceania loft rent (Mantahomes D084 all-in; Murciélago 1BR $750–$900; Torre Marina 1BR pipeline $500 generous LTR) — 0% vs 2026-10-19 snapshot (no rent-up or ≥5% price-drop trigger). At $187k + $1,000 → 6.4% gross; HOA-adj (1000−103)×12/187000 ≈ 5.8%. Optimistic prior $1,500 STR → 9.6% (need ~$1,558 for 10%). No rescreen trigger met. Stay ARCHIVED scout_reject; rescreen_after +30d; rescreen_count=3.",
   "property_type": "condo",
   "building_name": "Oceania",
   "beds": 1,
@@ -23,12 +23,12 @@
   "rough_monthly_rent": 1000,
   "rough_gross_yield": 0.0642,
   "advertised_hoa": 103,
-  "rent_source": "Same-building Oceania loft Mantahomes D084 $1,000/mo all-in ($800 LTR); Murciélago 1BR comps $750–$900 (live refresh egress-blocked)",
+  "rent_source": "Same-building Oceania loft Mantahomes D084 $1,000/mo all-in ($800 LTR); Murciélago 1BR comps $750–$900; Torre Marina 1BR pipeline $500 (live refresh egress-blocked)",
   "rent_confidence": "MEDIUM",
   "mls_id": "RS2600101",
   "workflow_state": "ARCHIVED",
   "scout_decision": "REJECT",
   "archive_reason": "scout_reject",
-  "rescreen_after": "2026-11-18T14:12:00Z",
-  "rescreen_count": 2
+  "rescreen_after": "2026-12-18T16:03:26Z",
+  "rescreen_count": 3
 }
