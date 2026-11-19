@@ -5,16 +5,16 @@
   "listing_url": "https://www.fazwaz.com.ec/en/projects/ecuador/manabi/manta/manta/furnished-22-beachfront-prime-location-under-190k",
   "market_id": "manta-ec",
   "created_at": "2026-08-10T05:00:00Z",
-  "updated_at": "2026-10-20T12:24:29Z",
-  "last_screened_at": "2026-10-20T12:24:29Z",
+  "updated_at": "2026-11-19T16:10:53Z",
+  "last_screened_at": "2026-11-19T16:10:53Z",
   "screening_snapshot": {
     "price": 189000,
     "rough_monthly_rent": 1100,
     "rough_gross_yield": 0.0698,
     "advertised_hoa": null,
-    "screened_at": "2026-10-20T12:24:29Z"
+    "screened_at": "2026-11-19T16:10:53Z"
   },
-  "scout_notes": "Rescreen 2026-10-20: FazWaz direct fetch egress-blocked (curl fail / WebFetch allowlist reject); WebSearch returned no U505900 / furnished-22-beachfront-under-190k / $189k sold, offline, or price-update signal — treat last-known For Sale economics as still marketed (same egress pattern as 2026-09-18 rescreen). Holding $189,000 ask / $1,100 size-matched Poseidon 96 m² LTR (0% vs snapshot; no rent-up or ≥5% price-drop trigger). HOA still not stated (building alícuota comps $369–$400). Sibling pipeline still cites optimistic Poseidon $1,300 (7F RS2600215 / Rentola 135 m²). At $189k + $1,100 → 7.0% gross; optimistic $1,300 still 8.3%. Need ~$1,575/mo for 10% (or ask ≤~$156k at $1,300). Stay ARCHIVED scout_reject; rescreen_after +30d; rescreen_count=2.",
+  "scout_notes": "Rescreen 2026-11-19: FazWaz direct fetch egress-blocked (www.fazwaz.com.ec / www.fazwaz.com not in allowlist; curl SSL_ERROR_SYSCALL / WebFetch reject). WebSearch for U505900 / furnished-22-beachfront-under-190k / Poseidon Barbasquillo $189k returned no sold, offline, or price-update signal — treat last-known For Sale economics as still marketed (same egress pattern as 2026-10-20 and 2026-09-18 resccreens). Sibling Poseidon 7F RS2600215 (rescreen_after 2026-11-20) and 9F/barbasquillo-2br RS2500096 (rescanned 2026-11-09) still ARCHIVED — building inventory treated as marketed. Holding $189,000 ask / $1,100 size-matched Poseidon 96 m² LTR (0% vs 2026-10-20 snapshot; no rent-up or ≥5% price-drop trigger). HOA still not stated (building alícuota comps $369–$400). Pipeline rent refresh: size-matched $1,100 (Manta Homes D125); optimistic same-building $1,300 (7F / Rentola 135 m²); Barbasquillo 2BR Rentberry $600–$800 / Riva–Poseidon $1,200–$1,300 — rent not up vs snapshot. At $189k + $1,100 → 7.0% gross; optimistic $1,300 still 8.3%. Need ~$1,575/mo for 10% (or ask ≤~$156k at $1,300). No rescreen trigger met. Stay ARCHIVED scout_reject; rescreen_after +30d; rescreen_count=3.",
   "property_type": "condo",
   "building_name": "Poseidon",
   "beds": 2,
@@ -23,11 +23,11 @@
   "rough_monthly_rent": 1100,
   "rough_gross_yield": 0.0698,
   "advertised_hoa": null,
-  "rent_source": "Poseidon size-matched 96 m² LTR $1,100 (Manta Homes D125); optimistic building ask $1,300 (Rentola 135 m² / sibling 7F); live FazWaz refresh egress-blocked",
+  "rent_source": "Poseidon size-matched 96 m² LTR $1,100 (Manta Homes D125); optimistic building ask $1,300 (Rentola 135 m² / sibling 7F); pipeline Barbasquillo 2BR $600–$1,300 (live FazWaz refresh egress-blocked)",
   "rent_confidence": "MEDIUM",
   "workflow_state": "ARCHIVED",
   "scout_decision": "REJECT",
   "archive_reason": "scout_reject",
-  "rescreen_after": "2026-11-19T12:24:29Z",
-  "rescreen_count": 2
+  "rescreen_after": "2026-12-19T16:10:53Z",
+  "rescreen_count": 3
 }
