@@ -5,16 +5,16 @@
   "listing_url": "https://mls-ecuador.com/en/real-estate/manta-real-estate/rs2600215",
   "market_id": "manta-ec",
   "created_at": "2026-08-10T05:00:00Z",
-  "updated_at": "2026-10-21T12:35:00Z",
-  "last_screened_at": "2026-10-21T12:35:00Z",
+  "updated_at": "2026-11-20T15:50:40Z",
+  "last_screened_at": "2026-11-20T15:50:40Z",
   "screening_snapshot": {
     "price": 199000,
     "rough_monthly_rent": 1300,
     "rough_gross_yield": 0.0784,
     "advertised_hoa": 369,
-    "screened_at": "2026-10-21T12:35:00Z"
+    "screened_at": "2026-11-20T15:50:40Z"
   },
-  "scout_notes": "Rescreen 2026-10-21: MLS RS2600215 direct fetch egress-blocked (mls-ecuador.com / PropertyShelf not in allowlist; curl SSL fail / WebFetch reject). WebSearch for RS2600215 / Poseidon Unit 7F / $199k Barbasquillo returned no sold, offline, or price-update signal. Prior 2026-09-19 screen had PropertyShelf print+MLS Active at List Price $199,000 (browse mirrors once showed $169,900 but canonical was $199k). Sibling Poseidon 9F RS2500096 rescanned 2026-10-20 still treating same-building $1,300 rent as current. Holding $199,000 ask / $1,300 stated rent / HOA $369 (0% vs 2026-09-19 snapshot; no ≥5% drop or rent-up trigger). At $199k → 7.8% gross; HOA-adj (1300−369)×12/199000 ≈ 5.6%. Even prior mirror $169.9k + $1,300 → 9.2% / 6.6% HOA-adj, still below 10%. Need ~$1,658/mo for 10% (or ask ≤~$156k at $1,300). No rescreen trigger met. Stay ARCHIVED scout_reject; rescreen_after +30d; rescreen_count=2.",
+  "scout_notes": "Rescreen 2026-11-20: MLS RS2600215 direct fetch egress-blocked (mls-ecuador.com / PropertyShelf / FazWaz / Rentola not in allowlist; curl SSL_ERROR_SYSCALL / WebFetch reject). WebSearch for RS2600215 / Poseidon Unit 7F / $199k Barbasquillo returned no sold, offline, or price-update signal — treat last-known Active economics as still marketed (same egress pattern as 2026-10-21 and 2026-09-19 resccreens; prior PropertyShelf print+MLS Active at List Price $199,000; browse mirrors once showed $169,900 but canonical was $199k). Sibling Poseidon 9F RS2500096 and poseidon-2br-under-190k rescanned 2026-11-19 still treating building inventory as marketed. Holding $199,000 ask / $1,300 stated rent / HOA $369 (0% vs 2026-10-21 snapshot; no ≥5% drop or rent-up trigger). Pipeline rent refresh: optimistic same-building Poseidon $1,300 (7F / Rentola 135 m²); size-matched ~96–120 m² LTR $900–$1,100; Rentberry Barbasquillo 2BR $600–$800 — rent not up vs snapshot. At $199k → 7.8% gross; HOA-adj (1300−369)×12/199000 ≈ 5.6%. Even prior mirror $169.9k + $1,300 → 9.2% / 6.6% HOA-adj, still below 10%. Need ~$1,658/mo for 10% (or ask ≤~$156k at $1,300). No rescreen trigger met. Stay ARCHIVED scout_reject; rescreen_after +30d; rescreen_count=3.",
   "property_type": "condo",
   "building_name": "Poseidon",
   "unit": "7F",
@@ -24,12 +24,12 @@
   "rough_monthly_rent": 1300,
   "rough_gross_yield": 0.0784,
   "advertised_hoa": 369,
-  "rent_source": "Listing stated current rent $1,300/mo (prior MLS); live refresh egress-blocked — sibling 9F 2026-10-20 still cites same figure",
+  "rent_source": "Listing stated current rent $1,300/mo (prior MLS); live refresh egress-blocked — siblings 9F / under-190k 2026-11-19 still cite same-building $1,300 optimistic",
   "rent_confidence": "MEDIUM",
   "mls_id": "RS2600215",
   "workflow_state": "ARCHIVED",
   "scout_decision": "REJECT",
   "archive_reason": "scout_reject",
-  "rescreen_after": "2026-11-20T12:35:00Z",
-  "rescreen_count": 2
+  "rescreen_after": "2026-12-20T15:50:40Z",
+  "rescreen_count": 3
 }
