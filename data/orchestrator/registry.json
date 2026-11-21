@@ -1019,9 +1019,9 @@
       "agentId": "bc-9d2709b9-19c8-4b9b-8483-e315a144018c",
       "runId": "run-af021630-9588-4700-b12d-e0ff0e98dfb0",
       "agentUrl": "https://cursor.com/agents/bc-9d2709b9-19c8-4b9b-8483-e315a144018c",
-      "status": "ACTIVE",
+      "status": "ERROR",
       "createdAt": "2026-11-21T14:59:29.864Z",
-      "updatedAt": "2026-11-21T14:59:29.864Z"
+      "updatedAt": "2026-11-21T15:01:15.166Z"
     },
     "scout:property:skorpios-3br-beachfront-manta-ec:rescreen-listing": {
       "workKey": "scout:property:skorpios-3br-beachfront-manta-ec:rescreen-listing",
@@ -1033,9 +1033,9 @@
       "agentId": "bc-1a22a335-c8fd-4835-9fe3-005cd1f8af51",
       "runId": "run-2ac7c7aa-2c30-41eb-a24c-1ba2e9eecb24",
       "agentUrl": "https://cursor.com/agents/bc-1a22a335-c8fd-4835-9fe3-005cd1f8af51",
-      "status": "ACTIVE",
+      "status": "ERROR",
       "createdAt": "2026-11-21T14:59:33.996Z",
-      "updatedAt": "2026-11-21T14:59:33.996Z"
+      "updatedAt": "2026-11-21T15:01:16.762Z"
     },
     "scout:property:skyline-1br-presale-manta-ec:rescreen-listing": {
       "workKey": "scout:property:skyline-1br-presale-manta-ec:rescreen-listing",
@@ -1047,9 +1047,9 @@
       "agentId": "bc-5e33c92e-4100-46ce-b0ae-583b3e128e76",
       "runId": "run-aa6e5a99-4cde-47c9-b1b4-ea5b2d419dcd",
       "agentUrl": "https://cursor.com/agents/bc-5e33c92e-4100-46ce-b0ae-583b3e128e76",
-      "status": "ACTIVE",
+      "status": "ERROR",
       "createdAt": "2026-11-21T14:59:38.028Z",
-      "updatedAt": "2026-11-21T14:59:38.028Z"
+      "updatedAt": "2026-11-21T15:01:17.043Z"
     },
     "scout:property:torre-elit-1br-ciudad-del-mar-manta-ec:rescreen-listing": {
       "workKey": "scout:property:torre-elit-1br-ciudad-del-mar-manta-ec:rescreen-listing",
