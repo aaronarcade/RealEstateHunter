@@ -5,16 +5,16 @@
   "listing_url": "https://www.realtor.com/international/ec/manta-manabi-province/p2/",
   "market_id": "manta-ec",
   "created_at": "2026-08-10T05:00:00Z",
-  "updated_at": "2026-10-22T12:38:00Z",
-  "last_screened_at": "2026-10-22T12:38:00Z",
+  "updated_at": "2026-11-21T15:00:13Z",
+  "last_screened_at": "2026-11-21T15:00:13Z",
   "screening_snapshot": {
     "price": 118080,
     "rough_monthly_rent": 700,
     "rough_gross_yield": 0.0711,
     "advertised_hoa": null,
-    "screened_at": "2026-10-22T12:38:00Z"
+    "screened_at": "2026-11-21T15:00:13Z"
   },
-  "scout_notes": "Rescreen 2026-10-22: realtor.com international /p2/ direct fetch egress-blocked (domain not in allowlist; curl empty / WebFetch reject). WebSearch for Skyline Manta / Santos Azua Unit 13B / $118,080 / Construbienes $128,800 / OwnInEcuador $145,000 / FazWaz U4100981 returned no sold, offline, or price-update signal. Holding last-known best ask Santos Azua Unit 13B (42 m² interior, floor 13, Barbasquillo) US$118,080 — 0% vs 2026-09-20 snapshot (no ≥5% drop trigger). Sibling asks from prior screen ($128.8k Construbienes; $145k OwnInEcuador 17th-floor) not reconfirmed live; developer skyline-manta.com also unreachable under egress. HOA/alícuota still unstated (STR/Airbnb pitch). Rent refresh from pipeline Barbasquillo/Riva 1BR comps (unchanged): FazWaz U4100981 ~50 m² $700; Riva Di Mare 68 m² $700; Barbasquillo suite $550–$750 — rent not up vs snapshot. Keep $700 → 7.1% gross; optimistic $850 still 8.6%. Need ~$984/mo for 10% (or ask ≤~$84k at $700). No rescreen trigger met. Stay ARCHIVED scout_reject; rescreen_after +30d; rescreen_count=2.",
+  "scout_notes": "Rescreen 2026-11-21: realtor.com international /p2/ and trivo.com.ec/propiedades/skyline-manta/ direct fetch egress-blocked (domains not in allowlist; curl SSL_ERROR_SYSCALL / WebFetch reject). WebSearch for Skyline Manta / Santos Azua Unit 13B / $118,080 / Construbienes $128,800 / OwnInEcuador $145,000 / FazWaz U4100981 / skyline-manta returned no sold, offline, or price-update signal — treat last-known economics as still marketed (same egress pattern as 2026-10-22 and 2026-09-20 resccreens; Aug scrape still lists Trivo Skyline Manta project). Holding last-known best ask Santos Azua Unit 13B (42 m² interior, floor 13, Barbasquillo) US$118,080 — 0% vs 2026-10-22 snapshot (no ≥5% drop trigger). Sibling asks from prior screen ($128.8k Construbienes; $145k OwnInEcuador 17th-floor) not reconfirmed live; developer skyline-manta.com unreachable under egress. HOA/alícuota still unstated (STR/Airbnb pitch). Rent refresh from pipeline Barbasquillo/Riva 1BR comps (unchanged): FazWaz U4100981 ~50 m² $700; Riva Di Mare 68 m² $700–$850; Fez 405/Orongo suite $450–$500; Barbasquillo suite $550–$750 — rent not up vs snapshot. Keep $700 → 7.1% gross; optimistic $850 still 8.6%. Need ~$984/mo for 10% (or ask ≤~$84k at $700). No rescreen trigger met. Stay ARCHIVED scout_reject; rescreen_after +30d; rescreen_count=3.",
   "property_type": "condo",
   "building_name": "Skyline Manta",
   "unit": "13B",
@@ -24,11 +24,11 @@
   "rough_monthly_rent": 700,
   "rough_gross_yield": 0.0711,
   "advertised_hoa": null,
-  "rent_source": "FazWaz U4100981 Barbasquillo ~50 m² ocean suite $700 LTR (size-matched); pipeline Riva/Barbasquillo 1BR $550–$750 — live FazWaz/realtor refresh egress-blocked",
+  "rent_source": "FazWaz U4100981 Barbasquillo ~50 m² ocean suite $700 LTR (size-matched); pipeline Riva/Barbasquillo 1BR $550–$850 — live FazWaz/realtor/trivo refresh egress-blocked",
   "rent_confidence": "MEDIUM",
   "workflow_state": "ARCHIVED",
   "scout_decision": "REJECT",
   "archive_reason": "scout_reject",
-  "rescreen_after": "2026-11-21T12:38:00Z",
-  "rescreen_count": 2
+  "rescreen_after": "2026-12-21T15:00:13Z",
+  "rescreen_count": 3
 }
