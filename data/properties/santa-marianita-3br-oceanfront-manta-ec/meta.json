@@ -5,16 +5,16 @@
   "listing_url": "https://mls-ecuador.com/en/real-estate/manta-real-estate/rs2600197",
   "market_id": "manta-ec",
   "created_at": "2026-08-10T05:00:00Z",
-  "updated_at": "2026-10-22T12:38:00Z",
-  "last_screened_at": "2026-10-22T12:38:00Z",
+  "updated_at": "2026-11-21T15:00:16Z",
+  "last_screened_at": "2026-11-21T15:00:16Z",
   "screening_snapshot": {
     "price": 439000,
     "rough_monthly_rent": 1250,
     "rough_gross_yield": 0.0342,
     "advertised_hoa": null,
-    "screened_at": "2026-10-22T12:38:00Z"
+    "screened_at": "2026-11-21T15:00:16Z"
   },
-  "scout_notes": "Rescreen 2026-10-22: mls-ecuador.com / realtor.com / Rentberry / FazWaz / Manta Rentals direct fetch egress-blocked (domains not in allowlist; curl empty / WebFetch reject). WebSearch for RS2600197 / Punta Tortuga Santa Marianita / $439k oceanfront condo returned no sold, offline, or price-update signal. Holding last-known MLS Active ask $439,000 (Oceanfront Condominium, Punta Tortuga / Santa Marianita, 3/3+½, 245 m², private pool, furnished, built 2025) — 0% vs 2026-09-20 snapshot (no ≥5% drop trigger). HOA still not stated (Playa Alta comps ~$150–$166/mo). Rent refresh from prior comps (live portals blocked): Santa Marianita boardwalk 3BR LTR $1,250; Boca de Pacoche 3BR $850; premium views FazWaz $2,000; Playa Alta STR 30d+ $2,200 — rent not up vs snapshot. Keep LTR $1,250 → 3.4% gross; optimistic STR $2,200 still only 6.0%. Need ~$3,658/mo for 10% (or ask ≤~$150k at $1,250). No rescreen trigger met. Stay ARCHIVED scout_reject; rescreen_after +30d; rescreen_count=2.",
+  "scout_notes": "Rescreen 2026-11-21: mls-ecuador.com / realtor.com / Rentberry / FazWaz / Manta Rentals direct fetch egress-blocked (domains not in allowlist; curl empty / WebFetch reject). WebSearch for RS2600197 / Punta Tortuga Santa Marianita / $439k oceanfront condo returned no sold, offline, or price-update signal. Holding last-known MLS Active ask $439,000 (Oceanfront Condominium, Punta Tortuga / Santa Marianita, 3/3+½, 245 m², private pool, furnished, built 2025) — 0% vs 2026-10-22 snapshot (no ≥5% drop trigger). HOA still not stated (Playa Alta comps ~$150–$166/mo). Rent refresh from prior comps (live portals blocked): Santa Marianita boardwalk 3BR LTR $1,250; Boca de Pacoche 3BR $850; premium views FazWaz $2,000; Playa Alta STR 30d+ $2,200 — rent not up vs snapshot. Keep LTR $1,250 → 3.4% gross; optimistic STR $2,200 still only 6.0%. Need ~$3,658/mo for 10% (or ask ≤~$150k at $1,250). No rescreen trigger met. Stay ARCHIVED scout_reject; rescreen_after +30d; rescreen_count=3.",
   "property_type": "condo",
   "building_name": "Punta Tortuga",
   "beds": 3,
@@ -28,6 +28,6 @@
   "workflow_state": "ARCHIVED",
   "scout_decision": "REJECT",
   "archive_reason": "scout_reject",
-  "rescreen_after": "2026-11-21T12:38:00Z",
-  "rescreen_count": 2
+  "rescreen_after": "2026-12-21T15:00:16Z",
+  "rescreen_count": 3
 }
